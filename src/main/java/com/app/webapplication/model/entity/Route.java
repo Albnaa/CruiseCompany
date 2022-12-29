@@ -3,16 +3,15 @@ package com.app.webapplication.model.entity;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDate;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Builder
 @Data
 public class Route {
     private long id;
     private String name;
-    private LocalDate startOfCruise;
-    private LocalDate endOfCruise;
-    private Ship ship;
-    private List<Port> ports;
+    private LocalDateTime startOfCruise;
+    private LocalDateTime endOfCruise;
+    private Set<Port> ports;
 }

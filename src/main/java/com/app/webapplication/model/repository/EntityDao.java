@@ -1,9 +1,9 @@
-package com.app.webapplication.model.dao;
+package com.app.webapplication.model.repository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface GenericDao<T> {
+public interface EntityDao<T> {
     void create(T entity);
     void update(T entity);
     void delete(T entity);

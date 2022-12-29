@@ -1,7 +1,7 @@
 package com.app.webapplication.model.entity;
 
 public enum Role {
-    ADMIN (0), USER (1);
+    ADMIN (1), USER (2);
 
     private final int index;
 

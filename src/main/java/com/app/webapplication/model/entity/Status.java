@@ -1,7 +1,7 @@
 package com.app.webapplication.model.entity;
 
 public enum Status {
-    PAID(0), UNPAID(1);
+    PAID(1), UNPAID(2);
 
     private final int index;
 

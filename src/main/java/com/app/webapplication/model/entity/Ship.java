@@ -7,7 +7,9 @@ import lombok.Data;
 @Data
 public class Ship {
     private long id;
+    private String name;
     private int capacity;
     private int visited_ports;
     private int staff;
+    private Route route;
 }

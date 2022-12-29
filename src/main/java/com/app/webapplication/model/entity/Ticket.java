@@ -11,7 +11,7 @@ public class Ticket {
     private int passengers_count;
     private double price;
     private User user;
-    private Route route;
-    @EqualsAndHashCode.Exclude private Status status;
+    private Ship ship;
+    @EqualsAndHashCode.Exclude private int statusId;
 
 }
