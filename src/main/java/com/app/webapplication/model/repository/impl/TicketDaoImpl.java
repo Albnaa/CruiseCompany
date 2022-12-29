@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class TicketDaoImpl extends GenericDao<Ticket> implements TicketDao {
-    private static final String INSERT_TICKET = "";
+    private static final String INSERT_TICKET = "INSERT INTO ticket (passengers_count, price, user_id, ship_id) " +
+            "VALUES (?, ?, ?, ?)";
     private static final String UPDATE_TICKET = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
     private static final String FIND_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.login, user.email,\n" +
@@ -21,7 +22,10 @@ public class TicketDaoImpl extends GenericDao<Ticket> implements TicketDao {
     private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
     @Override
     public void create(Ticket entity) {
-        executeNoReturn(INSERT_TICKET);
+        executeNoReturn(INSERT_TICKET, entity.getPassengers_count(),
+                entity.getPrice(),
+                entity.getUser().getId(),
+                entity.getShip().getId());
     }
 
     @Override
