@@ -3,7 +3,7 @@ package com.app.webapplication.model.repository;
 import java.util.List;
 import java.util.Optional;
 
-public interface EntityDao<T> {
+public interface EntityDAO<T> {
     void create(T entity);
     void update(T entity);
     void delete(T entity);

@@ -1,8 +1,8 @@
 package com.app.webapplication.model.repository.impl;
 
 import com.app.webapplication.model.entity.Route;
-import com.app.webapplication.model.repository.GenericDao;
-import com.app.webapplication.model.repository.ShipDao;
+import com.app.webapplication.model.repository.GenericDAO;
+import com.app.webapplication.model.repository.ShipDAO;
 import com.app.webapplication.model.entity.Ship;
 
 import java.sql.ResultSet;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class ShipDaoImpl extends GenericDao<Ship> implements ShipDao {
+public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
 
     private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff, route_id) VALUES (?, ?, ?, ?, ?)";
     private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?, " +

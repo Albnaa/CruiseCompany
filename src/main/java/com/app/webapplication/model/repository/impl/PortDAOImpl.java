@@ -1,7 +1,7 @@
 package com.app.webapplication.model.repository.impl;
 
-import com.app.webapplication.model.repository.GenericDao;
-import com.app.webapplication.model.repository.PortDao;
+import com.app.webapplication.model.repository.GenericDAO;
+import com.app.webapplication.model.repository.PortDAO;
 import com.app.webapplication.model.entity.Port;
 
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class PortDaoImpl extends GenericDao<Port> implements PortDao {
+public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     private final static String INSERT_PORT = "INSERT INTO port (name) VALUES (?)";
     private final static String UPDATE_PORT = "UPDATE port SET name = ? WHERE id = ?";
     private final static String DELETE_PORT = "DELETE FROM port WHERE id = ?";

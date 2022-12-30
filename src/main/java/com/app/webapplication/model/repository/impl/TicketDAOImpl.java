@@ -2,8 +2,8 @@ package com.app.webapplication.model.repository.impl;
 
 import com.app.webapplication.model.entity.Ship;
 import com.app.webapplication.model.entity.User;
-import com.app.webapplication.model.repository.GenericDao;
-import com.app.webapplication.model.repository.TicketDao;
+import com.app.webapplication.model.repository.GenericDAO;
+import com.app.webapplication.model.repository.TicketDAO;
 import com.app.webapplication.model.entity.Ticket;
 
 import java.sql.ResultSet;
@@ -11,14 +11,14 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class TicketDaoImpl extends GenericDao<Ticket> implements TicketDao {
+public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     private static final String INSERT_TICKET = "INSERT INTO ticket (passengers_count, price, user_id, ship_id) " +
             "VALUES (?, ?, ?, ?)";
     private static final String UPDATE_TICKET = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
-    private static final String FIND_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.login, user.email,\n" +
-            "       user.first_name, user.last_name, ticket.ship_id, ship.name FROM ticket LEFT JOIN user on user.id = ticket.user_id\n" +
-            "       LEFT JOIN ship on ship.id = ticket.ship_id";
+    private static final String FIND_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.login, user.email," +
+            " user.first_name, user.last_name, ticket.ship_id, ship.name FROM ticket LEFT JOIN user on user.id = ticket.user_id" +
+            " LEFT JOIN ship on ship.id = ticket.ship_id";
     private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
     @Override
     public void create(Ticket entity) {
@@ -79,10 +79,5 @@ public class TicketDaoImpl extends GenericDao<Ticket> implements TicketDao {
                 .id(rs.getInt(++k))
                 .name(rs.getString(++k))
                 .build();
-    }
-
-    public static void main(String[] args) {
-        TicketDaoImpl ticketDao = new TicketDaoImpl();
-        System.out.println(ticketDao.findAll());
     }
 }

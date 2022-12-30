@@ -1,7 +1,7 @@
 package com.app.webapplication.model.repository.impl;
 
-import com.app.webapplication.model.repository.GenericDao;
-import com.app.webapplication.model.repository.UserDao;
+import com.app.webapplication.model.repository.GenericDAO;
+import com.app.webapplication.model.repository.UserDAO;
 import com.app.webapplication.model.entity.User;
 
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class UserDaoImpl extends GenericDao<User> implements UserDao {
+public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     private final static String CREATE_USER = "INSERT INTO user (login, email, password, first_name," +
             " last_name, Role_id) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String UPDATE_USER = "UPDATE user SET login = ?, email = ?, password = ?, " +

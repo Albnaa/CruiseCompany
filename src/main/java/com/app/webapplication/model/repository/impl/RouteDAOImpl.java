@@ -1,7 +1,7 @@
 package com.app.webapplication.model.repository.impl;
 
-import com.app.webapplication.model.repository.GenericDao;
-import com.app.webapplication.model.repository.RouteDao;
+import com.app.webapplication.model.repository.GenericDAO;
+import com.app.webapplication.model.repository.RouteDAO;
 import com.app.webapplication.model.entity.Route;
 
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-public class RouteDaoImpl extends GenericDao<Route> implements RouteDao {
+public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     private final static String INSERT_ROUTE = "INSERT INTO route (name, start_of_cruise, end_of_cruise) VALUES (?, ?, ?)";
     private final static String UPDATE_ROUTE = "UPDATE route SET name = ?, start_of_cruise = ?, end_of_cruise = ? WHERE id = ?";
     private final static String DELETE_ROUTE = "DELETE FROM route WHERE id = ?";

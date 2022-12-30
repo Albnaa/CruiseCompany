@@ -4,6 +4,6 @@ import com.app.webapplication.model.entity.User;
 
 import java.util.Optional;
 
-public interface UserDao extends EntityDao<User> {
+public interface UserDAO extends EntityDAO<User> {
     Optional<User> findByLogin(String login);
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericDao<T> {
+public abstract class GenericDAO<T> {
     public static void executeNoReturn(String query, Object... args) {
         try (Connection con = DBManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
