@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`route`
 (
     `id`              INT          NOT NULL AUTO_INCREMENT,
     `name`            VARCHAR(255) NOT NULL,
-    `start_of_cruise` DATETIME     NOT NULL,
-    `end_of_cruise`   DATETIME     NOT NULL,
+    `start_of_cruise` DATE         NULL,
+    `end_of_cruise`   DATE         NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -82,9 +82,12 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`user`
     `password`   VARCHAR(45)  NOT NULL,
     `first_name` VARCHAR(45)  NOT NULL,
     `last_name`  VARCHAR(45)  NOT NULL,
-    `Role_id`    INT          NOT NULL,
+    `Role_id`    INT          NULL,
+    `balance`    DOUBLE       NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_User_Role_idx` (`Role_id` ASC) VISIBLE,
+    UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
+    UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
     CONSTRAINT `fk_User_Role`
         FOREIGN KEY (`Role_id`)
             REFERENCES `webAppDb`.`role` (`id`)
@@ -165,8 +168,10 @@ DROP TABLE IF EXISTS `webAppDb`.`route_has_port`;
 
 CREATE TABLE IF NOT EXISTS `webAppDb`.`route_has_port`
 (
-    `route_id` INT NOT NULL,
-    `port_id`  INT NOT NULL,
+    `route_id`       INT  NOT NULL,
+    `port_id`        INT  NOT NULL,
+    `arrive_time`    DATE NULL,
+    `departure_time` DATE NULL,
     PRIMARY KEY (`route_id`, `port_id`),
     INDEX `fk_route_has_port_port1_idx` (`port_id` ASC) VISIBLE,
     INDEX `fk_route_has_port_route1_idx` (`route_id` ASC) VISIBLE,
