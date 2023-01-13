@@ -28,7 +28,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
                 entity.getPassword(),
                 entity.getFirst_name(),
                 entity.getLast_name(),
-                1);
+                2);
     }
 
     @Override

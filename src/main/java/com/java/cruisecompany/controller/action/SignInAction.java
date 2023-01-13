@@ -18,6 +18,7 @@ public class SignInAction implements Action{
 
         if (user.isPresent()) {
             request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("role", user.get().getRole());
             return "catalog";
         } else {
             request.setAttribute("error", "Wrong username/password. Please retry");
