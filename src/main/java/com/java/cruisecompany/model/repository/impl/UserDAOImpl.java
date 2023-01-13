@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.repository.impl;
 
+import com.java.cruisecompany.model.entity.Role;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.entity.User;
@@ -65,7 +66,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
                 .password(rs.getString(++k))
                 .first_name(rs.getString(++k))
                 .last_name(rs.getString(++k))
-                .roleId(rs.getInt(++k))
+                .role(Role.getRole(rs.getInt(++k)))
                 .build();
     }
 }

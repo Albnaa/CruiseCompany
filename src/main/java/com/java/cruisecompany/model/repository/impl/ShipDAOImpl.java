@@ -78,9 +78,4 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                 .endOfCruise((Date) rs.getObject(++k))
                 .build();
     }
-
-    public static void main(String[] args) {
-        ShipDAO shipDAO = new ShipDAOImpl();
-        System.out.println(shipDAO.findAll());
-    }
 }

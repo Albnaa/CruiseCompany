@@ -13,5 +13,5 @@ public class User {
     private String password;
     private String first_name;
     private String last_name;
-    @EqualsAndHashCode.Exclude private int roleId;
+    @EqualsAndHashCode.Exclude private Role role;
 }

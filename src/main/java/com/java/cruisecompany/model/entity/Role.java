@@ -13,8 +13,8 @@ public enum Role {
         return index;
     }
 
-    public Role getRole(int index) {
-        if (index == 0) return ADMIN;
+    public static Role getRole(int index) {
+        if (index == 1) return ADMIN;
         return USER;
     }
 }
