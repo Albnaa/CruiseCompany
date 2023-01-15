@@ -68,8 +68,8 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .id(rs.getInt(++k))
                 .login(rs.getString(++k))
                 .email(rs.getString(++k))
-                .first_name(rs.getString(++k))
-                .last_name(rs.getString(++k))
+                .firstName(rs.getString(++k))
+                .lastName(rs.getString(++k))
                 .build();
     }
 

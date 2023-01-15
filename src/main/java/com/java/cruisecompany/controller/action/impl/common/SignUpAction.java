@@ -1,5 +1,6 @@
-package com.java.cruisecompany.controller.action;
+package com.java.cruisecompany.controller.action.impl.common;
 
+import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
@@ -20,12 +21,12 @@ public class SignUpAction implements Action {
                 .login(login)
                 .email(email)
                 .password(password)
-                .first_name(firstname)
-                .last_name(lastname)
+                .firstName(firstname)
+                .lastName(lastname)
                 .build();
 
         userService.create(user);
         request.getSession().setAttribute("user", user);
-        return "main";
+        return "catalog";
     }
 }

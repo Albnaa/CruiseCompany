@@ -24,10 +24,15 @@ public class Controller extends HttpServlet {
         try {
             Action action = ActionFactory.getActionFactory().getAction(req);
             String view = action.execute(req);
+            System.out.println("PathInfo = " + req.getPathInfo());
+            System.out.println("ServletPath = " + req.getServletPath());
+            System.out.println("View = " + view);
 
             if (req.getPathInfo() != null && view.equals(req.getPathInfo().substring(1))) {
+                System.out.println("request dispatcher");
                 req.getRequestDispatcher(view + ".jsp").forward(req, resp);
             } else {
+                System.out.println("send redirect");
                 resp.sendRedirect(view + ".jsp");
             }
         } catch (Exception e) {

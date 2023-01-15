@@ -1,5 +1,6 @@
-package com.java.cruisecompany.controller.action;
+package com.java.cruisecompany.controller.action.impl.common;
 
+import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
@@ -8,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Optional;
 
-public class SignInAction implements Action{
+public class SignInAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
     @Override
     public String execute(HttpServletRequest request) {
@@ -22,6 +23,7 @@ public class SignInAction implements Action{
             return "catalog";
         } else {
             request.setAttribute("error", "Wrong username/password. Please retry");
+            System.out.println("attribute error was set -> " + request.getAttribute( "error"));
             return "login";
         }
     }

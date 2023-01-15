@@ -1,4 +1,4 @@
-package com.java.cruisecompany.model.entity;
+package com.java.cruisecompany.model.entity.enums;
 
 public enum Role {
     ADMIN (1), USER (2);
