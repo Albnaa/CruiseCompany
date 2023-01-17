@@ -18,7 +18,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public void delete(Route entity) {
+    public void delete(long id) {
 
     }
 

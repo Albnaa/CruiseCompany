@@ -18,7 +18,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void delete(Ticket entity) {
+    public void delete(long id) {
 
     }
 

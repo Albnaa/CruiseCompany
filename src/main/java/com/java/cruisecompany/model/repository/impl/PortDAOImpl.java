@@ -27,8 +27,8 @@ public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     }
 
     @Override
-    public void delete(Port entity) {
-        executeNoReturn(DELETE_PORT, entity.getId());
+    public void delete(long id) {
+        executeNoReturn(DELETE_PORT, id);
     }
 
     @Override

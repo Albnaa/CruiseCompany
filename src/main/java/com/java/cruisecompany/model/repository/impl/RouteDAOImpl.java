@@ -36,8 +36,8 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     }
 
     @Override
-    public void delete(Route entity) {
-        executeNoReturn(DELETE_ROUTE, entity.getId());
+    public void delete(long id) {
+        executeNoReturn(DELETE_ROUTE, id);
     }
 
     @Override

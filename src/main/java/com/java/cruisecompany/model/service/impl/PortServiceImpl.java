@@ -26,8 +26,8 @@ public class PortServiceImpl implements PortService { //add validation and dto o
     }
 
     @Override
-    public void delete(Port entity) {
-        portDAO.delete(entity);
+    public void delete(long id) {
+        portDAO.delete(id);
     }
 
     @Override

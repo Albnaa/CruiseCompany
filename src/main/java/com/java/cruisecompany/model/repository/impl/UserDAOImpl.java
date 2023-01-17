@@ -19,6 +19,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     private final static String SELECT_ALL = "SELECT * FROM user";
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE id = ?";
     private final static String SELECT_BY_LOGIN_AND_PASSWORD = SELECT_ALL + " WHERE login = ? AND password = ?";
+    private final static String SELECT_BY_INITIALS = SELECT_ALL + " WHERE first_name = ? OR last_name = ?";
 
 
     @Override
@@ -37,8 +38,8 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     }
 
     @Override
-    public void delete(User entity) {
-        executeNoReturn(DELETE_USER, entity.getId());
+    public void delete(long id) {
+        executeNoReturn(DELETE_USER, id);
     }
 
     @Override
@@ -57,6 +58,11 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     }
 
     @Override
+    public List<User> findByInitials(String initials) {
+        return executeListReturn(SELECT_BY_INITIALS, initials, initials);
+    }
+
+    @Override
     protected User mapToEntity(ResultSet rs) throws SQLException {
         int k = 0;
         return User.builder()
@@ -67,6 +73,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
                 .firstName(rs.getString(++k))
                 .lastName(rs.getString(++k))
                 .role(Role.getRole(rs.getInt(++k)))
+                .balance(rs.getDouble(++k))
                 .build();
     }
 }

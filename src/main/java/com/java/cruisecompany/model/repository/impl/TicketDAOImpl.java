@@ -35,8 +35,8 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     }
 
     @Override
-    public void delete(Ticket entity) {
-        executeNoReturn(DELETE_TICKET, entity.getId());
+    public void delete(long id) {
+        executeNoReturn(DELETE_TICKET, id);
     }
 
     @Override

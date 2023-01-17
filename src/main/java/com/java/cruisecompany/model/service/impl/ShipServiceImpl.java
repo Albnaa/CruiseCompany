@@ -18,7 +18,7 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public void delete(Ship entity) {
+    public void delete(long id) {
 
     }
 

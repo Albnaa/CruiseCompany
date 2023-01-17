@@ -42,8 +42,8 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     }
 
     @Override
-    public void delete(Ship entity) {
-        executeNoReturn(DELETE_SHIP, entity.getId());
+    public void delete(long id) {
+        executeNoReturn(DELETE_SHIP, id);
     }
 
     @Override

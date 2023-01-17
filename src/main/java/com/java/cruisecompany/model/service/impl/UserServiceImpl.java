@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User entity) {
-        userDAO.delete(entity);
+    public void delete(long id) {
+        userDAO.delete(id);
     }
 
     @Override
@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> findByLoginAndPass(String login, String password) {
         return userDAO.findByLoginAndPass(login, password);
+    }
+
+    @Override
+    public List<User> findByInitials(String initials) {
+        return userDAO.findByInitials(initials);
     }
 }

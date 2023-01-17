@@ -15,4 +15,5 @@ public class User {
     private String firstName;
     private String lastName;
     @EqualsAndHashCode.Exclude private Role role;
+    @EqualsAndHashCode.Exclude private double balance;
 }
