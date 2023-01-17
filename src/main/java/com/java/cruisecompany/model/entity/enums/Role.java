@@ -17,4 +17,9 @@ public enum Role {
         if (index == 1) return ADMIN;
         return USER;
     }
+
+    public static Role getRoleFromString(String role) {
+        if (role.equals("ADMIN")) return ADMIN;
+        return USER;
+    }
 }

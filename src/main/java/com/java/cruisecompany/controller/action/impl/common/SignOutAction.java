@@ -11,6 +11,6 @@ public class SignOutAction implements Action {
         if (session != null) {
             session.invalidate();
         }
-        return "login";
+        return "login.jsp";
     }
 }

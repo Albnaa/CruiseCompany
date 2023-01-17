@@ -6,6 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 public class DefaultAction implements Action {
     @Override
     public String execute(HttpServletRequest request) {
-        return "login";
+        return "login.jsp";
     }
 }

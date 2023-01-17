@@ -15,7 +15,10 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="#">My tickets</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link active">Profile</a>
+                </li>
+
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                 
                 <li class="nav-item">
@@ -36,12 +39,9 @@
                         <li><a class="dropdown-item" href="#">Tickets</a></li>
                     </ul>
                 </li>
-            </ul>
                 </c:if>
+            </ul>
             <ul class="navbar-nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active">Profile</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link active">Balance ${sessionScope.user.balance}</a>
                 </li>

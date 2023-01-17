@@ -22,6 +22,6 @@ public class Controller extends HttpServlet {
 
     private String processRequest(HttpServletRequest req) throws ServletException, IOException {
         Action action = ActionFactory.getAction(req);
-        return action.execute(req) + ".jsp";
+        return action.execute(req);
     }
 }

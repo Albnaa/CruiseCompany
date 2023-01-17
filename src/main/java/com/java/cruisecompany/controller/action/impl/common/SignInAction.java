@@ -26,13 +26,13 @@ public class SignInAction implements Action {
 
             Role role = user.get().getRole();
             if (Objects.requireNonNull(role) == Role.ADMIN) {
-                return "users";
+                return "users.jsp";
             }
-            return "catalog";
+            return "catalog.jsp";
         } else {
             request.getSession().setAttribute("error", "Wrong username/password. Please retry");
             System.out.println("attribute error was set -> " + request.getAttribute( "error"));
-            return "login";
+            return "login.jsp";
         }
     }
 }

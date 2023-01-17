@@ -23,6 +23,6 @@ public class SearchUserAction implements Action {
             users = userService.findByInitials(searchQuery);
         }
         request.setAttribute("users", users);
-        return "users";
+        return "users.jsp";
     }
 }

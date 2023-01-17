@@ -27,6 +27,6 @@ public class SignUpAction implements Action {
 
         userService.create(user);
         request.getSession().setAttribute("user", user);
-        return "catalog";
+        return "catalog.jsp";
     }
 }

@@ -13,8 +13,8 @@ import java.util.Optional;
 public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     private final static String CREATE_USER = "INSERT INTO user (login, email, password, first_name," +
             " last_name, Role_id) VALUES (?, ?, ?, ?, ?, ?)";
-    private final static String UPDATE_USER = "UPDATE user SET login = ?, email = ?, password = ?, " +
-            "first_name = ?, last_name = ? WHERE id = ?";
+    private final static String UPDATE_USER = "UPDATE user SET login = ?, email = ?, " +
+            "first_name = ?, last_name = ?, role_id = ? WHERE id = ?";
     private final static String DELETE_USER = "DELETE FROM user WHERE id = ?";
     private final static String SELECT_ALL = "SELECT * FROM user";
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE id = ?";
@@ -34,7 +34,13 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
 
     @Override
     public void update(User entity) {
-        executeNoReturn(UPDATE_USER, entity.getId());
+        executeNoReturn(UPDATE_USER,
+                entity.getLogin(),
+                entity.getEmail(),
+                entity.getFirstName(),
+                entity.getLastName(),
+                entity.getRole().getIndex(),
+                entity.getId());
     }
 
     @Override
@@ -76,4 +82,5 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
                 .balance(rs.getDouble(++k))
                 .build();
     }
+
 }

@@ -4,6 +4,7 @@
 <head>
     <title>User's</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <jsp:include page="templates/navbar.jsp"/>
@@ -48,14 +49,15 @@
                     </thead>
                     <c:forEach var="user" items="${requestScope.users}">
                         <tr class="${user}">
-                            <td><a href="controller?userId=${user.id}&action=update_user">${user.id}</a></td>
+                            <td>${user.id}</td>
                             <td>${user.login}</td>
                             <td>${user.email}</td>
                             <td>${user.firstName}</td>
                             <td>${user.lastName}</td>
                             <td>${user.role}</td>
                             <td>${user.balance}</td>
-                            <td><a href="controller?userId=${user.id}&action=delete_user">Delete</a></td>
+                            <td><a class="btn btn-primary p-0 " style="width: 60px"
+                                   href="controller?action=view_user&userId=${user.id}">Profile</a></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -68,7 +70,6 @@
         </c:choose>
     </form>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <jsp:include page="templates/footer.jsp"/>
 </body>
