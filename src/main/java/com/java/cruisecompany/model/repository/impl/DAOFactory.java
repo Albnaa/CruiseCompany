@@ -1,15 +1,24 @@
 package com.java.cruisecompany.model.repository.impl;
 
 import com.java.cruisecompany.model.repository.*;
-import com.java.cruisecompany.model.repository.*;
-import com.java.cruisecompany.model.repository.*;
 
-public class FactoryDAO {
+public class DAOFactory {
+    private static DAOFactory instance;
     private PortDAO portDAO;
     private RouteDAO routeDAO;
     private ShipDAO shipDAO;
     private TicketDAO ticketDAO;
     private UserDAO userDAO;
+
+    private DAOFactory() {
+    }
+
+    public static DAOFactory getInstance() {
+        if (instance == null) {
+            instance = new DAOFactory();
+        }
+        return instance;
+    }
 
     public PortDAO getPortDAO() {
         if (portDAO == null) {

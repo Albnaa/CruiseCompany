@@ -1,12 +1,20 @@
 package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.model.entity.Ticket;
+import com.java.cruisecompany.model.repository.TicketDAO;
+import com.java.cruisecompany.model.repository.impl.DAOFactory;
 import com.java.cruisecompany.model.service.TicketService;
 
 import java.util.List;
 import java.util.Optional;
 
 public class TicketServiceImpl implements TicketService {
+    private final TicketDAO ticketDAO;
+
+    public TicketServiceImpl(TicketDAO ticketDAO) {
+        this.ticketDAO = ticketDAO;
+    }
+
     @Override
     public void create(Ticket entity) {
 

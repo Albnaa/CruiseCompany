@@ -1,12 +1,19 @@
 package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.model.entity.Ship;
+import com.java.cruisecompany.model.repository.ShipDAO;
 import com.java.cruisecompany.model.service.ShipService;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ShipServiceImpl implements ShipService {
+    private final ShipDAO shipDAOl;
+
+    public ShipServiceImpl(ShipDAO shipDAOl) {
+        this.shipDAOl = shipDAOl;
+    }
+
     @Override
     public void create(Ship entity) {
 
