@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface UserDAO extends EntityDAO<User> {
     Optional<User> findByLoginAndPass(String login, String password);
+    Optional<User> findByLogin(String Login);
     List<User> findByInitials(String initials);
 }

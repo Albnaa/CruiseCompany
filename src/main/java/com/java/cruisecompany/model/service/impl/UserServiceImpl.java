@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
     public List<User> findByInitials(String initials) {
         return userDAO.findByInitials(initials);
     }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return userDAO.findByLogin(login);
+    }
 }

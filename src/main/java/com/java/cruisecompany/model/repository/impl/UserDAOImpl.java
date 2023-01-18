@@ -18,6 +18,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     private final static String DELETE_USER = "DELETE FROM user WHERE id = ?";
     private final static String SELECT_ALL = "SELECT * FROM user";
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE id = ?";
+    private final static String SELECT_BY_LOGIN = SELECT_ALL + " WHERE login = ?";
     private final static String SELECT_BY_LOGIN_AND_PASSWORD = SELECT_ALL + " WHERE login = ? AND password = ?";
     private final static String SELECT_BY_INITIALS = SELECT_ALL + " WHERE first_name = ? OR last_name = ?";
 
@@ -61,6 +62,11 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     @Override
     public Optional<User> findByLoginAndPass(String login, String password) {
         return executeOneReturn(SELECT_BY_LOGIN_AND_PASSWORD , login, password);
+    }
+
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return executeOneReturn(SELECT_BY_LOGIN, login);
     }
 
     @Override

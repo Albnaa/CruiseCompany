@@ -7,6 +7,8 @@ import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.Objects;
+
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
     @Override
@@ -14,8 +16,17 @@ public class SignUpAction implements Action {
         String login = request.getParameter("login");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirm-password");
         String firstname = request.getParameter("firstname");
         String lastname = request.getParameter("lastname");
+
+        if (!Objects.equals(password, confirmPassword)) {
+            request.getSession().setAttribute("error", "Password's don't match!");
+            return "signUp.jsp";
+        } else if (userService.findByLogin(login).isPresent()) {
+            request.getSession().setAttribute("error", "User with such username already exists");
+            return "signUp.jsp";
+        }
 
         User user = User.builder()
                 .login(login)
@@ -26,7 +37,6 @@ public class SignUpAction implements Action {
                 .build();
 
         userService.create(user);
-        request.getSession().setAttribute("user", user);
-        return "catalog.jsp";
+        return "login.jsp";
     }
 }
