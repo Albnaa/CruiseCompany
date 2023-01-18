@@ -5,6 +5,7 @@ import com.java.cruisecompany.model.service.*;
 import lombok.Getter;
 
 public class ServiceFactory {
+    private static ServiceFactory instance;
     @Getter
     private final PortService portService;
     @Getter
@@ -23,5 +24,12 @@ public class ServiceFactory {
         shipService = new ShipServiceImpl(daoFactory.getShipDAO());
         ticketService = new TicketServiceImpl(daoFactory.getTicketDAO());
         userService = new UserServiceImpl(daoFactory.getUserDAO());
+    }
+
+    public static ServiceFactory getInstance() {
+        if (instance == null) {
+            instance = new ServiceFactory();
+        }
+        return instance;
     }
 }
