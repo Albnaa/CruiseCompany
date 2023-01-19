@@ -2,12 +2,11 @@ package com.java.cruisecompany.model.utils;
 
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
-import com.java.cruisecompany.model.entity.enums.Role;
 
-public class ConverterDTO {
-    private ConverterDTO() {};
+public class MapperDTO {
+    private MapperDTO() {};
 
-    public static UserDTO convertUserToDTO(User user) {
+    public static UserDTO mapUserToDTO(User user) {
         return UserDTO.builder()
                 .id(user.getId())
                 .login(user.getLogin())
@@ -18,7 +17,7 @@ public class ConverterDTO {
                 .build();
     }
 
-    public static User convertDTOtoUser(UserDTO userDTO) {
+    public static User mapDTOtoUser(UserDTO userDTO) {
         return User.builder()
                 .id(userDTO.getId())
                 .login(userDTO.getLogin())

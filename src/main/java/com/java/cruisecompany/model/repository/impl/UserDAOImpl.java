@@ -21,6 +21,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     private final static String SELECT_BY_LOGIN = SELECT_ALL + " WHERE login = ?";
     private final static String SELECT_BY_LOGIN_AND_PASSWORD = SELECT_ALL + " WHERE login = ? AND password = ?";
     private final static String SELECT_BY_INITIALS = SELECT_ALL + " WHERE first_name = ? OR last_name = ?";
+    private final static String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM user";
 
 
     @Override
@@ -72,6 +73,15 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     @Override
     public List<User> findByInitials(String initials) {
         return executeListReturn(SELECT_BY_INITIALS, initials, initials);
+    }
+
+    @Override
+    public List<User> findSorted(String query) {
+        return executeListReturn(SELECT_ALL + query);
+    }
+
+    public long getNumOfRows(String query) {
+        return executeNumOfRowsReturn(SELECT_COUNT_OF_ROWS + query);
     }
 
     @Override

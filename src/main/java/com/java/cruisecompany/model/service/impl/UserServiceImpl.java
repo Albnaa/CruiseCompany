@@ -54,4 +54,15 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByLogin(String login) {
         return userDAO.findByLogin(login);
     }
+
+    @Override
+    public List<User> findSorted(String query) {
+        return userDAO.findSorted(query);
+    }
+
+    @Override
+    public long getNumOfRows(String query) {
+        return userDAO.getNumOfRows(query);
+    }
+
 }

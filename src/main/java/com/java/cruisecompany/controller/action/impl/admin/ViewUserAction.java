@@ -1,6 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.admin;
 
 import com.java.cruisecompany.controller.action.Action;
+import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
@@ -10,9 +11,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 public class ViewUserAction implements Action {
+    UserService userService = AppContext.getInstance().getUserService();
     @Override
     public String execute(HttpServletRequest request) {
-        UserService userService = new UserServiceImpl(new UserDAOImpl());
 
         int userId = Integer.parseInt(request.getParameter("userId"));
         Optional<User> user = userService.findById(userId);

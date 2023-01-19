@@ -53,6 +53,21 @@ public abstract class GenericDAO<T> {
         return list;
     }
 
+    public long executeNumOfRowsReturn(String query) {
+        long rows = 0;
+        try (Connection con = DBManager.getConnection();
+             PreparedStatement stmt = con.prepareStatement(query)){
+            try (ResultSet rs = stmt.executeQuery()){
+                while (rs.next()) {
+                    rows = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
+
     private static void setArgs(PreparedStatement stmt, Object... args) throws SQLException {
         int k = 0;
         for (Object arg : args) {
