@@ -8,7 +8,7 @@ public class Pagination {
         long rows = parseIntFromString(request.getParameter("rows"), 5);
         long numOfPages = (long) Math.ceil(records * 1.0 / rows);
         long currPage = offset / rows + 1;
-        long lowerBound = calculateLowerBound(currPage, numOfPages, 6);
+        long lowerBound = calculateLowerBound(currPage, numOfPages);
         long upperBound = Math.min(numOfPages, lowerBound + 6);
 
         request.setAttribute("offset", offset);
@@ -32,9 +32,13 @@ public class Pagination {
         }
     }
 
-    private static long calculateLowerBound(long currPage, long numOfPages, long bound) {
-        if (currPage > bound - (bound/2)) {
-            return Math.min(currPage - bound / 2, numOfPages - 6);
+    private static long calculateLowerBound(long currPage, long numOfPages) {
+        if (currPage > (long) 6 - ((long) 6 / 2)) {
+            if (numOfPages > 6) {
+                return Math.min(currPage - (long) 6 / 2, numOfPages - 6);
+            } else {
+                return 1;
+            }
         }
         return 1;
     }
