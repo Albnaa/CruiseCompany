@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Builder
 @Data
-public class UserDTO {
+public class User {
     private long id;
     private String login;
     private String email;

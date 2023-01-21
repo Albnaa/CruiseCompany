@@ -2,7 +2,7 @@ package com.java.cruisecompany.model.repository.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.entity.Ship;
-import com.java.cruisecompany.model.entity.UserDTO;
+import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.entity.Ticket;
@@ -63,9 +63,9 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .build();
     }
 
-    private UserDTO mapToUser(ResultSet rs) throws SQLException {
+    private User mapToUser(ResultSet rs) throws SQLException {
         int k = 4;
-        return UserDTO.builder()
+        return User.builder()
                 .id(rs.getInt(++k))
                 .login(rs.getString(++k))
                 .email(rs.getString(++k))

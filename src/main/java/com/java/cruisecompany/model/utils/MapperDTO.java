@@ -1,11 +1,12 @@
 package com.java.cruisecompany.model.utils;
 
-import com.java.cruisecompany.model.entity.UserDTO;
+import com.java.cruisecompany.model.dto.UserDTO;
+import com.java.cruisecompany.model.entity.User;
 
 public class MapperDTO {
-    private MapperDTO() {};
+    private MapperDTO() {}
 
-    public static UserDTO mapUserToDTO(UserDTO user) {
+    public static UserDTO mapUserToDTO(User user) {
         return UserDTO.builder()
                 .id(user.getId())
                 .login(user.getLogin())
@@ -16,8 +17,8 @@ public class MapperDTO {
                 .build();
     }
 
-    public static UserDTO mapDTOtoUser(com.java.cruisecompany.model.dto.UserDTO userDTO) {
-        return UserDTO.builder()
+    public static User mapDTOtoUser(UserDTO userDTO) {
+        return User.builder()
                 .id(userDTO.getId())
                 .login(userDTO.getLogin())
                 .email(userDTO.getEmail())

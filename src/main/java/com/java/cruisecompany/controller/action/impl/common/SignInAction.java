@@ -2,7 +2,8 @@ package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.exceptions.ServiceException;
-import com.java.cruisecompany.model.entity.UserDTO;
+import com.java.cruisecompany.model.dto.UserDTO;
+import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
