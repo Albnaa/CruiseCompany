@@ -35,6 +35,7 @@ public class SessionAttributeHandlerUtil {
     }
 
     private static void setAttributesToSession(HttpSession session, Map<String, String> attributes) {
+        System.out.println("Setting those attributes" +  attributes);
         attributes.forEach(session::setAttribute);
     }
 

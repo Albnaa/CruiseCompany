@@ -9,34 +9,34 @@
 <body>
 <jsp:include page="templates/navbar.jsp"/>
 <div class="container">
-    <h2>User's</h2>
+    <h2 class="text-center p-3">Manage users</h2>
     <form method="get" action="controller" role="form">
         <input type="hidden" id="searchAction" name="action" value="search_user">
         <div class="row">
             <div class="col">
                 <select id="select-sort" name="sort" class="form-select">
-                    <option selected value="${empty sessionScope.sort ? '' : sessionScope.sort}"></option>
-                    <option value="user.id">Id</option>
-                    <option value="user.login">Login</option>
-                    <option value="user.email">Email</option>
-                    <option value="user.first_name">First name</option>
-                    <option value="user.last_name">Last name</option>
-                    <option value="user.role_id">Role</option>
-                    <option value="user.balance">Balance</option>
+                    <option value="" ${empty sessionScope.sort ? 'selected': ''}>Sort by</option>
+                    <option value="user.id" ${sessionScope.sort == 'user.id' ? 'selected' : ''}>Id</option>
+                    <option value="user.login" ${sessionScope.sort == 'user.login' ? 'selected' : ''}>Login</option>
+                    <option value="user.email" ${sessionScope.sort == 'user.email' ? 'selected' : ''}>Email</option>
+                    <option value="user.first_name" ${sessionScope.sort == 'user.first_name' ? 'selected' : ''}>First name</option>
+                    <option value="user.last_name" ${sessionScope.sort == 'user.last_name' ? 'selected' : ''}>Last name</option>
+                    <option value="user.role_id" ${sessionScope.sort == 'user.role_id' ? 'selected' : ''}>Role</option>
+                    <option value="user.balance" ${sessionScope.sort == 'user.balance' ? 'selected' : ''}>Balance</option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
-                    <option selected value="">Order by</option>
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
+                    <option value="" ${empty sessionScope.order ? 'selected' : ''}>Order by</option>
+                    <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>Ascending</option>
+                    <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>Descending</option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="roleF">
-                    <option selected value="">Filter by role</option>
-                    <option value="ADMIN">ADMIN</option>
-                    <option value="USER">USER</option>
+                    <option value="" ${empty sessionScope.roleF ? 'selected' : ''}>Filter by role</option>
+                    <option value="ADMIN" ${sessionScope.roleF ? 'selected' : ''}>ADMIN</option>
+                    <option value="USER" ${sessionScope.roleF = 'USER' ? 'selected' : ''}>USER</option>
                 </select>
             </div>
             <div class="col">
@@ -100,7 +100,6 @@
 </div>
 
 
-<%--<c:set var="link" value="controller?action=search_user&sort=user.id&order=desc" scope="request"/>--%>
 <c:set var="link" value="controller?action=search_user&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
 <h6>${link}</h6>
 
