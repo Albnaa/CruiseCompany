@@ -10,7 +10,7 @@ public class Ticket {
     private long id;
     private int passengers_count;
     private double price;
-    private User user;
+    private UserDTO user;
     private Ship ship;
     @EqualsAndHashCode.Exclude private int statusId;
 

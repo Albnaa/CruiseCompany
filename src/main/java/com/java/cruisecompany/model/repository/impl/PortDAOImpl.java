@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.repository.impl;
 
+import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.PortDAO;
 import com.java.cruisecompany.model.entity.Port;
@@ -17,27 +18,27 @@ public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     private final static String SELECT_ALL = "SELECT * FROM port";
 
     @Override
-    public void create(Port entity) {
+    public void create(Port entity) throws DAOException {
         executeNoReturn(INSERT_PORT, entity.getName());
     }
 
     @Override
-    public void update(Port entity) {
+    public void update(Port entity) throws DAOException {
         executeNoReturn(UPDATE_PORT, entity.getName(), entity.getId());
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_PORT, id);
     }
 
     @Override
-    public Optional<Port> findById(int id) {
+    public Optional<Port> findById(int id) throws DAOException {
         return executeOneReturn(SELECT_BY_ID, id);
     }
 
     @Override
-    public List<Port> findAll() {
+    public List<Port> findAll() throws DAOException {
         return executeListReturn(SELECT_ALL);
     }
 

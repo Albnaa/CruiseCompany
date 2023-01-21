@@ -1,7 +1,8 @@
 package com.java.cruisecompany.model.repository.impl;
 
+import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.entity.Ship;
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.entity.Ticket;
@@ -21,7 +22,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
             " LEFT JOIN ship on ship.id = ticket.ship_id";
     private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
     @Override
-    public void create(Ticket entity) {
+    public void create(Ticket entity) throws DAOException {
         executeNoReturn(INSERT_TICKET, entity.getPassengers_count(),
                 entity.getPrice(),
                 entity.getUser().getId(),
@@ -29,23 +30,23 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     }
 
     @Override
-    public void update(Ticket entity) {
+    public void update(Ticket entity) throws DAOException {
         executeNoReturn(UPDATE_TICKET, entity.getStatusId(),
                 entity.getId());
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_TICKET, id);
     }
 
     @Override
-    public Optional<Ticket> findById(int id) {
+    public Optional<Ticket> findById(int id) throws DAOException {
         return executeOneReturn(FIND_BY_ID, id);
     }
 
     @Override
-    public List<Ticket> findAll() {
+    public List<Ticket> findAll() throws DAOException {
         return executeListReturn(FIND_ALL);
     }
 
@@ -62,9 +63,9 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .build();
     }
 
-    private User mapToUser(ResultSet rs) throws SQLException {
+    private UserDTO mapToUser(ResultSet rs) throws SQLException {
         int k = 4;
-        return User.builder()
+        return UserDTO.builder()
                 .id(rs.getInt(++k))
                 .login(rs.getString(++k))
                 .email(rs.getString(++k))

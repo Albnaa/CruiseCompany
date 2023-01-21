@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.repository;
 
+import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.connectionpool.DBManager;
 
 import java.sql.Connection;
@@ -11,17 +12,17 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class GenericDAO<T> {
-    public static void executeNoReturn(String query, Object... args) {
+    public static void executeNoReturn(String query, Object... args) throws DAOException{
         try (Connection con = DBManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
             setArgs(stmt, args);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DAOException(e);
         }
     }
 
-    public Optional <T> executeOneReturn(String query, Object... args) {
+    public Optional <T> executeOneReturn(String query, Object... args) throws DAOException {
         T entity = null;
         try (Connection con = DBManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)){
@@ -32,12 +33,12 @@ public abstract class GenericDAO<T> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DAOException(e);
         }
         return Optional.ofNullable(entity);
     }
 
-    public List<T> executeListReturn(String query, Object... args) {
+    public List<T> executeListReturn(String query, Object... args) throws DAOException {
         List<T> list = new ArrayList<>();
         try (Connection con = DBManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)) {
@@ -48,12 +49,12 @@ public abstract class GenericDAO<T> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DAOException(e);
         }
         return list;
     }
 
-    public long executeNumOfRowsReturn(String query) {
+    public long executeNumOfRowsReturn(String query) throws DAOException{
         long rows = 0;
         try (Connection con = DBManager.getConnection();
              PreparedStatement stmt = con.prepareStatement(query)){
@@ -63,7 +64,7 @@ public abstract class GenericDAO<T> {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DAOException(e);
         }
         return rows;
     }

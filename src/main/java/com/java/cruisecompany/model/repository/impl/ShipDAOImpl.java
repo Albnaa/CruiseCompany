@@ -1,15 +1,14 @@
 package com.java.cruisecompany.model.repository.impl;
 
+import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.entity.Route;
+import com.java.cruisecompany.model.entity.Ship;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.ShipDAO;
-import com.java.cruisecompany.model.entity.Ship;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
             " ship.route_id = route.id";
     private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
     @Override
-    public void create(Ship entity) {
+    public void create(Ship entity) throws DAOException {
         executeNoReturn(INSERT_SHIP, entity.getName(),
                 entity.getCapacity(),
                 entity.getVisited_ports(),
@@ -33,7 +32,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     }
 
     @Override
-    public void update(Ship entity) {
+    public void update(Ship entity) throws DAOException {
         executeNoReturn(UPDATE_SHIP, entity.getName(),
                 entity.getCapacity(),
                 entity.getVisited_ports(),
@@ -42,17 +41,17 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_SHIP, id);
     }
 
     @Override
-    public Optional<Ship> findById(int id) {
+    public Optional<Ship> findById(int id) throws DAOException {
         return executeOneReturn(FIND_BY_ID, id);
     }
 
     @Override
-    public List<Ship> findAll() {
+    public List<Ship> findAll() throws DAOException {
         return executeListReturn(FIND_ALL);
     }
 

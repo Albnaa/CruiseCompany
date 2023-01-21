@@ -1,7 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.admin;
 
 import com.java.cruisecompany.controller.action.Action;
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
@@ -20,7 +20,7 @@ public class UpdateUserAction implements Action {
         String lastName = request.getParameter("lastName");
         Role role = Role.getRoleFromString(request.getParameter("role"));
 
-        User user = User.builder()
+        UserDTO user = UserDTO.builder()
                 .id(id)
                 .login(login)
                 .email(email)

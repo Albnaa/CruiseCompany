@@ -1,7 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
@@ -28,7 +28,7 @@ public class SignUpAction implements Action {
             return "signUp.jsp";
         }
 
-        User user = User.builder()
+        UserDTO user = UserDTO.builder()
                 .login(login)
                 .email(email)
                 .password(password)

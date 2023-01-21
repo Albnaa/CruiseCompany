@@ -1,6 +1,6 @@
 package com.java.cruisecompany.model.service.impl;
 
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
 
@@ -16,12 +16,12 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void create(User entity) {
+    public void create(UserDTO entity) {
         userDAO.create(entity);
     }
 
     @Override
-    public void update(User entity) {
+    public void update(UserDTO entity) {
         userDAO.update(entity);
     }
 
@@ -31,32 +31,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(int id) {
+    public Optional<UserDTO> findById(int id) {
         return userDAO.findById(id);
     }
 
     @Override
-    public List<User> findAll() {
+    public List<UserDTO> findAll() {
         return userDAO.findAll();
     }
 
     @Override
-    public Optional<User> findByLoginAndPass(String login, String password) {
+    public Optional<UserDTO> findByLoginAndPass(String login, String password) {
         return userDAO.findByLoginAndPass(login, password);
     }
 
     @Override
-    public List<User> findByInitials(String initials) {
+    public List<UserDTO> findByInitials(String initials) {
         return userDAO.findByInitials(initials);
     }
 
     @Override
-    public Optional<User> findByLogin(String login) {
+    public Optional<UserDTO> findByLogin(String login) {
         return userDAO.findByLogin(login);
     }
 
     @Override
-    public List<User> findSorted(String query) {
+    public List<UserDTO> findSorted(String query) {
         return userDAO.findSorted(query);
     }
 

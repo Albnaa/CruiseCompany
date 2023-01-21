@@ -1,14 +1,13 @@
 package com.java.cruisecompany.model.repository.impl;
 
+import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.RouteDAO;
-import com.java.cruisecompany.model.entity.Route;
 
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,14 +20,14 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE r.id = ?";
 
     @Override
-    public void create(Route entity) {
+    public void create(Route entity) throws DAOException {
         executeNoReturn(INSERT_ROUTE, entity.getName(),
                 entity.getStartOfCruise(),
                 entity.getEndOfCruise());
     }
 
     @Override
-    public void update(Route entity) {
+    public void update(Route entity) throws DAOException {
         executeNoReturn(UPDATE_ROUTE, entity.getName(),
                 entity.getStartOfCruise(),
                 entity.getEndOfCruise(),
@@ -36,17 +35,17 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_ROUTE, id);
     }
 
     @Override
-    public Optional<Route> findById(int id) {
+    public Optional<Route> findById(int id) throws DAOException {
         return executeOneReturn(SELECT_BY_ID, id);
     }
 
     @Override
-    public List<Route> findAll() {
+    public List<Route> findAll() throws DAOException {
         return executeListReturn(SELECT_ALL);
     }
 

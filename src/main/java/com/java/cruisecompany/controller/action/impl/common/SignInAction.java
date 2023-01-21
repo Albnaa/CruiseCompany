@@ -1,7 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
@@ -17,7 +17,7 @@ public class SignInAction implements Action {
     public String execute(HttpServletRequest request) {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Optional<User> user = userService.findByLoginAndPass(login, password);
+        Optional<UserDTO> user = userService.findByLoginAndPass(login, password);
 
         if (user.isPresent()) {
             request.getSession().setAttribute("user", user.get());
