@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<fmt:setBundle basename="locale"/>
 <nav class="navbar navbar-expand-lg bg-info">
     <div class="container-fluid">
         <a class="navbar-brand" href="catalog.jsp">Cruise Company</a>
@@ -9,7 +12,7 @@
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="catalog.jsp">Catalog</a>
+                    <a class="nav-link active" aria-current="page" href="catalog.jsp"><fmt:message key="navbar.catalog"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#">My tickets</a>
@@ -41,6 +44,16 @@
                 </c:if>
             </ul>
             <ul class="navbar-nav justify-content-end">
+                <li class="nav-item">
+                    <form method="get">
+                        <label>
+                            <select class="p-1" name="locale" onchange='submit();'>
+                                <option selected>${sessionScope.locale == 'en' ? 'EN' : 'UA'}</option>
+                                <option value="${sessionScope.locale == 'en' ? 'ua' : 'en'}">${sessionScope.locale == 'en' ? 'UA' : 'EN'}</option>
+                            </select>
+                        </label>
+                    </form>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link active">Balance ${sessionScope.user.balance}</a>
                 </li>
