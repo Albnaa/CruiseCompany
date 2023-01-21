@@ -7,11 +7,8 @@ import java.util.Objects;
 public abstract class QueryBuilder {
     private String sort;
     private String order = "ASC";
-
-    private int offset = 0;
-    private int rows = 5;
-
-    //param = ?sort=balance&order=asc
+    private int offset;
+    private int rows;
 
     private void setSort(String parameter) {
         if (parameterIsValid(parameter)) {
@@ -28,15 +25,11 @@ public abstract class QueryBuilder {
     }
 
     private void setOffset(String parameter) {
-        if (parameter != null && Integer.parseInt(parameter) > -1) {
-            offset = Integer.parseInt(parameter);
-        }
+        offset = parseIntFromParam(parameter, 0, 0);
     }
 
     private void setRows(String parameter) {
-        if (parameter != null && Integer.parseInt(parameter) > -1) {
-            rows = Integer.parseInt(parameter);
-        }
+        rows = parseIntFromParam(parameter, 1, 5);
     }
 
     private String buildSortFragment() {
@@ -45,7 +38,7 @@ public abstract class QueryBuilder {
 
 
     private String buildPaginationFragment() {
-        return " LIMIT " + rows + " OFFSET " + offset;
+            return " LIMIT " + rows + " OFFSET " + offset;
     }
 
     public String buildQuery() {
@@ -53,7 +46,6 @@ public abstract class QueryBuilder {
     }
 
     public String buildFilterQuery() {
-        System.out.println(buildFilterFragment());
         return buildFilterFragment();
     }
 
@@ -65,12 +57,18 @@ public abstract class QueryBuilder {
 
         extractFilterParameters(request);
     }
+
+    private int parseIntFromParam(String parameter, int minValue, int defaultValue) {
+        try {
+            int value = Integer.parseInt(parameter);
+            return value >= minValue ? value : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
     abstract String buildGroupByFragment();
     abstract String buildFilterFragment();
     abstract void extractFilterParameters(HttpServletRequest request);
     abstract boolean parameterIsValid(String parameter);
     abstract String getDefaultSort();
 }
-// extract param from req
-// pass param to the set methods
-// call build method ??

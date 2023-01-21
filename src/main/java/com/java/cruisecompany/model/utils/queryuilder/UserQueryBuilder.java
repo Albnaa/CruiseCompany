@@ -4,13 +4,13 @@ import com.java.cruisecompany.model.entity.enums.Role;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class UserQueryBuilder extends QueryBuilder{
     private static final List<String> USER_FIELDS = new ArrayList<>();
-    private static List<String> filterList = new ArrayList<>();
+    private final List<String> filterList = new ArrayList<>();
 
     static {
         USER_FIELDS.add("user.id");
@@ -30,13 +30,16 @@ public class UserQueryBuilder extends QueryBuilder{
 
     @Override
     public String buildFilterFragment() {
-        if (filterList.isEmpty()) return "";
+        if (filterList.isEmpty()) {
+            return "";
+        }
         String result = " WHERE ";
         result += String.join(" AND ", filterList);
         return result;
     }
 
     void setRoleFilter(String parameter) {
+
         if (Objects.equals(parameter, "ADMIN") || Objects.equals(parameter, "USER")) {
             filterList.add("role_id = " + Role.getRoleFromString(parameter).getIndex());
         }

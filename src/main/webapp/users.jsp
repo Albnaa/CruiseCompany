@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -12,44 +12,44 @@
 <div class="container">
     <h2>User's</h2>
     <form method="get" action="controller" role="form">
-        <input type="hidden" id="searchAction" name="action" value="search user by name">
+        <input type="hidden" id="searchAction" name="action" value="search_user">
         <div class="row">
-            <div class="col-4">
-                <input type="text" name="userName" id="userName" class="form-control"
-                       placeholder="Type the name or lastname of the User">
+            <div class="col">
+                <select id="select-sort" name="sort" class="form-select">
+                    <option selected value="${empty sessionScope.sort ? '' : sessionScope.sort}"></option>
+                    <option value="user.id">Id</option>
+                    <option value="user.login">Login</option>
+                    <option value="user.email">Email</option>
+                    <option value="user.first_name">First name</option>
+                    <option value="user.last_name">Last name</option>
+                    <option value="user.role_id">Role</option>
+                    <option value="user.balance">Balance</option>
+                </select>
             </div>
-            <div class="col-1">
-                <button type="submit" class="btn btn-info">
-                    <span class="glyphicon glyphicon-search"></span> Search
-                </button>
+            <div class="col">
+                <select class="form-select" name="order">
+                    <option selected value="">Order by</option>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
             </div>
-            <div class="col-1">
-                <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                        Sort by
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.id&order=desc"><i
-                                class="bi bi-arrow-down"></i> Id</a></li>
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.id&order=asc"><i
-                                class="bi bi-arrow-up"></i> Id</a></li>
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.login&order=desc"><i
-                                class="bi bi-arrow-down"></i> Login</a></li>
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.login&order=asc"><i
-                                class="bi bi-arrow-up"></i> Login</a></li>
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.role_id&order=desc"><i
-                                class="bi bi-arrow-down"></i> Role</a></li>
-                        <li><a class="dropdown-item"
-                               href="controller?action=search_user&sort=user.role_id&order=asc"><i
-                                class="bi bi-arrow-up"></i> Role</a></li>
-                        <li><a class="dropdown-item" href="controller?action=search_user&sort=user.balance&order=desc"><i
-                                class="bi bi-arrow-down"></i> Balance</a></li>
-                        <li><a class="dropdown-item"
-                               href="controller?action=search_user&sort=user.balance&order=asc"><i
-                                class="bi bi-arrow-up"></i> Balance</a></li>
-                    </ul>
+            <div class="col">
+                <select class="form-select" name="roleF">
+                    <option selected value="">Filter by role</option>
+                    <option value="ADMIN">ADMIN</option>
+                    <option value="USER">USER</option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text">Rows per page:</span>
+                    <input type="number" id="rows" name="rows" class="form-control" min="1" value="${requestScope.rows}">
                 </div>
+            </div>
+            <div class="col btn-group" role="group">
+                <button type="button" class="btn btn-secondary w-100"
+                        onclick="location.href = 'controller?action=search_user';">Reset</button>
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
         </div>
     </form>
@@ -100,9 +100,13 @@
     </form>
 </div>
 
-<c:set var="link" value="controller?action=search_user&sort=user.id&order=desc" scope="request"/>
+
+<%--<c:set var="link" value="controller?action=search_user&sort=user.id&order=desc" scope="request"/>--%>
+<c:set var="link" value="controller?action=search_user&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
+<h6>${link}</h6>
 
 <jsp:include page="templates/pagination.jsp"/>
+
 
 <jsp:include page="templates/footer.jsp"/>
 </body>

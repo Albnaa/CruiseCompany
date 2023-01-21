@@ -19,7 +19,6 @@ public final class ActionFactory {
         ACTION_MAP.put("delete_user", new DeleteUserAction());
         ACTION_MAP.put("view_user", new ViewUserAction());
         ACTION_MAP.put("update_user", new UpdateUserAction());
-        ACTION_MAP.put("test", new TestAction());
     }
     private ActionFactory() {}
 

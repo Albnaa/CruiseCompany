@@ -1,16 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--1. Offset--%>
-<%--2. rows--%>
-<%--3. numOfPages--%>
-<%--4. currPage--%>
-<%--5. numOfRows--%>
-curr page = ${requestScope.currPage}
-offset = ${requestScope.offset}
-numOfPages = ${requestScope.numOfPages}
-rows = ${requestScope.rows}
-numOfRows = ${requestScope.numOfRows}
+<%--curr page = ${requestScope.currPage}--%>
+<%--offset = ${requestScope.offset}--%>
+<%--numOfPages = ${requestScope.numOfPages}--%>
+<%--rows = ${requestScope.rows}--%>
+<%--numOfRows = ${requestScope.numOfRows}--%>
 <ul class="pagination justify-content-center align-content-center">
     <c:choose>
         <c:when test="${requestScope.currPage == 1}">
@@ -65,9 +60,3 @@ numOfRows = ${requestScope.numOfRows}
         </c:otherwise>
     </c:choose>
 </ul>
-
-<%--1. Offset--%>
-<%--2. rows--%>
-<%--3. numOfPages--%>
-<%--4. currPage--%>
-<%--5. numOfRows--%>

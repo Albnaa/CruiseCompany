@@ -5,12 +5,24 @@
     <title>User Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .form-control {
+            height: 41.6px;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="templates/navbar.jsp"/>
 
 <div class="container">
-    <h2 class="my-2">User info</h2>
+    <div class="card text-center my-3">
+        <div class="card-header">
+            Users Profile
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">${requestScope.user.login}</h4>
+        </div>
+    </div>
     <div class="row">
         <div class="col col-6">
             <ul class="list-group list-group-horizontal">
@@ -49,39 +61,40 @@
                 </button>
                 <a href="controller?action=delete_user&userId=${requestScope.user.id}"
                    class="btn list-group-item list-group-item-action list-group-item-danger">
-                    Delete</a>
+                    Delete
+                </a>
             </div>
         </div>
-        <div class="col col-6 collapse collapse-horizontal" id="updateForm">
+        <div class="col col-6 collapse collapse" id="updateForm">
             <form method="POST" action="controller">
                 <input type="hidden" name="action" value="update_user">
-                <div class="input-group mb-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Id" name="id"
                            value="${requestScope.user.id}" aria-describedby="id" readonly>
                     <span class="input-group-text w-25" id="id">Id</span>
                 </div>
-                <div class="input-group my-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Username" name="login"
                            value="${requestScope.user.login}" aria-describedby="login">
                     <span class="input-group-text w-25" id="login">Login</span>
                 </div>
-                <div class="input-group my-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="email@example.com" name="email"
                            value="${requestScope.user.email}" aria-describedby="email">
                     <span class="input-group-text w-25" id="email">Email</span>
                 </div>
-                <div class="input-group my-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Name" name="firstName"
                            value="${requestScope.user.firstName}" aria-describedby="first-name">
                     <span class="input-group-text w-25" id="first-name">First Name</span>
                 </div>
-                <div class="input-group my-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Surname" name="lastName"
                            value="${requestScope.user.lastName}" aria-describedby="last-name">
                     <span class="input-group-text w-25" id="last-name">Last Name</span>
                 </div>
-                <div class="input-group my-1">
-                    <select class="form-select" aria-describedby="role" name="role">
+                <div class="input-group">
+                    <select class="form-select" aria-describedby="role" name="role" style="height: 41.6px">
                         <c:choose>
                             <c:when test="${requestScope.user.role == 'ADMIN'}">
                                 <option selected>ADMIN</option>
@@ -95,12 +108,12 @@
                     </select>
                     <span class="input-group-text w-25" id="role">Role</span>
                 </div>
-                <div class="input-group my-1">
+                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Balance" name="balance"
                            value="${requestScope.user.balance}" aria-describedby="balance" disabled>
                     <span class="input-group-text w-25" id="balance">Balance</span>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Confirm</button>
+                <button type="submit" class="btn btn-primary w-100" style="height: 41.6px">Confirm</button>
             </form>
         </div>
     </div>
