@@ -16,12 +16,18 @@ public class Controller extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect(processRequest(req));
     }
 
-    private String processRequest(HttpServletRequest req) throws ServletException, IOException {
+    private String processRequest(HttpServletRequest req) {
         Action action = ActionFactory.getAction(req);
-        return action.execute(req);
+        String view = "error.jsp";
+        try {
+            view = action.execute(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return view;
     }
 }

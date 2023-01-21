@@ -1,6 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.admin;
 
 import com.java.cruisecompany.controller.action.Action;
+import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.entity.UserDTO;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
@@ -10,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class UpdateUserAction implements Action {
     @Override
-    public String execute(HttpServletRequest request) {
+    public String execute(HttpServletRequest request) throws ServiceException {
         UserService userService = new UserServiceImpl(new UserDAOImpl());
 
         long id = Long.parseLong(request.getParameter("id"));
