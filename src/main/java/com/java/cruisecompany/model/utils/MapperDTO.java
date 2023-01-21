@@ -14,6 +14,7 @@ public class MapperDTO {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .role(user.getRole())
+                .balance(user.getBalance())
                 .build();
     }
 
@@ -25,6 +26,7 @@ public class MapperDTO {
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
                 .role(userDTO.getRole())
+                .balance(userDTO.getBalance())
                 .build();
     }
 }

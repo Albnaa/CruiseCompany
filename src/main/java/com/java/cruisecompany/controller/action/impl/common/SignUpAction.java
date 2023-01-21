@@ -1,6 +1,7 @@
 package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
+import com.java.cruisecompany.exceptions.NoSuchUserException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
@@ -24,19 +25,27 @@ public class SignUpAction implements Action {
         if (!Objects.equals(password, confirmPassword)) {
             request.getSession().setAttribute("error", "Password's don't match!");
             return "signUp.jsp";
-        } else if (userService.findByLogin(login).isPresent()) {
-            request.getSession().setAttribute("error", "User with such username already exists");
-            return "signUp.jsp";
         }
 
-        UserDTO user = UserDTO.builder()
-                .login(login)
-                .email(email)
-                .firstName(firstname)
-                .lastName(lastname)
-                .build();
+        try {
+            userService.findByLogin(login).isPresent();
+        } catch (ServiceException e) {
+            UserDTO user = UserDTO.builder()
+                    .login(login)
+                    .email(email)
+                    .firstName(firstname)
+                    .lastName(lastname)
+                    .build();
 
-        userService.register(user, password);
-        return "login.jsp";
+            userService.register(user, password);
+            return "login.jsp";
+        }
+
+        request.getSession().setAttribute("error", "User with such username already exists");
+        return "signUp.jsp";
+
+
+
+
     }
 }
