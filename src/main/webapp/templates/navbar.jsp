@@ -58,7 +58,7 @@
                     <a class="nav-link active"><fmt:message key="navbar.balance"/> ${sessionScope.user.balance}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="controller?action=sign_out"><fmt:message key="navbar.signout"/></a>
+                    <a class="nav-link active" href="controller?action=sign_out"><fmt:message key="navbar.signOut"/></a>
                 </li>
             </ul>
         </div>

@@ -9,7 +9,7 @@
     <title><fmt:message key="login.title"/></title>
 </head>
 <body>
-<form method="POST" class="text-center" action="controller?action=set_locale">
+<form method="POST" class="text-end m-2" action="controller?action=set_locale">
     <label>
         <select class="p-1" name="locale" onchange='submit();'>
             <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}>EN</option>
@@ -18,7 +18,7 @@
     </label>
 </form>
 <main class="row justify-content-center" >
-    <h2 class="mb-3 text-center"><fmt:message key="login.greetings"/></h2>
+    <h2 class="m-4 pt-3 text-center"><fmt:message key="login.greetings"/></h2>
     <form class="col" style="max-width: 330px; padding: 10px;" method="POST" action="controller">
         <input type="hidden" name="action" value="login">
         <div class="m-0 form-floating">

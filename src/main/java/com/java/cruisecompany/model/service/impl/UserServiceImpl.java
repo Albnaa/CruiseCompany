@@ -1,12 +1,14 @@
 package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.exceptions.InvalidInputException;
 import com.java.cruisecompany.exceptions.NoSuchUserException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
+import com.java.cruisecompany.model.utils.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,7 @@ import java.util.Optional;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoUser;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapUserToDTO;
+import static com.java.cruisecompany.model.utils.ValidationUtil.*;
 
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
@@ -32,16 +35,21 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
     }
-
+    //check for existing user with the same login/username
     @Override
-    public void register(UserDTO userDTO, String password) throws ServiceException {
-
+    public void register(UserDTO userDTO, String password, String confirmPassword) throws ServiceException {
+        validateOnlyLetters(userDTO.getLogin(), "error.signUp.login");
+        validateEmail(userDTO.getEmail(), "error.signUp.email");
+        validateOnlyLetters(userDTO.getFirstName(), "error.signUp.firstName");
+        validateOnlyLetters(userDTO.getLastName(), "error.signUp.lastName");
+        validatePassword(password, "error.signUp.password");
+        confirmPassword(password, confirmPassword, "error.signUp.confirmPassword");
         User user = mapDTOtoUser(userDTO);
         user.setPassword(password);
         try {
             userDAO.create(user);
         } catch (DAOException e) {
-            throw new ServiceException(e);
+            checkAlreadyExist(e);
         }
     }
 
@@ -142,6 +150,17 @@ public class UserServiceImpl implements UserService {
             return userDAO.getNumOfRows(query);
         } catch (DAOException e) {
             throw new ServiceException(e);
+        }
+    }
+
+    private static void checkAlreadyExist(DAOException e) throws InvalidInputException {
+        String message = e.getMessage();
+        if (message.contains("Duplicate entry")) {
+            if (message.contains("login")) {
+                throw new InvalidInputException("error.signUp.loginExists", e);
+            } else if (message.contains("email")) {
+                throw new InvalidInputException("error.signUp.emailExists", e);
+            }
         }
     }
 
