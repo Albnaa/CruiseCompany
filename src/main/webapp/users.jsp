@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col">
                 <select id="select-sort" name="sort" class="form-select">
-                    <option value="" ${empty sessionScope.sort ? 'selected': ''}>Sort by</option>
+                    <option value="" ${empty sessionScope.sort ? 'selected' : ''}>Sort by</option>
                     <option value="user.id" ${sessionScope.sort == 'user.id' ? 'selected' : ''}>Id</option>
                     <option value="user.login" ${sessionScope.sort == 'user.login' ? 'selected' : ''}>Login</option>
                     <option value="user.email" ${sessionScope.sort == 'user.email' ? 'selected' : ''}>Email</option>
@@ -35,8 +35,8 @@
             <div class="col">
                 <select class="form-select" name="roleF">
                     <option value="" ${empty sessionScope.roleF ? 'selected' : ''}>Filter by role</option>
-                    <option value="ADMIN" ${sessionScope.roleF ? 'selected' : ''}>ADMIN</option>
-                    <option value="USER" ${sessionScope.roleF = 'USER' ? 'selected' : ''}>USER</option>
+                    <option value="ADMIN" ${sessionScope.roleF == 'ADMIN'? 'selected' : ''}>ADMIN</option>
+                    <option value="USER" ${sessionScope.roleF == 'USER' ? 'selected' : ''}>USER</option>
                 </select>
             </div>
             <div class="col">
