@@ -15,37 +15,37 @@
                     <a class="nav-link active" aria-current="page" href="catalog.jsp"><fmt:message key="navbar.catalog"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">My tickets</a>
+                    <a class="nav-link active" href="#"><fmt:message key="navbar.dropdown.tickets"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active">Profile</a>
+                    <a class="nav-link active"><fmt:message key="navbar.profile"/></a>
                 </li>
 
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                 
                 <li class="nav-item">
-                    <a class="nav-link active" href="users.jsp">Manage Users</a>
+                    <a class="nav-link active" href="users.jsp"><fmt:message key="navbar.users"/></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        Manage cruise
+                        <fmt:message key="navbar.dropdown.default"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Ships</a></li>
-                        <li><a class="dropdown-item" href="#">Ports</a></li>
-                        <li><a class="dropdown-item" href="#">Routes</a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.ships"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.ports"/></a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.routes"/></a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Tickets</a></li>
+                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.tickets"/></a></li>
                     </ul>
                 </li>
                 </c:if>
             </ul>
             <ul class="navbar-nav justify-content-end">
                 <li class="nav-item">
-                    <form method="get">
+                    <form method="POST" action="controller?action=set_locale">
                         <label>
                             <select class="p-1" name="locale" onchange='submit();'>
                                 <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}>EN</option>
@@ -55,10 +55,10 @@
                     </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active">Balance ${sessionScope.user.balance}</a>
+                    <a class="nav-link active"><fmt:message key="navbar.balance"/> ${sessionScope.user.balance}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="controller?action=sign out">Sign out</a>
+                    <a class="nav-link active" href="controller?action=sign_out"><fmt:message key="navbar.signout"/></a>
                 </li>
             </ul>
         </div>

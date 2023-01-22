@@ -14,11 +14,12 @@ public final class ActionFactory {
         ACTION_MAP.put("add_port", new AddPortAction());
         ACTION_MAP.put("login", new SignInAction());
         ACTION_MAP.put("sign up", new SignUpAction());
-        ACTION_MAP.put("sign out", new SignOutAction());
+        ACTION_MAP.put("sign_out", new SignOutAction());
         ACTION_MAP.put("search_user", new SearchUserAction());
         ACTION_MAP.put("delete_user", new DeleteUserAction());
         ACTION_MAP.put("view_user", new ViewUserAction());
         ACTION_MAP.put("update_user", new UpdateUserAction());
+        ACTION_MAP.put("set_locale", new SetLocaleAction());
     }
     private ActionFactory() {}
 

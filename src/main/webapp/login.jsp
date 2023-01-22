@@ -9,11 +9,11 @@
     <title><fmt:message key="login.title"/></title>
 </head>
 <body>
-<form method="get" class="text-center">
+<form method="POST" class="text-center" action="controller?action=set_locale">
     <label>
         <select class="p-1" name="locale" onchange='submit();'>
-            <option selected>${sessionScope.locale == 'en' ? 'EN' : 'UA'}</option>
-            <option value="${sessionScope.locale == 'en' ? 'ua' : 'en'}">${sessionScope.locale == 'en' ? 'UA' : 'EN'}</option>
+            <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}>EN</option>
+            <option value="ua" ${sessionScope.locale == 'ua' ? 'selected' : ''}>UA</option>
         </select>
     </label>
 </form>

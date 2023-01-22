@@ -9,7 +9,9 @@ public class SignOutAction implements Action {
     public String execute(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
+            String locale = (String) session.getAttribute("locale");
             session.invalidate();
+            request.getSession().setAttribute("locale", locale);
         }
         return "login.jsp";
     }

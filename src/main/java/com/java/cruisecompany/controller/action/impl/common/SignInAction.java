@@ -28,7 +28,7 @@ public class SignInAction implements Action {
 
             Role role = user.get().getRole();
             if (Objects.requireNonNull(role) == Role.ADMIN) {
-                return "users.jsp";
+                return "controller?action=search_user";
             }
             return "catalog.jsp";
         } else {
