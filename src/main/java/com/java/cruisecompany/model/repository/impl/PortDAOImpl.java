@@ -16,6 +16,7 @@ public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     private final static String DELETE_PORT = "DELETE FROM port WHERE id = ?";
     private final static String SELECT_BY_ID = "SELECT * FROM port WHERE id = ?";
     private final static String SELECT_ALL = "SELECT * FROM port";
+    private final static String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM port";
 
     @Override
     public void create(Port entity) throws DAOException {
@@ -40,6 +41,17 @@ public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     @Override
     public List<Port> findAll() throws DAOException {
         return executeListReturn(SELECT_ALL);
+    }
+
+    @Override
+    public List<Port> findSorted(String query) throws DAOException {
+        return executeListReturn(SELECT_ALL + query);
+    }
+
+
+    @Override
+    public long getNumOfRows(String query) throws DAOException {
+        return executeNumOfRowsReturn(SELECT_COUNT_OF_ROWS + query);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.service.impl;
 
+import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.entity.Ticket;
 import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.repository.impl.DAOFactory;
@@ -37,6 +38,11 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Ticket> findSorted(String query) throws ServiceException {
         return null;
     }
 }

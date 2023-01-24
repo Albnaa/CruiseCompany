@@ -12,6 +12,5 @@ public interface UserService extends Service<UserDTO> {
     Optional<UserDTO> findByLoginAndPass(String login, String password) throws ServiceException;
     List<UserDTO> findByInitials(String initials) throws ServiceException;
     Optional<UserDTO> findByLogin(String login) throws ServiceException;
-    List<UserDTO> findSorted(String query) throws ServiceException;
     long getNumOfRows(String query) throws ServiceException;
 }

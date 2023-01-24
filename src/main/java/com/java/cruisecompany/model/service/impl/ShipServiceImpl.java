@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.service.impl;
 
+import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.entity.Ship;
 import com.java.cruisecompany.model.repository.ShipDAO;
 import com.java.cruisecompany.model.service.ShipService;
@@ -36,6 +37,11 @@ public class ShipServiceImpl implements ShipService {
 
     @Override
     public List<Ship> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Ship> findSorted(String query) throws ServiceException {
         return null;
     }
 }

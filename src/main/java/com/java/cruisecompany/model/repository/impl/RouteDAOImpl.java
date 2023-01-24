@@ -50,6 +50,16 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     }
 
     @Override
+    public List<Route> findSorted(String query) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public long getNumOfRows(String query) throws DAOException {
+        return 0;
+    }
+
+    @Override
     protected Route mapToEntity(ResultSet rs) throws SQLException {
 
         int k = 0;

@@ -1,6 +1,5 @@
 package com.java.cruisecompany.model.utils;
 
-import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.exceptions.InvalidInputException;
 
 public class ValidationUtil {
@@ -17,7 +16,11 @@ public class ValidationUtil {
 
     //Maximum 25 characters, only english and ukrainian letters
     public static void validateOnlyLetters(String value, String message) throws InvalidInputException {
-        validate(value, "^[a-zA-Zа-яА-Я]{1,25}$", message);
+        validate(value, "[a-zA-Zа-яА-Я]+", message);
+    }
+
+    public static void validateOnlyLettersWithSpaces(String value, String message) throws InvalidInputException {
+        validate(value, "[\\p{L}\\p{M}\\s]*", message);
     }
 
     public static void validateEmail(String email, String message) throws InvalidInputException {

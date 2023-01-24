@@ -11,5 +11,4 @@ public interface UserDAO extends EntityDAO<User> {
     Optional<User> findByLogin(String Login) throws DAOException;
     List<User> findByInitials(String initials) throws DAOException;
     List<User> findSorted(String queryParameters) throws DAOException;
-    long getNumOfRows(String query) throws DAOException;
 }

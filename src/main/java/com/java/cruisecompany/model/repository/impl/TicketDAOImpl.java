@@ -51,6 +51,16 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     }
 
     @Override
+    public List<Ticket> findSorted(String query) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public long getNumOfRows(String query) throws DAOException {
+        return 0;
+    }
+
+    @Override
     protected Ticket mapToEntity(ResultSet rs) throws SQLException {
         int k = 0;
         return Ticket.builder()

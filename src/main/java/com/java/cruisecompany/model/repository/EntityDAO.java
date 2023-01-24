@@ -11,4 +11,6 @@ public interface EntityDAO<T> {
     void delete(long id) throws DAOException;
     Optional <T> findById(int id) throws DAOException;
     List<T> findAll() throws DAOException;
+    List<T> findSorted(String query) throws DAOException;
+    long getNumOfRows(String query) throws DAOException;
 }

@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.service.impl;
 
+import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.repository.RouteDAO;
 import com.java.cruisecompany.model.service.RouteService;
@@ -36,6 +37,11 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public List<Route> findAll() {
+        return null;
+    }
+
+    @Override
+    public List<Route> findSorted(String query) throws ServiceException {
         return null;
     }
 }

@@ -10,48 +10,33 @@ import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
 
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        String login = request.getParameter("login");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirm-password");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
+        request.getSession().removeAttribute("user");
 
         UserDTO user = UserDTO.builder()
-                .login(login)
-                .email(email)
-                .firstName(firstname)
-                .lastName(lastname)
+                .login(request.getParameter("login"))
+                .email(request.getParameter("email"))
+                .firstName(request.getParameter("firstname"))
+                .lastName(request.getParameter("lastname"))
                 .build();
 
-//        try {
-//            userService.register(user, password, confirmPassword);
-//        } catch (ServiceException e) {
-//            request.getSession().setAttribute("error", e.getMessage());
-//            return "signUp.jsp";
-//        }
-        List<String> errors = new ArrayList<>();
-        errors.add("error.signUp.login");
-        errors.add("error.signUp.loginExists");
-        errors.add("error.signUp.email");
-        errors.add("error.signUp.emailExists");
-        errors.add("error.signUp.password");
-        errors.add("error.signUp.confirmPassword");
-        errors.add("error.signUp.firstName");
-        errors.add("error.signUp.lastName");
+        try {
+            userService.register(user, request.getParameter("password"), request.getParameter("confirm-password"));
+        } catch (ServiceException e) {
+            request.getSession().setAttribute("error", e.getMessage());
 
-        request.getSession().setAttribute("errors", errors);
-        return "signUp.jsp";
+            request.getSession().setAttribute("user", user);
 
-//        return "login.jsp";
+            return "signUp.jsp";
+        }
+
+        request.getSession().removeAttribute("error");
+        return "login.jsp";
     }
 }

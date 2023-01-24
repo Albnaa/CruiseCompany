@@ -52,11 +52,7 @@
             </div>
         </div>
     </form>
-    <c:if test="${not empty requestScope.message}">
-        <div class="alert-success">
-                ${requestScope.message}
-        </div>
-    </c:if>
+
     <form method="get" action="controller" id="userForm" role="form">
         <%--        <input type="hidden" id="updateById" name="action" value="updateById">--%>
         <%--        <input type="hidden" id="action" name="action">--%>

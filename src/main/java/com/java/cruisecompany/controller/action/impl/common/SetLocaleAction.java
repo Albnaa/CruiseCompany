@@ -9,8 +9,6 @@ public class SetLocaleAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         String locale = request.getParameter("locale");
         request.getSession().setAttribute("locale", locale);
-        String currPage = request.getHeader("referer");
-        System.out.println(currPage);
-        return currPage;
+        return request.getHeader("referer");
     }
 }

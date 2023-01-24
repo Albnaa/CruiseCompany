@@ -56,6 +56,16 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     }
 
     @Override
+    public List<Ship> findSorted(String query) throws DAOException {
+        return null;
+    }
+
+    @Override
+    public long getNumOfRows(String query) throws DAOException {
+        return 0;
+    }
+
+    @Override
     protected Ship mapToEntity(ResultSet rs) throws SQLException {
         int k = 0;
         return Ship.builder()

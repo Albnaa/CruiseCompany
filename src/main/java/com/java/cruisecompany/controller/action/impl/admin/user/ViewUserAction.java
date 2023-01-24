@@ -1,4 +1,4 @@
-package com.java.cruisecompany.controller.action.impl.admin;
+package com.java.cruisecompany.controller.action.impl.admin.user;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;

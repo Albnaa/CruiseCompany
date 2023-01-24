@@ -11,4 +11,5 @@ public interface Service<T> {
     void delete(long id) throws ServiceException;
     Optional<T> findById(int id) throws ServiceException;
     List<T> findAll() throws ServiceException;
+    List<T> findSorted(String query) throws ServiceException;
 }

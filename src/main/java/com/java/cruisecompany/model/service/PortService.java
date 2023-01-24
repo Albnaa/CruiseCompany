@@ -1,7 +1,8 @@
 package com.java.cruisecompany.model.service;
 
-import com.java.cruisecompany.model.entity.Port;
+import com.java.cruisecompany.exceptions.ServiceException;
+import com.java.cruisecompany.model.dto.PortDTO;
+public interface PortService extends Service<PortDTO>{
 
-public interface PortService extends Service<Port>{
-
+    long getNumOfRows(String query) throws ServiceException;
 }

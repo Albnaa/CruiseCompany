@@ -54,7 +54,7 @@ public class UserQueryBuilder extends QueryBuilder{
 
     @Override
     boolean parameterIsValid(String parameter) {
-        if (parameter == null) return false;
+        if (parameter == null || parameter.isEmpty()) return false;
         return USER_FIELDS.contains(parameter);
     }
 
