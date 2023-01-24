@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.ships"/></a></li>
                         <li><a class="dropdown-item" href="ports.jsp"><fmt:message key="navbar.dropdown.ports"/></a></li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.routes"/></a></li>
+                        <li><a class="dropdown-item" href="routes.jsp"><fmt:message key="navbar.dropdown.routes"/></a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
