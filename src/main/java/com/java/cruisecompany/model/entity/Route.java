@@ -1,18 +1,18 @@
 package com.java.cruisecompany.model.entity;
 
+import com.java.cruisecompany.model.entity.wrapper.Waypoint;
 import lombok.Builder;
 import lombok.Data;
-
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @Data
 public class Route {
     private long id;
     private String name;
-    private Date startOfCruise;
-    private Date endOfCruise;
-    private Set<Port> ports;
+    private LocalDate startOfCruise;
+    private LocalDate endOfCruise;
+    private List<Waypoint> waypoints;
+
 }

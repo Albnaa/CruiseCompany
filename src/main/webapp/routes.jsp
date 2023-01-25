@@ -85,7 +85,7 @@
                             <td>${route.startOfCruise}</td>
                             <td>${route.endOfCruise}</td>
                             <td>${route.duration}</td>
-                            <td>${route.numberOfPorts}</td>
+                            <td>${route.numOfPorts}</td>
                             <td>
                                 <a class="btn btn-primary p-0 " style="width: 60px" href="${route.id}">More</a>
                             </td>

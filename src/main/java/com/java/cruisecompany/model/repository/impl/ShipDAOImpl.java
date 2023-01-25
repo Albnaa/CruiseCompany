@@ -83,8 +83,8 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
         return Route.builder()
                 .id(rs.getInt(++k))
                 .name(rs.getString(++k))
-                .startOfCruise((Date) rs.getObject(++k))
-                .endOfCruise((Date) rs.getObject(++k))
+                .startOfCruise(rs.getDate(++k).toLocalDate())
+                .endOfCruise(rs.getDate(++k).toLocalDate())
                 .build();
     }
 }

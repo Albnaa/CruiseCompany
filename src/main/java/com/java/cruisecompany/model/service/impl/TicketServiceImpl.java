@@ -45,4 +45,9 @@ public class TicketServiceImpl implements TicketService {
     public List<Ticket> findSorted(String query) throws ServiceException {
         return null;
     }
+
+    @Override
+    public long getNumOfRows(String query) throws ServiceException {
+        return 0;
+    }
 }

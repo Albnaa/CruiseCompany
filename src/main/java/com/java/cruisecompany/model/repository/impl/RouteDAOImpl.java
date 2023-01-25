@@ -4,22 +4,26 @@ import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.connectionpool.DBManager;
 import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.entity.Route;
+import com.java.cruisecompany.model.entity.wrapper.Waypoint;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.RouteDAO;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.*;
 
 public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     private final static String INSERT_ROUTE = "INSERT INTO route (name, start_of_cruise, end_of_cruise) VALUES (?, ?, ?)";
     private final static String UPDATE_ROUTE = "UPDATE route SET name = ?, start_of_cruise = ?, end_of_cruise = ? WHERE id = ?";
     private final static String DELETE_ROUTE = "DELETE FROM route WHERE id = ?";
-    private final static String SELECT_ALL = "SELECT r.id, r.name, r.start_of_cruise, r.end_of_cruise, p.id, p.name " +
-            "FROM route r LEFT JOIN route_has_port rhp on r.id = rhp.route_id LEFT JOIN port p on p.id = rhp.port_id";
+    private final static String SELECT_ALL = "SELECT * FROM route";
+    private final static String SELECT_ALL_JOIN = "SELECT r.id, r.name, r.start_of_cruise, r.end_of_cruise, p.id, p.name, " +
+            "rhp.arrive_time, rhp.departure_time FROM route r INNER JOIN route_has_port rhp on r.id = rhp.route_id " +
+            "LEFT JOIN port p on p.id = rhp.port_id";
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE r.id = ?";
+
+    private final static String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) from route";
 
     @Override
     public void create(Route entity) throws DAOException {
@@ -53,54 +57,56 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
 
     @Override
     public List<Route> findSorted(String query) throws DAOException {
-        return null;
+        return executeListReturn(SELECT_ALL + query);
     }
 
     @Override
     public long getNumOfRows(String query) throws DAOException {
-        return 0;
+        return executeNumOfRowsReturn(SELECT_COUNT_OF_ROWS + query);
     }
 
-    public List<Route> getListWithPorts(String query) throws DAOException {
-        int lastRouteId = -1;
-        Route currRoute = null;
-        List<Route> routes = new ArrayList<>();
-        try (Connection con = DBManager.getConnection();
-             PreparedStatement stmt = con.prepareStatement(query)) {
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    int routeId = rs.getInt(1);
-                    String cruiseName = rs.getString(2);
-                    Date startDate = rs.getDate(3);
-                    Date endDate = rs.getDate(4);
-                    int portId = rs.getInt(5);
-                    String portName = rs.getString(6);
-
-                    if (routeId != lastRouteId) {
-                        currRoute = Route.builder()
-                                .id(routeId)
-                                .name(cruiseName)
-                                .startOfCruise(startDate)
-                                .endOfCruise(endDate)
-                                .ports(new HashSet<Port>())
-                                .build();
-                        routes.add(currRoute);
-                    }
-
-                    Port port = Port.builder()
-                            .id(portId)
-                            .name(portName)
-                            .build();
-
-                    currRoute.getPorts().add(port);
-                    lastRouteId = routeId;
-                }
-            }
-        } catch (SQLException e) {
-            throw new DAOException(e);
-        }
-        return routes;
-    }
+//    public List<Route> getListWithPorts(String query) throws DAOException {
+//        int lastRouteId = -1;
+//        Route currRoute = null;
+//        List<Route> routes = new ArrayList<>();
+//        try (Connection con = DBManager.getConnection();
+//             PreparedStatement stmt = con.prepareStatement(query)) {
+//            try (ResultSet rs = stmt.executeQuery()) {
+//                while (rs.next()) {
+//                    int routeId = rs.getInt("r.id");
+//
+//                    if (routeId != lastRouteId) {
+//                        currRoute = Route.builder()
+//                                .id(routeId)
+//                                .name(rs.getString("r.name"))
+//                                .startOfCruise(rs.getDate("r.start_of_cruise").toLocalDate())
+//                                .endOfCruise(rs.getDate("r.end_of_cruise").toLocalDate())
+//                                .waypoints(new LinkedList<>())
+//                                .build();
+//                        routes.add(currRoute);
+//                    }
+//
+//                    Port port = Port.builder()
+//                            .id(rs.getInt("p.id"))
+//                            .name(rs.getString("p.name"))
+//                            .build();
+//
+//                    Waypoint waypoint = Waypoint.builder()
+//                            .port(port)
+//                            .arriveTime(rs.getDate("rhp.arrive_time").toLocalDate())
+//                            .departureTime(rs.getDate("rhp.departure_time").toLocalDate())
+//                            .build();
+//
+//                    assert currRoute != null;
+//                    currRoute.getWaypoints().add(waypoint);
+//                    lastRouteId = routeId;
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new DAOException(e);
+//        }
+//        return routes;
+//    }
 
     @Override
     protected Route mapToEntity(ResultSet rs) throws SQLException {
@@ -109,13 +115,9 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
         return Route.builder()
                 .id(rs.getInt(++k))
                 .name(rs.getString(++k))
-                .startOfCruise((Date) rs.getObject(++k))
-                .endOfCruise((Date) rs.getObject(++k))
+                .startOfCruise(rs.getDate(++k).toLocalDate())
+                .endOfCruise(rs.getDate(++k).toLocalDate())
                 .build();
     }
 
-    public static void main(String[] args) throws DAOException {
-        RouteDAOImpl routeDAO = new RouteDAOImpl();
-        System.out.println(routeDAO.getListWithPorts("SELECT r.id, r.name, r.start_of_cruise, r.end_of_cruise, p.id, p.name FROM route r LEFT JOIN route_has_port rhp on r.id = rhp.route_id LEFT JOIN port p on p.id = rhp.port_id"));
-    }
 }

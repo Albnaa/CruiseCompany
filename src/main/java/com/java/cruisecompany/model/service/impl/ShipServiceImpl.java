@@ -44,4 +44,9 @@ public class ShipServiceImpl implements ShipService {
     public List<Ship> findSorted(String query) throws ServiceException {
         return null;
     }
+
+    @Override
+    public long getNumOfRows(String query) throws ServiceException {
+        return 0;
+    }
 }

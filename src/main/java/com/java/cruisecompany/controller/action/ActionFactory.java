@@ -4,6 +4,7 @@ import com.java.cruisecompany.controller.action.impl.admin.port.CreatePortAction
 import com.java.cruisecompany.controller.action.impl.admin.port.DeletePortAction;
 import com.java.cruisecompany.controller.action.impl.admin.port.ManagePortAction;
 import com.java.cruisecompany.controller.action.impl.admin.port.UpdatePortAction;
+import com.java.cruisecompany.controller.action.impl.admin.route.ManageRouteAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.DeleteUserAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.SearchUserAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.UpdateUserAction;
@@ -31,6 +32,7 @@ public final class ActionFactory {
         ACTION_MAP.put("create_port", new CreatePortAction());
         ACTION_MAP.put("delete_port", new DeletePortAction());
         ACTION_MAP.put("update_port", new UpdatePortAction());
+        ACTION_MAP.put("manage_route", new ManageRouteAction());
     }
     private ActionFactory() {}
 

@@ -12,4 +12,5 @@ public interface Service<T> {
     Optional<T> findById(int id) throws ServiceException;
     List<T> findAll() throws ServiceException;
     List<T> findSorted(String query) throws ServiceException;
+    long getNumOfRows(String query) throws ServiceException;
 }
