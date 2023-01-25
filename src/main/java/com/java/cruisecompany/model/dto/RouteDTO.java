@@ -15,4 +15,6 @@ public class RouteDTO {
     private Date startOfCruise;
     private Date endOfCruise;
     private Set<Port> ports;
+    private long duration;
+    private long numOfPorts;
 }

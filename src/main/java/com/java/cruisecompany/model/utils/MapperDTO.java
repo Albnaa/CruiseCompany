@@ -1,8 +1,10 @@
 package com.java.cruisecompany.model.utils;
 
 import com.java.cruisecompany.model.dto.PortDTO;
+import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.Port;
+import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.User;
 
 public class MapperDTO {
@@ -43,6 +45,24 @@ public class MapperDTO {
         return Port.builder()
                 .id(portDTO.getId())
                 .name(portDTO.getName())
+                .build();
+    }
+
+    public static RouteDTO mapRouteToDTO(Route route) {
+        return RouteDTO.builder()
+                .id(route.getId())
+                .name(route.getName())
+                .startOfCruise(route.getStartOfCruise())
+                .endOfCruise(route.getEndOfCruise())
+                .build();
+    }
+
+    public static Route mapDTOtoRoute(RouteDTO routeDTO) {
+        return Route.builder()
+                .id(routeDTO.getId())
+                .name(routeDTO.getName())
+                .startOfCruise(routeDTO.getStartOfCruise())
+                .endOfCruise(routeDTO.getEndOfCruise())
                 .build();
     }
 }
