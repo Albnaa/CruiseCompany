@@ -32,7 +32,7 @@
                         <fmt:message key="navbar.dropdown.default"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.ships"/></a></li>
+                        <li><a class="dropdown-item" href="ships.jsp"><fmt:message key="navbar.dropdown.ships"/></a></li>
                         <li><a class="dropdown-item" href="ports.jsp"><fmt:message key="navbar.dropdown.ports"/></a></li>
                         <li><a class="dropdown-item" href="routes.jsp"><fmt:message key="navbar.dropdown.routes"/></a></li>
                         <li>

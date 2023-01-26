@@ -22,10 +22,11 @@ DROP TABLE IF EXISTS `webAppDb`.`route`;
 
 CREATE TABLE IF NOT EXISTS `webAppDb`.`route`
 (
-    `id`              INT          NOT NULL AUTO_INCREMENT,
-    `name`            VARCHAR(255) NOT NULL,
-    `start_of_cruise` DATE         NULL,
-    `end_of_cruise`   DATE         NULL,
+    `id`              INT            NOT NULL AUTO_INCREMENT,
+    `name`            VARCHAR(255)   NOT NULL,
+    `start_of_cruise` DATE           NULL,
+    `end_of_cruise`   DATE           NULL,
+    `price`           DECIMAL(10, 2) NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB;
@@ -118,12 +119,12 @@ DROP TABLE IF EXISTS `webAppDb`.`ticket`;
 
 CREATE TABLE IF NOT EXISTS `webAppDb`.`ticket`
 (
-    `id`               INT NOT NULL AUTO_INCREMENT,
-    `passengers_count` INT NOT NULL,
-    `price`            INT NOT NULL,
-    `user_id`          INT NOT NULL,
-    `status_id`        INT NOT NULL,
-    `ship_id`          INT NOT NULL,
+    `id`               INT            NOT NULL AUTO_INCREMENT,
+    `passengers_count` INT            NOT NULL,
+    `price`            DECIMAL(10, 2) NOT NULL,
+    `user_id`          INT            NOT NULL,
+    `status_id`        INT            NOT NULL,
+    `ship_id`          INT            NOT NULL,
     PRIMARY KEY (`id`, `user_id`, `status_id`, `ship_id`),
     INDEX `fk_ticket_user1_idx` (`user_id` ASC) VISIBLE,
     INDEX `fk_ticket_status1_idx` (`status_id` ASC) VISIBLE,
