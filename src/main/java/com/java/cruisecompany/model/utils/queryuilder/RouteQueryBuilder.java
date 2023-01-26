@@ -14,6 +14,7 @@ public class RouteQueryBuilder extends QueryBuilder{
         ROUTE_FIELDS.add("route.name");
         ROUTE_FIELDS.add("route.start_of_cruise");
         ROUTE_FIELDS.add("route.end_of_cruise");
+        ROUTE_FIELDS.add("route.price");
     }
     @Override
     String buildGroupByFragment() {

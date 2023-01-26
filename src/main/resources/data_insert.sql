@@ -62,20 +62,38 @@ VALUES (1, 'New York'),
        (50, 'Anchorage');
 
 --
-INSERT INTO route (name, start_of_cruise, end_of_cruise)
-VALUES ('Mediterranean Sea Cruise', '2022-06-01', '2022-06-10'),
-       ('Caribbean Cruise', '2022-07-01', '2022-07-10'),
-       ('Alaskan Cruise', '2022-08-01', '2022-08-10'),
-       ('Hawaii Cruise', '2022-09-01', '2022-09-10'),
-       ('Asia Cruise', '2022-10-01', '2022-10-10'),
-       ('Europe Cruise', '2022-11-01', '2022-11-10'),
-       ('South America Cruise', '2022-12-01', '2022-12-10'),
-       ('Australia Cruise', '2023-01-01', '2023-01-10'),
-       ('Antarctica Cruise', '2023-02-01', '2023-02-10'),
-       ('Arctic Cruise', '2023-03-01', '2023-03-10');
+INSERT INTO route (id, name, start_of_cruise, end_of_cruise, price)
+VALUES (1, 'Mediterranean Cruise', '2022-05-01', '2022-05-10', 1000),
+       (2, 'Caribbean Cruise', '2022-06-01', '2022-06-10', 1200),
+       (3, 'Alaska Cruise', '2022-07-01', '2022-07-10', 1500),
+       (4, 'Europe River Cruise', '2022-08-01', '2022-08-10', 800),
+       (5, 'Asia Cruise', '2022-09-01', '2022-09-10', 1700),
+       (6, 'Australia Cruise', '2022-10-01', '2022-10-10', 2000),
+       (7, 'Africa Cruise', '2022-11-01', '2022-11-10', 1800),
+       (8, 'Antarctica Cruise', '2022-12-01', '2022-12-10', 2500),
+       (9, 'South America Cruise', '2023-01-01', '2023-01-10', 2100),
+       (10, 'North America Cruise', '2023-02-01', '2023-02-10', 2400),
+       (11, 'Mediterranean Cruise', '2023-03-01', '2023-03-10', 1000),
+       (12, 'Caribbean Cruise', '2023-04-01', '2023-04-10', 1200),
+       (13, 'Alaska Cruise', '2023-05-01', '2023-05-10', 1500),
+       (14, 'Europe River Cruise', '2023-06-01', '2023-06-10', 800),
+       (15, 'Asia Cruise', '2023-07-01', '2023-07-10', 1700),
+       (16, 'Australia Cruise', '2023-08-01', '2023-08-10', 2000),
+       (17, 'Africa Cruise', '2023-09-01', '2023-09-10', 1800),
+       (18, 'Antarctica Cruise', '2023-10-01', '2023-10-10', 2500),
+       (19, 'South America Cruise', '2023-11-01', '2023-11-10', 2100),
+       (20, 'North America Cruise', '2023-12-01', '2023-12-10', 2400),
+       (21, 'Mediterranean Cruise', '2024-01-01', '2024-01-10', 1000),
+       (22, 'Caribbean Cruise', '2024-02-01', '2024-02-10', 1200),
+       (23, 'Alaska Cruise', '2024-03-01', '2024-03-10', 1500),
+       (24, 'Europe River Cruise', '2024-04-01', '2024-04-10', 800),
+       (25, 'Asia Cruise', '2024-05-01', '2024-05-10', 1700),
+       (26, 'Australia Cruise', '2024-06-01', '2024-06-10', 2000),
+       (27, 'Africa Cruise', '2024-07-01', '2024-07-10', 1800);
 
 --
-INSERT INTO ship (name, capacity, visited_ports, staff, route_id)
+INSERT
+INTO ship (name, capacity, visited_ports, staff, route_id)
 VALUES ('Titanic', 3000, 10, 1000, 1),
        ('Queen Mary', 2000, 15, 500, 2),
        ('Carnival Breeze', 4000, 20, 1500, 3),

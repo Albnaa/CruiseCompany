@@ -13,9 +13,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
-    private final static String INSERT_ROUTE = "INSERT INTO route (name, start_of_cruise, end_of_cruise) VALUES (?, ?, ?)";
+    private final static String INSERT_ROUTE = "INSERT INTO route (name, start_of_cruise, end_of_cruise, price) VALUES (?, ?, ?, ?)";
     private final static String INSERT_WAYPOINT = "INSERT INTO route_has_port (route_id, port_id, arrive_time, departure_time) VALUES (?, ?, ?, ?)";
-    private final static String UPDATE_ROUTE = "UPDATE route SET name = ?, start_of_cruise = ?, end_of_cruise = ? WHERE id = ?";
+    private final static String UPDATE_ROUTE = "UPDATE route SET name = ?, start_of_cruise = ?, end_of_cruise = ?, price = ? WHERE id = ?";
     private final static String DELETE_ROUTE = "DELETE FROM route WHERE id = ?";
     private final static String DELETE_WAYPOINT = "DELETE FROM route_has_port WHERE route_id = ? AND port_id = ?";
     private final static String SELECT_ALL = "SELECT * FROM route";
@@ -34,7 +34,8 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     public void create(Route entity) throws DAOException {
         executeNoReturn(INSERT_ROUTE, entity.getName(),
                 entity.getStartOfCruise(),
-                entity.getEndOfCruise());
+                entity.getEndOfCruise(),
+                entity.getPrice());
     }
 
     @Override
@@ -42,6 +43,7 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
         executeNoReturn(UPDATE_ROUTE, entity.getName(),
                 entity.getStartOfCruise(),
                 entity.getEndOfCruise(),
+                entity.getPrice(),
                 entity.getId());
     }
 
@@ -117,6 +119,7 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
                 .name(rs.getString(++k))
                 .startOfCruise(rs.getDate(++k).toLocalDate())
                 .endOfCruise(rs.getDate(++k).toLocalDate())
+                .price(rs.getBigDecimal(++k))
                 .build();
     }
 

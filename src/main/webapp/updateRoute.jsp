@@ -49,6 +49,10 @@
                     <input type="date" class="form-control" name="routeEnd" value="${requestScope.route.endOfCruise}">
                 </div>
                 <div class="input-group mb-2">
+                    <span class="input-group-text w-25">Price</span>
+                    <input type="number" class="form-control" name="price" value="${requestScope.route.price}">
+                </div>
+                <div class="input-group mb-2">
                     <span class="input-group-text w-25">Duration</span>
                     <input type="text" class="form-control" name="routeDuration" value="${requestScope.route.duration}"
                            readonly>
@@ -191,6 +195,10 @@
                     <div class="input-group mb-2">
                         <span class="input-group-text w-25">End date</span>
                         <input type="date" class="form-control" name="routeEnd" required>
+                    </div>
+                    <div class="input-group mb-2">
+                        <span class="input-group-text w-25">Price</span>
+                        <input type="number" class="form-control" name="price" required>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col">

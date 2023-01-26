@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.service.RouteService;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class UpdateRouteAction implements Action {
@@ -18,7 +19,9 @@ public class UpdateRouteAction implements Action {
                 .name(request.getParameter("routeName"))
                 .startOfCruise(LocalDate.parse(request.getParameter("routeStart")))
                 .endOfCruise(LocalDate.parse(request.getParameter("routeEnd")))
+                .price(BigDecimal.valueOf(Double.parseDouble(request.getParameter("price"))))
                 .build();
+
         try {
             routeService.update(routeDTO);
         } catch (ServiceException e) {

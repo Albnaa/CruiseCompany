@@ -22,12 +22,13 @@
         <input type="hidden" name="action" value="manage_route">
         <div class="row justify-content-center g-2">
             <div class="col">
-                <select class="form-select">
+                <select class="form-select" name="sort">
                     <option>Sort by</option>
                     <option value="route.id">Id</option>
                     <option value="route.name">Name</option>
                     <option value="route.start_of_cruise">Start of cruise</option>
                     <option value="route.end_of_cruise">End of cruise</option>
+                    <option value="route.price">Price</option>
                     <option value="route.duration">Duration</option>
                     <option value="route.number_of_ports">Number of ports</option>
                 </select>
@@ -77,6 +78,7 @@
                         <th>Name</th>
                         <th>Start of cruise</th>
                         <th>End of cruise</th>
+                        <th>Price</th>
                         <th>Duration</th>
                         <th>Number of ports</th>
                         <th></th>
@@ -89,6 +91,7 @@
                             <td>${route.name}</td>
                             <td>${route.startOfCruise}</td>
                             <td>${route.endOfCruise}</td>
+                            <td>${route.price}</td>
                             <td>${route.duration}</td>
                             <td>${route.numOfPorts}</td>
                             <td>
