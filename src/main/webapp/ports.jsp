@@ -80,7 +80,6 @@
                             <tr>
                                 <th class="text-center">Id</th>
                                 <th class="text-center">Name</th>
-<%--                                <th></th>--%>
                             </tr>
                             </thead>
                             <tbody>
@@ -88,10 +87,6 @@
                                 <tr class="${port}">
                                     <td class="text-center">${port.id}</td>
                                     <td class="text-center">${port.name}</td>
-<%--                                    <td>--%>
-<%--                                        <a id="myLink" class="btn btn-primary p-0 " style="width: 60px"--%>
-<%--                                           href="${port.id}">Click</a>--%>
-<%--                                    </td>--%>
                                 </tr>
                             </c:forEach>
                             </tbody>

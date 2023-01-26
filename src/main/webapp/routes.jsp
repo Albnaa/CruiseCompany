@@ -12,6 +12,10 @@
 <body>
 <jsp:include page="templates/navbar.jsp"/>
 
+<c:set var="link"
+       value="controller?action=manage_route&sort=${sessionScope.sort}&order=${sessionScope.order}"
+       scope="request"/>
+
 <div class="container">
     <h2 class="text-center p-3">Manage route</h2>
     <form method="get" action="controller">
@@ -82,12 +86,13 @@
                     <c:forEach var="route" items="${requestScope.routes}">
                         <tr class="${route}">
                             <td>${route.id}</td>
+                            <td>${route.name}</td>
                             <td>${route.startOfCruise}</td>
                             <td>${route.endOfCruise}</td>
                             <td>${route.duration}</td>
                             <td>${route.numOfPorts}</td>
                             <td>
-                                <a class="btn btn-primary p-0 " style="width: 60px" href="${route.id}">More</a>
+                                <a class="btn btn-primary p-0 " style="width: 60px" href="controller?action=view_route&routeId=${route.id}&rows=7">More</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -101,6 +106,7 @@
             </c:otherwise>
         </c:choose>
     </form>
+    <jsp:include page="templates/pagination.jsp"/>
 </div>
 
 <jsp:include page="templates/footer.jsp"/>

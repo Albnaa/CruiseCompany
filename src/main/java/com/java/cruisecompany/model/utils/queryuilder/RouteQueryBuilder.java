@@ -10,14 +10,14 @@ public class RouteQueryBuilder extends QueryBuilder{
     private final List<String> filterList = new ArrayList<>();
 
     static {
-        ROUTE_FIELDS.add("r.id");
-        ROUTE_FIELDS.add("r.name");
-        ROUTE_FIELDS.add("r.start_of_cruise");
-        ROUTE_FIELDS.add("r.end_of_cruise");
+        ROUTE_FIELDS.add("route.id");
+        ROUTE_FIELDS.add("route.name");
+        ROUTE_FIELDS.add("route.start_of_cruise");
+        ROUTE_FIELDS.add("route.end_of_cruise");
     }
     @Override
     String buildGroupByFragment() {
-        return " GROUP BY " + ROUTE_FIELDS.get(0) + ", p.id, rhp.arrive_time, rhp.departure_time";
+        return " GROUP BY " + ROUTE_FIELDS.get(0);
     }
 
     @Override

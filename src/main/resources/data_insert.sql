@@ -1,4 +1,3 @@
-
 --
 INSERT INTO role (id, name)
 VALUES (1, 'ADMIN'),
@@ -10,17 +9,57 @@ VALUES (1, 'PAID'),
        (2, 'UNPAID');
 
 --
-INSERT INTO port (id, name)
-VALUES (1, 'Miami'),
-       (2, 'San Francisco'),
-       (3, 'New York'),
-       (4, 'Toronto'),
-       (5, 'Rio de Janeiro'),
-       (6, 'Barcelona'),
-       (7, 'Sydney'),
-       (8, 'Cape Town'),
-       (9, 'Shanghai'),
-       (10, 'Dubai');
+INSERT INTO Port (id, name)
+VALUES (1, 'New York'),
+       (2, 'Los Angeles'),
+       (3, 'Chicago'),
+       (4, 'Houston'),
+       (5, 'Phoenix'),
+       (6, 'Philadelphia'),
+       (7, 'San Antonio'),
+       (8, 'San Diego'),
+       (9, 'Dallas'),
+       (10, 'San Jose'),
+       (11, 'Austin'),
+       (12, 'Jacksonville'),
+       (13, 'San Francisco'),
+       (14, 'Columbus'),
+       (15, 'Charlotte'),
+       (16, 'Fort Worth'),
+       (17, 'Indianapolis'),
+       (18, 'Seattle'),
+       (19, 'Denver'),
+       (20, 'Washington'),
+       (21, 'Boston'),
+       (22, 'El Paso'),
+       (23, 'Detroit'),
+       (24, 'Nashville'),
+       (25, 'Portland'),
+       (26, 'Memphis'),
+       (27, 'Oklahoma City'),
+       (28, 'Las Vegas'),
+       (29, 'Louisville'),
+       (30, 'Baltimore'),
+       (31, 'Milwaukee'),
+       (32, 'Albuquerque'),
+       (33, 'Tucson'),
+       (34, 'Fresno'),
+       (35, 'Sacramento'),
+       (36, 'Mesa'),
+       (37, 'Kansas City'),
+       (38, 'Atlanta'),
+       (39, 'Long Beach'),
+       (40, 'Omaha'),
+       (41, 'Raleigh'),
+       (42, 'Miami'),
+       (43, 'Minneapolis'),
+       (44, 'Cleveland'),
+       (45, 'New Orleans'),
+       (46, 'St. Louis'),
+       (47, 'Tampa'),
+       (48, 'Pittsburgh'),
+       (49, 'Cincinnati'),
+       (50, 'Anchorage');
 
 --
 INSERT INTO route (name, start_of_cruise, end_of_cruise)

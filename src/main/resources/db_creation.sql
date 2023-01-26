@@ -179,13 +179,13 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`route_has_port`
     CONSTRAINT `fk_route_has_port_route1`
         FOREIGN KEY (`route_id`)
             REFERENCES `webAppDb`.`route` (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION,
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
     CONSTRAINT `fk_route_has_port_port1`
         FOREIGN KEY (`port_id`)
             REFERENCES `webAppDb`.`port` (`id`)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
 )
     ENGINE = InnoDB;
 

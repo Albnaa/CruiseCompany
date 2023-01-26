@@ -80,8 +80,11 @@
                             <td>${user.lastName}</td>
                             <td>${user.role}</td>
                             <td>${user.balance}</td>
-                            <td><a class="btn btn-primary p-0 " style="width: 60px"
-                                   href="controller?action=view_user&userId=${user.id}">Profile</a></td>
+                            <td>
+                                <a class="btn btn-primary p-0 " style="width: 60px"
+                                   href="controller?action=view_user&userId=${user.id}">Profile
+                                </a>
+                            </td>
                         </tr>
                     </c:forEach>
                 </table>
