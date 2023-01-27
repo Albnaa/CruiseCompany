@@ -2,9 +2,11 @@ package com.java.cruisecompany.model.utils;
 
 import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.dto.RouteDTO;
+import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.entity.Route;
+import com.java.cruisecompany.model.entity.Ship;
 import com.java.cruisecompany.model.entity.User;
 
 public class MapperDTO {
@@ -67,6 +69,28 @@ public class MapperDTO {
                 .endOfCruise(routeDTO.getEndOfCruise())
                 .price(routeDTO.getPrice())
                 .waypoints(routeDTO.getWaypoints())
+                .build();
+    }
+
+    public static ShipDTO mapShipToDTO(Ship ship) {
+        return ShipDTO.builder()
+                .id(ship.getId())
+                .name(ship.getName())
+                .capacity(ship.getCapacity())
+                .visited_ports(ship.getVisited_ports())
+                .staff(ship.getStaff())
+                .route(ship.getRoute())
+                .build();
+    }
+
+    public static Ship mapDTOToShip(ShipDTO shipDTO) {
+        return Ship.builder()
+                .id(shipDTO.getId())
+                .name(shipDTO.getName())
+                .capacity(shipDTO.getCapacity())
+                .visited_ports(shipDTO.getVisited_ports())
+                .staff(shipDTO.getStaff())
+                .route(shipDTO.getRoute())
                 .build();
     }
 }
