@@ -1,52 +1,97 @@
 package com.java.cruisecompany.model.service.impl;
 
+import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.exceptions.NoSuchShipException;
 import com.java.cruisecompany.exceptions.ServiceException;
-import com.java.cruisecompany.model.entity.Ship;
+import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.repository.ShipDAO;
 import com.java.cruisecompany.model.service.ShipService;
+import com.java.cruisecompany.model.utils.MapperDTO;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOToShip;
+import static com.java.cruisecompany.model.utils.MapperDTO.mapShipToDTO;
 
 public class ShipServiceImpl implements ShipService {
-    private final ShipDAO shipDAOl;
+    private final ShipDAO shipDAO;
 
-    public ShipServiceImpl(ShipDAO shipDAOl) {
-        this.shipDAOl = shipDAOl;
+    public ShipServiceImpl(ShipDAO shipDAO) {
+        this.shipDAO = shipDAO;
     }
 
     @Override
-    public void create(Ship entity) {
-
+    public void create(ShipDTO shipDTO) throws ServiceException{
+        try {
+            shipDAO.create(mapDTOToShip(shipDTO));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void update(Ship entity) {
-
+    public void update(ShipDTO shipDTO) throws ServiceException {
+        try {
+            shipDAO.update(mapDTOToShip(shipDTO));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void delete(long id) {
-
+    public void delete(long id) throws ServiceException {
+        try {
+            shipDAO.delete(id);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public Optional<Ship> findById(int id) {
-        return Optional.empty();
+    public Optional<ShipDTO> findById(int id) throws ServiceException {
+        ShipDTO shipDTO;
+        try {
+            shipDTO = mapShipToDTO(shipDAO.findById(id).orElseThrow(NoSuchShipException::new));
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return Optional.of(shipDTO);
     }
 
     @Override
-    public List<Ship> findAll() {
-        return null;
+    public List<ShipDTO> findAll() throws ServiceException {
+        List<ShipDTO> shipDTOs;
+        try {
+            shipDTOs = shipDAO.findAll().stream()
+                    .map(MapperDTO::mapShipToDTO)
+                    .collect(Collectors.toList());
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return shipDTOs;
     }
 
     @Override
-    public List<Ship> findSorted(String query) throws ServiceException {
-        return null;
+    public List<ShipDTO> findSorted(String query) throws ServiceException {
+        List<ShipDTO> shipDTOs;
+        try {
+            shipDTOs = shipDAO.findSorted(query).stream()
+                    .map(MapperDTO::mapShipToDTO)
+                    .collect(Collectors.toList());
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return shipDTOs;
     }
 
     @Override
-    public long getNumOfRows(String query) throws ServiceException {
-        return 0;
+    public long getNumOfRows(String query) throws ServiceException { //not sure
+        try {
+            return shipDAO.getNumOfRows(query);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 }
