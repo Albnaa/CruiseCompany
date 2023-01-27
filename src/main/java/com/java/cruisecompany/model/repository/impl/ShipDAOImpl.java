@@ -14,12 +14,12 @@ import java.util.Optional;
 
 public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
 
-    private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff, route_id) VALUES (?, ?, ?, ?, ?)";
+    private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff) VALUES (?, ?, ?, ?)";
     private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?, " +
             "route_id = ?";
     private static final String DELETE_SHIP = "DELETE FROM ship WHERE id = ?";
     private static final String FIND_ALL = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff," +
-            " route.id, route.name, route.start_of_cruise, route.end_of_cruise FROM ship LEFT JOIN route ON" +
+            " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship LEFT JOIN route ON" +
             " ship.route_id = route.id";
     private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
     @Override
@@ -74,17 +74,17 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                 .capacity(rs.getInt(++k))
                 .visited_ports(rs.getInt(++k))
                 .staff(rs.getInt(++k))
-                .route(mapToRoute(rs)) //rework
+                .route(mapToRoute(rs, k)) //rework
                 .build();
     }
 
-    private Route mapToRoute(ResultSet rs) throws SQLException {
-        int k = 5;
+    private Route mapToRoute(ResultSet rs, int k) throws SQLException {
         return Route.builder()
                 .id(rs.getInt(++k))
                 .name(rs.getString(++k))
                 .startOfCruise(rs.getDate(++k).toLocalDate())
                 .endOfCruise(rs.getDate(++k).toLocalDate())
+                .price(rs.getBigDecimal(++k))
                 .build();
     }
 }
