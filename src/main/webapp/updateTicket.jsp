@@ -18,6 +18,10 @@
             <form method="post" action="controller">
                 <input type="hidden" name="ticketId" value="${requestScope.ticket.id}">
                 <div class="input-group mb-2">
+                    <label class="input-group-text w-25">User id</label>
+                    <input type="text" class="form-control w-25" disabled>
+                </div>
+                <div class="input-group mb-2">
                     <label class="input-group-text w-25">First name</label>
                     <input type="text" class="form-control w-25" disabled>
                 </div>
@@ -26,7 +30,15 @@
                     <input type="text" class="form-control w-25" disabled>
                 </div>
                 <div class="input-group mb-2">
+                    <label class="input-group-text w-25">Ship id</label>
+                    <input type="text" class="form-control w-25" disabled>
+                </div>
+                <div class="input-group mb-2">
                     <label class="input-group-text w-25">Ship name</label>
+                    <input type="text" class="form-control w-25" disabled>
+                </div>
+                <div class="input-group mb-2">
+                    <label class="input-group-text w-25">Route id</label>
                     <input type="text" class="form-control w-25" disabled>
                 </div>
                 <div class="input-group mb-2">
@@ -49,7 +61,14 @@
                     <label class="input-group-text w-25">Status</label>
                     <input type="text" class="form-control w-25" disabled>
                 </div>
-                <button type="submit" class="btn btn-warning w-50">Pay</button>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-secondary w-100">View documents</button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-warning w-100">Update</button>
+                    </div>
+                </div>
             </form>
         </div>
 
