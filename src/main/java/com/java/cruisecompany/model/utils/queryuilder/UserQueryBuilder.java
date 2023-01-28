@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
 import java.util.Objects;
 
 public class UserQueryBuilder extends QueryBuilder{
@@ -39,7 +39,6 @@ public class UserQueryBuilder extends QueryBuilder{
     }
 
     void setRoleFilter(String parameter) {
-
         if (Objects.equals(parameter, "ADMIN") || Objects.equals(parameter, "USER")) {
             filterList.add("role_id = " + Role.getRoleFromString(parameter).getIndex());
         }

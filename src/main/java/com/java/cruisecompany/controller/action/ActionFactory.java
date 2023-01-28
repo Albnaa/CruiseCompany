@@ -11,6 +11,8 @@ import com.java.cruisecompany.controller.action.impl.admin.user.SearchUserAction
 import com.java.cruisecompany.controller.action.impl.admin.user.UpdateUserAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.ViewUserAction;
 import com.java.cruisecompany.controller.action.impl.common.*;
+import com.java.cruisecompany.controller.action.impl.user.ship.ManageCatalogAction;
+import com.java.cruisecompany.controller.action.impl.user.ship.ViewCruiseAction;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
@@ -47,6 +49,8 @@ public final class ActionFactory {
         ACTION_MAP.put("delete_ship", new DeleteShipAction());
         ACTION_MAP.put("unlink_route", new UnlinkRouteAction());
         ACTION_MAP.put("link_route", new LinkRouteAction());
+        ACTION_MAP.put("manage_catalog", new ManageCatalogAction());
+        ACTION_MAP.put("view_cruise", new ViewCruiseAction());
     }
     private ActionFactory() {}
 

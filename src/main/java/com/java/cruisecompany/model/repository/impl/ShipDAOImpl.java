@@ -22,7 +22,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
             " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship LEFT JOIN route ON" +
             " ship.route_id = route.id";
     private static final String SELECT_BY_ID = SELECT_ALL + " WHERE ship.id = ?";
-    private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ship";
+    private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ship LEFT JOIN route ON ship.route_id = route.id";
 
     @Override
     public void create(Ship entity) throws DAOException {

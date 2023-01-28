@@ -15,6 +15,7 @@ public class Route {
     private String name;
     private LocalDate startOfCruise;
     private LocalDate endOfCruise;
+    private int duration;
     private BigDecimal price;
     private List<Waypoint> waypoints;
 

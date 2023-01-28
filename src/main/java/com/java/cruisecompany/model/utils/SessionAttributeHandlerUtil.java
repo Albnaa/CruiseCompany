@@ -13,6 +13,9 @@ public class SessionAttributeHandlerUtil {
         whiteList.add("sort");
         whiteList.add("order");
         whiteList.add("roleF");
+        whiteList.add("durationF");
+        whiteList.add("startDateF");
+        whiteList.add("nameF");
     }
 
     public static void setAttrFromReqToSession(HttpServletRequest request) {

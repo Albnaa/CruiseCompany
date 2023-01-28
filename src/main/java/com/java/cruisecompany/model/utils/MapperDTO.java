@@ -56,6 +56,7 @@ public class MapperDTO {
                 .name(route.getName())
                 .startOfCruise(route.getStartOfCruise())
                 .endOfCruise(route.getEndOfCruise())
+                .duration(route.getDuration())
                 .price(route.getPrice())
                 .waypoints(route.getWaypoints())
                 .build();
@@ -67,6 +68,7 @@ public class MapperDTO {
                 .name(routeDTO.getName())
                 .startOfCruise(routeDTO.getStartOfCruise())
                 .endOfCruise(routeDTO.getEndOfCruise())
+                .duration(routeDTO.getDuration())
                 .price(routeDTO.getPrice())
                 .waypoints(routeDTO.getWaypoints())
                 .build();

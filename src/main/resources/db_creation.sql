@@ -207,6 +207,18 @@ BEGIN
 END$$
 
 
+USE `webAppDb`$$
+DROP TRIGGER IF EXISTS `webAppDb`.`route_BEFORE_UPDATE` $$
+USE `webAppDb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `webAppDb`.`route_BEFORE_UPDATE`
+    BEFORE UPDATE
+    ON `route`
+    FOR EACH ROW
+BEGIN
+    SET NEW.duration = TIMESTAMPDIFF(DAY, NEW.start_of_cruise, NEW.end_of_cruise);
+END$$
+
+
 DELIMITER ;
 
 SET SQL_MODE = @OLD_SQL_MODE;

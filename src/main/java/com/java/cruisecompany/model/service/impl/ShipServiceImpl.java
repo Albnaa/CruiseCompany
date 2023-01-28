@@ -80,6 +80,26 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
+    public List<ShipDTO> findSortedWithRoutes(String query) throws ServiceException {
+        List<ShipDTO> shipDTOs;
+        try {
+            shipDTOs = shipDAO.findSorted(query).stream()
+                    .map(MapperDTO::mapShipToDTO)
+                    .filter(ship -> ship.getRoute() != null)
+                    .peek(ship -> {
+                        try {
+                            ship.setRoute(routeService.findById(ship.getRoute().getId()).get());
+                        } catch (ServiceException e) {
+                            throw new RuntimeException(e);
+                        }})
+                    .collect(Collectors.toList());
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return shipDTOs;
+    }
+
+    @Override
     public List<ShipDTO> findSorted(String query) throws ServiceException {
         List<ShipDTO> shipDTOs;
         try {

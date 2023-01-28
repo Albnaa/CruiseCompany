@@ -65,7 +65,6 @@ public class RouteServiceImpl implements RouteService {
             route.setWaypoints(waypoints);
 
             routeDTO = mapRouteToDTO(route);
-            routeDTO.setDuration(ChronoUnit.DAYS.between(route.getStartOfCruise(), route.getEndOfCruise()));
             routeDTO.setNumOfPorts(route.getWaypoints().size());
         } catch (DAOException e) {
             throw new ServiceException();
@@ -86,7 +85,6 @@ public class RouteServiceImpl implements RouteService {
                     .peek(route -> route.setWaypoints(routeDAO.getRouteWaypoints(route.getId())))
                     .map(MapperDTO::mapRouteToDTO)
                     .peek(route -> route.setNumOfPorts(route.getWaypoints().size()))
-                    .peek(route -> route.setDuration(ChronoUnit.DAYS.between(route.getStartOfCruise(), route.getEndOfCruise())))
                     .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException(e);

@@ -38,7 +38,7 @@ public abstract class QueryBuilder {
 
 
     private String buildPaginationFragment() {
-            return " LIMIT " + rows + " OFFSET " + offset;
+        return " LIMIT " + rows + " OFFSET " + offset;
     }
 
     public String buildQuery() {

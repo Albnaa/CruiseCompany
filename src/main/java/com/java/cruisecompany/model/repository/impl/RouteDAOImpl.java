@@ -119,6 +119,7 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
                 .name(rs.getString(++k))
                 .startOfCruise(rs.getDate(++k).toLocalDate())
                 .endOfCruise(rs.getDate(++k).toLocalDate())
+                .duration(rs.getInt(++k))
                 .price(rs.getBigDecimal(++k))
                 .build();
     }
