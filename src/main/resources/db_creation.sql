@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`ship`
     `capacity`      INT          NOT NULL,
     `visited_ports` INT          NOT NULL,
     `staff`         INT          NOT NULL,
-    `route_id`      INT          NOT NULL,
+    `route_id`      INT          NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_ship_route1_idx` (`route_id` ASC) VISIBLE,
     CONSTRAINT `fk_ship_route1`

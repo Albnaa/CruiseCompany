@@ -34,7 +34,7 @@ public class PortDAOImpl extends GenericDAO<Port> implements PortDAO {
     }
 
     @Override
-    public Optional<Port> findById(int id) throws DAOException {
+    public Optional<Port> findById(long id) throws DAOException {
         return executeOneReturn(SELECT_BY_ID, id);
     }
 

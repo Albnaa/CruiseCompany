@@ -10,7 +10,7 @@ public class ShipDTO {
     private long id;
     private String name;
     private int capacity;
-    private int visited_ports;
+    private int visitedPorts;
     private int staff;
-    private Route route;
+    private RouteDTO route;
 }

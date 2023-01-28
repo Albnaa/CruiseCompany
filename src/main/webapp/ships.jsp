@@ -12,9 +12,14 @@
 <body>
 <jsp:include page="templates/navbar.jsp"/>
 
+<c:set var="link"
+       value="controller?action=manage_ship&sort=${sessionScope.sort}&order=${sessionScope.order}"
+       scope="request"/>
+
 <div class="container">
     <h2 class="text-center p-3">Manage ships</h2>
     <form method="get" action="controller">
+        <input type="hidden" name="action" value="manage_ship">
         <div class="row justify-content-center">
             <div class="col">
             <select class="form-select" name="sort">
@@ -24,6 +29,7 @@
                 <option value="ship.capacity">Capacity</option>
                 <option value="ship.visited_ports">Visited ports</option>
                 <option value="ship.staff">Staff</option>
+                <option value="ship.route_name">Route name</option>
             </select>
         </div>
         <div class="col">
@@ -77,8 +83,8 @@
                         </tr>
                     </c:forEach>
                     </tbody>
-                    <jsp:include page="templates/pagination.jsp"/>
                 </table>
+                <jsp:include page="templates/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary">

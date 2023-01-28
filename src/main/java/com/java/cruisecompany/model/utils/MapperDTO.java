@@ -73,24 +73,44 @@ public class MapperDTO {
     }
 
     public static ShipDTO mapShipToDTO(Ship ship) {
-        return ShipDTO.builder()
-                .id(ship.getId())
-                .name(ship.getName())
-                .capacity(ship.getCapacity())
-                .visited_ports(ship.getVisited_ports())
-                .staff(ship.getStaff())
-                .route(ship.getRoute())
-                .build();
+        if (ship.getRoute() != null) {
+            return ShipDTO.builder()
+                    .id(ship.getId())
+                    .name(ship.getName())
+                    .capacity(ship.getCapacity())
+                    .visitedPorts(ship.getVisited_ports())
+                    .staff(ship.getStaff())
+                    .route(mapRouteToDTO(ship.getRoute()))
+                    .build();
+        } else {
+            return ShipDTO.builder()
+                    .id(ship.getId())
+                    .name(ship.getName())
+                    .capacity(ship.getCapacity())
+                    .visitedPorts(ship.getVisited_ports())
+                    .staff(ship.getStaff())
+                    .build();
+        }
     }
 
     public static Ship mapDTOToShip(ShipDTO shipDTO) {
-        return Ship.builder()
-                .id(shipDTO.getId())
-                .name(shipDTO.getName())
-                .capacity(shipDTO.getCapacity())
-                .visited_ports(shipDTO.getVisited_ports())
-                .staff(shipDTO.getStaff())
-                .route(shipDTO.getRoute())
-                .build();
+        if (shipDTO.getRoute() != null) {
+            return Ship.builder()
+                    .id(shipDTO.getId())
+                    .name(shipDTO.getName())
+                    .capacity(shipDTO.getCapacity())
+                    .visited_ports(shipDTO.getVisitedPorts())
+                    .staff(shipDTO.getStaff())
+                    .route(mapDTOtoRoute(shipDTO.getRoute()))
+                    .build();
+        } else {
+            return Ship.builder()
+                    .id(shipDTO.getId())
+                    .name(shipDTO.getName())
+                    .capacity(shipDTO.getCapacity())
+                    .visited_ports(shipDTO.getVisitedPorts())
+                    .staff(shipDTO.getStaff())
+                    .build();
+        }
     }
 }

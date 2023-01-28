@@ -22,7 +22,6 @@ public class ViewRouteAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         int routeId = Integer.parseInt(request.getParameter("routeId"));
-        request.setAttribute("routeId", routeId);
         Optional<RouteDTO> route = routeService.findById(routeId);
         route.ifPresent(routeDTO -> request.setAttribute("route", routeDTO));
 

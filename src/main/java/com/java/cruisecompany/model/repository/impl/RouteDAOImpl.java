@@ -53,7 +53,7 @@ public class RouteDAOImpl extends GenericDAO<Route> implements RouteDAO {
     }
 
     @Override
-    public Optional<Route> findById(int id) throws DAOException {
+    public Optional<Route> findById(long id) throws DAOException {
         return executeOneReturn(SELECT_BY_ID, id);
     }
 

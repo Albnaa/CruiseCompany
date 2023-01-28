@@ -41,7 +41,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     }
 
     @Override
-    public Optional<Ticket> findById(int id) throws DAOException {
+    public Optional<Ticket> findById(long id) throws DAOException {
         return executeOneReturn(FIND_BY_ID, id);
     }
 

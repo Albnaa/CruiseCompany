@@ -21,7 +21,7 @@ public class ServiceFactory {
         DAOFactory daoFactory = DAOFactory.getInstance();
         portService = new PortServiceImpl(daoFactory.getPortDAO());
         routeService = new RouteServiceImpl(daoFactory.getRouteDAO());
-        shipService = new ShipServiceImpl(daoFactory.getShipDAO());
+        shipService = new ShipServiceImpl(daoFactory.getShipDAO(), routeService);
         ticketService = new TicketServiceImpl(daoFactory.getTicketDAO());
         userService = new UserServiceImpl(daoFactory.getUserDAO());
     }

@@ -32,7 +32,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Optional<Ticket> findById(int id) {
+    public Optional<Ticket> findById(long id) {
         return Optional.empty();
     }
 

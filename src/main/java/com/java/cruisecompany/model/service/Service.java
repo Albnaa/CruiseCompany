@@ -9,7 +9,7 @@ public interface Service<T> {
     void create(T entity) throws ServiceException;
     void update(T entity) throws ServiceException;
     void delete(long id) throws ServiceException;
-    Optional<T> findById(int id) throws ServiceException;
+    Optional<T> findById(long id) throws ServiceException;
     List<T> findAll() throws ServiceException;
     List<T> findSorted(String query) throws ServiceException;
     long getNumOfRows(String query) throws ServiceException;

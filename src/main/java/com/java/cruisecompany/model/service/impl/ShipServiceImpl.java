@@ -5,6 +5,7 @@ import com.java.cruisecompany.exceptions.NoSuchShipException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.repository.ShipDAO;
+import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.MapperDTO;
 
@@ -17,13 +18,15 @@ import static com.java.cruisecompany.model.utils.MapperDTO.mapShipToDTO;
 
 public class ShipServiceImpl implements ShipService {
     private final ShipDAO shipDAO;
+    private final RouteService routeService;
 
-    public ShipServiceImpl(ShipDAO shipDAO) {
+    public ShipServiceImpl(ShipDAO shipDAO, RouteService routeService) {
         this.shipDAO = shipDAO;
+        this.routeService = routeService;
     }
 
     @Override
-    public void create(ShipDTO shipDTO) throws ServiceException{
+    public void create(ShipDTO shipDTO) throws ServiceException {
         try {
             shipDAO.create(mapDTOToShip(shipDTO));
         } catch (DAOException e) {
@@ -50,10 +53,13 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public Optional<ShipDTO> findById(int id) throws ServiceException {
+    public Optional<ShipDTO> findById(long id) throws ServiceException {
         ShipDTO shipDTO;
         try {
             shipDTO = mapShipToDTO(shipDAO.findById(id).orElseThrow(NoSuchShipException::new));
+            if (shipDTO.getRoute() != null) {
+                shipDTO.setRoute(routeService.findById(shipDTO.getRoute().getId()).get());
+            }
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -90,6 +96,24 @@ public class ShipServiceImpl implements ShipService {
     public long getNumOfRows(String query) throws ServiceException { //not sure
         try {
             return shipDAO.getNumOfRows(query);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void addRoute(long shipId, long routeId) throws ServiceException {
+        try {
+            shipDAO.addRoute(shipId, routeId);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void deleteRoute(long shipId) throws ServiceException {
+        try {
+            shipDAO.deleteRoute(shipId);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

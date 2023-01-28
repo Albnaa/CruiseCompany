@@ -56,7 +56,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public Optional<RouteDTO> findById(int id) throws ServiceException {
+    public Optional<RouteDTO> findById(long id) throws ServiceException {
         RouteDTO routeDTO;
         try {
             Route route = routeDAO.findById(id).orElseThrow(NoSuchRouteException::new);

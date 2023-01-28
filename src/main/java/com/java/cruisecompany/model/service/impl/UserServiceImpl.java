@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDTO> findById(int id) throws ServiceException {
+    public Optional<UserDTO> findById(long id) throws ServiceException {
         Optional<UserDTO> userDTO;
         try {
             Optional<User> user = userDAO.findById(id);

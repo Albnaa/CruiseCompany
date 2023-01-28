@@ -19,12 +19,12 @@ public class ShipQueryBuilder extends QueryBuilder{
     }
     @Override
     String buildGroupByFragment() {
-        return " GROUP BY" + SHIP_FIELDS.get(0);
+        return " GROUP BY " + SHIP_FIELDS.get(0);
     }
 
     @Override
     String buildFilterFragment() {
-        return null;
+        return "";
     }
 
     @Override

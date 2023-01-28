@@ -13,7 +13,7 @@
 <jsp:include page="templates/navbar.jsp"/>
 
 <c:set var="link"
-       value="controller?action=view_route&sort=${sessionScope.sort}&order=${sessionScope.order}&routeId=${requestScope.routeId}"
+       value="controller?action=view_route&sort=${sessionScope.sort}&order=${sessionScope.order}&routeId=${requestScope.route.id}"
        scope="request"/>
 
 
@@ -167,7 +167,7 @@
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary text-center my-3">
-                    Cannot found related waypoints
+                    Cannot find related waypoints
                 </div>
             </c:otherwise>
         </c:choose>

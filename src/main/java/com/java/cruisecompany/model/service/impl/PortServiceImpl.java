@@ -58,7 +58,7 @@ public class PortServiceImpl implements PortService { //add validation and dto o
     }
 
     @Override
-    public Optional<PortDTO> findById(int id) throws ServiceException {
+    public Optional<PortDTO> findById(long id) throws ServiceException {
         Optional<PortDTO> portDTO;
         try {
             Optional<Port> port = portDAO.findById(id);

@@ -52,7 +52,7 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     }
 
     @Override
-    public Optional<User> findById(int id) throws DAOException {
+    public Optional<User> findById(long id) throws DAOException {
         return executeOneReturn(SELECT_BY_ID, id);
     }
 
