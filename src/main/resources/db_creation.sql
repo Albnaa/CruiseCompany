@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`route`
     `name`            VARCHAR(255)   NOT NULL,
     `start_of_cruise` DATE           NULL,
     `end_of_cruise`   DATE           NULL,
+    `duration`        INT            NULL,
     `price`           DECIMAL(10, 2) NULL,
     PRIMARY KEY (`id`)
 )
@@ -190,6 +191,23 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`route_has_port`
 )
     ENGINE = InnoDB;
 
+USE `webAppDb`;
+
+DELIMITER $$
+
+USE `webAppDb`$$
+DROP TRIGGER IF EXISTS `webAppDb`.`route_BEFORE_INSERT` $$
+USE `webAppDb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `webAppDb`.`route_BEFORE_INSERT`
+    BEFORE INSERT
+    ON `route`
+    FOR EACH ROW
+BEGIN
+    SET NEW.duration = TIMESTAMPDIFF(DAY, NEW.start_of_cruise, NEW.end_of_cruise);
+END$$
+
+
+DELIMITER ;
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
