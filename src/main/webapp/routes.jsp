@@ -48,16 +48,15 @@
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text">End date</span>
-                    <input type="date" class="form-control" name="endDate">
-                </div>
-            </div>
-            <div class="col">
-                <div class="input-group">
                     <span class="input-group-text">Rows per page:</span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
+            </div>
+            <div class="col-1">
+                <button type="button" class="btn btn-primary w-100"
+                        data-bs-toggle="modal" data-bs-target="#createRouteModal">Create
+                </button>
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
@@ -112,6 +111,7 @@
     <jsp:include page="templates/pagination.jsp"/>
 </div>
 
+<jsp:include page="templates/createRouteModal.jsp"/>
 <jsp:include page="templates/footer.jsp"/>
 </body>
 </html>

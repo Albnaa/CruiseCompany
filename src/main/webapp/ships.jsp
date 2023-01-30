@@ -46,6 +46,10 @@
                            value="${requestScope.rows}">
                 </div>
             </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                        data-bs-target="#createShipModal">Create</button>
+            </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
                         onclick="location.href = 'controller?action=manage_ship';">Reset</button>
@@ -95,6 +99,6 @@
     </form>
 </div>
 
-
+<jsp:include page="templates/createShipModal.jsp"/>
 </body>
 </html>
