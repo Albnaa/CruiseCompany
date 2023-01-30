@@ -12,7 +12,7 @@
                     <input type="hidden" name="action" value="top_up_balance">
                     <div class="input-group mb-2">
                         <label class="input-group-text w-50">Amount</label>
-                        <input type="number" class="form-control" name="amount" required>
+                        <input type="number" class="form-control" name="amount" min="1" required>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col">

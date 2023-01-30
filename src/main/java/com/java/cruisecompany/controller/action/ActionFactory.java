@@ -65,6 +65,8 @@ public final class ActionFactory {
         ACTION_MAP.put("view_ticket", new ViewTicketAction());
         ACTION_MAP.put("create_ticket", new CreateTicketAction());
         ACTION_MAP.put("top_up_balance", new TopUpBalanceAction());
+        ACTION_MAP.put("view_self_profile", new ViewSelfProfileAction());
+        ACTION_MAP.put("update_self_profile", new UpdateSelfProfile());
     }
     private ActionFactory() {}
 
