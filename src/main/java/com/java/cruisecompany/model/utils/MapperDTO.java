@@ -1,16 +1,11 @@
 package com.java.cruisecompany.model.utils;
 
-import com.java.cruisecompany.model.dto.PortDTO;
-import com.java.cruisecompany.model.dto.RouteDTO;
-import com.java.cruisecompany.model.dto.ShipDTO;
-import com.java.cruisecompany.model.dto.UserDTO;
-import com.java.cruisecompany.model.entity.Port;
-import com.java.cruisecompany.model.entity.Route;
-import com.java.cruisecompany.model.entity.Ship;
-import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.dto.*;
+import com.java.cruisecompany.model.entity.*;
 
 public class MapperDTO {
-    private MapperDTO() {}
+    private MapperDTO() {
+    }
 
     public static UserDTO mapUserToDTO(User user) {
         return UserDTO.builder()
@@ -115,4 +110,78 @@ public class MapperDTO {
                     .build();
         }
     }
+
+    public static TicketDTO mapTicketToDTO(Ticket ticket) {
+        if (ticket.getUser() != null && ticket.getShip() != null) {
+            return TicketDTO.builder()
+                    .id(ticket.getId())
+                    .passengersCount(ticket.getPassengersCount())
+                    .price(ticket.getPrice())
+                    .status(ticket.getStatus())
+                    .user(mapUserToDTO(ticket.getUser()))
+                    .ship(mapShipToDTO(ticket.getShip()))
+                    .build();
+        } else if (ticket.getUser() != null) {
+            return TicketDTO.builder()
+                    .id(ticket.getId())
+                    .passengersCount(ticket.getPassengersCount())
+                    .price(ticket.getPrice())
+                    .status(ticket.getStatus())
+                    .user(mapUserToDTO(ticket.getUser()))
+                    .build();
+        } else if (ticket.getShip() != null) {
+            return TicketDTO.builder()
+                    .id(ticket.getId())
+                    .passengersCount(ticket.getPassengersCount())
+                    .price(ticket.getPrice())
+                    .status(ticket.getStatus())
+                    .ship(mapShipToDTO(ticket.getShip()))
+                    .build();
+        } else {
+            return TicketDTO.builder()
+                    .id(ticket.getId())
+                    .passengersCount(ticket.getPassengersCount())
+                    .price(ticket.getPrice())
+                    .status(ticket.getStatus())
+                    .build();
+        }
+
+    }
+
+    public static Ticket mapDTOToTicket(TicketDTO ticketDTO) {
+        if (ticketDTO.getUser() != null && ticketDTO.getShip() != null) {
+            return Ticket.builder()
+                    .id(ticketDTO.getId())
+                    .passengersCount(ticketDTO.getPassengersCount())
+                    .price(ticketDTO.getPrice())
+                    .status(ticketDTO.getStatus())
+                    .user(mapDTOtoUser(ticketDTO.getUser()))
+                    .ship(mapDTOToShip(ticketDTO.getShip()))
+                    .build();
+        } else if (ticketDTO.getUser() != null) {
+            return Ticket.builder()
+                    .id(ticketDTO.getId())
+                    .passengersCount(ticketDTO.getPassengersCount())
+                    .price(ticketDTO.getPrice())
+                    .status(ticketDTO.getStatus())
+                    .user(mapDTOtoUser(ticketDTO.getUser()))
+                    .build();
+        } else if (ticketDTO.getShip() != null) {
+            return Ticket.builder()
+                    .id(ticketDTO.getId())
+                    .passengersCount(ticketDTO.getPassengersCount())
+                    .price(ticketDTO.getPrice())
+                    .status(ticketDTO.getStatus())
+                    .ship(mapDTOToShip(ticketDTO.getShip()))
+                    .build();
+        } else {
+            return Ticket.builder()
+                    .id(ticketDTO.getId())
+                    .passengersCount(ticketDTO.getPassengersCount())
+                    .price(ticketDTO.getPrice())
+                    .status(ticketDTO.getStatus())
+                    .build();
+        }
+    }
+
 }

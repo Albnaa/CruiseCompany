@@ -12,6 +12,6 @@ public class UserDTO {
     private String email;
     private String firstName;
     private String lastName;
-    @EqualsAndHashCode.Exclude private Role role;
+    private Role role;
     private double balance;
 }

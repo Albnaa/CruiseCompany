@@ -13,11 +13,11 @@
 <jsp:include page="templates/navbar.jsp"/>
 
 <c:set var="link"
-       value="controller?action=manage_tickets&sort=${sessionScope.sort}&order=${sessionScope.order}"
+       value="controller?action=manage_user_tickets&sort=${sessionScope.sort}&order=${sessionScope.order}"
        scope="request"/>
 
 <div class="container">
-    <h2 class="text-center p-3">Manage tickets${requestScope.ticket.id}</h2>
+    <h2 class="text-center p-3">My tickets${requestScope.ticket.id}</h2>
     <form method="get" action="controller">
         <input type="hidden" name="action" value="manage_tickets">
         <div class="row">

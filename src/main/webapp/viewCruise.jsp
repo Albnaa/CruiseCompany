@@ -63,13 +63,15 @@
             <div class="modal-body">
                 <form method="post" action="controller">
                     <input type="hidden" name="action" value="create_ticket">
+                    <input type="hidden" name="price" value="${requestScope.ship.route.price}">
+                    <input type="hidden" name="shipId" value="${requestScope.ship.id}">
                     <div class="input-group mb-2">
-                        <label class="input-group-text w-50">Passengers count</label>
+                        <label class="input-group-text">Passengers count</label>
                         <input type="number" class="form-control" name="passengersCount" required>
                     </div>
                     <div class="input-group mb-2">
-                        <label class="input-group-text w-25">Documents</label>
-                        <input type="file" class="form-control w-25" name="documents" required>
+                        <label class="input-group-text">Documents</label>
+                        <input type="file" class="form-control" name="documents">
                     </div>
 
 

@@ -1,8 +1,10 @@
 package com.java.cruisecompany.model.repository.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.Ship;
 import com.java.cruisecompany.model.entity.User;
+import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.entity.Ticket;
@@ -17,13 +19,16 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
             "VALUES (?, ?, ?, ?)";
     private static final String UPDATE_TICKET = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
-    private static final String FIND_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.login, user.email," +
-            " user.first_name, user.last_name, ticket.ship_id, ship.name FROM ticket LEFT JOIN user on user.id = ticket.user_id" +
-            " LEFT JOIN ship on ship.id = ticket.ship_id";
-    private static final String FIND_BY_ID = FIND_ALL + "WHERE id = ?";
+    private static final String SELECT_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, " +
+            "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, r.id, r.name, " +
+            "r.start_of_cruise FROM ticket LEFT JOIN user on user.id = ticket.user_id LEFT JOIN ship on " +
+            "ship.id = ticket.ship_id LEFT JOIN route r on r.id = ship.route_id";
+    private static final String SELECT_TICKETS_BY_USER = SELECT_ALL + " WHERE user.id = ?";
+    private static final String SELECT_BY_ID = SELECT_ALL + " WHERE ticket.id = ?";
+    private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ticket LEFT JOIN user ON user.id = ticket.user_id";
     @Override
     public void create(Ticket entity) throws DAOException {
-        executeNoReturn(INSERT_TICKET, entity.getPassengers_count(),
+        executeNoReturn(INSERT_TICKET, entity.getPassengersCount(),
                 entity.getPrice(),
                 entity.getUser().getId(),
                 entity.getShip().getId());
@@ -31,7 +36,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
 
     @Override
     public void update(Ticket entity) throws DAOException {
-        executeNoReturn(UPDATE_TICKET, entity.getStatusId(),
+        executeNoReturn(UPDATE_TICKET, entity.getStatus().getIndex(),
                 entity.getId());
     }
 
@@ -42,22 +47,28 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
 
     @Override
     public Optional<Ticket> findById(long id) throws DAOException {
-        return executeOneReturn(FIND_BY_ID, id);
+        return executeOneReturn(SELECT_BY_ID, id);
     }
 
     @Override
     public List<Ticket> findAll() throws DAOException {
-        return executeListReturn(FIND_ALL);
+        return executeListReturn(SELECT_ALL);
     }
 
     @Override
     public List<Ticket> findSorted(String query) throws DAOException {
-        return null;
+        System.out.println(SELECT_ALL + query);
+        return executeListReturn(SELECT_ALL + query);
     }
+
+//    @Override
+//    public List<Ticket> findSortedByUser(Long userId, String query) throws DAOException {
+//        return executeListReturn(SELECT_TICKETS_BY_USER + query, userId);
+//    }
 
     @Override
     public long getNumOfRows(String query) throws DAOException {
-        return 0;
+        return executeNumOfRowsReturn(SELECT_COUNT_OF_ROWS + query);
     }
 
     @Override
@@ -65,30 +76,36 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
         int k = 0;
         return Ticket.builder()
                 .id(rs.getInt(++k))
-                .passengers_count(rs.getInt(++k))
-                .price(rs.getDouble(++k))
-                .statusId(rs.getInt(++k))
-                .user(mapToUser(rs))
-                .ship(mapToShip(rs))
+                .passengersCount(rs.getInt(++k))
+                .price(rs.getBigDecimal(++k))
+                .status(Status.getStatus(rs.getInt(++k)))
+                .user(mapToUser(rs, k))
+                .ship(mapToShip(rs, 8))
                 .build();
     }
 
-    private User mapToUser(ResultSet rs) throws SQLException {
-        int k = 4;
+    private User mapToUser(ResultSet rs, int k) throws SQLException {
         return User.builder()
                 .id(rs.getInt(++k))
-                .login(rs.getString(++k))
-                .email(rs.getString(++k))
                 .firstName(rs.getString(++k))
                 .lastName(rs.getString(++k))
+                .balance(rs.getDouble(++k))
                 .build();
     }
 
-    private Ship mapToShip(ResultSet rs) throws SQLException {
-        int k = 9;
+    private Ship mapToShip(ResultSet rs, int k) throws SQLException {
         return Ship.builder()
                 .id(rs.getInt(++k))
                 .name(rs.getString(++k))
+                .route(mapToRoute(rs, k))
+                .build();
+    }
+
+    private Route mapToRoute(ResultSet rs, int k) throws SQLException {
+        return Route.builder()
+                .id(rs.getInt(++k))
+                .name(rs.getString(++k))
+                .startOfCruise(rs.getDate(++k).toLocalDate())
                 .build();
     }
 }

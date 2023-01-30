@@ -1,7 +1,7 @@
 package com.java.cruisecompany.model.entity.enums;
 
 public enum Status {
-    PAID(1), UNPAID(2);
+    UNCHECKED(1), UNPAID(2), PAID(3), COMPLETED(4);
 
     private final int index;
 
@@ -13,8 +13,25 @@ public enum Status {
         return index;
     }
 
-    public Status getStatus (int index) {
-        if (index == 0) return PAID;
-        return UNPAID;
+    public static Status getStatus (int index) {
+        Status status;
+        switch (index) {
+            case 1 -> status = UNCHECKED;
+            case 2 -> status = UNPAID;
+            case 3 -> status = PAID;
+            default -> status = COMPLETED;
+        }
+        return status;
+    }
+
+    public static Status parse(String string) {
+        Status status;
+        switch (string) {
+            case "UNCHECKED" -> status = UNCHECKED;
+            case "UNPAID" -> status = UNPAID;
+            case "PAID" -> status = PAID;
+            default -> status = COMPLETED;
+        }
+        return status;
     }
 }

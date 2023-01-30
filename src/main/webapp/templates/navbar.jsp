@@ -15,7 +15,7 @@
                     <a class="nav-link active" aria-current="page" href="catalog.jsp"><fmt:message key="navbar.catalog"/></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#"><fmt:message key="navbar.dropdown.tickets"/></a>
+                    <a class="nav-link active" href="controller?action=manage_user_tickets&userF=${sessionScope.user.id}"><fmt:message key="navbar.dropdown.tickets"/></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active"><fmt:message key="navbar.profile"/></a>
@@ -38,7 +38,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#"><fmt:message key="navbar.dropdown.tickets"/></a></li>
+                        <li><a class="dropdown-item" href="manageTickets.jsp"><fmt:message key="navbar.dropdown.tickets"/></a></li>
                     </ul>
                 </li>
                 </c:if>

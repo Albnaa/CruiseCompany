@@ -1,17 +1,19 @@
 package com.java.cruisecompany.model.entity;
 
+import com.java.cruisecompany.model.entity.enums.Status;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.math.BigDecimal;
 
 @Builder
 @Data
 public class Ticket {
     private long id;
-    private int passengers_count;
-    private double price;
+    private int passengersCount;
+    private BigDecimal price;
     private User user;
     private Ship ship;
-    @EqualsAndHashCode.Exclude private int statusId;
+    private Status status;
 
 }

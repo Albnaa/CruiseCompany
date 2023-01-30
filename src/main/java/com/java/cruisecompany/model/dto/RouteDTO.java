@@ -1,17 +1,12 @@
 package com.java.cruisecompany.model.dto;
 
-import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.entity.wrapper.Waypoint;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Builder
 @Data

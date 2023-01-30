@@ -123,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`ticket`
     `id`               INT            NOT NULL AUTO_INCREMENT,
     `passengers_count` INT            NOT NULL,
     `price`            DECIMAL(10, 2) NOT NULL,
-    `status_id`        INT            NOT NULL,
+    `status_id`        INT            NOT NULL DEFAULT 1,
     `user_id`          INT            NOT NULL,
     `ship_id`          INT            NOT NULL,
     PRIMARY KEY (`id`, `status_id`, `user_id`, `ship_id`),

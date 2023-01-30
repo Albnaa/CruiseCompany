@@ -5,8 +5,10 @@ VALUES (1, 'ADMIN'),
 
 --
 INSERT INTO status (id, name)
-VALUES (1, 'PAID'),
-       (2, 'UNPAID');
+VALUES (1, 'UNCHECKED'),
+       (2, 'UNPAID'),
+       (3, 'PAID'),
+       (4, 'COMPLETED');
 
 --
 INSERT INTO Port (id, name)

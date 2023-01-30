@@ -6,6 +6,7 @@ import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.entity.User;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -74,6 +75,11 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     @Override
     public List<User> findByInitials(String initials) throws DAOException {
         return executeListReturn(SELECT_BY_INITIALS, initials, initials);
+    }
+
+    @Override
+    public void deductFromBalance(long userId, BigDecimal sum) {
+
     }
 
     @Override

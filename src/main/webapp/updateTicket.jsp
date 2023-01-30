@@ -14,52 +14,46 @@
 <div class="container">
     <h2 class="text-center p-3">Ticket#${requestScope.ticket.id}</h2>
     <div class="row justify-content-center">
-        <div class="col-6 text-center">
+        <div class="col-4 text-center">
             <form method="post" action="controller">
+                <input type="hidden" name="action" value="update_ticket">
                 <input type="hidden" name="ticketId" value="${requestScope.ticket.id}">
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">User id</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">First name</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.user.firstName}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">First name</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Last name</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.user.lastName}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Last name</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Ship name</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.ship.name}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Ship id</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Route name</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.ship.route.name}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Ship name</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Cruise start</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.ship.route.startOfCruise}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Route id</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Passengers</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.passengersCount}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Route name</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Price</label>
+                    <input type="text" class="form-control" value="${requestScope.ticket.price}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Cruise start</label>
-                    <input type="text" class="form-control w-25" disabled>
-                </div>
-                <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Passengers</label>
-                    <input type="text" class="form-control w-25" disabled>
-                </div>
-                <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Price</label>
-                    <input type="text" class="form-control w-25" disabled>
-                </div>
-                <div class="input-group mb-2">
-                    <label class="input-group-text w-25">Status</label>
-                    <input type="text" class="form-control w-25" disabled>
+                    <label class="input-group-text w-50">Status</label>
+                    <select class="form-select" name="ticketStatus">
+                        <option value="UNCHECKED" ${requestScope.ticket.status == 'UNCHECKED' ? 'selected' : ''}>UNCHECKED</option>
+                        <option value="UNPAID" ${requestScope.ticket.status == 'UNPAID' ? 'selected' : ''}>UNPAID</option>
+                        <option value="PAID" ${requestScope.ticket.status == 'PAID' ? 'selected' : ''}>PAID</option>
+                        <option value="COMPLETED" ${requestScope.ticket.status == 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
+                    </select>
                 </div>
                 <div class="row">
                     <div class="col">

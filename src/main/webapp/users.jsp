@@ -100,7 +100,6 @@
 
 
 <c:set var="link" value="controller?action=search_user&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
-<h6>${link}</h6>
 
 <jsp:include page="templates/pagination.jsp"/>
 
