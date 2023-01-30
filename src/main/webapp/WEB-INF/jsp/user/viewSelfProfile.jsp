@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 
 <div class="container">
     <div class="card text-center my-3">
@@ -24,10 +24,6 @@
     </div>
     <div class="row">
         <div class="col col-6">
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w-50">Id</li>
-                <li class="list-group-item w-50">${requestScope.user.id}</li>
-            </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item w-50">Login</li>
                 <li class="list-group-item w-50">${requestScope.user.login}</li>
@@ -43,10 +39,6 @@
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item w-50">Last Name</li>
                 <li class="list-group-item w-50">${requestScope.user.lastName}</li>
-            </ul>
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item w-50">Role</li>
-                <li class="list-group-item w-50">${requestScope.user.role}</li>
             </ul>
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item w-50">Balance</li>
@@ -66,12 +58,9 @@
         </div>
         <div class="col col-6 collapse collapse" id="updateForm">
             <form method="POST" action="controller">
-                <input type="hidden" name="action" value="update_user">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Id" name="id"
-                           value="${requestScope.user.id}" aria-describedby="id" readonly>
-                    <span class="input-group-text w-25" id="id">Id</span>
-                </div>
+                <input type="hidden" name="action" value="update_self_profile">
+                <input type="hidden" name="balance" value="${requestScope.user.balance}">
+                <input type="hidden" name="role" value="${requestScope.user.role}">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Username" name="login"
                            value="${requestScope.user.login}" aria-describedby="login">
@@ -93,21 +82,6 @@
                     <span class="input-group-text w-25" id="last-name">Last Name</span>
                 </div>
                 <div class="input-group">
-                    <select class="form-select" aria-describedby="role" name="role" style="height: 41.6px">
-                        <c:choose>
-                            <c:when test="${requestScope.user.role == 'ADMIN'}">
-                                <option selected>ADMIN</option>
-                                <option value="USER">USER</option>
-                            </c:when>
-                            <c:otherwise>
-                                <option selected>USER</option>
-                                <option value="ADMIN">ADMIN</option>
-                            </c:otherwise>
-                        </c:choose>
-                    </select>
-                    <span class="input-group-text w-25" id="role">Role</span>
-                </div>
-                <div class="input-group">
                     <input type="text" class="form-control" placeholder="Balance" name="balance"
                            value="${requestScope.user.balance}" aria-describedby="balance" disabled>
                     <span class="input-group-text w-25" id="balance">Balance</span>
@@ -119,6 +93,6 @@
 </div>
 
 
-<jsp:include page="templates/footer.jsp"/>
+<jsp:include page="../../../templates/footer.jsp"/>
 </body>
 </html>

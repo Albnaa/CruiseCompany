@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 <div class="container">
     <h2 class="text-center p-3">${requestScope.ship.route.name}</h2>
     <div class="row">
         <div class="col">
             <div class="card mb-3">
-                <img src="Img/Ship-2.png" class="card-img-top" alt="...">
+                <img src="${pageContext.request.contextPath}/Img/Ship-2.png" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title text-center">Route</h5>
                     <ul class="list-group list-group-flush align-content-end">

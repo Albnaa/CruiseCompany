@@ -4,7 +4,6 @@ import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
-import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -22,6 +21,6 @@ public class ViewUserAction implements Action {
         } else {
             request.setAttribute("error", "Can`t find user with this id");
         }
-        return "userProfile.jsp";
+        return "/WEB-INF/jsp/user/viewProfile.jsp";
     }
 }

@@ -1,6 +1,5 @@
 package com.java.cruisecompany.model.dto;
 
-import com.java.cruisecompany.model.entity.Route;
 import lombok.Builder;
 import lombok.Data;
 

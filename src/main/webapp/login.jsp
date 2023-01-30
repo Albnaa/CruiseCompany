@@ -20,7 +20,7 @@
 <main class="row justify-content-center" >
     <h2 class="m-4 pt-3 text-center"><fmt:message key="login.greetings"/></h2>
     <form class="col" style="max-width: 330px; padding: 10px;" method="POST" action="controller">
-        <input type="hidden" name="action" value="login">
+        <input type="hidden" name="action" value="sign_in">
         <div class="m-0 form-floating">
             <input type="text" class="form-control" id="login" name="login" required>
             <label for="login"><fmt:message key="login.label.login"/></label><br>

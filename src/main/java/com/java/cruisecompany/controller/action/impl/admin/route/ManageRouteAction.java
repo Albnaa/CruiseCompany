@@ -19,6 +19,6 @@ public class ManageRouteAction implements Action {
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("routes", routeService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, routeService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "routes.jsp";
+        return "/WEB-INF/jsp/route/manageRoutes.jsp";
     }
 }

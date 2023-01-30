@@ -20,6 +20,6 @@ public class ManageUserTickets implements Action {
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("tickets", ticketService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, ticketService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "manageUserTickets.jsp";
+        return "/WEB-INF/jsp/ticket/manageUserTickets.jsp";
     }
 }

@@ -22,6 +22,7 @@ public class ViewTicketAction implements Action {
             throw new ServiceException(e);
         }
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
-        return userDTO.getRole() == Role.ADMIN ? "updateTicket.jsp" : "viewTicket.jsp";
+        return userDTO.getRole() ==
+                Role.ADMIN ? "/WEB-INF/jsp/ticket/updateTicket.jsp" : "/WEB-INF/jsp/ticket/viewTicket.jsp";
     }
 }

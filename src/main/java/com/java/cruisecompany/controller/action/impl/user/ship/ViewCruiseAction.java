@@ -21,6 +21,6 @@ public class ViewCruiseAction implements Action {
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }
-        return "viewCruise.jsp";
+        return "/WEB-INF/jsp/ship/viewCruise.jsp";
     }
 }

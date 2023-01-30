@@ -19,6 +19,6 @@ public class ManageShipAction implements Action {
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("ships", shipService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, shipService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "ships.jsp";
+        return "/WEB-INF/jsp/ship/manageShips.jsp";
     }
 }

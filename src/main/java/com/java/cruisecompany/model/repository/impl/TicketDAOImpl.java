@@ -3,11 +3,11 @@ package com.java.cruisecompany.model.repository.impl;
 import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.Ship;
+import com.java.cruisecompany.model.entity.Ticket;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.TicketDAO;
-import com.java.cruisecompany.model.entity.Ticket;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

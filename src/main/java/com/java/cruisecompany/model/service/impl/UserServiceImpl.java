@@ -8,7 +8,6 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
-import com.java.cruisecompany.model.utils.ValidationUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

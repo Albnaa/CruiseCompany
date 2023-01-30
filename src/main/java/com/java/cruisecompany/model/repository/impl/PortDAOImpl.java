@@ -1,9 +1,9 @@
 package com.java.cruisecompany.model.repository.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.PortDAO;
-import com.java.cruisecompany.model.entity.Port;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

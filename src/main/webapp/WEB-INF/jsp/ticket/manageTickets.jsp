@@ -10,17 +10,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 
 <c:set var="link"
-       value="controller?action=manage_user_tickets&sort=${sessionScope.sort}&order=${sessionScope.order}"
+       value="controller?action=manage_tickets&sort=${sessionScope.sort}&order=${sessionScope.order}"
        scope="request"/>
 
 <div class="container">
-    <h2 class="text-center p-3">My tickets${requestScope.ticket.id}</h2>
+    <h2 class="text-center p-3">Manage tickets${requestScope.ticket.id}</h2>
     <form method="get" action="controller">
-        <input type="hidden" name="action" value="manage_user_tickets">
-        <input type="hidden" name="userF" value="${sessionScope.user.id}">
+        <input type="hidden" name="action" value="manage_tickets">
         <div class="row">
             <div class="col">
                 <select class="form-select" name="sort">
@@ -96,7 +95,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <jsp:include page="templates/pagination.jsp"/>
+                <jsp:include page="../../../templates/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary">

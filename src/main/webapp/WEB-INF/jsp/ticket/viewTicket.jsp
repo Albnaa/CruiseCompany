@@ -10,14 +10,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 <div class="container">
     <h2 class="text-center p-3">Ticket#${requestScope.ticket.id}</h2>
     <div class="row justify-content-center">
         <div class="col-4 text-center">
             <form method="post" action="controller">
-                <input type="hidden" name="action" value="update_ticket">
+                <input type="hidden" name="action" value="pay_for_ticket">
                 <input type="hidden" name="ticketId" value="${requestScope.ticket.id}">
+                <input type="hidden" name="ticketPrice" value="${requestScope.ticket.price}">
                 <div class="input-group mb-2">
                     <label class="input-group-text w-50">First name</label>
                     <input type="text" class="form-control" value="${requestScope.ticket.user.firstName}" readonly>
@@ -48,21 +49,11 @@
                 </div>
                 <div class="input-group mb-2">
                     <label class="input-group-text w-50">Status</label>
-                    <select class="form-select" name="ticketStatus">
-                        <option value="UNCHECKED" ${requestScope.ticket.status == 'UNCHECKED' ? 'selected' : ''}>UNCHECKED</option>
-                        <option value="UNPAID" ${requestScope.ticket.status == 'UNPAID' ? 'selected' : ''}>UNPAID</option>
-                        <option value="PAID" ${requestScope.ticket.status == 'PAID' ? 'selected' : ''}>PAID</option>
-                        <option value="COMPLETED" ${requestScope.ticket.status == 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
-                    </select>
+                    <input type="text" class="form-control" value="${requestScope.ticket.status}" readonly>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-secondary w-100">View documents</button>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-warning w-100">Update</button>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-warning w-50" ${requestScope.ticket.status == 'UNCHECKED'
+                || requestScope.ticket.status == 'PAID'
+                || requestScope.ticket.status == 'COMPLETED' ? 'disabled' : ''}>Pay</button>
             </form>
         </div>
 

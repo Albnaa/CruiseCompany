@@ -19,6 +19,6 @@ public class ManagePortAction implements Action {
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("ports", portService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, portService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "ports.jsp";
+        return "/WEB-INF/jsp/port/managePorts.jsp";
     }
 }

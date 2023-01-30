@@ -1,16 +1,12 @@
 package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
-import com.java.cruisecompany.exceptions.InvalidInputException;
-import com.java.cruisecompany.exceptions.NoSuchUserException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
-
-import java.util.*;
 
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());

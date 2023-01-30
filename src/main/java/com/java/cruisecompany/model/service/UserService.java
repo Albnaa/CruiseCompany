@@ -1,6 +1,5 @@
 package com.java.cruisecompany.model.service;
 
-import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 

@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 <div class="container">
     <h2 class="text-center p-3">Manage users</h2>
     <form method="get" action="controller" role="form">
-        <input type="hidden" id="searchAction" name="action" value="search_user">
+        <input type="hidden" id="searchAction" name="action" value="manage_users">
         <div class="row">
             <div class="col">
                 <select id="select-sort" name="sort" class="form-select">
@@ -47,7 +47,7 @@
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
-                        onclick="location.href = 'controller?action=search_user';">Reset</button>
+                        onclick="location.href = 'controller?action=manage_users';">Reset</button>
                 <button type="submit" class="btn btn-primary w-100">Submit</button>
             </div>
         </div>
@@ -99,11 +99,11 @@
 </div>
 
 
-<c:set var="link" value="controller?action=search_user&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
+<c:set var="link" value="controller?action=manage_users&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
 
-<jsp:include page="templates/pagination.jsp"/>
+<jsp:include page="../../../templates/pagination.jsp"/>
 
 
-<jsp:include page="templates/footer.jsp"/>
+<jsp:include page="../../../templates/footer.jsp"/>
 </body>
 </html>

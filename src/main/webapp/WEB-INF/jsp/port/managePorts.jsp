@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 
 <c:set var="link"
        value="controller?action=manage_port&sort=${sessionScope.sort}&order=${sessionScope.order}"
@@ -100,7 +100,7 @@
                 </c:choose>
             </form>
 
-            <jsp:include page="templates/pagination.jsp"/>
+            <jsp:include page="../../../templates/pagination.jsp"/>
 
         </div>
         <div class="col-3">
@@ -122,6 +122,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="templates/footer.jsp"/>
+<jsp:include page="../../../templates/footer.jsp"/>
 </body>
 </html>

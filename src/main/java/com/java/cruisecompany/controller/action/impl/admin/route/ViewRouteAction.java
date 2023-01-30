@@ -4,7 +4,6 @@ import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.RouteDTO;
-import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.PortService;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.utils.Pagination;
@@ -30,6 +29,6 @@ public class ViewRouteAction implements Action {
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("ports", portService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, portService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "updateRoute.jsp";
+        return "/WEB-INF/jsp/route/updateRoute.jsp";
     }
 }

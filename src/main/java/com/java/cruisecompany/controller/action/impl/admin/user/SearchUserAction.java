@@ -16,10 +16,9 @@ public class SearchUserAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         QueryBuilder queryBuilder = new UserQueryBuilder();
         queryBuilder.extractBuilderParameters(request);
-        System.out.println(queryBuilder.buildQuery());
-        SessionAttributeHandlerUtil.setAttrFromReqToSession(request); //test feature
+        SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
         request.setAttribute("users", userService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, userService.getNumOfRows(queryBuilder.buildFilterQuery()));
-        return "users.jsp";
+        return "/WEB-INF/jsp/user/manageUsers.jsp";
     }
 }

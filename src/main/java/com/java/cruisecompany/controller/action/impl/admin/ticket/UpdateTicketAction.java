@@ -8,7 +8,6 @@ import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
 
-import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 
 public class UpdateTicketAction implements Action {

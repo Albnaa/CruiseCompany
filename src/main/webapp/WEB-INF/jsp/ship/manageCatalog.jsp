@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 
 <c:set var="link"
        value="controller?action=manage_catalog&sort=${sessionScope.sort}&order=${sessionScope.order}&nameF=${requestScope.nameF}
@@ -89,7 +89,7 @@
         <c:forEach var="cruise" items="${requestScope.cruises}">
             <div class="col">
                 <div class="card border-primary h-100">
-                    <img src="Img/Ship-3.jpg" class="card-img-top" alt="Cruise ship photo">
+                    <img src="${pageContext.request.contextPath}/Img/Ship-3.jpg" class="card-img-top" alt="Cruise ship photo">
                     <div class="card-body">
                         <h5 class="card-title text-center">${cruise.route.name}</h5>
                         <p class="card-text">
@@ -115,7 +115,7 @@
         </c:forEach>
     </div>
     <div class="my-3">
-        <jsp:include page="templates/pagination.jsp"/>
+        <jsp:include page="../../../templates/pagination.jsp"/>
     </div>
     </c:when>
     <c:otherwise>

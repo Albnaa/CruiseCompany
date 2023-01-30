@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="templates/navbar.jsp"/>
+<jsp:include page="../../../templates/navbar.jsp"/>
 
 <c:set var="link"
        value="controller?action=manage_ship&sort=${sessionScope.sort}&order=${sessionScope.order}"
@@ -88,7 +88,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <jsp:include page="templates/pagination.jsp"/>
+                <jsp:include page="../../../templates/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary">
@@ -99,6 +99,6 @@
     </form>
 </div>
 
-<jsp:include page="templates/createShipModal.jsp"/>
+<jsp:include page="../../../templates/createShipModal.jsp"/>
 </body>
 </html>

@@ -13,6 +13,6 @@ public class DeleteUserAction implements Action {
 
         long userId = Long.parseLong(request.getParameter("userId"));
         userService.delete(userId);
-        return "users.jsp";
+        return "/WEB-INF/jsp/user/manageUsers.jsp";
     }
 }

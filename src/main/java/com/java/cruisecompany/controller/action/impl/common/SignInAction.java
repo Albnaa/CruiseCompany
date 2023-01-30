@@ -27,9 +27,9 @@ public class SignInAction implements Action {
 
             Role role = user.get().getRole();
             if (Objects.requireNonNull(role) == Role.ADMIN) {
-                return "controller?action=search_user";
+                return "controller?action=manage_users";
             }
-            return "catalog.jsp";
+            return "/WEB-INF/jsp/ship/manageCatalog.jsp";
         } else {
             request.getSession().setAttribute("error", "Wrong username/password. Please retry");
             System.out.println("attribute error was set -> " + request.getAttribute( "error"));

@@ -15,7 +15,7 @@
     <div class="row justify-content-center">
         <div class="col-3">
             <form method="POST" action="controller">
-                <input type="hidden" name="action" value="sign up">
+                <input type="hidden" name="action" value="sign_up">
                 <div class="mb-3">
                     <label for="login" class="form-label">Login</label>
                     <input class="form-control ${fn:contains(sessionScope.error, 'signUp.login') ? 'is-invalid' : ''}"

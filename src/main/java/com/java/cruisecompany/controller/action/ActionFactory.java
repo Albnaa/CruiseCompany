@@ -29,26 +29,20 @@ public final class ActionFactory {
     private static final Map<String, Action> ACTION_MAP = new HashMap<>();
 
     static {
-        ACTION_MAP.put("add_port", new DeletePortAction());
-        ACTION_MAP.put("login", new SignInAction());
-        ACTION_MAP.put("sign up", new SignUpAction());
+        //common
+        ACTION_MAP.put("sign_in", new SignInAction());
+        ACTION_MAP.put("sign_up", new SignUpAction());
         ACTION_MAP.put("sign_out", new SignOutAction());
-        ACTION_MAP.put("search_user", new SearchUserAction());
+        ACTION_MAP.put("set_locale", new SetLocaleAction());
+        //user
+        ACTION_MAP.put("manage_users", new SearchUserAction());
         ACTION_MAP.put("delete_user", new DeleteUserAction());
         ACTION_MAP.put("view_user", new ViewUserAction());
         ACTION_MAP.put("update_user", new UpdateUserAction());
-        ACTION_MAP.put("set_locale", new SetLocaleAction());
-        ACTION_MAP.put("manage_port", new ManagePortAction());
-        ACTION_MAP.put("create_port", new CreatePortAction());
-        ACTION_MAP.put("delete_port", new DeletePortAction());
-        ACTION_MAP.put("update_port", new UpdatePortAction());
-        ACTION_MAP.put("manage_route", new ManageRouteAction());
-        ACTION_MAP.put("view_route", new ViewRouteAction());
-        ACTION_MAP.put("delete_waypoint", new DeleteWaypointAction());
-        ACTION_MAP.put("add_waypoint", new AddWayPointAction());
-        ACTION_MAP.put("delete_route", new DeleteRouteAction());
-        ACTION_MAP.put("update_route", new UpdateRouteAction());
-        ACTION_MAP.put("create_route", new CreateRouteAction());
+        ACTION_MAP.put("top_up_balance", new TopUpBalanceAction());
+        ACTION_MAP.put("view_self_profile", new ViewSelfProfileAction());
+        ACTION_MAP.put("update_self_profile", new UpdateSelfProfile());
+        //ship
         ACTION_MAP.put("manage_ship", new ManageShipAction());
         ACTION_MAP.put("view_ship", new ViewShipAction());
         ACTION_MAP.put("create_ship", new CreateShipAction());
@@ -58,15 +52,27 @@ public final class ActionFactory {
         ACTION_MAP.put("link_route", new LinkRouteAction());
         ACTION_MAP.put("manage_catalog", new ManageCatalogAction());
         ACTION_MAP.put("view_cruise", new ViewCruiseAction());
+        //ticket
         ACTION_MAP.put("manage_tickets", new ManageTicketsAction());
         ACTION_MAP.put("manage_user_tickets", new ManageUserTickets());
         ACTION_MAP.put("update_ticket", new UpdateTicketAction());
         ACTION_MAP.put("pay_for_ticket", new PayForTicketAction());
         ACTION_MAP.put("view_ticket", new ViewTicketAction());
         ACTION_MAP.put("create_ticket", new CreateTicketAction());
-        ACTION_MAP.put("top_up_balance", new TopUpBalanceAction());
-        ACTION_MAP.put("view_self_profile", new ViewSelfProfileAction());
-        ACTION_MAP.put("update_self_profile", new UpdateSelfProfile());
+        //route
+        ACTION_MAP.put("manage_route", new ManageRouteAction());
+        ACTION_MAP.put("view_route", new ViewRouteAction());
+        ACTION_MAP.put("delete_waypoint", new DeleteWaypointAction());
+        ACTION_MAP.put("add_waypoint", new AddWayPointAction());
+        ACTION_MAP.put("delete_route", new DeleteRouteAction());
+        ACTION_MAP.put("update_route", new UpdateRouteAction());
+        ACTION_MAP.put("create_route", new CreateRouteAction());
+        //port
+        ACTION_MAP.put("add_port", new DeletePortAction());
+        ACTION_MAP.put("manage_port", new ManagePortAction());
+        ACTION_MAP.put("create_port", new CreatePortAction());
+        ACTION_MAP.put("delete_port", new DeletePortAction());
+        ACTION_MAP.put("update_port", new UpdatePortAction());
     }
     private ActionFactory() {}
 

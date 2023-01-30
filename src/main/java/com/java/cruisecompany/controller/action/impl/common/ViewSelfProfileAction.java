@@ -20,6 +20,6 @@ public class ViewSelfProfileAction implements Action {
         } catch (ServiceException | NoSuchUserException e) {
             System.out.println(e.getMessage());
         }
-        return "viewSelfProfile.jsp";
+        return "/WEB-INF/jsp/user/viewSelfProfile.jsp";
     }
 }

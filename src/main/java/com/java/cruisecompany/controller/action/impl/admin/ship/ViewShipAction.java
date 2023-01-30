@@ -8,7 +8,6 @@ import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.Pagination;
 import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
-import com.java.cruisecompany.model.utils.queryuilder.PortQueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.RouteQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,6 +35,6 @@ public class ViewShipAction implements Action {
         request.setAttribute("routes", routeService.findSorted(queryBuilder.buildQuery()));
         Pagination.calculatePages(request, routeService.getNumOfRows(queryBuilder.buildFilterQuery()));
 
-        return "updateShip.jsp";
+        return "/WEB-INF/jsp/ship/updateShip.jsp";
     }
 }

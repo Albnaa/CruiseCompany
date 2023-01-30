@@ -25,7 +25,7 @@
                 <c:if test="${sessionScope.role == 'ADMIN'}">
                 
                 <li class="nav-item">
-                    <a class="nav-link active" href="controller?action=search_user"><fmt:message key="navbar.users"/></a>
+                    <a class="nav-link active" href="controller?action=manage_users"><fmt:message key="navbar.users"/></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

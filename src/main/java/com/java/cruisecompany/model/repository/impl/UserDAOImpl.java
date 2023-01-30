@@ -1,10 +1,10 @@
 package com.java.cruisecompany.model.repository.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.GenericDAO;
 import com.java.cruisecompany.model.repository.UserDAO;
-import com.java.cruisecompany.model.entity.User;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
