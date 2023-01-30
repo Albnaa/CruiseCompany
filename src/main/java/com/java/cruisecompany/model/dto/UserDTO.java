@@ -4,6 +4,9 @@ import com.java.cruisecompany.model.entity.enums.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.math.BigDecimal;
+
 @Builder
 @Data
 public class UserDTO {
@@ -13,5 +16,5 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private Role role;
-    private double balance;
+    private BigDecimal balance;
 }

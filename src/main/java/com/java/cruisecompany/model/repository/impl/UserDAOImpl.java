@@ -17,6 +17,8 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
             " last_name, Role_id) VALUES (?, ?, ?, ?, ?, ?)";
     private final static String UPDATE_USER = "UPDATE user SET login = ?, email = ?, " +
             "first_name = ?, last_name = ?, role_id = ? WHERE id = ?";
+    private final static String DEDUCT_BALANCE = "UPDATE user SET balance = balance - ? WHERE id = ?";
+    private final static String TOP_UP_BALANCE = "UPDATE user SET balance = balance + ? WHERE id = ?";
     private final static String DELETE_USER = "DELETE FROM user WHERE id = ?";
     private final static String SELECT_ALL = "SELECT * FROM user";
     private final static String SELECT_BY_ID = SELECT_ALL + " WHERE id = ?";
@@ -48,6 +50,15 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
     }
 
     @Override
+    public void deductFromBalance(long userId, BigDecimal amount) throws DAOException{
+        executeNoReturn(DEDUCT_BALANCE, amount, userId);
+    }
+
+    @Override
+    public void topUpBalance(long userId, BigDecimal amount) throws DAOException {
+        executeNoReturn(TOP_UP_BALANCE, amount, userId);
+    }
+    @Override
     public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_USER, id);
     }
@@ -77,10 +88,6 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
         return executeListReturn(SELECT_BY_INITIALS, initials, initials);
     }
 
-    @Override
-    public void deductFromBalance(long userId, BigDecimal sum) {
-
-    }
 
     @Override
     public List<User> findSorted(String query) throws DAOException {
@@ -101,8 +108,8 @@ public class UserDAOImpl extends GenericDAO<User> implements UserDAO {
                 .password(rs.getString(++k))
                 .firstName(rs.getString(++k))
                 .lastName(rs.getString(++k))
+                .balance(rs.getBigDecimal(++k))
                 .role(Role.getRole(rs.getInt(++k)))
-                .balance(rs.getDouble(++k))
                 .build();
     }
 

@@ -10,6 +10,7 @@ import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.utils.ValidationUtil;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,6 +107,15 @@ public class UserServiceImpl implements UserService {
             throw new ServiceException(e);
         }
         return userDTO;
+    }
+
+    @Override
+    public void topUpBalance(long userId, BigDecimal amount) throws ServiceException {
+        try {
+            userDAO.topUpBalance(userId, amount);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override

@@ -18,6 +18,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     private static final String INSERT_TICKET = "INSERT INTO ticket (passengers_count, price, user_id, ship_id) " +
             "VALUES (?, ?, ?, ?)";
     private static final String UPDATE_TICKET = "UPDATE ticket SET status_id = ? WHERE id = ?";
+    private static final String UPDATE_TICKET_STATUS = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
     private static final String SELECT_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, " +
             "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, r.id, r.name, " +
@@ -41,6 +42,11 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     }
 
     @Override
+    public void updateTicketStatus(long ticketId, Status status) throws DAOException {
+        executeNoReturn(UPDATE_TICKET_STATUS, status.getIndex(), ticketId);
+    }
+
+    @Override
     public void delete(long id) throws DAOException {
         executeNoReturn(DELETE_TICKET, id);
     }
@@ -60,11 +66,6 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
         System.out.println(SELECT_ALL + query);
         return executeListReturn(SELECT_ALL + query);
     }
-
-//    @Override
-//    public List<Ticket> findSortedByUser(Long userId, String query) throws DAOException {
-//        return executeListReturn(SELECT_TICKETS_BY_USER + query, userId);
-//    }
 
     @Override
     public long getNumOfRows(String query) throws DAOException {
@@ -89,7 +90,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .id(rs.getInt(++k))
                 .firstName(rs.getString(++k))
                 .lastName(rs.getString(++k))
-                .balance(rs.getDouble(++k))
+                .balance(rs.getBigDecimal(++k))
                 .build();
     }
 
@@ -108,4 +109,5 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .startOfCruise(rs.getDate(++k).toLocalDate())
                 .build();
     }
+
 }

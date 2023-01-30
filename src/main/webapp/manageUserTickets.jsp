@@ -19,7 +19,8 @@
 <div class="container">
     <h2 class="text-center p-3">My tickets${requestScope.ticket.id}</h2>
     <form method="get" action="controller">
-        <input type="hidden" name="action" value="manage_tickets">
+        <input type="hidden" name="action" value="manage_user_tickets">
+        <input type="hidden" name="userF" value="${sessionScope.user.id}">
         <div class="row">
             <div class="col">
                 <select class="form-select" name="sort">

@@ -55,7 +55,8 @@
                     </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active"><fmt:message key="navbar.balance"/> ${sessionScope.user.balance}</a>
+                    <button class="btn btn-outline-primary mx-2" data-bs-toggle="modal" data-bs-target="#topUpModal">
+                        <fmt:message key="navbar.balance"/> ${sessionScope.user.balance}</button>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="controller?action=sign_out"><fmt:message key="navbar.signOut"/></a>
@@ -64,3 +65,5 @@
         </div>
     </div>
 </nav>
+
+<jsp:include page="TopUpModal.jsp"/>

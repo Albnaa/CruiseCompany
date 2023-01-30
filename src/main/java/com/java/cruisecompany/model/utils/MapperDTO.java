@@ -14,8 +14,8 @@ public class MapperDTO {
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
-                .role(user.getRole())
                 .balance(user.getBalance())
+                .role(user.getRole())
                 .build();
     }
 
@@ -26,8 +26,8 @@ public class MapperDTO {
                 .email(userDTO.getEmail())
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
-                .role(userDTO.getRole())
                 .balance(userDTO.getBalance())
+                .role(userDTO.getRole())
                 .build();
     }
 

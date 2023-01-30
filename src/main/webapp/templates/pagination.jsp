@@ -1,10 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--curr page = ${requestScope.currPage}--%>
-<%--offset = ${requestScope.offset}--%>
-<%--numOfPages = ${requestScope.numOfPages}--%>
-<%--rows = ${requestScope.rows}--%>
-<%--numOfRows = ${requestScope.numOfRows}--%>
 <ul class="pagination justify-content-center align-content-center">
     <c:choose>
         <c:when test="${requestScope.currPage == 1}">

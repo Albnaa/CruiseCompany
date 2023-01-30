@@ -78,14 +78,14 @@ DROP TABLE IF EXISTS `webAppDb`.`user`;
 
 CREATE TABLE IF NOT EXISTS `webAppDb`.`user`
 (
-    `id`         INT          NOT NULL AUTO_INCREMENT,
-    `login`      VARCHAR(45)  NOT NULL,
-    `email`      VARCHAR(255) NOT NULL,
-    `password`   VARCHAR(45)  NOT NULL,
-    `first_name` VARCHAR(45)  NOT NULL,
-    `last_name`  VARCHAR(45)  NOT NULL,
-    `Role_id`    INT          NULL,
-    `balance`    DOUBLE       NULL,
+    `id`         INT            NOT NULL AUTO_INCREMENT,
+    `login`      VARCHAR(45)    NOT NULL,
+    `email`      VARCHAR(255)   NOT NULL,
+    `password`   VARCHAR(45)    NOT NULL,
+    `first_name` VARCHAR(45)    NOT NULL,
+    `last_name`  VARCHAR(45)    NOT NULL,
+    `balance`    DECIMAL(10, 2) NULL DEFAULT 0,
+    `Role_id`    INT            NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_User_Role_idx` (`Role_id` ASC) VISIBLE,
     UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,

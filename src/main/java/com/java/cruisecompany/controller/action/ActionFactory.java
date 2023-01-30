@@ -19,6 +19,7 @@ import com.java.cruisecompany.controller.action.impl.user.ticket.CreateTicketAct
 import com.java.cruisecompany.controller.action.impl.user.ticket.ManageUserTickets;
 import com.java.cruisecompany.controller.action.impl.user.ticket.PayForTicketAction;
 import com.java.cruisecompany.controller.action.impl.user.ticket.ViewTicketAction;
+import com.java.cruisecompany.controller.action.impl.user.user.TopUpBalanceAction;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.HashMap;
@@ -63,6 +64,7 @@ public final class ActionFactory {
         ACTION_MAP.put("pay_for_ticket", new PayForTicketAction());
         ACTION_MAP.put("view_ticket", new ViewTicketAction());
         ACTION_MAP.put("create_ticket", new CreateTicketAction());
+        ACTION_MAP.put("top_up_balance", new TopUpBalanceAction());
     }
     private ActionFactory() {}
 

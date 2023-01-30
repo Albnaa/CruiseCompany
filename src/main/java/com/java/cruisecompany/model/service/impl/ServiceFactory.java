@@ -22,7 +22,7 @@ public class ServiceFactory {
         portService = new PortServiceImpl(daoFactory.getPortDAO());
         routeService = new RouteServiceImpl(daoFactory.getRouteDAO());
         shipService = new ShipServiceImpl(daoFactory.getShipDAO(), routeService);
-        ticketService = new TicketServiceImpl(daoFactory.getTicketDAO());
+        ticketService = new TicketServiceImpl(daoFactory.getTicketDAO(), daoFactory.getUserDAO());
         userService = new UserServiceImpl(daoFactory.getUserDAO());
     }
 
