@@ -68,14 +68,14 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Login</th>
-                        <th>Email</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Role</th>
-                        <th>Balance</th>
-                        <th></th>
+                        <th class="col-1">Id</th>
+                        <th class="col-2">Login</th>
+                        <th class="col-2">Email</th>
+                        <th class="col-2">First name</th>
+                        <th class="col-2">Last name</th>
+                        <th class="col-1">Role</th>
+                        <th class="col-1">Balance</th>
+                        <th class="col-1"></th>
                     </tr>
                     </thead>
                     <c:forEach var="user" items="${requestScope.users}">

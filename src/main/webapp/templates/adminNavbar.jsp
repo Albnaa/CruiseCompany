@@ -1,3 +1,7 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<fmt:setBundle basename="locale"/>
+
 <header class="p-3 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -6,15 +10,16 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="controller?action=manage_catalog&rows=6" class="nav-link px-2 link-dark">Catalog</a></li>
-                <li><a href="controller?action=manage_users" class="nav-link px-2 link-dark">Users</a></li>
-                <li><a href="controller?action=manage_tickets" class="nav-link px-2 link-dark">Tickets</a></li>
-                <li><a href="controller?action=manage_ship" class="nav-link px-2 link-dark">Ships</a></li>
-                <li><a href="controller?action=manage_port" class="nav-link px-2 link-dark">Ports</a></li>
-                <li><a href="controller?action=manage_route" class="nav-link px-2 link-dark">Routes</a></li>
+                <li><a href="controller?action=manage_catalog&rows=6" class="nav-link px-2 link-dark"><fmt:message key="navbar.catalog"/></a></li>
+                <li><a href="controller?action=manage_users" class="nav-link px-2 link-dark"><fmt:message key="navbar.users"/></a></li>
+                <li><a href="controller?action=manage_tickets" class="nav-link px-2 link-dark"><fmt:message key="navbar.dropdown.tickets"/></a></li>
+                <li><a href="controller?action=manage_ship" class="nav-link px-2 link-dark"><fmt:message key="navbar.dropdown.ships"/></a></li>
+                <li><a href="controller?action=manage_port" class="nav-link px-2 link-dark"><fmt:message key="navbar.dropdown.ports"/></a></li>
+                <li><a href="controller?action=manage_route" class="nav-link px-2 link-dark"><fmt:message key="navbar.dropdown.routes"/></a></li>
             </ul>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+            <form method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="controller">
+                <input type="hidden" name="action" value="set_locale">
                 <select class="form-select" name="locale" onchange='submit();'>
                     <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}>EN</option>
                     <option value="ua" ${sessionScope.locale == 'ua' ? 'selected' : ''}>UA</option>
@@ -32,9 +37,9 @@
                     </svg>
                 </a>
                 <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" href="controller?action=view_self_profile">Profile</a></li>
+                    <li><a class="dropdown-item" href="controller?action=view_self_profile"><fmt:message key="navbar.profile"/></a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="controller?action=sign_out">Sign out</a></li>
+                    <li><a class="dropdown-item" href="controller?action=sign_out"><fmt:message key="navbar.signOut"/></a></li>
                 </ul>
             </div>
         </div>

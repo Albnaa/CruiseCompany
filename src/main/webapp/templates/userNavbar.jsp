@@ -1,3 +1,7 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<fmt:setBundle basename="locale"/>
+
 <header class="p-3 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -6,10 +10,12 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="controller?action=manage_catalog&rows=6" class="nav-link px-2 link-dark">Catalog</a></li>
-                <li><a href="controller?action=manage_user_tickets&userF=${sessionScope.user.id}" class="nav-link px-2 link-dark">My tickets</a></li>
+                <li><a href="controller?action=manage_catalog&rows=6" class="nav-link px-2 link-dark"><fmt:message key="navbar.catalog"/></a></li>
+                <li><a href="controller?action=manage_user_tickets&userF=${sessionScope.user.id}" class="nav-link px-2 link-dark"><fmt:message key="navbar.myTickets"/></a></li>
                 <li><button type="button" class="btn btn-outline-dark border-0" data-bs-toggle="modal"
-                            data-bs-target="#topUpModal">Balance ${sessionScope.user.balance}</button></li>
+                            data-bs-target="#topUpModal" style="padding: 8px"><fmt:message key="navbar.balance"/>:
+                            ${sessionScope.user.balance}</button>
+                </li>
             </ul>
 
             <form method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="controller">
@@ -32,12 +38,12 @@
                 </a>
                 <ul class="dropdown-menu text-small">
 
-                    <li><a class="dropdown-item" href="controller?action=view_self_profile">Profile</a></li>
-                    <li><a class="dropdown-item" href="controller?action=manage_user_tickets&userF=${sessionScope.user.id}">My tickets</a></li>
+                    <li><a class="dropdown-item" href="controller?action=view_self_profile"><fmt:message key="navbar.profile"/></a></li>
+                    <li><a class="dropdown-item" href="controller?action=manage_user_tickets&userF=${sessionScope.user.id}"><fmt:message key="navbar.myTickets"/></a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="controller?action=sign_out">Sign out</a></li>
+                    <li><a class="dropdown-item" href="controller?action=sign_out"><fmt:message key="navbar.signOut"/></a></li>
                 </ul>
             </div>
         </div>
