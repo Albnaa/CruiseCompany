@@ -25,7 +25,8 @@ public class ShipQueryBuilder extends QueryBuilder {
 
     @Override
     String buildGroupByFragment() {
-        return " GROUP BY " + SHIP_FIELDS.get(0);
+        return " GROUP BY ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff, route.id, route.name, " +
+                "route.start_of_cruise, route.end_of_cruise, route.price ";
     }
 
     @Override

@@ -9,7 +9,7 @@ import com.java.cruisecompany.controller.action.impl.admin.ship.*;
 import com.java.cruisecompany.controller.action.impl.admin.ticket.ManageTicketsAction;
 import com.java.cruisecompany.controller.action.impl.admin.ticket.UpdateTicketAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.DeleteUserAction;
-import com.java.cruisecompany.controller.action.impl.admin.user.SearchUserAction;
+import com.java.cruisecompany.controller.action.impl.admin.user.ManageUsersAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.UpdateUserAction;
 import com.java.cruisecompany.controller.action.impl.admin.user.ViewUserAction;
 import com.java.cruisecompany.controller.action.impl.common.*;
@@ -35,7 +35,7 @@ public final class ActionFactory {
         ACTION_MAP.put("sign_out", new SignOutAction());
         ACTION_MAP.put("set_locale", new SetLocaleAction());
         //user
-        ACTION_MAP.put("manage_users", new SearchUserAction());
+        ACTION_MAP.put("manage_users", new ManageUsersAction());
         ACTION_MAP.put("delete_user", new DeleteUserAction());
         ACTION_MAP.put("view_user", new ViewUserAction());
         ACTION_MAP.put("update_user", new UpdateUserAction());

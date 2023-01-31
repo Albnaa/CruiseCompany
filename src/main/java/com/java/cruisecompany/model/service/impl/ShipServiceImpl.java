@@ -83,9 +83,8 @@ public class ShipServiceImpl implements ShipService {
     public List<ShipDTO> findSortedWithRoutes(String query) throws ServiceException {
         List<ShipDTO> shipDTOs;
         try {
-            shipDTOs = shipDAO.findSorted(query).stream()
+            shipDTOs = shipDAO.findSortedWithRoutes(query).stream()
                     .map(MapperDTO::mapShipToDTO)
-                    .filter(ship -> ship.getRoute() != null)
                     .peek(ship -> {
                         try {
                             ship.setRoute(routeService.findById(ship.getRoute().getId()).get());

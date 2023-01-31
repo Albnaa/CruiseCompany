@@ -29,7 +29,7 @@ public class SignInAction implements Action {
             if (Objects.requireNonNull(role) == Role.ADMIN) {
                 return "controller?action=manage_users";
             }
-            return "/WEB-INF/jsp/ship/manageCatalog.jsp";
+            return "controller?action=manage_catalog&rows=6";
         } else {
             request.getSession().setAttribute("error", "Wrong username/password. Please retry");
             System.out.println("attribute error was set -> " + request.getAttribute( "error"));

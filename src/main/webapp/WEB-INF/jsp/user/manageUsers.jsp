@@ -99,7 +99,8 @@
 </div>
 
 
-<c:set var="link" value="controller?action=manage_users&sort=${sessionScope.sort}&order=${sessionScope.order}&roleF=${sessionScope.roleF}" scope="request"/>
+<c:set var="link" value="controller?action=manage_users&sort=${sessionScope.sort}&order=${sessionScope.order}
+&roleF=${sessionScope.roleF}" scope="request"/>
 
 <jsp:include page="../../../templates/pagination.jsp"/>
 

@@ -21,6 +21,10 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     private static final String SELECT_ALL = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff," +
             " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship LEFT JOIN route ON" +
             " ship.route_id = route.id";
+
+    private static final String SELECT_ALL_WITH_ROUTES = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff," +
+            " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship INNER JOIN route ON" +
+            " ship.route_id = route.id";
     private static final String SELECT_BY_ID = SELECT_ALL + " WHERE ship.id = ?";
     private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ship LEFT JOIN route ON ship.route_id = route.id";
 
@@ -59,6 +63,11 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     @Override
     public List<Ship> findSorted(String query) throws DAOException {
         return executeListReturn(SELECT_ALL + query);
+    }
+
+    @Override
+    public List<Ship> findSortedWithRoutes(String query) throws DAOException {
+        return executeListReturn(SELECT_ALL_WITH_ROUTES + query);
     }
 
     @Override

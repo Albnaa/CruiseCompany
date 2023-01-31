@@ -10,7 +10,7 @@ import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.UserQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 
-public class SearchUserAction implements Action {
+public class ManageUsersAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
