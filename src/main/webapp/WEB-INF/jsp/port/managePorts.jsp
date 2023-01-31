@@ -10,7 +10,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<jsp:include page="../../../templates/navbar.jsp"/>
+
+<c:if test="${sessionScope.role == 'ADMIN'}">
+    <jsp:include page="../../../templates/adminNavbar.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'USER'}">
+    <jsp:include page="../../../templates/userNavbar.jsp"/>
+</c:if>
 
 <c:set var="link"
        value="controller?action=manage_port&sort=${sessionScope.sort}&order=${sessionScope.order}"

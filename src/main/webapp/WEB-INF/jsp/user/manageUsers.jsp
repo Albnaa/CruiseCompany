@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-<jsp:include page="../../../templates/navbar.jsp"/>
+
+<c:if test="${sessionScope.role == 'ADMIN'}">
+    <jsp:include page="../../../templates/adminNavbar.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'USER'}">
+    <jsp:include page="../../../templates/userNavbar.jsp"/>
+</c:if>
+
 <div class="container">
     <h2 class="text-center p-3">Manage users</h2>
     <form method="get" action="controller" role="form">

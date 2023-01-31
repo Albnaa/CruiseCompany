@@ -11,7 +11,13 @@
     </style>
 </head>
 <body>
-<jsp:include page="../../../templates/navbar.jsp"/>
+
+<c:if test="${sessionScope.role == 'ADMIN'}">
+    <jsp:include page="../../../templates/adminNavbar.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'USER'}">
+    <jsp:include page="../../../templates/userNavbar.jsp"/>
+</c:if>
 
 <div class="container">
     <div class="card text-center my-3">
