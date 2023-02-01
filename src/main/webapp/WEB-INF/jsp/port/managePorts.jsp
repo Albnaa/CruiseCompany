@@ -123,7 +123,7 @@
     <button type="submit" name="action" value="delete_port" class="btn btn-danger w-100 mb-2"><fmt:message
             key="ports.update.button.delete"/></button>
     <button type="submit" name="action" value="update_port" class="btn btn-warning w-100 mb-2"><fmt:message
-            key="ports.update.button.update"/></button>
+            key="table.button.update"/></button>
     <div class="" style="height: 37.6px">
     </div>
     </form>

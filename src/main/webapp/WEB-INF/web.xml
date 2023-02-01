@@ -60,4 +60,8 @@
         </jsp-property-group>
     </jsp-config>
 
+    <listener>
+        <listener-class>com.java.cruisecompany.controller.listener.Listener</listener-class>
+    </listener>
+
 </web-app>

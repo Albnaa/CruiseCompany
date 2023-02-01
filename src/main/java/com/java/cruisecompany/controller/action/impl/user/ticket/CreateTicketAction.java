@@ -28,14 +28,14 @@ public class CreateTicketAction implements Action {
 
         TicketDTO ticket = TicketDTO.builder()
                 .passengersCount(parseInt(request.getParameter("passengersCount")))
-                .price(BigDecimal.valueOf(Double.parseDouble(request.getParameter("price")))
-                        .multiply(BigDecimal.valueOf(parseInt(request.getParameter("passengersCount")))))
+                .price(BigDecimal.valueOf(Double.parseDouble(request.getParameter("price"))).multiply(BigDecimal.valueOf(parseInt(request.getParameter("passengersCount")))))
                 .user(user)
                 .ship(ship)
                 .build();
 
         try {
             ticketService.create(ticket);
+            request.setAttribute("ticket", ticket);
         } catch (ServiceException e){
             System.out.println(e.getMessage());
         }

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="my" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -87,7 +88,7 @@
                             <td>${ticket.id}</td>
                             <td>${ticket.user.firstName}</td>
                             <td>${ticket.user.lastName}</td>
-                            <td>${ticket.ship.route.startOfCruise}</td>
+                            <td><my:formatDate date="${ticket.ship.route.startOfCruise}"/></td>
                             <td>${ticket.ship.name}</td>
                             <td>${ticket.ship.route.name}</td>
                             <td>${ticket.passengersCount}</td>
