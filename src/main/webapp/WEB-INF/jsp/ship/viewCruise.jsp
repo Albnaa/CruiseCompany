@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -28,8 +29,8 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">Route</h5>
                     <ul class="list-group list-group-flush align-content-end">
-                        <li class="list-group-item">Start date: ${requestScope.ship.route.startOfCruise}</li>
-                        <li class="list-group-item">End date: ${requestScope.ship.route.endOfCruise}</li>
+                        <li class="list-group-item">Start date: <fd:formatDate date="${requestScope.ship.route.startOfCruise}"/></li>
+                        <li class="list-group-item">End date: <fd:formatDate date="${requestScope.ship.route.endOfCruise}"/></li>
                         <li class="list-group-item">Duration: ${requestScope.ship.route.duration} days</li>
                         <li class="list-group-item">Ship name: ${requestScope.ship.name}</li>
                         <li class="list-group-item">Price: ${requestScope.ship.route.price}</li>
@@ -50,8 +51,8 @@
                     <li class="list-group-item d-flex align-items-start">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">${waypoint.port.name}</div>
-                                <h6><i class="bi bi-box-arrow-in-down-right"></i> Arrive date: ${waypoint.arriveTime}  </h6>
-                                <h6><i class="bi bi-box-arrow-right"></i> Departure date: ${waypoint.departureTime}</h6>
+                                <h6><i class="bi bi-box-arrow-in-down-right"></i> Arrive date: <fd:formatDate date="${waypoint.arriveTime}"/>  </h6>
+                                <h6><i class="bi bi-box-arrow-right"></i> Departure date: <fd:formatDate date="${waypoint.departureTime}"/></h6>
                         </div>
                     </li>
                 </c:forEach>

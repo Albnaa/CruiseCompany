@@ -18,17 +18,17 @@ public class SignUpAction implements Action {
         UserDTO user = UserDTO.builder()
                 .login(request.getParameter("login"))
                 .email(request.getParameter("email"))
-                .firstName(request.getParameter("firstname"))
-                .lastName(request.getParameter("lastname"))
+                .firstName(request.getParameter("firstName"))
+                .lastName(request.getParameter("lastName"))
                 .build();
 
+        System.out.println(user);
+
         try {
-            userService.register(user, request.getParameter("password"), request.getParameter("confirm-password"));
+            userService.register(user, request.getParameter("password"), request.getParameter("confirmPassword"));
         } catch (ServiceException e) {
             request.getSession().setAttribute("error", e.getMessage());
-
             request.getSession().setAttribute("user", user);
-
             return "signUp.jsp";
         }
 

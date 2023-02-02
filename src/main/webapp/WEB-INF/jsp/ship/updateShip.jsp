@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -186,8 +187,8 @@
                             <tr class="${route}">
                                 <td class="text-center">${route.id}</td>
                                 <td class="text-center">${route.name}</td>
-                                <td class="text-center">${route.startOfCruise}</td>
-                                <td class="text-center">${route.endOfCruise}</td>
+                                <td class="text-center"><fd:formatDate date="${route.startOfCruise}"/></td>
+                                <td class="text-center"><fd:formatDate date="${route.endOfCruise}"/></td>
                                 <td class="text-center">${route.price}</td>
                                 <td class="text-center">${route.numOfPorts}</td>
                                 <td class="text-center">

@@ -22,7 +22,7 @@
                 <input type="hidden" name="action" value="set_locale">
                 <select class="form-select" name="locale" onchange='submit();'>
                     <option value="en" ${sessionScope.locale == 'en' ? 'selected' : ''}>EN</option>
-                    <option value="ua" ${sessionScope.locale == 'ua' ? 'selected' : ''}>UA</option>
+                    <option value="uk" ${sessionScope.locale == 'uk' ? 'selected' : ''}>UK</option>
                 </select>
             </form>
 

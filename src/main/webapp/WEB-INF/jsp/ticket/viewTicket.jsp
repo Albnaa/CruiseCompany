@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="input-group mb-2">
                     <label class="input-group-text w-50">Cruise start</label>
-                    <input type="text" class="form-control" value="${requestScope.ticket.ship.route.startOfCruise}" readonly>
+                    <input type="text" class="form-control" value="<fd:formatDate date="${requestScope.ticket.ship.route.startOfCruise}"/>" readonly>
                 </div>
                 <div class="input-group mb-2">
                     <label class="input-group-text w-50">Passengers</label>

@@ -1,5 +1,6 @@
 package com.java.cruisecompany.model.utils.queryuilder;
 
+import com.java.cruisecompany.exceptions.InvalidInputException;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Objects;
@@ -49,7 +50,7 @@ public abstract class QueryBuilder {
         return buildFilterFragment();
     }
 
-    public void extractBuilderParameters(HttpServletRequest request) {
+    public void extractBuilderParameters(HttpServletRequest request) throws InvalidInputException {
         setSort(request.getParameter("sort"));
         setOrder(request.getParameter("order"));
         setOffset(request.getParameter("offset"));
@@ -68,7 +69,7 @@ public abstract class QueryBuilder {
     }
     abstract String buildGroupByFragment();
     abstract String buildFilterFragment();
-    abstract void extractFilterParameters(HttpServletRequest request);
+    abstract void extractFilterParameters(HttpServletRequest request) throws InvalidInputException;
     abstract boolean parameterIsValid(String parameter);
     abstract String getDefaultSort();
 }

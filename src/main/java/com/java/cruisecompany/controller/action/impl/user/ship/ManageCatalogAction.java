@@ -15,10 +15,14 @@ public class ManageCatalogAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         QueryBuilder queryBuilder = new ShipQueryBuilder();
-        queryBuilder.extractBuilderParameters(request);
-        SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
-        request.setAttribute("cruises", shipService.findSortedWithRoutes(queryBuilder.buildQuery()));
-        Pagination.calculatePages(request, shipService.getNumOfRows(queryBuilder.buildFilterQuery()));
+        try {
+            queryBuilder.extractBuilderParameters(request);
+            SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
+            request.setAttribute("cruises", shipService.findSortedWithRoutes(queryBuilder.buildQuery()));
+            Pagination.calculatePages(request, shipService.getNumOfRows(queryBuilder.buildFilterQuery()));
+        } catch (ServiceException e) {
+            request.getSession().setAttribute("error", e.getMessage());
+        }
         return "/WEB-INF/jsp/ship/manageCatalog.jsp";
     }
 }

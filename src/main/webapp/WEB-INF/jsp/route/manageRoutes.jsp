@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -51,7 +52,7 @@
             <div class="col">
                 <div class="input-group">
                     <span class="input-group-text"><fmt:message key="filter.startDate"/></span>
-                    <input type="date" class="form-control" name="startDate">
+                    <input type="date" placeholder="dd/MM/yyyy" class="form-control" name="startDate" >
                 </div>
             </div>
             <div class="col">
@@ -98,8 +99,8 @@
                         <tr class="${route}">
                             <td>${route.id}</td>
                             <td>${route.name}</td>
-                            <td>${route.startOfCruise}</td>
-                            <td>${route.endOfCruise}</td>
+                            <td><fd:formatDate date="${route.startOfCruise}"/></td>
+                            <td><fd:formatDate date="${route.endOfCruise}"/></td>
                             <td>${route.price}</td>
                             <td>${route.duration}</td>
                             <td>${route.numOfPorts}</td>

@@ -61,7 +61,7 @@
     </jsp-config>
 
     <listener>
-        <listener-class>com.java.cruisecompany.controller.listener.Listener</listener-class>
+        <listener-class>com.java.cruisecompany.controller.listener.LocaleListener</listener-class>
     </listener>
 
 </web-app>

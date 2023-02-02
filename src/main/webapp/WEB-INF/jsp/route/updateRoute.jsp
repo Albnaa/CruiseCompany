@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -175,8 +176,8 @@
                         <tr class="${waypoint}">
                             <td class="col-1">${waypoint.port.id}</td>
                             <td class="col-4">${waypoint.port.name}</td>
-                            <td class="col-3">${waypoint.arriveTime}</td>
-                            <td class="col-3">${waypoint.departureTime}</td>
+                            <td class="col-3"><fd:formatDate date="${waypoint.arriveTime}"/></td>
+                            <td class="col-3"><fd:formatDate date="${waypoint.departureTime}"/></td>
                             <td class="col-1">
                                 <button type="submit" name="waypointPortId" value="${waypoint.port.id}"
                                         class="btn btn-danger px-1 py-0" style="width: auto"><fmt:message

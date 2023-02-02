@@ -1,5 +1,7 @@
 package com.java.cruisecompany.model.utils.queryuilder;
 
+import com.java.cruisecompany.exceptions.InvalidInputException;
+import com.java.cruisecompany.model.utils.ValidationUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
@@ -50,8 +52,9 @@ public class ShipQueryBuilder extends QueryBuilder {
         }
     }
 
-    private void setNameFilter(String parameter) {
+    private void setNameFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
+            ValidationUtil.validateOnlyLettersWithSpaces(parameter, "error.catalog.search");
             filterList.add("route.name LIKE '%" + parameter + "%'");
         }
     }
@@ -63,7 +66,7 @@ public class ShipQueryBuilder extends QueryBuilder {
     }
 
     @Override
-    void extractFilterParameters(HttpServletRequest request) {
+    void extractFilterParameters(HttpServletRequest request) throws InvalidInputException {
         setDurationFilter(request.getParameter("durationF"));
         setNameFilter(request.getParameter("nameF"));
         setStartDateFilter(request.getParameter("startDateF"));

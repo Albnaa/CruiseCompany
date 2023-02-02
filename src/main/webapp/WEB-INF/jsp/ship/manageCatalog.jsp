@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -105,8 +106,8 @@
                                     value=", "/></c:if></c:forEach>
                         </p>
                         <ul class="list-group list-group-flush align-content-end">
-                            <li class="list-group-item">Start date: ${cruise.route.startOfCruise}</li>
-                            <li class="list-group-item">End date: ${cruise.route.endOfCruise}</li>
+                            <li class="list-group-item">Start date: <fd:formatDate date="${cruise.route.startOfCruise}"/></li>
+                            <li class="list-group-item">End date: <fd:formatDate date="${cruise.route.endOfCruise}"/></li>
                             <li class="list-group-item">Duration: ${cruise.route.duration} days</li>
                             <li class="list-group-item">Ship name: ${cruise.name}</li>
                             <li class="list-group-item">Price: ${cruise.route.price}</li>
