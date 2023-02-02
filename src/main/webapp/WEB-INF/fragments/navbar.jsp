@@ -67,4 +67,4 @@
     </div>
 </nav>
 
-<jsp:include page="/templates/topUpModal.jsp"/>
+<jsp:include page="/WEB-INF/templates/topUpModal.jsp"/>

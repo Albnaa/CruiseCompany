@@ -13,11 +13,13 @@ public class UpdatePortAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         PortDTO port = PortDTO.builder()
                 .id(Long.parseLong(request.getParameter("id")))
-                .name(request.getParameter("name"))
+                .name(request.getParameter("updateName"))
                 .build();
         try {
             portService.update(port);
+            request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
+            System.out.println(e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
         }
 

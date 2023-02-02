@@ -16,6 +16,7 @@ public class CreatePortAction implements Action {
                 .build();
         try {
             portService.create(port);
+            request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
             request.getSession().setAttribute("error", e.getMessage());
         }

@@ -10,9 +10,12 @@ public class DeleteUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-
         long userId = Long.parseLong(request.getParameter("userId"));
-        userService.delete(userId);
+        try {
+            userService.delete(userId);
+        } catch (ServiceException e) {
+            request.getSession().setAttribute("error", e.getMessage());
+        }
         return "/WEB-INF/jsp/user/manageUsers.jsp";
     }
 }

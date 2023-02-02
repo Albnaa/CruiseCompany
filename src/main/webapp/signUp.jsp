@@ -18,27 +18,27 @@
             <form method="POST" action="controller">
                 <input type="hidden" name="action" value="sign_up">
                 <div class="mb-3">
-                    <tag:inputField fieldName="login" actionName="signUp" label="Login" width="25"
-                    type="text" required="required"/>
-                </div>
-                <div class="mb-3">
-                    <tag:inputField fieldName="email" actionName="signUp" label="Email" width="25"
+                    <tag:inputField fieldName="login" entity="user" labelKey="Login" width="25"
                                     type="text" required="required"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="password" actionName="signUp" label="Password" width="50"
-                                    type="password" required="required"/>
-                </div>
-                <div class="mb-3">
-                    <tag:inputField fieldName="confirmPassword" actionName="signUp" label="Confirm password" width="50"
-                                    type="password" required="required"/>
-                </div>
-                <div class="mb-3">
-                    <tag:inputField fieldName="firstName" actionName="signUp" label="First name" width="auto"
+                    <tag:inputField fieldName="email" entity="user" labelKey="Email" width="25"
                                     type="text" required="required"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="lastName" actionName="signUp" label="Last name" width="auto"
+                    <tag:inputField fieldName="password" entity="user" labelKey="Password" width="50"
+                                    type="password" required="required"/>
+                </div>
+                <div class="mb-3">
+                    <tag:inputField fieldName="confirmPassword" entity="user" labelKey="Confirm password" width="50"
+                                    type="password" required="required"/>
+                </div>
+                <div class="mb-3">
+                    <tag:inputField fieldName="firstName" entity="user" labelKey="First name" width="auto"
+                                    type="text" required="required"/>
+                </div>
+                <div class="mb-3">
+                    <tag:inputField fieldName="lastName" entity="user" labelKey="Last name" width="auto"
                                     type="text" required="required"/>
                 </div>
                 <div class="text-center">

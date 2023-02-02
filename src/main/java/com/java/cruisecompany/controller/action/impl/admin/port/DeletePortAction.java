@@ -13,10 +13,10 @@ public class DeletePortAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
             portService.delete(Long.parseLong(request.getParameter("id")));
+            request.getSession().removeAttribute("error");
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            request.getSession().setAttribute("error", e.getMessage());
         }
-
         return request.getHeader("referer");
     }
 }

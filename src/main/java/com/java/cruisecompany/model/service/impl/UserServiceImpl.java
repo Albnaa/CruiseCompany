@@ -38,12 +38,10 @@ public class UserServiceImpl implements UserService {
     //check for existing user with the same login/username
     @Override
     public void register(UserDTO userDTO, String password, String confirmPassword) throws ServiceException {
-        validateOnlyLetters(userDTO.getLogin(), "error.signUp.login");
-        validateEmail(userDTO.getEmail(), "error.signUp.email");
-        validateOnlyLetters(userDTO.getFirstName(), "error.signUp.firstName");
-        validateOnlyLetters(userDTO.getLastName(), "error.signUp.lastName");
-        validatePassword(password, "error.signUp.password");
-        confirmPassword(password, confirmPassword, "error.signUp.confirmPassword");
+        validateUser(userDTO);
+        validatePassword(password, "error.user.password");
+        confirmPassword(password, confirmPassword, "error.user.confirmPassword");
+
         User user = mapDTOtoUser(userDTO);
         user.setPassword(password);
         try {
@@ -55,6 +53,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserDTO userDTO) throws ServiceException {
+        validateUser(userDTO);
+
         User user = mapDTOtoUser(userDTO);
         try {
             userDAO.update(user);
@@ -166,11 +166,17 @@ public class UserServiceImpl implements UserService {
         String message = e.getMessage();
         if (message.contains("Duplicate entry")) {
             if (message.contains("login")) {
-                throw new InvalidInputException("error.signUp.loginExists", e);
+                throw new InvalidInputException("error.user.loginExists", e);
             } else if (message.contains("email")) {
-                throw new InvalidInputException("error.signUp.emailExists", e);
+                throw new InvalidInputException("error.user.emailExists", e);
             }
         }
     }
 
+    private static void validateUser(UserDTO userDTO) throws InvalidInputException {
+        validateOnlyLetters(userDTO.getLogin(), "error.user.login");
+        validateEmail(userDTO.getEmail(), "error.user.email");
+        validateOnlyLetters(userDTO.getFirstName(), "error.user.firstName");
+        validateOnlyLetters(userDTO.getLastName(), "error.user.lastName");
+    }
 }

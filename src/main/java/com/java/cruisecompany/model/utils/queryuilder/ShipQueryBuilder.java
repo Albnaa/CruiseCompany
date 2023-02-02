@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.java.cruisecompany.model.utils.ValidationUtil.*;
+
 public class ShipQueryBuilder extends QueryBuilder {
     private static final List<String> SHIP_FIELDS = new ArrayList<>();
     private final List<String> filterList = new ArrayList<>();
@@ -41,26 +43,23 @@ public class ShipQueryBuilder extends QueryBuilder {
         return result;
     }
 
-    private void setDurationFilter(String parameter) {
-        try {
-            int value = Integer.parseInt(parameter);
-            if (value >= 3 && value <= 31) {
-                filterList.add("route.duration = " + value);
-            }
-        } catch (NumberFormatException e) {
-            return;
+    private void setDurationFilter(String parameter) throws InvalidInputException {
+        if (parameter != null && !parameter.isEmpty()) {
+            int value = validateDuration(parameter, "error.catalog.durationF");
+            filterList.add("route.duration = " + value);
         }
     }
 
     private void setNameFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
-            ValidationUtil.validateOnlyLettersWithSpaces(parameter, "error.catalog.search");
+            validateOnlyLettersWithSpaces(parameter, "error.catalog.nameF");
             filterList.add("route.name LIKE '%" + parameter + "%'");
         }
     }
 
-    private void setStartDateFilter(String parameter) {
+    private void setStartDateFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
+            validateDate(parameter, "error.catalog.startDateF");
             filterList.add("route.start_of_cruise = '" + parameter + "'");
         }
     }

@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoPort;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapPortToDTO;
+import static com.java.cruisecompany.model.utils.ValidationUtil.validateOnlyLettersWithSpaces;
 
 public class PortServiceImpl implements PortService { //add validation and dto object
 
@@ -27,7 +28,7 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public void create(PortDTO entity) throws ServiceException {
-        ValidationUtil.validateOnlyLettersWithSpaces(entity.getName(), "error.ports.name");
+        validateOnlyLettersWithSpaces(entity.getName(), "error.ports.name");
         Port port = mapDTOtoPort(entity);
         try {
             portDAO.create(port);
@@ -39,7 +40,7 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public void update(PortDTO entity) throws ServiceException {
-        ValidationUtil.validateOnlyLettersWithSpaces(entity.getName(), "error.ports.name");
+        validateOnlyLettersWithSpaces(entity.getName(), "error.ports.updateName");
         Port port = mapDTOtoPort(entity);
         try {
             portDAO.update(port);

@@ -1,80 +1,116 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<fmt:setBundle basename="locale"/>
+
 <html>
 <head>
-    <title>User's</title>
+    <title><fmt:message key="users.title"/></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
 
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
-</c:if>
+<jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
+
+<c:url value="controller" var="link" scope="request">
+    <c:param name="action" value="manage_users"/>
+    <c:param name="sort" value="${sessionScope.sort}"/>
+    <c:param name="order" value="${sessionScope.order}"/>
+    <c:param name="roleF" value="${sessionScope.roleF}"/>
+</c:url>
 
 <div class="container">
-    <h2 class="text-center p-3">Manage users</h2>
+    <h2 class="text-center p-3"><fmt:message key="users.header"/></h2>
     <form method="get" action="controller" role="form">
-        <input type="hidden" id="searchAction" name="action" value="manage_users">
+        <input type="hidden" name="action" value="manage_users">
         <div class="row">
             <div class="col">
                 <select id="select-sort" name="sort" class="form-select">
-                    <option value="" ${empty sessionScope.sort ? 'selected' : ''}>Sort by</option>
-                    <option value="user.id" ${sessionScope.sort == 'user.id' ? 'selected' : ''}>Id</option>
-                    <option value="user.login" ${sessionScope.sort == 'user.login' ? 'selected' : ''}>Login</option>
-                    <option value="user.email" ${sessionScope.sort == 'user.email' ? 'selected' : ''}>Email</option>
-                    <option value="user.first_name" ${sessionScope.sort == 'user.first_name' ? 'selected' : ''}>First name</option>
-                    <option value="user.last_name" ${sessionScope.sort == 'user.last_name' ? 'selected' : ''}>Last name</option>
-                    <option value="user.role_id" ${sessionScope.sort == 'user.role_id' ? 'selected' : ''}>Role</option>
-                    <option value="user.balance" ${sessionScope.sort == 'user.balance' ? 'selected' : ''}>Balance</option>
+                    <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
+                        <fmt:message key="sort.default"/>
+                    </option>
+                    <option value="user.id" ${sessionScope.sort == 'user.id' ? 'selected' : ''}>
+                        <fmt:message key="table.id"/>
+                    </option>
+                    <option value="user.login" ${sessionScope.sort == 'user.login' ? 'selected' : ''}>
+                        <fmt:message key="login.label.login"/>
+                    </option>
+                    <option value="user.email" ${sessionScope.sort == 'user.email' ? 'selected' : ''}>
+                        <fmt:message key="table.email"/>
+                    </option>
+                    <option value="user.first_name" ${sessionScope.sort == 'user.first_name' ? 'selected' : ''}>
+                        <fmt:message key="table.firstName"/>
+                    </option>
+                    <option value="user.last_name" ${sessionScope.sort == 'user.last_name' ? 'selected' : ''}>
+                        <fmt:message key="table.lastName"/>
+                    </option>
+                    <option value="user.role_id" ${sessionScope.sort == 'user.role_id' ? 'selected' : ''}>
+                        <fmt:message key="table.role"/>
+                    </option>
+                    <option value="user.balance" ${sessionScope.sort == 'user.balance' ? 'selected' : ''}>
+                        <fmt:message key="table.balance"/>
+                    </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
-                    <option value="" ${empty sessionScope.order ? 'selected' : ''}>Order by</option>
-                    <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>Ascending</option>
-                    <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>Descending</option>
+                    <option value="" ${empty sessionScope.order ? 'selected' : ''}>
+                        <fmt:message key="order.default"/>
+                    </option>
+                    <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
+                        <fmt:message key="order.asc"/>
+                    </option>
+                    <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
+                        <fmt:message key="order.desc"/>
+                    </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="roleF">
-                    <option value="" ${empty sessionScope.roleF ? 'selected' : ''}>Filter by role</option>
-                    <option value="ADMIN" ${sessionScope.roleF == 'ADMIN'? 'selected' : ''}>ADMIN</option>
-                    <option value="USER" ${sessionScope.roleF == 'USER' ? 'selected' : ''}>USER</option>
+                    <option ${empty sessionScope.roleF ? 'selected' : ''}>
+                        <fmt:message key="filter.role"/>
+                    </option>
+                    <option value="ADMIN" ${sessionScope.roleF == 'ADMIN'? 'selected' : ''}>
+                        ADMIN
+                    </option>
+                    <option value="USER" ${sessionScope.roleF == 'USER' ? 'selected' : ''}>
+                        USER
+                    </option>
                 </select>
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text">Rows per page:</span>
+                    <span class="input-group-text w-50"><fmt:message key="sort.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1" value="${requestScope.rows}">
                 </div>
             </div>
             <div class="col btn-group" role="group">
-                <button type="button" class="btn btn-secondary w-100"
-                        onclick="location.href = 'controller?action=manage_users';">Reset</button>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="button" class="btn btn-secondary w-100" onclick="location.href = 'controller?action=manage_users';">
+                    <fmt:message key="table.button.reset"/>
+                </button>
+                <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
             </div>
         </div>
     </form>
 
-    <form method="get" action="controller" id="userForm" role="form">
-        <%--        <input type="hidden" id="updateById" name="action" value="updateById">--%>
-        <%--        <input type="hidden" id="action" name="action">--%>
+    <form method="get" action="controller">
+        <input type="hidden" name="action" value="view_user">
         <c:choose>
             <c:when test="${not empty requestScope.users}">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="col-1">Id</th>
-                        <th class="col-2">Login</th>
-                        <th class="col-2">Email</th>
-                        <th class="col-2">First name</th>
-                        <th class="col-2">Last name</th>
-                        <th class="col-1">Role</th>
-                        <th class="col-1">Balance</th>
+                        <th class="col-1"><fmt:message key="table.id"/></th>
+                        <th class="col-2"><fmt:message key="table.login"/></th>
+                        <th class="col-2"><fmt:message key="table.email"/></th>
+                        <th class="col-2"><fmt:message key="table.firstName"/></th>
+                        <th class="col-2"><fmt:message key="table.lastName"/></th>
+                        <th class="col-1"><fmt:message key="table.role"/></th>
+                        <th class="col-1"><fmt:message key="table.balance"/></th>
                         <th class="col-1"></th>
                     </tr>
                     </thead>
@@ -88,30 +124,25 @@
                             <td>${user.role}</td>
                             <td>${user.balance}</td>
                             <td>
-                                <a class="btn btn-primary p-0 " style="width: 60px"
-                                   href="controller?action=view_user&userId=${user.id}">Profile
-                                </a>
+                                <button class="btn btn-primary px-2 py-0" type="submit" name="userId" value="${user.id}"
+                                        style="width: auto">
+                                    <fmt:message key="table.button.profile"/>
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
                 </table>
+                <jsp:include page="/WEB-INF/fragments/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-info">
-                    Cannot found user's with this search criteria
+                    <fmt:message key="users.table.error"/>
                 </div>
             </c:otherwise>
         </c:choose>
     </form>
 </div>
 
-
-<c:set var="link" value="controller?action=manage_users&sort=${sessionScope.sort}&order=${sessionScope.order}
-&roleF=${sessionScope.roleF}" scope="request"/>
-
-<jsp:include page="../../../templates/pagination.jsp"/>
-
-
-<jsp:include page="../../../templates/footer.jsp"/>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 </html>

@@ -20,7 +20,9 @@ public class ManageCatalogAction implements Action {
             SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
             request.setAttribute("cruises", shipService.findSortedWithRoutes(queryBuilder.buildQuery()));
             Pagination.calculatePages(request, shipService.getNumOfRows(queryBuilder.buildFilterQuery()));
+            request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
+            System.out.println(e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
         }
         return "/WEB-INF/jsp/ship/manageCatalog.jsp";

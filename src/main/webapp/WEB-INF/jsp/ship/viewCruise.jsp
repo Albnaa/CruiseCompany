@@ -6,7 +6,7 @@
 <fmt:setBundle basename="locale"/>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="viewCruise.title"/></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -14,10 +14,10 @@
 <body>
 
 <c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
+    <jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
 </c:if>
 <c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
+    <jsp:include page="/WEB-INF/fragments/userNavbar.jsp"/>
 </c:if>
 
 <div class="container">
@@ -27,32 +27,56 @@
             <div class="card mb-3">
                 <img src="${pageContext.request.contextPath}/Img/Ship-2.png" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Route</h5>
+                    <h5 class="card-title text-center"><fmt:message key="table.route"/></h5>
                     <ul class="list-group list-group-flush align-content-end">
-                        <li class="list-group-item">Start date: <fd:formatDate date="${requestScope.ship.route.startOfCruise}"/></li>
-                        <li class="list-group-item">End date: <fd:formatDate date="${requestScope.ship.route.endOfCruise}"/></li>
-                        <li class="list-group-item">Duration: ${requestScope.ship.route.duration} days</li>
-                        <li class="list-group-item">Ship name: ${requestScope.ship.name}</li>
-                        <li class="list-group-item">Price: ${requestScope.ship.route.price}</li>
+                        <li class="list-group-item">
+                            <fmt:message key="table.startOfCruise"/>:
+                            <fd:formatDate date="${requestScope.ship.route.startOfCruise}"/>
+                        </li>
+                        <li class="list-group-item">
+                            <fmt:message key="table.endOfCruise"/>:
+                            <fd:formatDate date="${requestScope.ship.route.endOfCruise}"/>
+                        </li>
+                        <li class="list-group-item">
+                            <fmt:message key="table.duration"/>:
+                            ${requestScope.ship.route.duration}
+                            <fmt:message key="table.days"/>
+                        </li>
+                        <li class="list-group-item">
+                            <fmt:message key="table.shipName"/>:
+                            ${requestScope.ship.name}
+                        </li>
+                        <li class="list-group-item">
+                            <fmt:message key="table.price"/>:
+                            ${requestScope.ship.route.price}
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="card">
                 <div class="card-body text-center">
-                    <h5 class="card-title text-center">Order now</h5>
-                    <button class="btn btn-primary btn-lg w-50 p-2 m-2"
-                            data-bs-toggle="modal" data-bs-target="#createModal">Order</button>
+                    <h5 class="card-title text-center"><fmt:message key="viewCruise.orderNow"/></h5>
+                    <button class="btn btn-primary btn-lg w-50 p-2 m-2" data-bs-toggle="modal"
+                            data-bs-target="#createTicketModal">
+                        <fmt:message key="viewCruise.button.order"/>
+                    </button>
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-4 ">
             <ol class="list-group list-group-numbered">
                 <c:forEach var="waypoint" items="${requestScope.ship.route.waypoints}">
-                    <li class="list-group-item d-flex align-items-start">
+                    <li class="list-group-item d-flex align-items-center">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">${waypoint.port.name}</div>
-                                <h6><i class="bi bi-box-arrow-in-down-right"></i> Arrive date: <fd:formatDate date="${waypoint.arriveTime}"/>  </h6>
-                                <h6><i class="bi bi-box-arrow-right"></i> Departure date: <fd:formatDate date="${waypoint.departureTime}"/></h6>
+                            <h6><i class="bi bi-box-arrow-in-down-right"></i>
+                                 <fmt:message key="table.arrivalTime"/>:
+                                <fd:formatDate date="${waypoint.arriveTime}"/>
+                            </h6>
+                            <h6><i class="bi bi-box-arrow-right"></i>
+                                <fmt:message key="table.departureTime"/>:
+                                <fd:formatDate date="${waypoint.departureTime}"/>
+                            </h6>
                         </div>
                     </li>
                 </c:forEach>
@@ -61,40 +85,6 @@
     </div>
 </div>
 
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="createModalLabel">Order cruise</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="controller">
-                    <input type="hidden" name="action" value="create_ticket">
-                    <input type="hidden" name="price" value="${requestScope.ship.route.price}">
-                    <input type="hidden" name="shipId" value="${requestScope.ship.id}">
-                    <div class="input-group mb-2">
-                        <label class="input-group-text">Passengers count</label>
-                        <input type="number" class="form-control" name="passengersCount" required>
-                    </div>
-                    <div class="input-group mb-2">
-                        <label class="input-group-text">Documents</label>
-                        <input type="file" class="form-control" name="documents">
-                    </div>
-
-
-                    <div class="row justify-content-center mt-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary w-100">Order</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<jsp:include page="/WEB-INF/fragments/createTicketModal.jsp"/>
 </body>
 </html>
