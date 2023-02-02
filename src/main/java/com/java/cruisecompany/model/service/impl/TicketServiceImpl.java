@@ -15,6 +15,7 @@ import com.java.cruisecompany.model.service.TicketService;
 import com.java.cruisecompany.model.utils.MapperDTO;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -106,29 +107,35 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public void payForTicket(long userId, long ticketId) throws ServiceException{
+        Connection con = null;
         try {
-            Connection con = DBManager.getConnection();
+            con = DBManager.getConnection();
             con.setAutoCommit(false);
             try {
                 User user = userDAO.findById(userId).orElseThrow(NoSuchUserException::new);
                 Ticket ticket = ticketDAO.findById(ticketId).orElseThrow(NoSuchTicketException::new);
                 if (user.getBalance().compareTo(ticket.getPrice()) < 0) {
-                    throw new ServiceException("no balance");
+                    throw new ServiceException("error.topUp.user.insufficientBalance");
                 }
                 ticketDAO.updateTicketStatus(ticketId, Status.PAID);
                 userDAO.deductFromBalance(userId, ticket.getPrice());
                 con.commit();
-            } catch (Exception e) {
+            } catch (DAOException | NoSuchTicketException | NoSuchUserException e) {
                 con.rollback();
                 throw new ServiceException(e);
-            } finally {
-                con.setAutoCommit(true);
-                con.close();
             }
-        } catch (Exception e) {
-            throw new ServiceException(e);
+        } catch (SQLException e) {
+            System.out.println("Error while connecting to the database");
+        } finally {
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error while closing the database connection");
+            }
         }
-
     }
 
 

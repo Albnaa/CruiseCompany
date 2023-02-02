@@ -17,29 +17,35 @@
         </select>
     </label>
 </form>
-<main class="row justify-content-center" >
-    <h2 class="m-4 pt-3 text-center"><fmt:message key="login.greetings"/></h2>
-    <form class="col" style="max-width: 330px; padding: 10px;" method="POST" action="controller">
+<main class="row justify-content-center">
+    <h2 class="mt-4 pt-3 text-center"><fmt:message key="login.header"/></h2>
+    <form class="col" style="max-width: 330px; padding: 10px;" method="post" action="controller">
         <input type="hidden" name="action" value="sign_in">
+        <c:if test="${not empty sessionScope.errors}">
+            <div class="alert alert-danger text-center">
+                <fmt:message key="${sessionScope.errors['error.signIn.user']}"/>
+            </div>
+        </c:if>
         <div class="m-0 form-floating">
             <input type="text" class="form-control" id="login" name="login" required>
-            <label for="login"><fmt:message key="login.label.login"/></label><br>
+            <label for="login"><fmt:message key="common.login"/></label><br>
         </div>
         <div class="m-0 form-floating">
             <input type="password" class="form-control" name="password" id="password" required>
-            <label for="password"><fmt:message key="login.label.password"/></label>
+            <label for="password"><fmt:message key="common.password"/></label>
         </div>
         <div class="mt-3 text-center">
-            <button class="w-50 btn btn-lg btn-primary" type="submit"><fmt:message key="login.button.login"/></button>
+            <button class="w-50 btn btn-lg btn-primary" type="submit"><fmt:message key="common.button.signIn"/></button>
         </div>
     </form>
     <c:if test="${not empty sessionScope.error}">
         <div class="mt-3 text-center alert alert-info">
-            ${sessionScope.error}
+                ${sessionScope.error}
         </div>
     </c:if>
     <div class="mt-3 text-center">
-        <h5><fmt:message key="login.message.signup"/> <a href="signUp.jsp"><fmt:message key="login.button.signup"/></a></h5>
+        <h5><fmt:message key="login.message.signup"/> <a href="signUp.jsp"><fmt:message key="common.button.signUp"/></a>
+        </h5>
     </div>
 </main>
 </body>

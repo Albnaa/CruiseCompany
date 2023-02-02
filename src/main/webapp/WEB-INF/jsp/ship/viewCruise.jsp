@@ -27,27 +27,27 @@
             <div class="card mb-3">
                 <img src="${pageContext.request.contextPath}/Img/Ship-2.png" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title text-center"><fmt:message key="table.route"/></h5>
+                    <h5 class="card-title text-center"><fmt:message key="common.route"/></h5>
                     <ul class="list-group list-group-flush align-content-end">
                         <li class="list-group-item">
-                            <fmt:message key="table.startOfCruise"/>:
+                            <fmt:message key="common.startOfCruise"/>:
                             <fd:formatDate date="${requestScope.ship.route.startOfCruise}"/>
                         </li>
                         <li class="list-group-item">
-                            <fmt:message key="table.endOfCruise"/>:
+                            <fmt:message key="common.endOfCruise"/>:
                             <fd:formatDate date="${requestScope.ship.route.endOfCruise}"/>
                         </li>
                         <li class="list-group-item">
-                            <fmt:message key="table.duration"/>:
+                            <fmt:message key="common.duration"/>:
                             ${requestScope.ship.route.duration}
-                            <fmt:message key="table.days"/>
+                            <fmt:message key="common.days"/>
                         </li>
                         <li class="list-group-item">
-                            <fmt:message key="table.shipName"/>:
+                            <fmt:message key="common.shipName"/>:
                             ${requestScope.ship.name}
                         </li>
                         <li class="list-group-item">
-                            <fmt:message key="table.price"/>:
+                            <fmt:message key="common.price"/>:
                             ${requestScope.ship.route.price}
                         </li>
                     </ul>
@@ -58,7 +58,7 @@
                     <h5 class="card-title text-center"><fmt:message key="viewCruise.orderNow"/></h5>
                     <button class="btn btn-primary btn-lg w-50 p-2 m-2" data-bs-toggle="modal"
                             data-bs-target="#createTicketModal">
-                        <fmt:message key="viewCruise.button.order"/>
+                        <fmt:message key="common.button.order"/>
                     </button>
                 </div>
             </div>
@@ -70,11 +70,11 @@
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">${waypoint.port.name}</div>
                             <h6><i class="bi bi-box-arrow-in-down-right"></i>
-                                 <fmt:message key="table.arrivalTime"/>:
+                                 <fmt:message key="common.arrivalTime"/>:
                                 <fd:formatDate date="${waypoint.arriveTime}"/>
                             </h6>
                             <h6><i class="bi bi-box-arrow-right"></i>
-                                <fmt:message key="table.departureTime"/>:
+                                <fmt:message key="common.departureTime"/>:
                                 <fd:formatDate date="${waypoint.departureTime}"/>
                             </h6>
                         </div>

@@ -8,7 +8,10 @@ import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,22 +21,26 @@ public class SignInAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        Optional<UserDTO> user = userService.findByLoginAndPass(login, password);
+        HttpSession session = request.getSession();
 
-        if (user.isPresent()) {
-            request.getSession().setAttribute("user", user.get());
-            request.getSession().setAttribute("role", user.get().getRole());
-            request.getSession().removeAttribute("error");
+        session.removeAttribute("errors");
 
-            Role role = user.get().getRole();
-            if (Objects.requireNonNull(role) == Role.ADMIN) {
-                return "controller?action=manage_users";
-            }
-            return "controller?action=manage_catalog&rows=6";
-        } else {
-            request.getSession().setAttribute("error", "Wrong username/password. Please retry");
-            System.out.println("attribute error was set -> " + request.getAttribute( "error"));
-            return "login.jsp";
+        Map<String, String> errors = new HashMap<>();
+        Optional<UserDTO> user;
+
+        try {
+            user = userService.findByLoginAndPass(login, password);
+        } catch (ServiceException e) {
+            errors.put("error.signIn.user", e.getCause().getMessage());
+            session.setAttribute("errors", errors);
+            return request.getHeader("referer");
         }
+
+        session.setAttribute("user", user.get());
+        session.setAttribute("role", user.get().getRole());
+        if (Objects.requireNonNull(user.get().getRole()) == Role.ADMIN) {
+            return "controller?action=manage_users";
+        }
+        return "controller?action=manage_catalog&rows=6";
     }
 }

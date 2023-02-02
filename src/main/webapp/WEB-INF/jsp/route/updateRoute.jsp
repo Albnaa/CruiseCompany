@@ -30,42 +30,42 @@
             <form method="post" action="controller">
                 <button type="button" class="btn btn-primary w-100 mb-2"
                         data-bs-toggle="modal" data-bs-target="#createRouteModal">
-                    <fmt:message key="table.button.create"/>
+                    <fmt:message key="common.button.create"/>
                 </button>
                 <div class="btn-group w-100">
                     <button type="submit" name="action" value="update_route" class="btn btn-warning w-50 mb-2">
-                        <fmt:message key="table.button.update"/>
+                        <fmt:message key="common.button.update"/>
                     </button>
                     <button type="submit" name="action" value="delete_route" class="btn btn-danger w-50 mb-2">
-                        <fmt:message key="table.button.delete"/>
+                        <fmt:message key="common.button.delete"/>
                     </button>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="update.route" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.route" labelKey="common.id" width="25" type="number"
                                     value="${requestScope.route.id}" readonly="readonly"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="update.route" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="update.route" labelKey="common.name" width="25" type="text"
                                     value="${requestScope.route.name}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="startDate" entity="update.route" labelKey="table.startOfCruise" width="25"
+                    <tag:inputField fieldName="startDate" entity="update.route" labelKey="common.startOfCruise" width="25"
                                     type="date" value="${requestScope.route.startOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="endDate" entity="update.route" labelKey="table.endOfCruise" width="25"
+                    <tag:inputField fieldName="endDate" entity="update.route" labelKey="common.endOfCruise" width="25"
                                     type="date" value="${requestScope.route.endOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="price" entity="update.route" labelKey="table.price" width="25"
+                    <tag:inputField fieldName="price" entity="update.route" labelKey="common.price" width="25"
                                     type="number" value="${requestScope.route.price}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="duration" entity="update.route" labelKey="table.duration" width="25"
+                    <tag:inputField fieldName="duration" entity="update.route" labelKey="common.duration" width="25"
                                     type="number" value="${requestScope.route.duration}" readonly="readonly"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="numOfPorts" entity="update.route" labelKey="table.numberOfPorts" width="25"
+                    <tag:inputField fieldName="numOfPorts" entity="update.route" labelKey="common.numberOfPorts" width="25"
                                     type="text" value="${requestScope.route.numOfPorts}" readonly="readonly"/>
                 </div>
             </form>
@@ -79,8 +79,8 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="col-2 text-center"><fmt:message key="table.id"/></th>
-                        <th class="col-8 text-center"><fmt:message key="table.name"/></th>
+                        <th class="col-2 text-center"><fmt:message key="common.id"/></th>
+                        <th class="col-8 text-center"><fmt:message key="common.name"/></th>
                         <th class="col-2 text-center"></th>
                     </tr>
                     </thead>
@@ -92,7 +92,7 @@
                             <td class="col-2 text-center">
                                 <button type="submit" name="portId" value="${port.id}"
                                         class="btn btn-primary px-1 py-0" style="width: auto"><fmt:message
-                                        key="table.button.add"/>
+                                        key="common.button.add"/>
                                 </button>
                             </td>
                         </tr>
@@ -111,13 +111,13 @@
         </div>
         <div class="col-2 justify-content-center">
             <div class="">
-                <fmt:message key="table.arrivalTime"/>
-                <tag:inputField fieldName="startDate" entity="add.waypoint" labelKey="table.empty" width="auto"
+                <fmt:message key="common.arrivalTime"/>
+                <tag:inputField fieldName="startDate" entity="add.waypoint" labelKey="common.empty" width="auto"
                                 type="date"/>
             </div>
             <div class="">
-                <fmt:message key="table.departureTime"/>
-                <tag:inputField fieldName="endDate" entity="add.waypoint" labelKey="table.empty" width="auto"
+                <fmt:message key="common.departureTime"/>
+                <tag:inputField fieldName="endDate" entity="add.waypoint" labelKey="common.empty" width="auto"
                                 type="date"/>
             </div>
 
@@ -129,32 +129,32 @@
                 <input type="text" class="form-control mb-2" placeholder="<fmt:message key="route.port.placeholder"/>">
                 <select class="form-select mb-2" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/>
+                        <fmt:message key="common.sort.default"/>
                     </option>
                     <option value="port.id" ${sessionScope.sort == 'port.id' ? 'selected' : ''}>
-                        <fmt:message key="table.id"/>
+                        <fmt:message key="common.id"/>
                     </option>
                     <option value="port.name" ${sessionScope.sort == 'port.name' ? 'selected' : ''}>
-                        <fmt:message key="table.name"/>
+                        <fmt:message key="common.name"/>
                     </option>
                 </select>
                 <select class="form-select mb-2" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                        <fmt:message key="order.default"/>
+                        <fmt:message key="common.order.default"/>
                     </option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                        <fmt:message key="order.asc"/>
+                        <fmt:message key="common.order.asc"/>
                     </option>
                     <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
-                        <fmt:message key="order.desc"/>
+                        <fmt:message key="common.order.desc"/>
                     </option>
                 </select>
                 <div class="input-group mb-2">
-                    <span class="input-group-text"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
-                <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
+                <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>
             </form>
         </div>
     </div>
@@ -166,10 +166,10 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="col-1"><fmt:message key="table.id"/></th>
-                        <th class="col-4"><fmt:message key="table.name"/></th>
-                        <th class="col-3"><fmt:message key="table.arrivalTime"/></th>
-                        <th class="col-3"><fmt:message key="table.departureTime"/></th>
+                        <th class="col-1"><fmt:message key="common.id"/></th>
+                        <th class="col-4"><fmt:message key="common.name"/></th>
+                        <th class="col-3"><fmt:message key="common.arrivalTime"/></th>
+                        <th class="col-3"><fmt:message key="common.departureTime"/></th>
                         <th class="col-1"></th>
                     </tr>
                     </thead>
@@ -183,7 +183,7 @@
                             <td class="col-1">
                                 <button type="submit" name="waypointPortId" value="${waypoint.port.id}"
                                         class="btn btn-danger px-1 py-0" style="width: auto"><fmt:message
-                                        key="table.button.delete"/>
+                                        key="common.button.delete"/>
                                 </button>
                             </td>
                         </tr>

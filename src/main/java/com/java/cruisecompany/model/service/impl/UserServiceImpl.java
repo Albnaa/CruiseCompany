@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
         try {
             Optional<User> user = userDAO.findByLoginAndPass(login, password);
             userDTO = Optional.of(mapUserToDTO(user.orElseThrow(NoSuchUserException::new)));
-        } catch (Exception e) {
+        } catch (DAOException | NoSuchUserException e) {
             throw new ServiceException(e);
         }
         return userDTO;

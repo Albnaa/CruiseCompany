@@ -28,32 +28,32 @@
             <div class="col">
                 <select class="form-select" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/>
+                        <fmt:message key="common.sort.default"/>
                     </option>
                     <option value="port.id" ${sessionScope.sort == 'port.id' ? 'selected' : ''}>
-                        <fmt:message key="table.id"/>
+                        <fmt:message key="common.id"/>
                     </option>
                     <option value="port.name" ${sessionScope.sort == 'port.name' ? 'selected' : ''}>
-                        <fmt:message key="table.name"/>
+                        <fmt:message key="common.name"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                        <fmt:message key="order.default"/>
+                        <fmt:message key="common.order.default"/>
                     </option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                        <fmt:message key="order.asc"/>
+                        <fmt:message key="common.order.asc"/>
                     </option>
                     <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
-                        <fmt:message key="order.desc"/>
+                        <fmt:message key="common.order.desc"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
@@ -61,24 +61,24 @@
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
                         onclick="location.href = 'controller?action=manage_port';">
-                    <fmt:message key="table.button.reset"/>
+                    <fmt:message key="common.button.reset"/>
                 </button>
-                <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
+                <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>
             </div>
         </div>
     </form>
 
     <div class="row align-items-center">
         <div class="col-3">
-            <h4 class="text-center"><fmt:message key="ports.create.header"/></h4>
+            <h4 class="text-center"><fmt:message key="common.button.create"/></h4>
             <form method="post" action="controller">
                 <input type="hidden" name="action" value="create_port">
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="create.port" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="create.port" labelKey="common.name" width="25" type="text"
                                     placeholder="ports.create.placeholder"/>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 mb-2">
-                    <fmt:message key="ports.create.button"/>
+                    <fmt:message key="common.button.create"/>
                 </button>
                 <div class="" style="height: 37.6px">
                 </div>
@@ -91,8 +91,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th class="text-center"><fmt:message key="table.id"/></th>
-                                <th class="text-center"><fmt:message key="table.name"/></th>
+                                <th class="text-center"><fmt:message key="common.id"/></th>
+                                <th class="text-center"><fmt:message key="common.name"/></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -117,21 +117,21 @@
 
         </div>
         <div class="col-3">
-            <h4 class="text-center"><fmt:message key="ports.update.header"/></h4>
+            <h4 class="text-center"><fmt:message key="common.button.update"/></h4>
             <form method="post" action="controller">
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="update.port" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.port" labelKey="common.id" width="25" type="number"
                                     placeholder="ports.update.id.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="update.port" labelKey="ports.update.label.name" width="25"
+                    <tag:inputField fieldName="name" entity="update.port" labelKey="common.name" width="25"
                                     type="text" placeholder="ports.update.name.placeholder"/>
                 </div>
 
                 <button type="submit" name="action" value="delete_port" class="btn btn-danger w-100 mb-2"><fmt:message
-                        key="ports.update.button.delete"/></button>
+                        key="common.button.delete"/></button>
                 <button type="submit" name="action" value="update_port" class="btn btn-warning w-100 mb-2"><fmt:message
-                        key="table.button.update"/></button>
+                        key="common.button.update"/></button>
                 <div class="" style="height: 37.6px">
                 </div>
             </form>

@@ -36,23 +36,23 @@
         <div class="row mb-2">
             <div class="col-6">
                 <div class="input-group mb-2">
-                    <span class="input-group-text">Search by cruise name:</span>
+                    <span class="input-group-text"><fmt:message key="common.filter.cruiseName"/></span>
                     <input type="text" name="nameF" class="form-control"
                            value="${sessionScope.nameF}">
                 </div>
             </div>
             <div class="col-3">
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-50">Filter by start date:</span>
+                    <span class="input-group-text w-50"><fmt:message key="common.filter.startDate.short"/></span>
                     <input type="date" name="startDateF" class="form-control"
-                           value="">
+                           value="${sessionScope.startDateF}">
                 </div>
             </div>
             <div class="col-3">
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-50">Filter by duration:</span>
-                    <input type="number" name="durationF" class="form-control" min="1" max="31" placeholder="days"
-                           value="${sessionScope.durationF}">
+                    <span class="input-group-text w-auto"><fmt:message key="common.filter.duration"/></span>
+                    <input type="number" name="durationF" class="form-control" min="1" max="31"
+                           placeholder="<fmt:message key="common.days"/>" value="${sessionScope.durationF}">
                 </div>
             </div>
         </div>
@@ -60,43 +60,43 @@
             <div class="col">
                 <select class="form-select" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/></option>
+                        <fmt:message key="common.sort.default"/></option>
                     <option value="route.name" ${sessionScope.sort == 'route.name' ? 'selected' : ''}>
-                        <fmt:message key="table.cruiseName"/>
+                        <fmt:message key="common.cruiseName"/>
                     </option>
                     <option value="ship.name" ${sessionScope.sort == 'ship.name' ? 'selected' : ''}>
-                        <fmt:message key="table.shipName"/>
+                        <fmt:message key="common.shipName"/>
                     </option>
                     <option value="route.start_of_cruise" ${sessionScope.sort == 'route.start_of_cruise' ? 'selected' : ''}>
-                        <fmt:message key="table.startOfCruise"/>
+                        <fmt:message key="common.startOfCruise"/>
                     </option>
                     <option value="route.end_of_cruise" ${sessionScope.sort == 'route.end_of_cruise' ? 'selected' : ''}>
-                        <fmt:message key="table.endOfCruise"/>
+                        <fmt:message key="common.endOfCruise"/>
                     </option>
                     <option value="route.duration" ${sessionScope.sort == 'route.duration' ? 'selected' : ''}>
-                        <fmt:message key="table.duration"/>
+                        <fmt:message key="common.duration"/>
                     </option>
                     <option value="route.price" ${sessionScope.sort == 'route.price' ? 'selected' : ''}>
-                        <fmt:message key="table.price"/>
+                        <fmt:message key="common.price"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                        <fmt:message key="order.default"/>
+                        <fmt:message key="common.order.default"/>
                     </option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                        <fmt:message key="order.asc"/>
+                        <fmt:message key="common.order.asc"/>
                     </option>
                     <option value="desc"${sessionScope.order == 'desc' ? 'selected' : ''}>
-                        <fmt:message key="order.desc"/>
+                        <fmt:message key="common.order.desc"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-50"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text w-50"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
@@ -105,9 +105,9 @@
                 <div class="btn-group w-100">
                     <button type="button" class="btn btn-secondary w-50"
                             onclick="location.href = 'controller?action=manage_catalog&rows=6';">
-                        <fmt:message key="table.button.reset"/>
+                        <fmt:message key="common.button.reset"/>
                     </button>
-                    <button type="submit" class="btn btn-primary w-50"><fmt:message key="table.button.submit"/></button>
+                    <button type="submit" class="btn btn-primary w-50"><fmt:message key="common.button.submit"/></button>
                 </div>
             </div>
         </div>
@@ -130,19 +130,19 @@
                                     value=", "/></c:if></c:forEach>
                         </p>
                         <ul class="list-group list-group-flush align-content-end">
-                            <li class="list-group-item"><fmt:message key="table.startOfCruise"/>:
+                            <li class="list-group-item"><fmt:message key="common.startOfCruise"/>:
                                 <fd:formatDate date="${cruise.route.startOfCruise}"/></li>
-                            <li class="list-group-item"><fmt:message key="table.endOfCruise"/>:
+                            <li class="list-group-item"><fmt:message key="common.endOfCruise"/>:
                                 <fd:formatDate date="${cruise.route.endOfCruise}"/></li>
-                            <li class="list-group-item"><fmt:message key="table.duration"/>:
-                                ${cruise.route.duration} <fmt:message key="table.days"/></li>
-                            <li class="list-group-item"><fmt:message key="table.shipName"/>: ${cruise.name}</li>
-                            <li class="list-group-item"><fmt:message key="table.price"/>: ${cruise.route.price}</li>
+                            <li class="list-group-item"><fmt:message key="common.duration"/>:
+                                ${cruise.route.duration} <fmt:message key="common.days"/></li>
+                            <li class="list-group-item"><fmt:message key="common.shipName"/>: ${cruise.name}</li>
+                            <li class="list-group-item"><fmt:message key="common.price"/>: ${cruise.route.price}</li>
                         </ul>
                         <div class="text-center">
                             <button class="btn btn-outline-primary w-75 mt-2"
                                     onclick="location.href = 'controller?action=view_cruise&shipId=${cruise.id}';">
-                                <fmt:message key="table.button.view"/>
+                                <fmt:message key="common.button.view"/>
                             </button>
                         </div>
                     </div>

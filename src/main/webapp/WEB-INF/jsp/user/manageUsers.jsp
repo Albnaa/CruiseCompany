@@ -31,48 +31,48 @@
             <div class="col">
                 <select id="select-sort" name="sort" class="form-select">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/>
+                        <fmt:message key="common.sort.default"/>
                     </option>
                     <option value="user.id" ${sessionScope.sort == 'user.id' ? 'selected' : ''}>
-                        <fmt:message key="table.id"/>
+                        <fmt:message key="common.id"/>
                     </option>
                     <option value="user.login" ${sessionScope.sort == 'user.login' ? 'selected' : ''}>
-                        <fmt:message key="login.label.login"/>
+                        <fmt:message key="common.login"/>
                     </option>
                     <option value="user.email" ${sessionScope.sort == 'user.email' ? 'selected' : ''}>
-                        <fmt:message key="table.email"/>
+                        <fmt:message key="common.email"/>
                     </option>
                     <option value="user.first_name" ${sessionScope.sort == 'user.first_name' ? 'selected' : ''}>
-                        <fmt:message key="table.firstName"/>
+                        <fmt:message key="common.firstName"/>
                     </option>
                     <option value="user.last_name" ${sessionScope.sort == 'user.last_name' ? 'selected' : ''}>
-                        <fmt:message key="table.lastName"/>
+                        <fmt:message key="common.lastName"/>
                     </option>
                     <option value="user.role_id" ${sessionScope.sort == 'user.role_id' ? 'selected' : ''}>
-                        <fmt:message key="table.role"/>
+                        <fmt:message key="common.role"/>
                     </option>
                     <option value="user.balance" ${sessionScope.sort == 'user.balance' ? 'selected' : ''}>
-                        <fmt:message key="table.balance"/>
+                        <fmt:message key="common.balance"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                        <fmt:message key="order.default"/>
+                        <fmt:message key="common.order.default"/>
                     </option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                        <fmt:message key="order.asc"/>
+                        <fmt:message key="common.order.asc"/>
                     </option>
                     <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
-                        <fmt:message key="order.desc"/>
+                        <fmt:message key="common.order.desc"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="roleF">
                     <option ${empty sessionScope.roleF ? 'selected' : ''}>
-                        <fmt:message key="filter.role"/>
+                        <fmt:message key="common.filter.role"/>
                     </option>
                     <option value="ADMIN" ${sessionScope.roleF == 'ADMIN'? 'selected' : ''}>
                         ADMIN
@@ -84,15 +84,15 @@
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text w-50"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text w-50"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1" value="${requestScope.rows}">
                 </div>
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100" onclick="location.href = 'controller?action=manage_users';">
-                    <fmt:message key="table.button.reset"/>
+                    <fmt:message key="common.button.reset"/>
                 </button>
-                <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
+                <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>
             </div>
         </div>
     </form>
@@ -104,19 +104,19 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th class="col-1"><fmt:message key="table.id"/></th>
-                        <th class="col-2"><fmt:message key="table.login"/></th>
-                        <th class="col-2"><fmt:message key="table.email"/></th>
-                        <th class="col-2"><fmt:message key="table.firstName"/></th>
-                        <th class="col-2"><fmt:message key="table.lastName"/></th>
-                        <th class="col-1"><fmt:message key="table.role"/></th>
-                        <th class="col-1"><fmt:message key="table.balance"/></th>
+                        <th class="col-1 text-center"><fmt:message key="common.id"/></th>
+                        <th class="col-2"><fmt:message key="common.login"/></th>
+                        <th class="col-2"><fmt:message key="common.email"/></th>
+                        <th class="col-2"><fmt:message key="common.firstName"/></th>
+                        <th class="col-2"><fmt:message key="common.lastName"/></th>
+                        <th class="col-1"><fmt:message key="common.role"/></th>
+                        <th class="col-1"><fmt:message key="common.balance"/></th>
                         <th class="col-1"></th>
                     </tr>
                     </thead>
                     <c:forEach var="user" items="${requestScope.users}">
                         <tr class="${user}">
-                            <td>${user.id}</td>
+                            <td class="text-center">${user.id}</td>
                             <td>${user.login}</td>
                             <td>${user.email}</td>
                             <td>${user.firstName}</td>
@@ -126,7 +126,7 @@
                             <td>
                                 <button class="btn btn-primary px-2 py-0" type="submit" name="userId" value="${user.id}"
                                         style="width: auto">
-                                    <fmt:message key="table.button.profile"/>
+                                    <fmt:message key="common.button.profile"/>
                                 </button>
                             </td>
                         </tr>

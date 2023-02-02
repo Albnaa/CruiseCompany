@@ -44,8 +44,13 @@ public class ShipQueryBuilder extends QueryBuilder {
     }
 
     private void setDurationFilter(String parameter) throws InvalidInputException {
-        if (parameter != null && !parameter.isEmpty()) {
-            filterList.add("route.duration = " + value);
+        try {
+            int value = Integer.parseInt(parameter);
+            if (value >= 3 && value <= 31) {
+                filterList.add("route.duration = " + value);
+            }
+        } catch (NumberFormatException e) {
+            return;
         }
     }
 

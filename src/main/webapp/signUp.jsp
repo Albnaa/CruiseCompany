@@ -18,28 +18,28 @@
             <form method="POST" action="controller">
                 <input type="hidden" name="action" value="sign_up">
                 <div class="mb-3">
-                    <tag:inputField fieldName="login" entity="user" labelKey="Login" width="25"
-                                    type="text" required="required"/>
+                    <tag:inputField fieldName="login" entity="signUp.user" labelKey="common.login" width="25"
+                                    type="text" placeholder="signUp.login.placeholder"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="email" entity="user" labelKey="Email" width="25"
-                                    type="text" required="required"/>
+                    <tag:inputField fieldName="email" entity="signUp.user" labelKey="common.email" width="25"
+                                    type="text" placeholder="signUp.email.placeholder"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="password" entity="user" labelKey="Password" width="50"
-                                    type="password" required="required"/>
+                    <tag:inputField fieldName="password" entity="signUp.user" labelKey="common.password" width="25"
+                                    type="password" placeholder="signUp.password.placeholder"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="confirmPassword" entity="user" labelKey="Confirm password" width="50"
-                                    type="password" required="required"/>
+                    <tag:inputField fieldName="confirmPassword" entity="signUp.user" labelKey="common.confirmPassword"
+                                    width="auto" type="password" placeholder="signUp.confirmPassword.placeholder"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="firstName" entity="user" labelKey="First name" width="auto"
-                                    type="text" required="required"/>
+                    <tag:inputField fieldName="firstName" entity="signUp.user" labelKey="common.firstName" width="25"
+                                    type="text" placeholder="signUp.firstName.placeholder"/>
                 </div>
                 <div class="mb-3">
-                    <tag:inputField fieldName="lastName" entity="user" labelKey="Last name" width="auto"
-                                    type="text" required="required"/>
+                    <tag:inputField fieldName="lastName" entity="signUp.user" labelKey="common.lastName" width="25"
+                                    type="text" placeholder="signUp.lastName.placeholder"/>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary w-50 btn-lg">Sign up</button>

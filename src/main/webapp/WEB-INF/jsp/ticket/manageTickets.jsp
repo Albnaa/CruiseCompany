@@ -29,50 +29,50 @@
             <div class="col">
                 <select class="form-select" name="sort">
                     <option ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/>
+                        <fmt:message key="common.sort.default"/>
                     </option>
                     <option value="ticket.id" ${sessionScope.sort == 'ticket.id' ? 'selected' : ''}>
-                        <fmt:message key="table.id"/>
+                        <fmt:message key="common.id"/>
                     </option>
                     <option value="user.first_name" ${sessionScope.sort == 'user.first_name' ? 'selected' : ''}>
-                        <fmt:message key="table.firstName"/>
+                        <fmt:message key="common.firstName"/>
                     </option>
                     <option value="user.last_name" ${sessionScope.sort == 'user.last_name' ? 'selected' : ''}>
-                        <fmt:message key="table.lastName"/>
+                        <fmt:message key="common.lastName"/>
                     </option>
                     <option value="route.start_of_cruise" ${sessionScope.sort == 'route.start_of_cruise' ? 'selected' : ''}>
-                        <fmt:message key="table.startOfCruise"/>
+                        <fmt:message key="common.startOfCruise"/>
                     </option>
                     <option value="route.name" ${sessionScope.sort == 'route.name' ? 'selected' : ''}>
-                        <fmt:message key="table.routeName"/>
+                        <fmt:message key="common.routeName"/>
                     </option>
                     <option value="ticket.passengers_count" ${sessionScope.sort == 'ticket.passengers_count' ? 'selected' : ''}>
-                        <fmt:message key="table.passengersCount"/>
+                        <fmt:message key="common.passengersCount"/>
                     </option>
                     <option value="ticket.price" ${sessionScope.sort == 'ticket.price' ? 'selected' : ''}>
-                        <fmt:message key="table.price"/>
+                        <fmt:message key="common.price"/>
                     </option>
                     <option value="ticket.status_id" ${sessionScope.sort == 'ticket.status_id' ? 'selected' : ''}>
-                        <fmt:message key="table.status"/>
+                        <fmt:message key="common.status"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                        <fmt:message key="order.default"/>
+                        <fmt:message key="common.order.default"/>
                     </option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                        <fmt:message key="order.asc"/>
+                        <fmt:message key="common.order.asc"/>
                     </option>
                     <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
-                        <fmt:message key="order.desc"/>
+                        <fmt:message key="common.order.desc"/>
                     </option>
                 </select>
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
@@ -80,10 +80,10 @@
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
                         onclick="location.href = 'controller?action=manage_port';">
-                    <fmt:message key="table.button.reset"/>
+                    <fmt:message key="common.button.reset"/>
                 </button>
                 <button type="submit" class="btn btn-primary w-100">
-                    <fmt:message key="table.button.submit"/>
+                    <fmt:message key="common.button.submit"/>
                 </button>
             </div>
         </div>
@@ -94,15 +94,15 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th><fmt:message key="table.id"/></th>
-                        <th><fmt:message key="table.firstName"/></th>
-                        <th><fmt:message key="table.lastName"/></th>
-                        <th><fmt:message key="table.startOfCruise"/></th>
-                        <th><fmt:message key="table.shipName"/></th>
-                        <th><fmt:message key="table.routeName"/></th>
-                        <th><fmt:message key="table.passengersCount"/></th>
-                        <th><fmt:message key="table.price"/></th>
-                        <th><fmt:message key="table.status"/></th>
+                        <th><fmt:message key="common.id"/></th>
+                        <th><fmt:message key="common.firstName"/></th>
+                        <th><fmt:message key="common.lastName"/></th>
+                        <th><fmt:message key="common.startOfCruise"/></th>
+                        <th><fmt:message key="common.shipName"/></th>
+                        <th><fmt:message key="common.routeName"/></th>
+                        <th><fmt:message key="common.passengersCount"/></th>
+                        <th><fmt:message key="common.price"/></th>
+                        <th><fmt:message key="common.status"/></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -121,7 +121,7 @@
                             <td>
                                 <a class="btn btn-primary p-0" style="width: 60px"
                                    href="controller?action=view_ticket&ticketId=${ticket.id}">
-                                    <fmt:message key="table.button.more"/>
+                                    <fmt:message key="common.button.more"/>
                                 </a>
                             </td>
                         </tr>

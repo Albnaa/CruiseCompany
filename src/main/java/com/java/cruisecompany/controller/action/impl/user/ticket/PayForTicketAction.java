@@ -11,12 +11,13 @@ public class PayForTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
+        request.getSession().removeAttribute("error");
         long userId = ((UserDTO) request.getSession().getAttribute("user")).getId();
         long ticketId = Long.parseLong(request.getParameter("ticketId"));
         try {
             ticketService.payForTicket(userId, ticketId);
         } catch (ServiceException e) {
-            throw new ServiceException(e);
+            request.getSession().setAttribute("error", e.getMessage());
         }
         return request.getHeader("referer");
     }

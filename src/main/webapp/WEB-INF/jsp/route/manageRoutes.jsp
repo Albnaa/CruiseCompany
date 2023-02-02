@@ -25,35 +25,35 @@
         <div class="row justify-content-center g-2">
             <div class="col">
                 <select class="form-select" name="sort">
-                    <option><fmt:message key="sort.default"/></option>
-                    <option value="route.id"><fmt:message key="table.id"/></option>
-                    <option value="route.name"><fmt:message key="table.name"/></option>
-                    <option value="route.start_of_cruise"><fmt:message key="table.startOfCruise"/></option>
-                    <option value="route.end_of_cruise"><fmt:message key="table.endOfCruise"/></option>
-                    <option value="route.price"><fmt:message key="table.price"/></option>
-                    <option value="route.duration"><fmt:message key="table.duration"/></option>
-                    <option value="route.number_of_ports"><fmt:message key="table.numberOfPorts"/></option>
+                    <option><fmt:message key="common.sort.default"/></option>
+                    <option value="route.id"><fmt:message key="common.id"/></option>
+                    <option value="route.name"><fmt:message key="common.name"/></option>
+                    <option value="route.start_of_cruise"><fmt:message key="common.startOfCruise"/></option>
+                    <option value="route.end_of_cruise"><fmt:message key="common.endOfCruise"/></option>
+                    <option value="route.price"><fmt:message key="common.price"/></option>
+                    <option value="route.duration"><fmt:message key="common.duration"/></option>
+                    <option value="route.number_of_ports"><fmt:message key="common.numberOfPorts"/></option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" name="order">
                     <option value="" ${empty sessionScope.order ? 'selected' : ''}><fmt:message
-                            key="order.default"/></option>
+                            key="common.order.default"/></option>
                     <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}><fmt:message
-                            key="order.asc"/></option>
+                            key="common.order.asc"/></option>
                     <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}><fmt:message
-                            key="order.desc"/></option>
+                            key="common.order.desc"/></option>
                 </select>
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text"><fmt:message key="filter.startDate"/></span>
+                    <span class="input-group-text"><fmt:message key="common.filter.startDate.short"/></span>
                     <input type="date" placeholder="dd/MM/yyyy" class="form-control" name="startDate">
                 </div>
             </div>
             <div class="col">
                 <div class="input-group">
-                    <span class="input-group-text"><fmt:message key="sort.rows"/></span>
+                    <span class="input-group-text"><fmt:message key="common.rows"/></span>
                     <input type="number" id="rows" name="rows" class="form-control" min="1"
                            value="${requestScope.rows}">
                 </div>
@@ -61,15 +61,15 @@
             <div class="col-1">
                 <button type="button" class="btn btn-primary w-100"
                         data-bs-toggle="modal" data-bs-target="#createRouteModal">
-                    <fmt:message key="table.button.create"/>
+                    <fmt:message key="common.button.create"/>
                 </button>
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
                         onclick="location.href = 'controller?action=manage_port';">
-                    <fmt:message key="table.button.reset"/>
+                    <fmt:message key="common.button.reset"/>
                 </button>
-                <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
+                <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>
             </div>
         </div>
     </form>
@@ -80,13 +80,13 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th><fmt:message key="table.id"/></th>
-                        <th><fmt:message key="table.name"/></th>
-                        <th><fmt:message key="table.startOfCruise"/></th>
-                        <th><fmt:message key="table.endOfCruise"/></th>
-                        <th><fmt:message key="table.price"/></th>
-                        <th><fmt:message key="table.duration"/></th>
-                        <th><fmt:message key="table.numberOfPorts"/></th>
+                        <th><fmt:message key="common.id"/></th>
+                        <th><fmt:message key="common.name"/></th>
+                        <th><fmt:message key="common.startOfCruise"/></th>
+                        <th><fmt:message key="common.endOfCruise"/></th>
+                        <th><fmt:message key="common.price"/></th>
+                        <th><fmt:message key="common.duration"/></th>
+                        <th><fmt:message key="common.numberOfPorts"/></th>
                         <th></th>
                     </tr>
                     </thead>
@@ -103,7 +103,7 @@
                             <td>
                                 <a class="btn btn-primary p-0 " style="width: 60px"
                                    href="controller?action=view_route&id=${route.id}&rows=8">
-                                    <fmt:message key="table.button.more"/>
+                                    <fmt:message key="common.button.more"/>
                                 </a>
                             </td>
                         </tr>

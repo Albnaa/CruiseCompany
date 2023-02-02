@@ -22,4 +22,17 @@ public class UserValidator extends Validator{
     public static void validateUserLastName(String name, String action, Map<String, String> errors) {
         validateOnlyLetters(name, "error." + action + ".lastName", errors);
     }
+
+    public static void validateTopUpAmount(String amount, String action, Map<String, String> errors) {
+        validateNonNegativeDouble(amount, "error." + action + ".amount", errors);
+    }
+
+    public static void validateUserPassword(String password, String action, Map<String, String> errors) {
+        validatePassword(password, "error." + action + ".password", errors);
+    }
+
+    public static void confirmUserPassword(String password, String confirmPassword, String action, Map<String, String> errors) {
+        confirmPassword(password, confirmPassword, "error." + action + ".confirmPassword", errors);
+    }
+
 }

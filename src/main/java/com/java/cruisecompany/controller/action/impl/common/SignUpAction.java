@@ -6,7 +6,12 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
+import com.java.cruisecompany.model.utils.validation.TicketValidation;
+import com.java.cruisecompany.model.utils.validation.UserValidator;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
@@ -15,15 +20,30 @@ public class SignUpAction implements Action {
     public String execute(HttpServletRequest request) throws ServiceException {
         request.getSession().removeAttribute("user");
 
+        String login = request.getParameter("login");
+        String email = request.getParameter("email");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
+
+        Map<String, String> errors = validateUserParameters(login, email, firstName, lastName, password, confirmPassword);
+
+        if (!errors.isEmpty()) {
+            request.getSession().setAttribute("errors", errors);
+            return request.getHeader("referer");
+        }
+        request.getSession().removeAttribute("errors");
+
         UserDTO user = UserDTO.builder()
-                .login(request.getParameter("login"))
-                .email(request.getParameter("email"))
-                .firstName(request.getParameter("firstName"))
-                .lastName(request.getParameter("lastName"))
+                .login(login)
+                .email(email)
+                .firstName(firstName)
+                .lastName(lastName)
                 .build();
 
         try {
-            userService.register(user, request.getParameter("password"), request.getParameter("confirmPassword"));
+            userService.register(user, password, confirmPassword);
         } catch (ServiceException e) {
             request.getSession().setAttribute("error", e.getMessage());
             request.getSession().setAttribute("user", user);
@@ -32,5 +52,16 @@ public class SignUpAction implements Action {
 
         request.getSession().removeAttribute("error");
         return "login.jsp";
+    }
+
+    private Map<String, String> validateUserParameters(String login, String email, String firstName, String lastName, String password, String confirmPassword) {
+        Map<String, String> errors = new HashMap<>();
+        UserValidator.validateUserLogin(login, "signUp.user", errors);
+        UserValidator.validateUserEmail(email, "signUp.user", errors);
+        UserValidator.validateUserFirstName(firstName,  "signUp.user", errors);
+        UserValidator.validateUserLastName(lastName,  "signUp.user", errors);
+        UserValidator.validateUserPassword(password, "signUp.user", errors);
+        UserValidator.confirmUserPassword(password, confirmPassword, "signUp.user", errors);
+        return errors;
     }
 }

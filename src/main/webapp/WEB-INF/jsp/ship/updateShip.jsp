@@ -29,40 +29,40 @@
             <form method="post" action="controller">
                 <button type="button" class="btn btn-primary w-100 mb-2"
                         data-bs-toggle="modal" data-bs-target="#createShipModal">
-                    <fmt:message key="table.button.create"/>
+                    <fmt:message key="common.button.create"/>
                 </button>
                 <div class="btn-group w-100">
                     <button type="submit" name="action" value="update_ship" class="btn btn-warning w-50 mb-2">
-                        <fmt:message key="table.button.update"/>
+                        <fmt:message key="common.button.update"/>
                     </button>
                     <button type="submit" name="action" value="delete_ship" class="btn btn-danger w-50 mb-2">
-                        <fmt:message key="table.button.delete"/>
+                        <fmt:message key="common.button.delete"/>
                     </button>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="update.ship" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.ship" labelKey="common.id" width="25" type="number"
                                     readonly="readonly" value="${requestScope.ship.id}"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="update.ship" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="update.ship" labelKey="common.name" width="25" type="text"
                                     value="${requestScope.ship.name}" placeholder="ship.name.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="capacity" entity="update.ship" labelKey="table.capacity" width="25"
+                    <tag:inputField fieldName="capacity" entity="update.ship" labelKey="common.capacity" width="25"
                                     type="number" value="${requestScope.ship.capacity}"
                                     placeholder="ship.capacity.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="visitedPorts" entity="update.ship" labelKey="table.visitedPorts" width="25"
+                    <tag:inputField fieldName="visitedPorts" entity="update.ship" labelKey="common.visitedPorts" width="25"
                                     type="number" value="${requestScope.ship.visitedPorts}"
                                     placeholder="ship.visitedPorts.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="staff" entity="update.ship" labelKey="table.staff" width="25" type="number"
+                    <tag:inputField fieldName="staff" entity="update.ship" labelKey="common.staff" width="25" type="number"
                                     value="${requestScope.ship.staff}" placeholder="ship.staff.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="routeName" entity="update.ship" labelKey="table.routeName" width="25"
+                    <tag:inputField fieldName="routeName" entity="update.ship" labelKey="common.routeName" width="25"
                                     type="text" value="${requestScope.ship.route.name}" readonly="readonly"/>
                 </div>
             </form>
@@ -74,43 +74,43 @@
                     <div class="col">
                         <button type="submit" name="action" value="unlink_route"
                                 class="btn btn-secondary w-100 mb-2">
-                            <fmt:message key="table.button.unLink"/>
+                            <fmt:message key="common.button.unLink"/>
                         </button>
                     </div>
                     <div class="col">
                         <button type="button" class="btn btn-primary w-100 mb-2"
                                 onclick="location.href = 'controller?action=view_route&routeId=${requestScope.ship.route.id}';"
                                 ${empty requestScope.ship.route.id ? 'disabled' : ''}>
-                            <fmt:message key="table.button.more"/>
+                            <fmt:message key="common.button.more"/>
                         </button>
                     </div>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.id"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.id"/></span>
                     <input type="number" class="form-control" value="${requestScope.ship.route.id}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.name"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.name"/></span>
                     <input type="text" class="form-control" value="${requestScope.ship.route.name}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.startOfCruise"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.startOfCruise"/></span>
                     <input type="date" class="form-control" value="${requestScope.ship.route.startOfCruise}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.endOfCruise"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.endOfCruise"/></span>
                     <input type="date" class="form-control" value="${requestScope.ship.route.endOfCruise}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.price"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.price"/></span>
                     <input type="number" class="form-control" value="${requestScope.ship.route.price}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.duration"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.duration"/></span>
                     <input type="text" class="form-control" value="${requestScope.ship.route.duration}" readonly>
                 </div>
                 <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.numberOfPorts"/></span>
+                    <span class="input-group-text w-25"><fmt:message key="common.numberOfPorts"/></span>
                     <input type="text" class="form-control" value="${requestScope.ship.route.numOfPorts}" readonly>
                 </div>
             </form>
@@ -123,56 +123,56 @@
                 <input type="hidden" name="action" value="view_ship">
                 <input type="hidden" name="id" value="${requestScope.ship.id}">
                 <div class="col">
-                    <tag:inputField fieldName="nameF" entity="route" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="nameF" entity="route" labelKey="common.name" width="25" type="text"
                                     placeholder="ship.search.route.placeholder"/>
                 </div>
                 <div class="col">
                     <select class="form-select mb-2" name="sort">
                         <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                            <fmt:message key="sort.default"/>
+                            <fmt:message key="common.sort.default"/>
                         </option>
                         <option value="route.id" ${sessionScope.sort == 'route.id' ? 'selected' : ''}>
-                            <fmt:message key="table.id"/>
+                            <fmt:message key="common.id"/>
                         </option>
                         <option value="route.name" ${sessionScope.sort == 'route.name' ? 'selected' : ''}>
-                            <fmt:message key="table.name"/>
+                            <fmt:message key="common.name"/>
                         </option>
                         <option value="route.start_of_cruise" ${sessionScope.sort == 'route.startOfCruise' ? 'selected' : ''}>
-                            <fmt:message key="table.startOfCruise"/>
+                            <fmt:message key="common.startOfCruise"/>
                         </option>
                         <option value="route.end_of_cruise" ${sessionScope.sort == 'route.endOfCruise' ? 'selected' : ''}>
-                            <fmt:message key="table.endOfCruise"/>
+                            <fmt:message key="common.endOfCruise"/>
                         </option>
                         <option value="route.price" ${sessionScope.sort == 'route.price' ? 'selected' : ''}>
-                            <fmt:message key="table.price"/>
+                            <fmt:message key="common.price"/>
                         </option>
                         <option value="route.number_of_ports" ${sessionScope.sort == 'route.numberOfPorts' ? 'selected' : ''}>
-                            <fmt:message key="table.numberOfPorts"/>
+                            <fmt:message key="common.numberOfPorts"/>
                         </option>
                     </select>
                 </div>
                 <div class="col">
                     <select class="form-select mb-2" name="order">
                         <option value="" ${empty sessionScope.order ? 'selected' : ''}>
-                            <fmt:message key="order.default"/>
+                            <fmt:message key="common.order.default"/>
                         </option>
                         <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
-                            <fmt:message key="order.asc"/>
+                            <fmt:message key="common.order.asc"/>
                         </option>
                         <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
-                            <fmt:message key="order.desc"/>
+                            <fmt:message key="common.order.desc"/>
                         </option>
                     </select>
                 </div>
                 <div class="col-2">
                     <div class="input-group mb-2">
-                        <span class="input-group-text w-50"><fmt:message key="sort.rows"/></span>
+                        <span class="input-group-text w-50"><fmt:message key="common.rows"/></span>
                         <input type="number" id="rows" name="rows" class="form-control" min="1"
                                value="${requestScope.rows}">
                     </div>
                 </div>
                 <div class="col-2">
-                    <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
+                    <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>
                 </div>
             </div>
         </form>
@@ -185,12 +185,12 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th class="text-center"><fmt:message key="table.id"/></th>
-                            <th class="text-center"><fmt:message key="table.name"/></th>
-                            <th class="text-center"><fmt:message key="table.startOfCruise"/></th>
-                            <th class="text-center"><fmt:message key="table.endOfCruise"/></th>
-                            <th class="text-center"><fmt:message key="table.price"/></th>
-                            <th class="text-center"><fmt:message key="table.numberOfPorts"/></th>
+                            <th class="text-center"><fmt:message key="common.id"/></th>
+                            <th class="text-center"><fmt:message key="common.name"/></th>
+                            <th class="text-center"><fmt:message key="common.startOfCruise"/></th>
+                            <th class="text-center"><fmt:message key="common.endOfCruise"/></th>
+                            <th class="text-center"><fmt:message key="common.price"/></th>
+                            <th class="text-center"><fmt:message key="common.numberOfPorts"/></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -205,7 +205,7 @@
                                 <td class="text-center">
                                     <button type="submit" name="routeId" value="${route.id}"
                                             class="btn btn-primary px-2 py-0" style="width: auto">
-                                        <fmt:message key="table.button.link"/>
+                                        <fmt:message key="common.button.link"/>
                                     </button>
                                 </td>
                             </tr>

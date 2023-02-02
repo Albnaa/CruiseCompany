@@ -6,13 +6,13 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public abstract class Validator {
-//    public static void validatePassword(String password, String message) throws InvalidInputException {
-//        validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!#%*?&]{8,}$", message);
-//    }
+    public static void validatePassword(String password, String message, Map<String, String> errors)  {
+        validate(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!#%*?&]{8,}$", message, errors);
+    }
 
-    public static void confirmPassword(String password, String confirmPassword, String message) throws InvalidInputException {
+    public static void confirmPassword(String password, String confirmPassword, String message, Map<String, String> errors) {
         if (!password.equals(confirmPassword)) {
-            throw new InvalidInputException(message);
+            errors.put(message, message);
         }
     }
 
