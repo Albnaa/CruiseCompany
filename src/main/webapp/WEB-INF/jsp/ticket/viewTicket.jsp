@@ -12,12 +12,7 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
-</c:if>
+<jsp:include page="/WEB-INF/fragments/userNavbar.jsp"/>
 
 <div class="container">
     <h2 class="text-center p-3">Ticket#${requestScope.ticket.id}</h2>

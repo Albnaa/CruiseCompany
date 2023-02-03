@@ -3,6 +3,7 @@ package com.java.cruisecompany.model.utils;
 import com.java.cruisecompany.exceptions.InvalidInputException;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 public class ValidationUtil {
     //Minimum eight characters, at least one letter, one number,  one special character and one uppercase character
@@ -49,6 +50,8 @@ public class ValidationUtil {
             throw new InvalidInputException(message);
         }
     }
+
+
 
     private static void validate(String data, String regex, String message) throws InvalidInputException {
         if (data == null || data.isEmpty()) {

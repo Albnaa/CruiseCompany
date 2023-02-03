@@ -20,13 +20,8 @@
     <c:param name="action" value="view_route"/>
     <c:param name="sort" value="${sessionScope.sort}"/>
     <c:param name="order" value="${sessionScope.order}"/>
-    <c:param name="routeId" value="${requestScope.route.id}"/>
+    <c:param name="id" value="${requestScope.route.id}"/>
 </c:url>
-
-<%--<c:set var="link"--%>
-<%--       value="controller?action=view_route&sort=${sessionScope.sort}&order=${sessionScope.order}&routeId=${requestScope.route.id}"--%>
-<%--       scope="request"/>--%>
-
 
 <div class="container">
     <h2 class="text-center p-3"><fmt:message key="route.header"/></h2>
@@ -34,8 +29,8 @@
         <div class="col-6">
             <form method="post" action="controller">
                 <button type="button" class="btn btn-primary w-100 mb-2"
-                        data-bs-toggle="modal" data-bs-target="#createRouteModal"><fmt:message
-                        key="table.button.create"/>
+                        data-bs-toggle="modal" data-bs-target="#createRouteModal">
+                    <fmt:message key="table.button.create"/>
                 </button>
                 <div class="btn-group w-100">
                     <button type="submit" name="action" value="update_route" class="btn btn-warning w-50 mb-2">
@@ -54,11 +49,11 @@
                                     value="${requestScope.route.name}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="startOfCruise" entity="route" labelKey="table.startOfCruise" width="25"
+                    <tag:inputField fieldName="startDate" entity="route" labelKey="table.startOfCruise" width="25"
                                     type="date" value="${requestScope.route.startOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="endOfCruise" entity="route" labelKey="table.endOfCruise" width="25"
+                    <tag:inputField fieldName="endDate" entity="route" labelKey="table.endOfCruise" width="25"
                                     type="date" value="${requestScope.route.endOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
@@ -78,7 +73,7 @@
         <div class="col-4">
             <form method="post" action="controller">
                 <input type="hidden" name="action" value="add_waypoint">
-                <input type="hidden" name="routeId" value="${requestScope.route.id}">
+                <input type="hidden" name="id" value="${requestScope.route.id}">
                 <c:choose>
                 <c:when test="${not empty requestScope.ports}">
                 <table class="table table-striped">
@@ -123,7 +118,7 @@
             <br>
             <form method="get" action="controller">
                 <input type="hidden" name="action" value="view_route">
-                <input type="hidden" name="routeId" value="${requestScope.route.id}">
+                <input type="hidden" name="id" value="${requestScope.route.id}">
                 <input type="text" class="form-control mb-2" placeholder="<fmt:message key="route.port.placeholder"/>">
                 <select class="form-select mb-2" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
@@ -158,7 +153,7 @@
     </div>
     <form method="post" action="controller">
         <input type="hidden" name="action" value="delete_waypoint">
-        <input type="hidden" name="routeId" value="${requestScope.route.id}">
+        <input type="hidden" name="id" value="${requestScope.route.id}">
         <c:choose>
             <c:when test="${not empty requestScope.route.waypoints}">
                 <table class="table table-striped">

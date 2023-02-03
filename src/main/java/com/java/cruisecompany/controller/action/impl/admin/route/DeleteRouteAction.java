@@ -11,7 +11,7 @@ public class DeleteRouteAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
-            routeService.delete(Long.parseLong(request.getParameter("routeId")));
+            routeService.delete(Long.parseLong(request.getParameter("id")));
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }

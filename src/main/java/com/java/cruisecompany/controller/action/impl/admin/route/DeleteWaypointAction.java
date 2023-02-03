@@ -11,7 +11,7 @@ public class DeleteWaypointAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
-            routeService.deleteWaypoint(Long.parseLong(request.getParameter("routeId")), Long.parseLong(request.getParameter("waypointPortId")));
+            routeService.deleteWaypoint(Long.parseLong(request.getParameter("id")), Long.parseLong(request.getParameter("waypointPortId")));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

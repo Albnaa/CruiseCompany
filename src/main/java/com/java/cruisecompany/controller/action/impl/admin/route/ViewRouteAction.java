@@ -20,8 +20,8 @@ public class ViewRouteAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        int routeId = Integer.parseInt(request.getParameter("routeId"));
-        Optional<RouteDTO> route = routeService.findById(routeId);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Optional<RouteDTO> route = routeService.findById(id);
         route.ifPresent(routeDTO -> request.setAttribute("route", routeDTO));
 
         QueryBuilder queryBuilder = new PortQueryBuilder();

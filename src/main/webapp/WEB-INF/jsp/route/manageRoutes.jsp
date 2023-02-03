@@ -102,7 +102,7 @@
                             <td>${route.numOfPorts}</td>
                             <td>
                                 <a class="btn btn-primary p-0 " style="width: 60px"
-                                   href="controller?action=view_route&routeId=${route.id}&rows=7"><fmt:message
+                                   href="controller?action=view_route&id=${route.id}&rows=7"><fmt:message
                                         key="table.button.more"/></a>
                             </td>
                         </tr>

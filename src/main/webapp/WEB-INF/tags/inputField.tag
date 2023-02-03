@@ -16,12 +16,13 @@
 
 <div class="input-group">
     <span class="input-group-text w-${width}"><fmt:message key="${labelKey}"/></span>
-    <input class="form-control ${fn:contains(sessionScope.error, entity.concat('.').concat(fieldName)) ? 'is-invalid' : ''}"
+    <input class="form-control
+    ${not empty sessionScope.errors['error.'.concat(entity).concat('.').concat(fieldName)] ? 'is-invalid' : ''}"
            type="${type}" name="${fieldName}" value="${value}" placeholder="<fmt:message key="${placeholder}"/>"
            ${readonly} ${required}>
-    <c:if test="${fn:contains(sessionScope.error, '')}">
-        <div class="invalid-feedback pb-1">
-            <fmt:message key="${sessionScope.error}" />
+    <c:forEach var="error" items="${sessionScope.errors['error.'.concat(entity).concat('.').concat(fieldName)]}">
+        <div class="invalid-feedback">
+            <fmt:message key="${error}"/>
         </div>
-    </c:if>
+    </c:forEach>
 </div>

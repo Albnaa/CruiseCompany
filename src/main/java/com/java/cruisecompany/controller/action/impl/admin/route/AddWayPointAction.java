@@ -12,12 +12,12 @@ public class AddWayPointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        String routeId = request.getParameter("routeId");
+        String id = request.getParameter("id");
         String portId = request.getParameter("portId");
         String arriveDate = request.getParameter("arriveDate");
         String departureDate = request.getParameter("departureDate");
         try {
-            routeService.addWaypoint(Long.parseLong(routeId), Long.parseLong(portId), LocalDate.parse(arriveDate),
+            routeService.addWaypoint(Long.parseLong(id), Long.parseLong(portId), LocalDate.parse(arriveDate),
                     LocalDate.parse(departureDate));
         } catch (Exception e) {
             System.out.println(e.getMessage());

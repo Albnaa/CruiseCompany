@@ -1,35 +1,45 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<fmt:setLocale value="${sessionScope.locale}" scope="session"/>
+<fmt:setBundle basename="locale"/>
 <div class="modal fade" id="createRouteModal" tabindex="-1" aria-labelledby="createRouteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5 text-center" id="createRouteModalLabel">Create route</h1>
+                <h1 class="modal-title fs-5 text-center" id="createRouteModalLabel">
+                    <fmt:message key="route.modal.createRoute"/>
+                </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="get">
+                <form method="post" action="controller">
                     <input type="hidden" name="action" value="create_route">
-                    <div class="input-group mb-2">
-                        <span class="input-group-text w-25">Name</span>
-                        <input type="text" class="form-control" name="routeName" required>
+                    <div class="mb-2">
+                        <tag:inputField fieldName="name" entity="route" labelKey="table.name" width="25" type="text"
+                                        placeholder="route.modal.name.placeholder"/>
                     </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text w-25">Start date</span>
-                        <input type="date" class="form-control" name="routeStart" required>
+                    <div class="mb-2">
+                        <tag:inputField fieldName="startDate" entity="route" labelKey="table.startDate" width="25"
+                                        type="date"/>
                     </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text w-25">End date</span>
-                        <input type="date" class="form-control" name="routeEnd" required>
+                    <div class="mb-2">
+                        <tag:inputField fieldName="endDate" entity="route" labelKey="table.endDate" width="25"
+                                        type="date"/>
                     </div>
-                    <div class="input-group mb-2">
-                        <span class="input-group-text w-25">Price</span>
-                        <input type="number" class="form-control" name="price" required>
+                    <div class="mb-2">
+                        <tag:inputField fieldName="price" entity="route" labelKey="table.price" width="25" type="number"
+                                        placeholder="route.modal.price.placeholder"/>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col">
-                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">
+                                <fmt:message key="table.button.close"/>
+                            </button>
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-primary w-100">Create</button>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <fmt:message key="table.button.create"/>
+                            </button>
                         </div>
                     </div>
                 </form>

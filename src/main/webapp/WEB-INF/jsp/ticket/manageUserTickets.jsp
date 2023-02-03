@@ -12,12 +12,7 @@
 </head>
 <body>
 
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
-</c:if>
+<jsp:include page="/WEB-INF/fragments/userNavbar.jsp"/>
 
 <c:set var="link"
        value="controller?action=manage_user_tickets&sort=${sessionScope.sort}&order=${sessionScope.order}"
@@ -103,7 +98,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <jsp:include page="../../../templates/pagination.jsp"/>
+                <jsp:include page="/WEB-INF/fragments/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary">
