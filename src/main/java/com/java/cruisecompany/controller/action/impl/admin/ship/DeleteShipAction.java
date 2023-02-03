@@ -11,7 +11,7 @@ public class DeleteShipAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
-            shipService.delete(Long.parseLong(request.getParameter("shipId")));
+            shipService.delete(Long.parseLong(request.getParameter("id")));
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }

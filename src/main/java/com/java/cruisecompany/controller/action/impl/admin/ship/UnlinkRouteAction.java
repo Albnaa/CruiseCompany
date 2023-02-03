@@ -11,7 +11,7 @@ public class UnlinkRouteAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
-            shipService.deleteRoute(Long.parseLong(request.getParameter("shipId")));
+            shipService.deleteRoute(Long.parseLong(request.getParameter("id")));
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }

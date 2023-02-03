@@ -11,12 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
-</c:if>
+
+<jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
 
 <c:set var="link"
        value="controller?action=manage_route&sort=${sessionScope.sort}&order=${sessionScope.order}"
@@ -52,7 +48,7 @@
             <div class="col">
                 <div class="input-group">
                     <span class="input-group-text"><fmt:message key="filter.startDate"/></span>
-                    <input type="date" placeholder="dd/MM/yyyy" class="form-control" name="startDate" >
+                    <input type="date" placeholder="dd/MM/yyyy" class="form-control" name="startDate">
                 </div>
             </div>
             <div class="col">
@@ -113,6 +109,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <jsp:include page="/WEB-INF/fragments/pagination.jsp"/>
             </c:when>
             <c:otherwise>
                 <div class="alert alert-primary">
@@ -121,10 +118,9 @@
             </c:otherwise>
         </c:choose>
     </form>
-    <jsp:include page="../../../templates/pagination.jsp"/>
 </div>
 
-<jsp:include page="../../../templates/createRouteModal.jsp"/>
-<jsp:include page="../../../templates/footer.jsp"/>
+<jsp:include page="/WEB-INF/fragments/createRouteModal.jsp"/>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 </html>

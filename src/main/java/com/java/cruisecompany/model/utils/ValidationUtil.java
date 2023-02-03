@@ -36,6 +36,8 @@ public class ValidationUtil {
         }
     }
 
+
+
     public static int validateDuration(String duration, String message) throws InvalidInputException {
         try {
             int value = Integer.parseInt(duration);

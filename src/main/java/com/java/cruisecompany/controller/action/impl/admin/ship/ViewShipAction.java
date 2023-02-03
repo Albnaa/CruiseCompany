@@ -19,7 +19,7 @@ public class ViewShipAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        long shipId = Long.parseLong(request.getParameter("shipId"));
+        long shipId = Long.parseLong(request.getParameter("id"));
 
         try {
             Optional<ShipDTO> ship = shipService.findById(shipId);

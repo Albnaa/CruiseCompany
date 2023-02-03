@@ -13,7 +13,7 @@ public class LinkRouteAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         try {
-            shipService.addRoute(parseLong(request.getParameter("shipId")),
+            shipService.addRoute(parseLong(request.getParameter("id")),
                     parseLong(request.getParameter("routeId")));
         } catch (ServiceException e) {
             System.out.println(e.getMessage());

@@ -21,9 +21,9 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
     private static final String UPDATE_TICKET_STATUS = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
     private static final String SELECT_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, " +
-            "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, r.id, r.name, " +
-            "r.start_of_cruise FROM ticket LEFT JOIN user on user.id = ticket.user_id LEFT JOIN ship on " +
-            "ship.id = ticket.ship_id LEFT JOIN route r on r.id = ship.route_id";
+            "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, route.id, route.name, " +
+            "route.start_of_cruise FROM ticket LEFT JOIN user on user.id = ticket.user_id LEFT JOIN ship on " +
+            "ship.id = ticket.ship_id LEFT JOIN route on route.id = ship.route_id";
     private static final String SELECT_TICKETS_BY_USER = SELECT_ALL + " WHERE user.id = ?";
     private static final String SELECT_BY_ID = SELECT_ALL + " WHERE ticket.id = ?";
     private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ticket LEFT JOIN user ON user.id = ticket.user_id";

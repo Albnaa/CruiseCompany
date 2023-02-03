@@ -24,7 +24,7 @@ public class TicketQueryBuilder extends QueryBuilder{
     @Override
     String buildGroupByFragment() {
         return " GROUP BY ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.first_name," +
-                " user.last_name, user.balance, ticket.ship_id, ship.name, r.id, r.name, r.start_of_cruise ";
+                " user.last_name, user.balance, ticket.ship_id, ship.name, route.id, route.name, route.start_of_cruise ";
     }
 
     @Override
@@ -55,7 +55,10 @@ public class TicketQueryBuilder extends QueryBuilder{
 
     @Override
     boolean parameterIsValid(String parameter) {
-        return false;
+        if (parameter == null || parameter.isEmpty()) {
+            return false;
+        }
+        return TICKET_FIELDS.contains(parameter);
     }
 
     @Override

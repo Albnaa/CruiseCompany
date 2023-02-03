@@ -2,6 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fd" uri="/WEB-INF/tld/custom.tld" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
 <html>
@@ -11,12 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<c:if test="${sessionScope.role == 'ADMIN'}">
-    <jsp:include page="../../../templates/adminNavbar.jsp"/>
-</c:if>
-<c:if test="${sessionScope.role == 'USER'}">
-    <jsp:include page="../../../templates/userNavbar.jsp"/>
-</c:if>
+
+<jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
+
 
 <c:url value="controller" var="link" scope="request">
     <c:param name="action" value="view_route"/>
@@ -47,37 +45,33 @@
                         <fmt:message key="table.button.delete"/>
                     </button>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.id"/></span>
-                    <input type="number" class="form-control" name="routeId" value="${requestScope.route.id}" readonly>
+                <div class="mb-2">
+                    <tag:inputField fieldName="id" entity="route" labelKey="table.id" width="25" type="number"
+                                    value="${requestScope.route.id}" readonly="readonly"/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.name"/></span>
-                    <input type="text" class="form-control" name="routeName" value="${requestScope.route.name}">
+                <div class="mb-2">
+                    <tag:inputField fieldName="name" entity="route" labelKey="table.name" width="25" type="text"
+                                    value="${requestScope.route.name}" placeholder=""/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.startOfCruise"/></span>
-                    <input type="date" class="form-control" name="routeStart"
-                           value="${requestScope.route.startOfCruise}">
+                <div class="mb-2">
+                    <tag:inputField fieldName="startOfCruise" entity="route" labelKey="table.startOfCruise" width="25"
+                                    type="date" value="${requestScope.route.startOfCruise}" placeholder=""/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.endOfCruise"/></span>
-                    <input type="date" class="form-control" name="routeEnd" value="${requestScope.route.endOfCruise}">
+                <div class="mb-2">
+                    <tag:inputField fieldName="endOfCruise" entity="route" labelKey="table.endOfCruise" width="25"
+                                    type="date" value="${requestScope.route.endOfCruise}" placeholder=""/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.price"/></span>
-                    <input type="number" class="form-control" name="price" value="${requestScope.route.price}">
+                <div class="mb-2">
+                    <tag:inputField fieldName="price" entity="route" labelKey="table.price" width="25" type="number"
+                                    value="${requestScope.route.price}" placeholder=""/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.duration"/></span>
-                    <input type="text" class="form-control" name="routeDuration" value="${requestScope.route.duration}"
-                           readonly>
+                <div class="mb-2">
+                    <tag:inputField fieldName="duration" entity="route" labelKey="table.duration" width="25" type="number"
+                                    value="${requestScope.route.duration}" readonly="readonly"/>
                 </div>
-                <div class="input-group mb-2">
-                    <span class="input-group-text w-25"><fmt:message key="table.numberOfPorts"/></span>
-                    <input type="text" class="form-control" name="routeNumOfPorts"
-                           value="${requestScope.route.numOfPorts}"
-                           readonly>
+                <div class="mb-2">
+                    <tag:inputField fieldName="numOfPorts" entity="route" labelKey="table.numberOfPorts" width="25"
+                                    type="text" value="${requestScope.route.numOfPorts}" readonly="readonly"/>
                 </div>
             </form>
         </div>
@@ -110,7 +104,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                    <jsp:include page="../../../templates/pagination.jsp"/>
+                    <jsp:include page="/WEB-INF/fragments/pagination.jsp"/>
                 </c:when>
                 <c:otherwise>
                 <div class="alert alert-primary text-center">
@@ -132,20 +126,26 @@
                 <input type="hidden" name="routeId" value="${requestScope.route.id}">
                 <input type="text" class="form-control mb-2" placeholder="<fmt:message key="route.port.placeholder"/>">
                 <select class="form-select mb-2" name="sort">
-                    <option value="" ${empty sessionScope.sort ? 'selected' : ''}><fmt:message
-                            key="sort.default"/></option>
-                    <option value="port.id" ${sessionScope.sort == 'port.id' ? 'selected' : ''}><fmt:message
-                            key="table.id"/></option>
-                    <option value="port.name" ${sessionScope.sort == 'port.name' ? 'selected' : ''}><fmt:message
-                            key="table.name"/></option>
+                    <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
+                        <fmt:message key="sort.default"/>\
+                    </option>
+                    <option value="port.id" ${sessionScope.sort == 'port.id' ? 'selected' : ''}>
+                        <fmt:message key="table.id"/>
+                    </option>
+                    <option value="port.name" ${sessionScope.sort == 'port.name' ? 'selected' : ''}>
+                        <fmt:message key="table.name"/>
+                    </option>
                 </select>
                 <select class="form-select mb-2" name="order">
-                    <option value="" ${empty sessionScope.order ? 'selected' : ''}><fmt:message
-                            key="order.default"/></option>
-                    <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}><fmt:message
-                            key="order.asc"/></option>
-                    <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}><fmt:message
-                            key="order.desc"/></option>
+                    <option value="" ${empty sessionScope.order ? 'selected' : ''}>
+                        <fmt:message key="order.default"/>
+                    </option>
+                    <option value="asc" ${sessionScope.order == 'asc' ? 'selected' : ''}>
+                        <fmt:message key="order.asc"/>
+                    </option>
+                    <option value="desc" ${sessionScope.order == 'desc' ? 'selected' : ''}>
+                        <fmt:message key="order.desc"/>
+                    </option>
                 </select>
                 <div class="input-group mb-2">
                     <span class="input-group-text"><fmt:message key="sort.rows"/></span>
@@ -198,7 +198,7 @@
     </form>
 </div>
 
-<jsp:include page="../../../templates/createRouteModal.jsp"/>
-<jsp:include page="../../../templates/footer.jsp"/>
+<jsp:include page="/WEB-INF/fragments/createRouteModal.jsp"/>
+<jsp:include page="/WEB-INF/fragments/footer.jsp"/>
 </body>
 </html>

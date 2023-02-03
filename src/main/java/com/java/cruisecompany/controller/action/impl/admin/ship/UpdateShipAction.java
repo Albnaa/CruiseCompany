@@ -12,17 +12,17 @@ public class UpdateShipAction implements Action {
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
         ShipDTO ship = ShipDTO.builder()
-                .id(Long.parseLong(request.getParameter("shipId")))
-                .name(request.getParameter("shipName"))
-                .capacity(Integer.parseInt(request.getParameter("shipCapacity")))
-                .visitedPorts(Integer.parseInt(request.getParameter("shipVisitedPorts")))
-                .staff(Integer.parseInt(request.getParameter("shipStaff")))
+                .id(Long.parseLong(request.getParameter("id")))
+                .name(request.getParameter("name"))
+                .capacity(Integer.parseInt(request.getParameter("capacity")))
+                .visitedPorts(Integer.parseInt(request.getParameter("visitedPorts")))
+                .staff(Integer.parseInt(request.getParameter("staff")))
                 .build();
 
         try {
             shipService.update(ship);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            request.getSession().setAttribute("error", e.getMessage());
         }
         return request.getHeader("referer");
     }

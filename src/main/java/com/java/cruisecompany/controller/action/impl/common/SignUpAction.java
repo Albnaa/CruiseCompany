@@ -22,8 +22,6 @@ public class SignUpAction implements Action {
                 .lastName(request.getParameter("lastName"))
                 .build();
 
-        System.out.println(user);
-
         try {
             userService.register(user, request.getParameter("password"), request.getParameter("confirmPassword"));
         } catch (ServiceException e) {
