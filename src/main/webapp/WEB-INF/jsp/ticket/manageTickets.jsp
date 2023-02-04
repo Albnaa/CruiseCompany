@@ -120,7 +120,8 @@
                             <td>${ticket.status}</td>
                             <td>
                                 <a class="btn btn-primary p-0" style="width: 60px"
-                                   href="controller?action=view_ticket&ticketId=${ticket.id}">More
+                                   href="controller?action=view_ticket&ticketId=${ticket.id}">
+                                    <fmt:message key="table.button.more"/>
                                 </a>
                             </td>
                         </tr>

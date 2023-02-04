@@ -60,14 +60,14 @@
             </div>
             <div class="col-1">
                 <button type="button" class="btn btn-primary w-100"
-                        data-bs-toggle="modal" data-bs-target="#createRouteModal"><fmt:message
-                        key="table.button.create"/>
+                        data-bs-toggle="modal" data-bs-target="#createRouteModal">
+                    <fmt:message key="table.button.create"/>
                 </button>
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
-                        onclick="location.href = 'controller?action=manage_port';"><fmt:message
-                        key="table.button.reset"/>
+                        onclick="location.href = 'controller?action=manage_port';">
+                    <fmt:message key="table.button.reset"/>
                 </button>
                 <button type="submit" class="btn btn-primary w-100"><fmt:message key="table.button.submit"/></button>
             </div>
@@ -102,8 +102,9 @@
                             <td>${route.numOfPorts}</td>
                             <td>
                                 <a class="btn btn-primary p-0 " style="width: 60px"
-                                   href="controller?action=view_route&id=${route.id}&rows=7"><fmt:message
-                                        key="table.button.more"/></a>
+                                   href="controller?action=view_route&id=${route.id}&rows=8">
+                                    <fmt:message key="table.button.more"/>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

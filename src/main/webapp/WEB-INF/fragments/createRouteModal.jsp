@@ -15,20 +15,20 @@
                 <form method="post" action="controller">
                     <input type="hidden" name="action" value="create_route">
                     <div class="mb-2">
-                        <tag:inputField fieldName="name" entity="route" labelKey="table.name" width="25" type="text"
-                                        placeholder="route.modal.name.placeholder"/>
+                        <tag:inputField fieldName="name" entity="create.route" labelKey="table.name" width="25"
+                                        type="text" placeholder="route.modal.name.placeholder"/>
                     </div>
                     <div class="mb-2">
-                        <tag:inputField fieldName="startDate" entity="route" labelKey="table.startDate" width="25"
+                        <tag:inputField fieldName="startDate" entity="create.route" labelKey="table.startDate" width="25"
                                         type="date"/>
                     </div>
                     <div class="mb-2">
-                        <tag:inputField fieldName="endDate" entity="route" labelKey="table.endDate" width="25"
+                        <tag:inputField fieldName="endDate" entity="create.route" labelKey="table.endDate" width="25"
                                         type="date"/>
                     </div>
                     <div class="mb-2">
-                        <tag:inputField fieldName="price" entity="route" labelKey="table.price" width="25" type="number"
-                                        placeholder="route.modal.price.placeholder"/>
+                        <tag:inputField fieldName="price" entity="create.route" labelKey="table.price" width="25"
+                                        type="number" placeholder="route.modal.price.placeholder"/>
                     </div>
                     <div class="row justify-content-center mt-3">
                         <div class="col">

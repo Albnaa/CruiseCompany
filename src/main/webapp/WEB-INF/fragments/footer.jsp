@@ -1,5 +1,5 @@
 <div class="container">
-    <footer class="py-3 my-4">
+    <footer class="pt-3 pb-1 mt-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <img src="Img/logo.png" style="height: 40px" alt="logo">
         </ul>

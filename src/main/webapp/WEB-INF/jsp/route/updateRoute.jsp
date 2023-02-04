@@ -41,31 +41,31 @@
                     </button>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="route" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.route" labelKey="table.id" width="25" type="number"
                                     value="${requestScope.route.id}" readonly="readonly"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="route" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="update.route" labelKey="table.name" width="25" type="text"
                                     value="${requestScope.route.name}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="startDate" entity="route" labelKey="table.startOfCruise" width="25"
+                    <tag:inputField fieldName="startDate" entity="update.route" labelKey="table.startOfCruise" width="25"
                                     type="date" value="${requestScope.route.startOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="endDate" entity="route" labelKey="table.endOfCruise" width="25"
+                    <tag:inputField fieldName="endDate" entity="update.route" labelKey="table.endOfCruise" width="25"
                                     type="date" value="${requestScope.route.endOfCruise}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="price" entity="route" labelKey="table.price" width="25" type="number"
-                                    value="${requestScope.route.price}" placeholder=""/>
+                    <tag:inputField fieldName="price" entity="update.route" labelKey="table.price" width="25"
+                                    type="number" value="${requestScope.route.price}" placeholder=""/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="duration" entity="route" labelKey="table.duration" width="25" type="number"
-                                    value="${requestScope.route.duration}" readonly="readonly"/>
+                    <tag:inputField fieldName="duration" entity="update.route" labelKey="table.duration" width="25"
+                                    type="number" value="${requestScope.route.duration}" readonly="readonly"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="numOfPorts" entity="route" labelKey="table.numberOfPorts" width="25"
+                    <tag:inputField fieldName="numOfPorts" entity="update.route" labelKey="table.numberOfPorts" width="25"
                                     type="text" value="${requestScope.route.numOfPorts}" readonly="readonly"/>
                 </div>
             </form>
@@ -110,10 +110,17 @@
 
         </div>
         <div class="col-2 justify-content-center">
-            <label for="arriveDate"><fmt:message key="table.arrivalTime"/></label>
-            <input id="arriveDate" type="date" class="form-control" name="arriveDate" required>
-            <label for="departureDate"><fmt:message key="table.departureTime"/></label>
-            <input id="departureDate" type="date" class="form-control mb-2" name="departureDate" required>
+            <div class="">
+                <fmt:message key="table.arrivalTime"/>
+                <tag:inputField fieldName="startDate" entity="add.waypoint" labelKey="table.empty" width="auto"
+                                type="date"/>
+            </div>
+            <div class="">
+                <fmt:message key="table.departureTime"/>
+                <tag:inputField fieldName="endDate" entity="add.waypoint" labelKey="table.empty" width="auto"
+                                type="date"/>
+            </div>
+
             </form>
             <br>
             <form method="get" action="controller">
@@ -122,7 +129,7 @@
                 <input type="text" class="form-control mb-2" placeholder="<fmt:message key="route.port.placeholder"/>">
                 <select class="form-select mb-2" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
-                        <fmt:message key="sort.default"/>\
+                        <fmt:message key="sort.default"/>
                     </option>
                     <option value="port.id" ${sessionScope.sort == 'port.id' ? 'selected' : ''}>
                         <fmt:message key="table.id"/>

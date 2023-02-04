@@ -19,8 +19,8 @@ public class UpdatePortAction implements Action {
         String name = request.getParameter("name");
 
         Map<String, String> errors = new HashMap<>();
-        PortValidator.validatePortId(id, errors);
-        PortValidator.validatePortName(name, errors);
+        PortValidator.validatePortId(id,"update.port", errors);
+        PortValidator.validatePortName(name,"update.port", errors);
 
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);
@@ -36,8 +36,8 @@ public class UpdatePortAction implements Action {
             portService.update(port);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
-            request.getSession().setAttribute("error", e.getMessage());
+            errors.put("error.update.port.name", e.getMessage());
+            request.getSession().setAttribute("errors", errors);
         }
 
         return request.getHeader("referer");

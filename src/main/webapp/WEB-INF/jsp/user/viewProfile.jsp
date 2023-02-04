@@ -73,16 +73,16 @@
         <div class="col col-6 collapse collapse" id="updateForm">
             <form method="POST" action="controller">
                 <input type="hidden" name="action" value="update_user">
-                <tag:inputField fieldName="id" entity="user" labelKey="table.id" width="25" type="text"
+                <tag:inputField fieldName="id" entity="update.user" labelKey="table.id" width="25" type="text"
                                 value="${requestScope.user.id}" readonly="readonly"/>
-                <tag:inputField fieldName="login" entity="user" labelKey="table.login" width="25" type="text"
+                <tag:inputField fieldName="login" entity="update.user" labelKey="table.login" width="25" type="text"
                                 value="${requestScope.user.login}"/>
-                <tag:inputField fieldName="email" entity="user" labelKey="table.email" width="25" type="email"
+                <tag:inputField fieldName="email" entity="update.user" labelKey="table.email" width="25" type="email"
                                 value="${requestScope.user.email}"/>
-                <tag:inputField fieldName="firstName" entity="user" labelKey="table.firstName" width="25" type="text"
-                                value="${requestScope.user.firstName}"/>
-                <tag:inputField fieldName="lastName" entity="user" labelKey="table.lastName" width="25" type="text"
-                                value="${requestScope.user.lastName}" />
+                <tag:inputField fieldName="firstName" entity="update.user" labelKey="table.firstName" width="25"
+                                type="text" value="${requestScope.user.firstName}"/>
+                <tag:inputField fieldName="lastName" entity="update.user" labelKey="table.lastName" width="25"
+                                type="text" value="${requestScope.user.lastName}" />
                 <div class="input-group">
                     <span class="input-group-text w-25"><fmt:message key="table.role"/></span>
                     <select class="form-select" name="role" style="height: 41.6px">

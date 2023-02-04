@@ -4,27 +4,27 @@ import java.time.LocalDate;
 import java.util.Map;
 
 public class RouteValidator extends Validator{
-    public static void validateRouteId(String id, Map<String, String> errors) {
-        validateNonNegativeLong(id, "error.route.id", errors);
+    public static void validateRouteId(String id, String action, Map<String, String> errors) {
+        validateNonNegativeLong(id, "error." + action + ".id", errors);
     }
 
-    public static void validatePortName(String name, Map<String, String> errors) {
-        validateOnlyLettersWithSpaces(name, "error.route.name", errors);
+    public static void validateRouteName(String name, String action, Map<String, String> errors) {
+        validateOnlyLettersWithSpaces(name, "error." + action + ".name", errors);
     }
 
-    public static void validateRouteDate(String date, Map<String, String> errors) {
-        validateDate(date, "error.route.startDate", errors);
+    public static void validateRouteDate(String date, String action, Map<String, String> errors) {
+        validateDate(date, "error." + action + ".startDate", errors);
     }
 
-    public static void validateRouteDates(String startDate, String endDate, Map<String, String> errors) {
-        validateDate(startDate, "error.route.startDate", errors);
-        validateDate(endDate, "error.route.endDate", errors);
-        if (LocalDate.parse(endDate).isBefore(LocalDate.parse(startDate))) {
-            errors.put("error.route.endDate", "error.route.endDate");
+    public static void validateRouteDates(String startDate, String endDate, String action, Map<String, String> errors) {
+        boolean isFirstValid = validateDate(startDate, "error." + action + ".startDate", errors);
+        boolean isSecondValid = validateDate(endDate, "error." + action + ".endDate", errors);
+        if (isFirstValid && isSecondValid && LocalDate.parse(endDate).isBefore(LocalDate.parse(startDate))) {
+            errors.put("error." + action + ".endDate", "error." + action + ".endDate");
         }
     }
 
-    public static void validatePrice(String price, Map<String, String> errors) {
-        validateNonNegativeInt(price, "error.route.price", errors);
+    public static void validatePrice(String price, String action, Map<String, String> errors) {
+        validateNonNegativeDouble(price, "error." + action + ".price", errors);
     }
 }

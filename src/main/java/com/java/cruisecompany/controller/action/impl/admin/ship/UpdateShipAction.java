@@ -5,18 +5,36 @@ import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
+import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UpdateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String capacity = request.getParameter("capacity");
+        String visitedPorts = request.getParameter("visitedPorts");
+        String staff = request.getParameter("staff");
+
+        Map<String, String> errors = validateRouteParameters(id, name, capacity, visitedPorts, staff);
+
+        if (!errors.isEmpty()) {
+            request.getSession().setAttribute("errors", errors);
+            return request.getHeader("referer");
+        }
+        request.getSession().removeAttribute("errors");
+
         ShipDTO ship = ShipDTO.builder()
-                .id(Long.parseLong(request.getParameter("id")))
-                .name(request.getParameter("name"))
-                .capacity(Integer.parseInt(request.getParameter("capacity")))
-                .visitedPorts(Integer.parseInt(request.getParameter("visitedPorts")))
-                .staff(Integer.parseInt(request.getParameter("staff")))
+                .id(Long.parseLong(id))
+                .name(name)
+                .capacity(Integer.parseInt(capacity))
+                .visitedPorts(Integer.parseInt(visitedPorts))
+                .staff(Integer.parseInt(staff))
                 .build();
 
         try {
@@ -25,5 +43,15 @@ public class UpdateShipAction implements Action {
             request.getSession().setAttribute("error", e.getMessage());
         }
         return request.getHeader("referer");
+    }
+
+    private Map<String, String> validateRouteParameters(String id, String name, String capacity, String visitedPorts, String staff) {
+        Map<String, String> errors = new HashMap<>();
+        ShipValidator.validateShipId(id, "update.ship", errors);
+        ShipValidator.validateShipName(name, "update.ship", errors);
+        ShipValidator.validateShipCapacity(capacity, "update.ship", errors);
+        ShipValidator.validateShipVisitedPorts(visitedPorts, "update.ship", errors);
+        ShipValidator.validateShipStaff(staff, "update.ship", errors);
+        return errors;
     }
 }

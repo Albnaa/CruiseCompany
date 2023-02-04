@@ -35,17 +35,25 @@
         <input type="hidden" name="action" value="manage_catalog">
         <div class="row mb-2">
             <div class="col-6">
-                <tag:inputField fieldName="nameF" entity="catalog" labelKey="catalog.nameF" width="auto"
-                                type="text" value="${sessionScope.nameF}" placeholder="catalog.nameF.placeholder"/>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Search by cruise name:</span>
+                    <input type="text" name="nameF" class="form-control"
+                           value="${sessionScope.nameF}">
+                </div>
             </div>
             <div class="col-3">
-                <tag:inputField fieldName="startDateF" entity="catalog" labelKey="catalog.startDateF" width="50"
-                                type="date" value="${sessionScope.startDateF}"/>
+                <div class="input-group mb-2">
+                    <span class="input-group-text w-50">Filter by start date:</span>
+                    <input type="date" name="startDateF" class="form-control"
+                           value="">
+                </div>
             </div>
             <div class="col-3">
-                <tag:inputField fieldName="durationF" entity="catalog" labelKey="catalog.durationF" width="50"
-                                type="number" value="${sessionScope.durationF}"
-                                placeholder="catalog.durationF.placeholder"/>
+                <div class="input-group mb-2">
+                    <span class="input-group-text w-50">Filter by duration:</span>
+                    <input type="number" name="durationF" class="form-control" min="1" max="31" placeholder="days"
+                           value="${sessionScope.durationF}">
+                </div>
             </div>
         </div>
         <div class="row">

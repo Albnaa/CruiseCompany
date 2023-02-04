@@ -28,7 +28,6 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public void create(PortDTO entity) throws ServiceException {
-        validateOnlyLettersWithSpaces(entity.getName(), "error.ports.name");
         Port port = mapDTOtoPort(entity);
         try {
             portDAO.create(port);
@@ -40,11 +39,11 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public void update(PortDTO entity) throws ServiceException {
-        validateOnlyLettersWithSpaces(entity.getName(), "error.ports.updateName");
         Port port = mapDTOtoPort(entity);
         try {
             portDAO.update(port);
         } catch (DAOException e) {
+            checkAlreadyExist(e);
             throw new ServiceException(e);
         }
     }

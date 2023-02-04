@@ -40,29 +40,30 @@
                     </button>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="ship" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.ship" labelKey="table.id" width="25" type="number"
                                     readonly="readonly" value="${requestScope.ship.id}"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="ship" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="update.ship" labelKey="table.name" width="25" type="text"
                                     value="${requestScope.ship.name}" placeholder="ship.name.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="capacity" entity="ship" labelKey="table.capacity" width="25" type="number"
-                                    value="${requestScope.ship.capacity}" placeholder="ship.capacity.placeholder"/>
+                    <tag:inputField fieldName="capacity" entity="update.ship" labelKey="table.capacity" width="25"
+                                    type="number" value="${requestScope.ship.capacity}"
+                                    placeholder="ship.capacity.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="visitedPorts" entity="ship" labelKey="table.visitedPorts" width="25"
+                    <tag:inputField fieldName="visitedPorts" entity="update.ship" labelKey="table.visitedPorts" width="25"
                                     type="number" value="${requestScope.ship.visitedPorts}"
                                     placeholder="ship.visitedPorts.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="staff" entity="ship" labelKey="table.staff" width="25" type="number"
+                    <tag:inputField fieldName="staff" entity="update.ship" labelKey="table.staff" width="25" type="number"
                                     value="${requestScope.ship.staff}" placeholder="ship.staff.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="routeName" entity="ship" labelKey="table.routeName" width="25" type="text"
-                                    value="${requestScope.ship.route.name}" readonly="readonly"/>
+                    <tag:inputField fieldName="routeName" entity="update.ship" labelKey="table.routeName" width="25"
+                                    type="text" value="${requestScope.ship.route.name}" readonly="readonly"/>
                 </div>
             </form>
         </div>

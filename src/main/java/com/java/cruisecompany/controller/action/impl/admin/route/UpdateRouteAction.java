@@ -23,15 +23,13 @@ public class UpdateRouteAction implements Action {
         String endDate = request.getParameter("endDate");
         String price = request.getParameter("price");
 
-        Map<String, String> errors = new HashMap<>();
-        RouteValidator.validatePortName(name, errors);
-        RouteValidator.validateRouteDates(startDate, endDate, errors);
-        RouteValidator.validatePrice(price, errors);
+        Map<String, String> errors = validateRouteParameters(id, name, startDate, endDate, price);
 
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);
             return request.getHeader("referer");
         }
+        request.getSession().removeAttribute("errors");
 
         RouteDTO routeDTO = RouteDTO.builder()
                 .id(Long.parseLong(id))
@@ -47,5 +45,14 @@ public class UpdateRouteAction implements Action {
             System.out.println(e.getMessage());
         }
         return request.getHeader("referer");
+    }
+
+    private Map<String, String> validateRouteParameters(String id, String name, String startDate, String endDate, String price) {
+        Map<String, String> errors = new HashMap<>();
+        RouteValidator.validateRouteId(id, "update.route", errors);
+        RouteValidator.validateRouteName(name, "update.route", errors);
+        RouteValidator.validateRouteDates(startDate, endDate, "update.route", errors);
+        RouteValidator.validatePrice(price, "update.route", errors);
+        return errors;
     }
 }

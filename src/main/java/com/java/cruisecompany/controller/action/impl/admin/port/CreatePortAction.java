@@ -19,7 +19,7 @@ public class CreatePortAction implements Action {
         String name = request.getParameter("name");
 
         Map<String, String> errors = new HashMap<>();
-        PortValidator.validatePortName(name, errors);
+        PortValidator.validatePortName(name, "create.port" , errors);
 
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);
@@ -34,7 +34,7 @@ public class CreatePortAction implements Action {
         try {
             portService.create(port);
         } catch (ServiceException e) {
-            errors.put("error.port.name", e.getMessage());
+            errors.put("error.create.port.name", e.getMessage());
             request.getSession().setAttribute("errors", errors);
         }
         return request.getHeader("referer");

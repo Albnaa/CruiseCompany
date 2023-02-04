@@ -18,7 +18,7 @@ public class DeletePortAction implements Action {
         String id = request.getParameter("id");
 
         Map<String, String> errors = new HashMap<>();
-        PortValidator.validatePortId(id, errors);
+        PortValidator.validatePortId(id,"update.port" ,errors);
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);
             return request.getHeader("referer");

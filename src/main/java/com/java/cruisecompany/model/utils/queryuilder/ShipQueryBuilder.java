@@ -45,21 +45,18 @@ public class ShipQueryBuilder extends QueryBuilder {
 
     private void setDurationFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
-            int value = validateDuration(parameter, "error.catalog.durationF");
             filterList.add("route.duration = " + value);
         }
     }
 
     private void setNameFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
-            validateOnlyLettersWithSpaces(parameter, "error.catalog.nameF");
             filterList.add("route.name LIKE '%" + parameter + "%'");
         }
     }
 
     private void setStartDateFilter(String parameter) throws InvalidInputException {
         if (parameter != null && !parameter.isEmpty()) {
-            validateDate(parameter, "error.catalog.startDateF");
             filterList.add("route.start_of_cruise = '" + parameter + "'");
         }
     }

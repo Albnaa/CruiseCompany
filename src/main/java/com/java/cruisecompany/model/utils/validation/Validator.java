@@ -25,15 +25,16 @@ public abstract class Validator {
         validate(value, "[\\p{L}\\p{M}\\s]*", message, errors);
     }
 
-//    public static void validateEmail(String email, String message) throws InvalidInputException {
-//        validate(email, "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message);
-//    }
-//
-    public static void validateDate(String date, String message, Map<String, String> errors) {
-        validate(date, "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$", message, errors);
-        if (LocalDate.parse(date).isBefore(LocalDate.now())) {
+    public static void validateEmail(String email, String message, Map<String, String> errors) {
+        validate(email, "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message, errors);
+    }
+
+    public static boolean validateDate(String date, String message, Map<String, String> errors) {
+        boolean isValid = validate(date, "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$", message, errors);
+        if (isValid && LocalDate.parse(date).isBefore(LocalDate.now())) {
             errors.put(message, message);
         }
+        return isValid;
     }
 
     public static int validateDuration(String duration, String message) throws InvalidInputException {
@@ -69,12 +70,25 @@ public abstract class Validator {
             errors.put(message, message);
         }
     }
-    private static void validate(String data, String regex, String message, Map<String, String> errors) {
-        if (data == null || data.isEmpty()) {
-            errors.put((message), (message + ".fillField"));
-//            return;
-        } else if (!data.matches(regex) ) {
+
+    protected static void validateNonNegativeDouble(String number, String message, Map<String, String> errors) {
+        try {
+            double value = Double.parseDouble(number);
+            if (value < 0) {
+                errors.put(message, message);
+            }
+        } catch(NumberFormatException e) {
             errors.put(message, message);
         }
+    }
+    private static boolean validate(String data, String regex, String message, Map<String, String> errors) {
+        if (data == null || data.isEmpty()) {
+            errors.put((message), (message + ".fillField"));
+            return false;
+        } else if (!data.matches(regex) ) {
+            errors.put(message, message);
+            return false;
+        }
+        return true;
     }
 }

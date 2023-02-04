@@ -74,7 +74,7 @@
             <form method="post" action="controller">
                 <input type="hidden" name="action" value="create_port">
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="port" labelKey="table.name" width="25" type="text"
+                    <tag:inputField fieldName="name" entity="create.port" labelKey="table.name" width="25" type="text"
                                     placeholder="ports.create.placeholder"/>
                 </div>
                 <button type="submit" class="btn btn-primary w-100 mb-2">
@@ -120,11 +120,11 @@
             <h4 class="text-center"><fmt:message key="ports.update.header"/></h4>
             <form method="post" action="controller">
                 <div class="mb-2">
-                    <tag:inputField fieldName="id" entity="port" labelKey="table.id" width="25" type="number"
+                    <tag:inputField fieldName="id" entity="update.port" labelKey="table.id" width="25" type="number"
                                     placeholder="ports.update.id.placeholder"/>
                 </div>
                 <div class="mb-2">
-                    <tag:inputField fieldName="name" entity="port" labelKey="ports.update.label.name" width="25"
+                    <tag:inputField fieldName="name" entity="update.port" labelKey="ports.update.label.name" width="25"
                                     type="text" placeholder="ports.update.name.placeholder"/>
                 </div>
 
