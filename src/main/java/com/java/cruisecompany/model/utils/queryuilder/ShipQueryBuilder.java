@@ -1,13 +1,10 @@
 package com.java.cruisecompany.model.utils.queryuilder;
 
 import com.java.cruisecompany.exceptions.InvalidInputException;
-import com.java.cruisecompany.model.utils.ValidationUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.java.cruisecompany.model.utils.ValidationUtil.*;
 
 public class ShipQueryBuilder extends QueryBuilder {
     private static final List<String> SHIP_FIELDS = new ArrayList<>();

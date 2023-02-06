@@ -11,5 +11,6 @@ public class ShipDTO {
     private int capacity;
     private int visitedPorts;
     private int staff;
+    String imagePath;
     private RouteDTO route;
 }

@@ -8,6 +8,8 @@ import java.util.List;
 public interface ShipDAO extends EntityDAO<Ship> {
     List<Ship> findSortedWithRoutes(String query) throws DAOException;
 
+    long getNumOfRowsWithRoutes(String query) throws DAOException;
+
     void addRoute(long shipId, long routeId) throws DAOException;
     void deleteRoute(long shipId) throws DAOException;
 }

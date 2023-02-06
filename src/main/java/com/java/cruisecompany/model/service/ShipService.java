@@ -8,6 +8,8 @@ import java.util.List;
 public interface ShipService extends Service<ShipDTO>{
     List<ShipDTO> findSortedWithRoutes(String query) throws ServiceException;
 
+    long getNumOfRowsWithRoutes(String query) throws ServiceException;
+
     void addRoute(long shipId, long routeId) throws ServiceException;
     void deleteRoute(long shipId) throws ServiceException;
 }

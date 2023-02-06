@@ -11,5 +11,6 @@ public class Ship {
     private int capacity;
     private int visited_ports;
     private int staff;
+    String imagePath;
     private Route route;
 }

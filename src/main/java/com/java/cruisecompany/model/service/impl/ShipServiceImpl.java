@@ -8,7 +8,6 @@ import com.java.cruisecompany.model.repository.ShipDAO;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.MapperDTO;
-import com.java.cruisecompany.model.utils.ValidationUtil;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOToShip;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapShipToDTO;
-import static com.java.cruisecompany.model.utils.ValidationUtil.validateOnlyLettersWithSpaces;
 
 public class ShipServiceImpl implements ShipService {
     private final ShipDAO shipDAO;
@@ -38,7 +36,6 @@ public class ShipServiceImpl implements ShipService {
 
     @Override
     public void update(ShipDTO shipDTO) throws ServiceException {
-        validateOnlyLettersWithSpaces(shipDTO.getName(), "error.ship.name");
         try {
             shipDAO.update(mapDTOToShip(shipDTO));
         } catch (DAOException e) {
@@ -115,9 +112,18 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
-    public long getNumOfRows(String query) throws ServiceException { //not sure
+    public long getNumOfRows(String query) throws ServiceException {
         try {
             return shipDAO.getNumOfRows(query);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public long getNumOfRowsWithRoutes(String query) throws ServiceException {
+        try {
+            return shipDAO.getNumOfRowsWithRoutes(query);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

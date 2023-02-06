@@ -10,7 +10,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="post" action="controller">
+        <form method="post" action="controller" enctype="multipart/form-data">
           <input type="hidden" name="action" value="create_ship">
           <div class="mb-2">
             <tag:inputField fieldName="name" entity="create.ship" labelKey="common.name" width="25" type="text"
@@ -25,8 +25,15 @@
                             type="number" placeholder="ship.visitedPorts.placeholder"/>
           </div>
           <div class="mb-2">
-            <tag:inputField fieldName="staff" entity="create.ship" labelKey="common.staff" width="50" type="number"
+            <tag:inputField fieldName="staff" entity="create.ship" labelKey="common.staff" width="25" type="number"
                             placeholder="ship.staff.placeholder"/>
+          </div>
+          <div class="input-group mb-2">
+            <input type="file" name="image" class="form-control" accept="image/*"/>
+            <span class="input-group-text w-25"><fmt:message key="common.image"/></span>
+          </div>
+          <div class="mb-2">
+
           </div>
           <div class="row justify-content-center mt-3">
             <div class="col">

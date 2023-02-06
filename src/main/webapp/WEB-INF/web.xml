@@ -7,7 +7,7 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-
+    
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.java.cruisecompany.controller.Controller</servlet-class>

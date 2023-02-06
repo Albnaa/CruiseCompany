@@ -119,7 +119,7 @@
         <c:forEach var="cruise" items="${requestScope.cruises}">
             <div class="col">
                 <div class="card border-primary h-100">
-                    <img src="${pageContext.request.contextPath}/Img/Ship-3.jpg" class="card-img-top"
+                    <img src="${pageContext.request.contextPath}${cruise.imagePath}" class="card-img-top"
                          alt="Cruise ship photo">
                     <div class="card-body">
                         <h5 class="card-title text-center">${cruise.route.name}</h5>

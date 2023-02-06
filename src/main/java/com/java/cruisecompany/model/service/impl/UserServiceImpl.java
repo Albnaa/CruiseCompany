@@ -16,7 +16,6 @@ import java.util.Optional;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoUser;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapUserToDTO;
-import static com.java.cruisecompany.model.utils.ValidationUtil.*;
 
 public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
@@ -38,10 +37,6 @@ public class UserServiceImpl implements UserService {
     //check for existing user with the same login/username
     @Override
     public void register(UserDTO userDTO, String password, String confirmPassword) throws ServiceException {
-        validateUser(userDTO);
-        validatePassword(password, "error.user.password");
-        confirmPassword(password, confirmPassword, "error.user.confirmPassword");
-
         User user = mapDTOtoUser(userDTO);
         user.setPassword(password);
         try {
@@ -53,8 +48,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(UserDTO userDTO) throws ServiceException {
-        validateUser(userDTO);
-
         User user = mapDTOtoUser(userDTO);
         try {
             userDAO.update(user);
@@ -171,12 +164,5 @@ public class UserServiceImpl implements UserService {
                 throw new InvalidInputException("error.user.emailExists", e);
             }
         }
-    }
-
-    private static void validateUser(UserDTO userDTO) throws InvalidInputException {
-        validateOnlyLetters(userDTO.getLogin(), "error.user.login");
-        validateEmail(userDTO.getEmail(), "error.user.email");
-        validateOnlyLetters(userDTO.getFirstName(), "error.user.firstName");
-        validateOnlyLetters(userDTO.getLastName(), "error.user.lastName");
     }
 }

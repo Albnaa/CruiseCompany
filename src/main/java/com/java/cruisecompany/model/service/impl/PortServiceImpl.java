@@ -8,7 +8,6 @@ import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.repository.PortDAO;
 import com.java.cruisecompany.model.service.PortService;
-import com.java.cruisecompany.model.utils.ValidationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,6 @@ import java.util.Optional;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoPort;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapPortToDTO;
-import static com.java.cruisecompany.model.utils.ValidationUtil.validateOnlyLettersWithSpaces;
 
 public class PortServiceImpl implements PortService { //add validation and dto object
 

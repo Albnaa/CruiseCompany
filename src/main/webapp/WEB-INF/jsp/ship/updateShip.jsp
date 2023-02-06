@@ -24,7 +24,12 @@
 
 <div class="container">
     <h2 class="text-center p-3"><fmt:message key="ship.header"/></h2>
-    <div class="row align-items-center border-bottom border-primary">
+    <div class="row text-center">
+        <div class="col-12">
+            <img src="${pageContext.request.contextPath}${requestScope.ship.imagePath}" class="rounded-5 img-fluid" alt="ship"/>
+        </div>
+    </div>
+    <div class="row align-items-center border-bottom border-primary mt-3">
         <div class="col-6">
             <form method="post" action="controller">
                 <button type="button" class="btn btn-primary w-100 mb-2"

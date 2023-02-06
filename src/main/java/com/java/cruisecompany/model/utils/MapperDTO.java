@@ -77,6 +77,7 @@ public class MapperDTO {
                     .capacity(ship.getCapacity())
                     .visitedPorts(ship.getVisited_ports())
                     .staff(ship.getStaff())
+                    .imagePath(ship.getImagePath())
                     .route(mapRouteToDTO(ship.getRoute()))
                     .build();
         } else {
@@ -86,6 +87,7 @@ public class MapperDTO {
                     .capacity(ship.getCapacity())
                     .visitedPorts(ship.getVisited_ports())
                     .staff(ship.getStaff())
+                    .imagePath(ship.getImagePath())
                     .build();
         }
     }
@@ -98,6 +100,7 @@ public class MapperDTO {
                     .capacity(shipDTO.getCapacity())
                     .visited_ports(shipDTO.getVisitedPorts())
                     .staff(shipDTO.getStaff())
+                    .imagePath(shipDTO.getImagePath())
                     .route(mapDTOtoRoute(shipDTO.getRoute()))
                     .build();
         } else {
@@ -107,6 +110,7 @@ public class MapperDTO {
                     .capacity(shipDTO.getCapacity())
                     .visited_ports(shipDTO.getVisitedPorts())
                     .staff(shipDTO.getStaff())
+                    .imagePath(shipDTO.getImagePath())
                     .build();
         }
     }

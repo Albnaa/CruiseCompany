@@ -13,27 +13,31 @@ import java.util.Optional;
 
 public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
 
-    private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff) VALUES (?, ?, ?, ?)";
+    private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff, image_path) " +
+            "VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_ROUTE = "UPDATE ship SET route_id = ? WHERE id = ?";
-    private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ? WHERE id = ?";
+    private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?," +
+            " image_path = ? WHERE id = ?";
     private static final String DELETE_SHIP = "DELETE FROM ship WHERE id = ?";
     private static final String DELETE_ROUTE = "UPDATE ship SET route_id = null WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff," +
-            " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship LEFT JOIN route ON" +
-            " ship.route_id = route.id";
+    private static final String SELECT_ALL = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff, " +
+            "ship.image_path, route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship " +
+            "LEFT JOIN route ON ship.route_id = route.id";
 
-    private static final String SELECT_ALL_WITH_ROUTES = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff," +
-            " route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price FROM ship INNER JOIN route ON" +
-            " ship.route_id = route.id";
+    private static final String SELECT_ALL_WITH_ROUTES = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, " +
+            "ship.staff, ship.image_path, route.id, route.name, route.start_of_cruise, route.end_of_cruise, route.price " +
+            "FROM ship INNER JOIN route ON ship.route_id = route.id";
     private static final String SELECT_BY_ID = SELECT_ALL + " WHERE ship.id = ?";
     private static final String SELECT_COUNT_OF_ROWS = "SELECT COUNT(*) FROM ship LEFT JOIN route ON ship.route_id = route.id";
+    private static final String SELECT_COUNT_OF_ROWS_WITH_ROUTES = "SELECT COUNT(*) FROM ship INNER JOIN route ON ship.route_id = route.id";
 
     @Override
     public void create(Ship entity) throws DAOException {
         executeNoReturn(INSERT_SHIP, entity.getName(),
                 entity.getCapacity(),
                 entity.getVisited_ports(),
-                entity.getStaff());
+                entity.getStaff(),
+                entity.getImagePath());
     }
 
     @Override
@@ -42,6 +46,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                 entity.getCapacity(),
                 entity.getVisited_ports(),
                 entity.getStaff(),
+                entity.getImagePath(),
                 entity.getId());
     }
 
@@ -76,6 +81,11 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     }
 
     @Override
+    public long getNumOfRowsWithRoutes(String query) throws DAOException {
+        return executeNumOfRowsReturn(SELECT_COUNT_OF_ROWS_WITH_ROUTES + query);
+    }
+
+    @Override
     public void addRoute(long shipId, long routeId) throws DAOException {
         executeNoReturn(INSERT_ROUTE, routeId, shipId);
     }
@@ -95,6 +105,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                     .capacity(rs.getInt(++k))
                     .visited_ports(rs.getInt(++k))
                     .staff(rs.getInt(++k))
+                    .imagePath(rs.getString(++k))
                     .route(mapToRoute(rs, k))
                     .build();
         } else {
@@ -104,6 +115,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                     .capacity(rs.getInt(++k))
                     .visited_ports(rs.getInt(++k))
                     .staff(rs.getInt(++k))
+                    .imagePath(rs.getString(++k))
                     .build();
         }
     }

@@ -19,7 +19,7 @@ public class ManageCatalogAction implements Action {
             queryBuilder.extractBuilderParameters(request);
             SessionAttributeHandlerUtil.setAttrFromReqToSession(request);
             request.setAttribute("cruises", shipService.findSortedWithRoutes(queryBuilder.buildQuery()));
-            Pagination.calculatePages(request, shipService.getNumOfRows(queryBuilder.buildFilterQuery()));
+            Pagination.calculatePages(request, shipService.getNumOfRowsWithRoutes(queryBuilder.buildFilterQuery()));
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
             System.out.println(e.getMessage());

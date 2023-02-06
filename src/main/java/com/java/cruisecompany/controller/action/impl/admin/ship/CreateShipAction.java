@@ -6,8 +6,16 @@ import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +27,7 @@ public class CreateShipAction implements Action {
         String capacity = request.getParameter("capacity");
         String visitedPorts = request.getParameter("visitedPorts");
         String staff = request.getParameter("staff");
+        String imagePath = "";
 
         Map<String, String> errors = validateShipParameters(name, capacity, visitedPorts, staff);
 
@@ -28,11 +37,19 @@ public class CreateShipAction implements Action {
         }
         request.getSession().removeAttribute("errors");
 
+        try {
+            imagePath = addImage(request);
+        } catch (IOException | ServletException e) {
+            System.out.println("Exception file");
+            System.out.println(e.getMessage());
+        }
+
         ShipDTO ship = ShipDTO.builder()
                 .name(name)
                 .capacity(Integer.parseInt(capacity))
                 .visitedPorts(Integer.parseInt(visitedPorts))
                 .staff(Integer.parseInt(staff))
+                .imagePath(imagePath)
                 .build();
 
         try {
@@ -50,5 +67,25 @@ public class CreateShipAction implements Action {
         ShipValidator.validateShipVisitedPorts(visitedPorts, "create.ship", errors);
         ShipValidator.validateShipStaff(staff, "create.ship", errors);
         return errors;
+    }
+
+    private String addImage(HttpServletRequest request) throws ServletException, IOException {
+        Part filePart = request.getPart("image");
+        String fileName = filePart.getSubmittedFileName();
+        String filePath = "C:\\Users\\olego\\IdeaProjects\\CruiseCompany\\src\\main\\webapp\\uploads\\image\\";
+
+        File file = new File(filePath + fileName);
+        int i = 1;
+        while (file.exists()) {
+            file = new File(filePath + fileName.substring(0, fileName.lastIndexOf("."))
+                    + "_" + i + fileName.substring(fileName.lastIndexOf(".")));
+            i++;
+        }
+
+        filePart.write(file.getAbsolutePath());
+
+        System.out.println(file.getAbsolutePath().split("webapp")[1].replace("\\", "/"));
+
+        return file.getAbsolutePath().split("webapp")[1].replace("\\", "/");
     }
 }
