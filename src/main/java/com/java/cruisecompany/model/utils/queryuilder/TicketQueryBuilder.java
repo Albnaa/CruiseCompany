@@ -23,8 +23,9 @@ public class TicketQueryBuilder extends QueryBuilder{
     }
     @Override
     String buildGroupByFragment() {
-        return " GROUP BY ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, user.id, user.first_name," +
-                " user.last_name, user.balance, ticket.ship_id, ship.name, route.id, route.name, route.start_of_cruise ";
+        return " GROUP BY ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, ticket.document_path, " +
+                "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, route.id, route.name," +
+                " route.start_of_cruise ";
     }
 
     @Override

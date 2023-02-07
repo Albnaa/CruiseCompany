@@ -12,6 +12,12 @@ import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.RouteQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Optional;
 
 public class ViewShipAction implements Action {
@@ -23,8 +29,7 @@ public class ViewShipAction implements Action {
 
         try {
             Optional<ShipDTO> ship = shipService.findById(shipId);
-            ship.ifPresent(s -> request.setAttribute("ship", s));
-
+            ship.ifPresent(shipDTO -> request.setAttribute("ship", shipDTO));
         } catch (ServiceException e) {
             System.out.println(e.getMessage());
         }

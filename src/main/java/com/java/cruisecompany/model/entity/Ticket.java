@@ -12,6 +12,7 @@ public class Ticket {
     private long id;
     private int passengersCount;
     private BigDecimal price;
+    private String documentPath;
     private User user;
     private Ship ship;
     private Status status;

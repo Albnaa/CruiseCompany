@@ -122,6 +122,7 @@ public class MapperDTO {
                     .passengersCount(ticket.getPassengersCount())
                     .price(ticket.getPrice())
                     .status(ticket.getStatus())
+                    .documentPath(ticket.getDocumentPath())
                     .user(mapUserToDTO(ticket.getUser()))
                     .ship(mapShipToDTO(ticket.getShip()))
                     .build();
@@ -131,6 +132,7 @@ public class MapperDTO {
                     .passengersCount(ticket.getPassengersCount())
                     .price(ticket.getPrice())
                     .status(ticket.getStatus())
+                    .documentPath(ticket.getDocumentPath())
                     .user(mapUserToDTO(ticket.getUser()))
                     .build();
         } else if (ticket.getShip() != null) {
@@ -139,6 +141,7 @@ public class MapperDTO {
                     .passengersCount(ticket.getPassengersCount())
                     .price(ticket.getPrice())
                     .status(ticket.getStatus())
+                    .documentPath(ticket.getDocumentPath())
                     .ship(mapShipToDTO(ticket.getShip()))
                     .build();
         } else {
@@ -147,6 +150,7 @@ public class MapperDTO {
                     .passengersCount(ticket.getPassengersCount())
                     .price(ticket.getPrice())
                     .status(ticket.getStatus())
+                    .documentPath(ticket.getDocumentPath())
                     .build();
         }
 
@@ -159,6 +163,7 @@ public class MapperDTO {
                     .passengersCount(ticketDTO.getPassengersCount())
                     .price(ticketDTO.getPrice())
                     .status(ticketDTO.getStatus())
+                    .documentPath(ticketDTO.getDocumentPath())
                     .user(mapDTOtoUser(ticketDTO.getUser()))
                     .ship(mapDTOToShip(ticketDTO.getShip()))
                     .build();
@@ -168,6 +173,7 @@ public class MapperDTO {
                     .passengersCount(ticketDTO.getPassengersCount())
                     .price(ticketDTO.getPrice())
                     .status(ticketDTO.getStatus())
+                    .documentPath(ticketDTO.getDocumentPath())
                     .user(mapDTOtoUser(ticketDTO.getUser()))
                     .build();
         } else if (ticketDTO.getShip() != null) {
@@ -176,6 +182,7 @@ public class MapperDTO {
                     .passengersCount(ticketDTO.getPassengersCount())
                     .price(ticketDTO.getPrice())
                     .status(ticketDTO.getStatus())
+                    .documentPath(ticketDTO.getDocumentPath())
                     .ship(mapDTOToShip(ticketDTO.getShip()))
                     .build();
         } else {
@@ -184,6 +191,7 @@ public class MapperDTO {
                     .passengersCount(ticketDTO.getPassengersCount())
                     .price(ticketDTO.getPrice())
                     .status(ticketDTO.getStatus())
+                    .documentPath(ticketDTO.getDocumentPath())
                     .build();
         }
     }

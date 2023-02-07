@@ -7,10 +7,13 @@ import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.dto.TicketDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.TicketService;
-import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import com.java.cruisecompany.model.utils.validation.TicketValidation;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.Part;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +25,9 @@ public class CreateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
     public String execute(HttpServletRequest request) throws ServiceException {
-        String passengersCount = request.getParameter("passengersCount");
         long userId = ((UserDTO) request.getSession().getAttribute("user")).getId();
+        String passengersCount = request.getParameter("passengersCount");
+        String documentPath = "";
 
         Map<String, String> errors = validateTicketParameters(passengersCount);
 
@@ -32,6 +36,12 @@ public class CreateTicketAction implements Action {
             return request.getHeader("referer");
         }
         request.getSession().removeAttribute("errors");
+
+        try {
+            documentPath = addDocument(request);
+        } catch (IOException | ServletException e) {
+            System.out.println(e.getMessage());
+        }
 
         UserDTO user = UserDTO.builder()
                 .id(userId)
@@ -44,7 +54,8 @@ public class CreateTicketAction implements Action {
         TicketDTO ticket = TicketDTO.builder()
                 .passengersCount(parseInt(passengersCount))
                 .price(BigDecimal.valueOf(Double.parseDouble(request.getParameter("price")))
-                        .multiply(BigDecimal.valueOf(parseInt(request.getParameter("passengersCount")))))
+                        .multiply(BigDecimal.valueOf(parseInt(passengersCount))))
+                .documentPath(documentPath)
                 .user(user)
                 .ship(ship)
                 .build();
@@ -61,5 +72,25 @@ public class CreateTicketAction implements Action {
         Map<String, String> errors = new HashMap<>();
         TicketValidation.validateTicketPassengersCount(passengersCount, "create.ticket", errors);
         return errors;
+    }
+
+    private String addDocument(HttpServletRequest request) throws ServletException, IOException {
+        Part filePart = request.getPart("document");
+        String fileName = filePart.getSubmittedFileName();
+        String filePath = "C:\\Users\\olego\\IdeaProjects\\CruiseCompany\\src\\main\\webapp\\uploads\\document\\";
+
+        File file = new File(filePath + fileName);
+        int i = 1;
+        while (file.exists()) {
+            file = new File(filePath + fileName.substring(0, fileName.lastIndexOf("."))
+                    + "_" + i + fileName.substring(fileName.lastIndexOf(".")));
+            i++;
+        }
+
+        filePart.write(file.getAbsolutePath());
+
+        System.out.println(file.getAbsolutePath().split("webapp")[1].replace("\\", "/"));
+
+        return file.getAbsolutePath().split("webapp")[1].replace("\\", "/");
     }
 }

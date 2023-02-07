@@ -8,6 +8,10 @@ import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.io.File;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,4 +58,33 @@ public class UpdateShipAction implements Action {
         ShipValidator.validateShipStaff(staff, "update.ship", errors);
         return errors;
     }
+
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String action = request.getParameter("action");
+//
+//        if (action != null && action.equals("view-image")) {
+//            // Get the path to the image from the query string
+//            String imagePath = request.getParameter("path");
+//
+//            // Read the image file from the file system
+//            File imageFile = new File("/path/to/images" + imagePath);
+//            try (InputStream fileStream = new FileInputStream(imageFile)) {
+//                // Set the content type of the response to match the image file format
+//                response.setContentType(getServletContext().getMimeType(imageFile.getName()));
+//                response.setContentLength((int) imageFile.length());
+//
+//                // Write the image data to the response
+//                OutputStream outputStream = response.getOutputStream();
+//                byte[] buffer = new byte[4096];
+//                int bytesRead;
+//                while ((bytesRead = fileStream.read(buffer)) != -1) {
+//                    outputStream.write(buffer, 0, bytesRead);
+//                }
+//            }
+//        } else {
+//            UpdateShipAction updateShipAction = new UpdateShipAction();
+//            String result = updateShipAction.execute(request);
+//            request.getRequestDispatcher(result).forward(request, response);
+//        }
+//    }
 }

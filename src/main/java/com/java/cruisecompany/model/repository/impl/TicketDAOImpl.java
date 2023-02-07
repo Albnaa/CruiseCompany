@@ -15,12 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
-    private static final String INSERT_TICKET = "INSERT INTO ticket (passengers_count, price, user_id, ship_id) " +
-            "VALUES (?, ?, ?, ?)";
+    private static final String INSERT_TICKET = "INSERT INTO ticket (passengers_count, price, user_id, ship_id, document_path) " +
+            "VALUES (?, ?, ?, ?, ?)";
     private static final String UPDATE_TICKET = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String UPDATE_TICKET_STATUS = "UPDATE ticket SET status_id = ? WHERE id = ?";
     private static final String DELETE_TICKET = "DELETE FROM ticket WHERE id = ?";
-    private static final String SELECT_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, " +
+    private static final String SELECT_ALL = "SELECT ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, document_path, " +
             "user.id, user.first_name, user.last_name, user.balance, ticket.ship_id, ship.name, route.id, route.name, " +
             "route.start_of_cruise FROM ticket LEFT JOIN user on user.id = ticket.user_id LEFT JOIN ship on " +
             "ship.id = ticket.ship_id LEFT JOIN route on route.id = ship.route_id";
@@ -32,7 +32,8 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
         executeNoReturn(INSERT_TICKET, entity.getPassengersCount(),
                 entity.getPrice(),
                 entity.getUser().getId(),
-                entity.getShip().getId());
+                entity.getShip().getId(),
+                entity.getDocumentPath());
     }
 
     @Override
@@ -63,7 +64,6 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
 
     @Override
     public List<Ticket> findSorted(String query) throws DAOException {
-        System.out.println(SELECT_ALL + query);
         return executeListReturn(SELECT_ALL + query);
     }
 
@@ -80,8 +80,9 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .passengersCount(rs.getInt(++k))
                 .price(rs.getBigDecimal(++k))
                 .status(Status.getStatus(rs.getInt(++k)))
+                .documentPath(rs.getString(++k))
                 .user(mapToUser(rs, k))
-                .ship(mapToShip(rs, 8))
+                .ship(mapToShip(rs, 9))
                 .build();
     }
 

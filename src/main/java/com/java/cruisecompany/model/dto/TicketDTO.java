@@ -12,6 +12,7 @@ public class TicketDTO {
     private long id;
     private int passengersCount;
     private BigDecimal price;
+    private String documentPath;
     private Status status;
     private UserDTO user;
     private ShipDTO ship;
