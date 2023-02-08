@@ -19,8 +19,8 @@
     <div class="row justify-content-center">
         <div class="col-4 text-center">
             <form method="post" action="controller">
-                <input type="hidden" name="action" value="update_ticket">
                 <input type="hidden" name="ticketId" value="${requestScope.ticket.id}">
+                <input type="hidden" name="path" value="${requestScope.ticket.documentPath  }">
                 <div class="input-group mb-2">
                     <label class="input-group-text w-50"><fmt:message key="common.firstName"/></label>
                     <input type="text" class="form-control" value="${requestScope.ticket.user.firstName}" readonly>
@@ -68,12 +68,12 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-secondary w-100">
+                        <button type="submit" class="btn btn-secondary w-100" name="action" value="file">
                             <fmt:message key="common.button.viewDocument"/>
                         </button>
                     </div>
                     <div class="col">
-                        <button type="submit" class="btn btn-warning w-100">
+                        <button type="submit" class="btn btn-warning w-100" name="action" value="update_ticket">
                             <fmt:message key="common.button.update"/>
                         </button>
                     </div>

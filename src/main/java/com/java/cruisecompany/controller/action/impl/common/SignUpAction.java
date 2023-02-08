@@ -6,9 +6,9 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
-import com.java.cruisecompany.model.utils.validation.TicketValidation;
 import com.java.cruisecompany.model.utils.validation.UserValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("user");
 
         String login = request.getParameter("login");

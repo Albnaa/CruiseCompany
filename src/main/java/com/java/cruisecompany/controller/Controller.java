@@ -14,19 +14,19 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(processRequest(req)).forward(req, resp);
+        req.getRequestDispatcher(processRequest(req, resp)).forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        resp.sendRedirect(processRequest(req));
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        resp.sendRedirect(processRequest(req, resp));
     }
 
-    private String processRequest(HttpServletRequest req) {
+    private String processRequest(HttpServletRequest req, HttpServletResponse resp) {
         Action action = ActionFactory.getAction(req);
         String view = "error.jsp";
         try {
-            view = action.execute(req);
+            view = action.execute(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
         }

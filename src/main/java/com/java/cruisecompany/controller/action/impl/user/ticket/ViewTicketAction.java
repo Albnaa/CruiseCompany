@@ -8,13 +8,14 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static java.lang.Long.parseLong;
 
 public class ViewTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
             TicketDTO ticket = ticketService.findById(parseLong(request.getParameter("ticketId"))).get();
             request.setAttribute("ticket", ticket);

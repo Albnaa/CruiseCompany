@@ -10,6 +10,7 @@ import com.java.cruisecompany.model.service.TicketService;
 import com.java.cruisecompany.model.utils.validation.TicketValidation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
 import java.io.File;
@@ -24,7 +25,7 @@ import static java.lang.Long.parseLong;
 public class CreateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         long userId = ((UserDTO) request.getSession().getAttribute("user")).getId();
         String passengersCount = request.getParameter("passengersCount");
         String documentPath = "";
@@ -77,7 +78,7 @@ public class CreateTicketAction implements Action {
     private String addDocument(HttpServletRequest request) throws ServletException, IOException {
         Part filePart = request.getPart("document");
         String fileName = filePart.getSubmittedFileName();
-        String filePath = "C:\\Users\\olego\\IdeaProjects\\CruiseCompany\\src\\main\\webapp\\uploads\\document\\";
+        String filePath = "D:\\uploads\\document\\";
 
         File file = new File(filePath + fileName);
         int i = 1;
@@ -89,8 +90,6 @@ public class CreateTicketAction implements Action {
 
         filePart.write(file.getAbsolutePath());
 
-        System.out.println(file.getAbsolutePath().split("webapp")[1].replace("\\", "/"));
-
-        return file.getAbsolutePath().split("webapp")[1].replace("\\", "/");
+        return file.getAbsolutePath().split("uploads")[1].replace("\\", "/");
     }
 }

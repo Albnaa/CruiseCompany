@@ -17,7 +17,8 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
             "VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_ROUTE = "UPDATE ship SET route_id = ? WHERE id = ?";
     private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?," +
-            " image_path = ? WHERE id = ?";
+            " WHERE id = ?";
+    private static final String UPDATE_SHIP_IMAGE = "UPDATE ship SET image_path = ? WHERE id = ?";
     private static final String DELETE_SHIP = "DELETE FROM ship WHERE id = ?";
     private static final String DELETE_ROUTE = "UPDATE ship SET route_id = null WHERE id = ?";
     private static final String SELECT_ALL = "SELECT ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff, " +
@@ -46,8 +47,12 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
                 entity.getCapacity(),
                 entity.getVisited_ports(),
                 entity.getStaff(),
-                entity.getImagePath(),
                 entity.getId());
+    }
+
+    @Override
+    public void updateImage(long id, String imagePath) throws DAOException {
+        executeNoReturn(UPDATE_SHIP_IMAGE, imagePath, id);
     }
 
     @Override

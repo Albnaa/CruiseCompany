@@ -19,11 +19,12 @@ public class SecurityFilter implements Filter {
                 "view_ship", "create_ship", "update_ship", "delete_ship", "unlink_route", "link_route", "manage_catalog",
                 "view_cruise", "manage_tickets", "manage_user_tickets", "update_ticket", "view_ticket", "manage_route",
                 "view_route", "delete_waypoint", "add_waypoint", "delete_route", "update_route", "create_route",
-                "add_port", "manage_port", "create_port", "delete_port", "update_port", "test_action"));
+                "add_port", "manage_port", "create_port", "delete_port", "update_port", "test_action", "file",
+                "update_ship_image"));
 
         ALLOWED_ACTIONS.put(Role.USER, Arrays.asList("sign_up", "sign_out", "set_locale", "top_up_balance",
                 "view_self_profile", "update_self_profile", "manage_catalog", "view_cruise", "manage_user_tickets",
-                "pay_for_ticket", "view_ticket", "create_ticket"));
+                "pay_for_ticket", "view_ticket", "create_ticket", "file"));
 
         COMMON_ACTIONS = Arrays.asList("sign_in", "sign_up", "set_locale");
         
@@ -57,8 +58,4 @@ public class SecurityFilter implements Filter {
         }
     }
 
-    @Override
-    public void destroy() {
-        Filter.super.destroy();
-    }
 }

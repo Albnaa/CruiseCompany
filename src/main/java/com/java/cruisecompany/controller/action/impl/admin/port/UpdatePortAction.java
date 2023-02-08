@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.service.PortService;
 import com.java.cruisecompany.model.utils.validation.PortValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class UpdatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String name = request.getParameter("name");
 

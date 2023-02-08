@@ -7,13 +7,14 @@ import com.java.cruisecompany.model.dto.TicketDTO;
 import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import static java.lang.Long.parseLong;
 
 public class UpdateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         TicketDTO ticket = TicketDTO.builder()
                 .id(parseLong(request.getParameter("ticketId")))
                 .status(Status.parse(request.getParameter("ticketStatus")))

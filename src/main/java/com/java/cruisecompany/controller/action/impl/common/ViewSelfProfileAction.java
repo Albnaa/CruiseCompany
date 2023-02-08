@@ -7,11 +7,12 @@ import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ViewSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         long userId = ((UserDTO)request.getSession().getAttribute("user")).getId();
 
         try {

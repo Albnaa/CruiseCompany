@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.utils.validation.RouteValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.util.Map;
 public class UpdateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String startDate = request.getParameter("startDate");

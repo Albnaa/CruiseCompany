@@ -6,6 +6,8 @@ import com.java.cruisecompany.model.entity.Ship;
 import java.util.List;
 
 public interface ShipDAO extends EntityDAO<Ship> {
+    void updateImage(long id, String imagePath) throws DAOException;
+
     List<Ship> findSortedWithRoutes(String query) throws DAOException;
 
     long getNumOfRowsWithRoutes(String query) throws DAOException;

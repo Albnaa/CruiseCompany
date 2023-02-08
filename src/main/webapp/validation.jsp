@@ -5,7 +5,7 @@
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <fmt:setLocale value="${sessionScope.locale}" scope="session"/>
 <fmt:setBundle basename="locale"/>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
         <div class="col-4 text-center">
             <form method="post" action="controller">
 
-                <input type="hidden" name="action" value="test_action">
+                <input type="hidden" name="action" value="image_action">
                 <tag:inputField fieldName="id" entity="port" labelKey="table.id" width="25" type="number"/>
                 <tag:inputField fieldName="name" entity="port" labelKey="table.name" width="25" type="text"/>
                 <button class="btn btn-primary my-3" type="submit">Submit</button>

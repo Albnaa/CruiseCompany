@@ -13,26 +13,6 @@ public class LocaleFilter implements Filter {
     }
 
 
-//        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-//
-//                throws IOException, ServletException {
-//
-//            HttpServletRequest req = (HttpServletRequest) request;
-//
-//            HttpServletResponse res = (HttpServletResponse) response;
-//
-//            if (req.getParameter("locale") != null) {
-//
-//                Cookie cookie = new Cookie("locale", req.getParameter("locale"));
-//
-//                res.addCookie(cookie);
-//
-//            }
-//
-//            chain.doFilter(request, response);
-//
-//        }
-
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;

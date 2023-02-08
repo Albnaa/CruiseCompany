@@ -7,22 +7,19 @@ import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CreateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String capacity = request.getParameter("capacity");
         String visitedPorts = request.getParameter("visitedPorts");
@@ -72,7 +69,7 @@ public class CreateShipAction implements Action {
     private String addImage(HttpServletRequest request) throws ServletException, IOException {
         Part filePart = request.getPart("image");
         String fileName = filePart.getSubmittedFileName();
-        String filePath = "C:\\Users\\olego\\IdeaProjects\\CruiseCompany\\src\\main\\webapp\\uploads\\image\\";
+        String filePath = "D:\\uploads\\image\\";
 
         File file = new File(filePath + fileName);
         int i = 1;
@@ -84,8 +81,6 @@ public class CreateShipAction implements Action {
 
         filePart.write(file.getAbsolutePath());
 
-        System.out.println(file.getAbsolutePath().split("webapp")[1].replace("\\", "/"));
-
-        return file.getAbsolutePath().split("webapp")[1].replace("\\", "/");
+        return file.getAbsolutePath().split("uploads")[1].replace("\\", "/");
     }
 }

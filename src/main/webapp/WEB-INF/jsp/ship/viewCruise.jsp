@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col">
             <div class="card mb-3">
-                <img src="${pageContext.request.contextPath}/Img/Ship-2.png" class="card-img-top" alt="...">
+                <img src="controller?action=file&path=${requestScope.ship.imagePath}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title text-center"><fmt:message key="common.route"/></h5>
                     <ul class="list-group list-group-flush align-content-end">

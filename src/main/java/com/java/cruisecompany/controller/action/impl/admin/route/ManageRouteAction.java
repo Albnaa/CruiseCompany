@@ -9,11 +9,12 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.RouteQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ManageRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new RouteQueryBuilder();
         queryBuilder.extractBuilderParameters(request);
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);

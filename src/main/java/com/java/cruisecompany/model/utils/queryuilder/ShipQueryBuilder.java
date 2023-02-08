@@ -40,7 +40,7 @@ public class ShipQueryBuilder extends QueryBuilder {
         return result;
     }
 
-    private void setDurationFilter(String parameter) throws InvalidInputException {
+    private void setDurationFilter(String parameter) {
         try {
             int value = Integer.parseInt(parameter);
             if (value >= 3 && value <= 31) {
@@ -51,13 +51,13 @@ public class ShipQueryBuilder extends QueryBuilder {
         }
     }
 
-    private void setNameFilter(String parameter) throws InvalidInputException {
+    private void setNameFilter(String parameter) {
         if (parameter != null && !parameter.isEmpty()) {
             filterList.add("route.name LIKE '%" + parameter + "%'");
         }
     }
 
-    private void setStartDateFilter(String parameter) throws InvalidInputException {
+    private void setStartDateFilter(String parameter) {
         if (parameter != null && !parameter.isEmpty()) {
             filterList.add("route.start_of_cruise = '" + parameter + "'");
         }

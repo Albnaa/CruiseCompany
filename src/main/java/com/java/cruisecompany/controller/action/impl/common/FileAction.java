@@ -1,4 +1,4 @@
-package com.java.cruisecompany.controller.action.impl;
+package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.exceptions.ServiceException;
@@ -11,22 +11,20 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-public class TestAction implements Action {
+public class FileAction implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String documentPath = "D:\\uploads\\document";
-        File document = new File(documentPath, URLDecoder.decode(request.getParameter("documentPath"), StandardCharsets.UTF_8));
-        String contentType = request.getServletContext().getMimeType(document.getName());
-
-        System.out.println("Document is present ? " + document.exists());
+        String directory = "D:\\uploads";
+        File file = new File(directory, URLDecoder.decode(request.getParameter("path"), StandardCharsets.UTF_8));
+        String contentType = request.getServletContext().getMimeType(file.getName());
 
         response.reset();
         response.setContentType(contentType);
-        response.setHeader("Content-Length", String.valueOf(document.length()));
+        response.setHeader("Content-Length", String.valueOf(file.length()));
         try {
-            Files.copy(document.toPath(), response.getOutputStream());
+            Files.copy(file.toPath(), response.getOutputStream());
         } catch (IOException e) {
-            System.out.println("Catch block in document action");
+            System.out.println("Catch block in file action");
             throw new RuntimeException(e);
         }
         return request.getHeader("referer");

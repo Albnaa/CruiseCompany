@@ -5,11 +5,12 @@ import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.service.RouteService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class DeleteRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {
             routeService.delete(Long.parseLong(request.getParameter("id")));
         } catch (ServiceException e) {

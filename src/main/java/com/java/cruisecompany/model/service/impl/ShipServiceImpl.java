@@ -44,6 +44,15 @@ public class ShipServiceImpl implements ShipService {
     }
 
     @Override
+    public void updateImage(long id, String imagePath) throws ServiceException {
+        try {
+            shipDAO.updateImage(id, imagePath);
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
     public void delete(long id) throws ServiceException {
         try {
             shipDAO.delete(id);

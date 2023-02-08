@@ -11,20 +11,15 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.RouteQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Optional;
 
 public class ViewShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         long shipId = Long.parseLong(request.getParameter("id"));
 
         try {

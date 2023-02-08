@@ -9,11 +9,12 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.ShipQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ManageCatalogAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         QueryBuilder queryBuilder = new ShipQueryBuilder();
         try {
             queryBuilder.extractBuilderParameters(request);

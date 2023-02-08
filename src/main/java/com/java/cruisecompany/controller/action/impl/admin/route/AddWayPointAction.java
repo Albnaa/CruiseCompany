@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.utils.validation.PortValidator;
 import com.java.cruisecompany.model.utils.validation.RouteValidator;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.Map;
 public class AddWayPointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String portId = request.getParameter("portId");
         String startDate = request.getParameter("startDate");

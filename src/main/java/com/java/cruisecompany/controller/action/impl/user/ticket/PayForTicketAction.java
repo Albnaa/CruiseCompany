@@ -6,11 +6,12 @@ import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class PayForTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("error");
         long userId = ((UserDTO) request.getSession().getAttribute("user")).getId();
         long ticketId = Long.parseLong(request.getParameter("ticketId"));

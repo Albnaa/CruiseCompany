@@ -35,6 +35,7 @@ public final class ActionFactory {
         ACTION_MAP.put("sign_up", new SignUpAction());
         ACTION_MAP.put("sign_out", new SignOutAction());
         ACTION_MAP.put("set_locale", new SetLocaleAction());
+        ACTION_MAP.put("file", new FileAction());
         //user
         ACTION_MAP.put("manage_users", new ManageUsersAction());
         ACTION_MAP.put("delete_user", new DeleteUserAction());
@@ -53,6 +54,7 @@ public final class ActionFactory {
         ACTION_MAP.put("link_route", new LinkRouteAction());
         ACTION_MAP.put("manage_catalog", new ManageCatalogAction());
         ACTION_MAP.put("view_cruise", new ViewCruiseAction());
+        ACTION_MAP.put("update_ship_image", new UpdateShipImageAction());
         //ticket
         ACTION_MAP.put("manage_tickets", new ManageTicketsAction());
         ACTION_MAP.put("manage_user_tickets", new ManageUserTickets());

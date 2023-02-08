@@ -9,11 +9,12 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.UserQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ManageUsersAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new UserQueryBuilder();
         queryBuilder.extractBuilderParameters(request);
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);

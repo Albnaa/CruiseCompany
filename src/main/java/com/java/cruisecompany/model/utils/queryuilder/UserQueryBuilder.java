@@ -43,8 +43,6 @@ public class UserQueryBuilder extends QueryBuilder{
         }
     }
 
-    void setBalanceFilter(String parameter) {}
-
     @Override
     void extractFilterParameters(HttpServletRequest request) {
         setRoleFilter(request.getParameter("roleF"));

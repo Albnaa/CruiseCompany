@@ -11,6 +11,7 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.PortQueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.Optional;
 
@@ -19,7 +20,7 @@ public class ViewRouteAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
 
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int id = Integer.parseInt(request.getParameter("id"));
         Optional<RouteDTO> route = routeService.findById(id);
         route.ifPresent(routeDTO -> request.setAttribute("route", routeDTO));

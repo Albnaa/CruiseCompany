@@ -9,11 +9,12 @@ import com.java.cruisecompany.model.utils.SessionAttributeHandlerUtil;
 import com.java.cruisecompany.model.utils.queryuilder.PortQueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class ManagePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
     @Override
-    public String execute(HttpServletRequest request) throws ServiceException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new PortQueryBuilder();
         queryBuilder.extractBuilderParameters(request);
         SessionAttributeHandlerUtil.setAttrFromReqToSession(request);

@@ -7,7 +7,6 @@ import jakarta.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class FormatDateTag extends SimpleTagSupport {
     private LocalDate date;
@@ -29,8 +28,5 @@ public class FormatDateTag extends SimpleTagSupport {
         }
 
         out.print(date.format(formatter));
-//        JspWriter out = getJspContext().getOut();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        out.print(formatter.format(date));
     }
 }
