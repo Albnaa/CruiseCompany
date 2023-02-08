@@ -7,13 +7,12 @@ import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.dto.TicketDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.TicketService;
+import com.java.cruisecompany.model.utils.FileUploaderUtil;
 import com.java.cruisecompany.model.utils.validation.TicketValidation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -39,7 +38,7 @@ public class CreateTicketAction implements Action {
         request.getSession().removeAttribute("errors");
 
         try {
-            documentPath = addDocument(request);
+            documentPath = FileUploaderUtil.addDocument(request);
         } catch (IOException | ServletException e) {
             System.out.println(e.getMessage());
         }
@@ -73,23 +72,5 @@ public class CreateTicketAction implements Action {
         Map<String, String> errors = new HashMap<>();
         TicketValidation.validateTicketPassengersCount(passengersCount, "create.ticket", errors);
         return errors;
-    }
-
-    private String addDocument(HttpServletRequest request) throws ServletException, IOException {
-        Part filePart = request.getPart("document");
-        String fileName = filePart.getSubmittedFileName();
-        String filePath = "D:\\uploads\\document\\";
-
-        File file = new File(filePath + fileName);
-        int i = 1;
-        while (file.exists()) {
-            file = new File(filePath + fileName.substring(0, fileName.lastIndexOf("."))
-                    + "_" + i + fileName.substring(fileName.lastIndexOf(".")));
-            i++;
-        }
-
-        filePart.write(file.getAbsolutePath());
-
-        return file.getAbsolutePath().split("uploads")[1].replace("\\", "/");
     }
 }
