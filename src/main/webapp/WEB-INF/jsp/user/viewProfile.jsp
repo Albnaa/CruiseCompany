@@ -16,7 +16,7 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
 
@@ -100,7 +100,7 @@
     </div>
 </div>
 
-
 <jsp:include page="/WEB-INF/fragments/footer.jsp"/>
+
 </body>
 </html>
