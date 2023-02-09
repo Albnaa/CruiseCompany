@@ -5,10 +5,16 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+
+@Log4j2
 public class SecurityFilter implements Filter {
     private static final Map<Role, List<String>> ALLOWED_ACTIONS = new HashMap<>();
     private static final List<String> COMMON_ACTIONS;
@@ -41,16 +47,17 @@ public class SecurityFilter implements Filter {
         HttpSession session = req.getSession(false);
 
         String action = req.getParameter("action");
-        System.out.println("Action = " + action);
         if (COMMON_ACTIONS.contains(action)) {
             chain.doFilter(request, response);
         } else if (session == null || session.getAttribute("user") == null) {
-            System.out.println("Redirect to the login page");
+            log.info("Requires authorization, redirects to login page");
+
             resp.sendRedirect("login.jsp");
         } else {
             Role role = (Role) session.getAttribute("role");
             if (!ALLOWED_ACTIONS.get(role).contains(action)) {
-                System.out.println("Access denied");
+                log.info("Access denied");
+
                 resp.sendRedirect("error.jsp");
             } else {
                 chain.doFilter(request, response);

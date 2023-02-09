@@ -8,9 +8,11 @@ import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.math.BigDecimal;
 
+@Log4j2
 public class UpdateSelfProfile implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
@@ -28,7 +30,7 @@ public class UpdateSelfProfile implements Action {
         try {
             userService.update(userDTO);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in update profile action -> " + e.getMessage());
         }
         return request.getHeader("referer");
     }

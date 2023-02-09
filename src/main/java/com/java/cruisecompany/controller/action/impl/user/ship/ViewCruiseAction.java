@@ -7,11 +7,13 @@ import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.Optional;
 
 import static java.lang.Long.parseLong;
 
+@Log4j2
 public class ViewCruiseAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -20,7 +22,7 @@ public class ViewCruiseAction implements Action {
             Optional<ShipDTO> ship = shipService.findById(parseLong(request.getParameter("shipId")));
             ship.ifPresent(s -> request.setAttribute("ship", s));
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in view cruise action -> " + e.getMessage());
         }
         return "/WEB-INF/jsp/ship/viewCruise.jsp";
     }

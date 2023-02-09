@@ -8,9 +8,11 @@ import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.service.TicketService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import static java.lang.Long.parseLong;
 
+@Log4j2
 public class UpdateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
@@ -22,7 +24,7 @@ public class UpdateTicketAction implements Action {
         try {
             ticketService.update(ticket);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in update ticket action -> " + e.getMessage());
         }
         return request.getHeader("referer");
     }

@@ -10,11 +10,14 @@ import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Log4j2
 public class CreateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -36,8 +39,7 @@ public class CreateShipAction implements Action {
         try {
             imagePath = FileUploaderUtil.addImage(request);
         } catch (IOException | ServletException e) {
-            System.out.println("Exception file");
-            System.out.println(e.getMessage());
+            log.error("Error in create ship action -> " + e.getMessage());
         }
 
         ShipDTO ship = ShipDTO.builder()
@@ -51,7 +53,7 @@ public class CreateShipAction implements Action {
         try {
             shipService.create(ship);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in create ship action -> " + e.getMessage());
         }
         return "controller?action=manage_ship";
     }

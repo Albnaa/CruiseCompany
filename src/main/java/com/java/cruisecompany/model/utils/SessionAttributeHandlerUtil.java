@@ -26,7 +26,6 @@ public class SessionAttributeHandlerUtil {
         Map<String, String> sortedAttributes = buildAttrMapFromReq(request);
         HttpSession session = request.getSession();
 
-        System.out.println("Map from sort attributes -> " + sortedAttributes);
         removeAttributesFromSession(session, sortedAttributes);
         setAttributesToSession(session, sortedAttributes);
     }

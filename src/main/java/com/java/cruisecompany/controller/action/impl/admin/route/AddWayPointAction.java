@@ -2,17 +2,18 @@ package com.java.cruisecompany.controller.action.impl.admin.route;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;
-import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.utils.validation.PortValidator;
 import com.java.cruisecompany.model.utils.validation.RouteValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public class AddWayPointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
@@ -34,7 +35,7 @@ public class AddWayPointAction implements Action {
             routeService.addWaypoint(Long.parseLong(id), Long.parseLong(portId), LocalDate.parse(startDate),
                     LocalDate.parse(endDate));
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("Error in add waypoint action -> " + e.getMessage());
         }
 
         return request.getHeader("referer");

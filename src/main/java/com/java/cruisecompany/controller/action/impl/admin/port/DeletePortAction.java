@@ -2,7 +2,6 @@ package com.java.cruisecompany.controller.action.impl.admin.port;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;
-import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.service.PortService;
 import com.java.cruisecompany.model.utils.validation.PortValidator;
 import jakarta.servlet.http.HttpServletRequest;

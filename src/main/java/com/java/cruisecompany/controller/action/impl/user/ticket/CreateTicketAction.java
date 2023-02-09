@@ -12,6 +12,7 @@ import com.java.cruisecompany.model.utils.validation.TicketValidation;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ import java.util.Map;
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 
+@Log4j2
 public class CreateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
     @Override
@@ -40,7 +42,7 @@ public class CreateTicketAction implements Action {
         try {
             documentPath = FileUploaderUtil.addDocument(request);
         } catch (IOException | ServletException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in create ticket action -> " + e.getMessage());
         }
 
         UserDTO user = UserDTO.builder()
@@ -63,7 +65,7 @@ public class CreateTicketAction implements Action {
         try {
             ticketService.create(ticket);
         } catch (ServiceException e){
-            System.out.println(e.getMessage());
+            log.error("Error in create ticket action -> " + e.getMessage());
         }
         return "controller?action=manage_user_tickets&userF=" + userId;
     }

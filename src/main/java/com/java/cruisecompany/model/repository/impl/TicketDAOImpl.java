@@ -110,5 +110,4 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
                 .startOfCruise(rs.getDate(++k).toLocalDate())
                 .build();
     }
-
 }

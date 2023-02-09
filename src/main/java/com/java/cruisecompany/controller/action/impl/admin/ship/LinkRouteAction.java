@@ -6,9 +6,11 @@ import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.service.ShipService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import static java.lang.Long.parseLong;
 
+@Log4j2
 public class LinkRouteAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -17,7 +19,7 @@ public class LinkRouteAction implements Action {
             shipService.addRoute(parseLong(request.getParameter("id")),
                     parseLong(request.getParameter("routeId")));
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in link route action -> " + e.getMessage());
         }
         return request.getHeader("referer");
     }

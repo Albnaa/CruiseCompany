@@ -10,7 +10,9 @@ import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.ShipQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class ManageCatalogAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -23,7 +25,7 @@ public class ManageCatalogAction implements Action {
             Pagination.calculatePages(request, shipService.getNumOfRowsWithRoutes(queryBuilder.buildFilterQuery()));
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in manage catalog action -> " + e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
         }
         return "/WEB-INF/jsp/ship/manageCatalog.jsp";

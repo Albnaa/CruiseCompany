@@ -22,10 +22,12 @@ import com.java.cruisecompany.controller.action.impl.user.ticket.PayForTicketAct
 import com.java.cruisecompany.controller.action.impl.user.ticket.ViewTicketAction;
 import com.java.cruisecompany.controller.action.impl.user.user.TopUpBalanceAction;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public final class ActionFactory {
     private static final Map<String, Action> ACTION_MAP = new HashMap<>();
 
@@ -83,7 +85,7 @@ public final class ActionFactory {
 
     public static Action getAction(HttpServletRequest request) {
         String action = request.getParameter("action");
-        System.out.println("received parameter -> " + action);
+        log.info("Received action = " + action);
         return ACTION_MAP.getOrDefault(action, new DefaultAction());
     }
 }

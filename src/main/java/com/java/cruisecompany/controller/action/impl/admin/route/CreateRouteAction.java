@@ -8,12 +8,14 @@ import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.utils.validation.RouteValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public class CreateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     @Override
@@ -41,7 +43,7 @@ public class CreateRouteAction implements Action {
         try {
             routeService.create(routeDTO);
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in create route action -> " + e.getMessage());
         }
         return request.getHeader("referer");
     }

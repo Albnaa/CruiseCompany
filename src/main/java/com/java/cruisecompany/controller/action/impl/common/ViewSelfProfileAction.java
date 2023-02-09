@@ -8,7 +8,9 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class ViewSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
@@ -19,7 +21,7 @@ public class ViewSelfProfileAction implements Action {
             UserDTO user = userService.findById(userId).orElseThrow(NoSuchUserException::new);
             request.setAttribute("user", user);
         } catch (ServiceException | NoSuchUserException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in view self profile action -> " + e.getMessage());
         }
         return "/WEB-INF/jsp/user/viewSelfProfile.jsp";
     }

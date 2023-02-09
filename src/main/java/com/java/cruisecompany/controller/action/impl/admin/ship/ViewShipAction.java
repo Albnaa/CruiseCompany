@@ -12,9 +12,11 @@ import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import com.java.cruisecompany.model.utils.queryuilder.RouteQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.Optional;
 
+@Log4j2
 public class ViewShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     RouteService routeService = AppContext.getInstance().getRouteService();
@@ -26,7 +28,7 @@ public class ViewShipAction implements Action {
             Optional<ShipDTO> ship = shipService.findById(shipId);
             ship.ifPresent(shipDTO -> request.setAttribute("ship", shipDTO));
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in view ship action -> " + e.getMessage());
         }
 
         QueryBuilder queryBuilder = new RouteQueryBuilder();

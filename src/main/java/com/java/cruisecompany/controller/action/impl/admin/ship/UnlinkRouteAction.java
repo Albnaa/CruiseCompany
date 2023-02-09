@@ -6,7 +6,9 @@ import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.service.ShipService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class UnlinkRouteAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -14,7 +16,7 @@ public class UnlinkRouteAction implements Action {
         try {
             shipService.deleteRoute(Long.parseLong(request.getParameter("id")));
         } catch (ServiceException e) {
-            System.out.println(e.getMessage());
+            log.error("Error in unlink route action -> " + e.getMessage());
         }
         return request.getHeader("referer");
     }

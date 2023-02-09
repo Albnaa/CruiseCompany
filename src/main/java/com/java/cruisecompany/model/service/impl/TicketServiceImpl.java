@@ -13,6 +13,7 @@ import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.TicketService;
 import com.java.cruisecompany.model.utils.MapperDTO;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOToTicket;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapTicketToDTO;
 
+@Log4j2
 public class TicketServiceImpl implements TicketService {
     private final TicketDAO ticketDAO;
     private final UserDAO userDAO;
@@ -125,7 +127,7 @@ public class TicketServiceImpl implements TicketService {
                 throw new ServiceException(e);
             }
         } catch (SQLException e) {
-            System.out.println("Error while connecting to the database");
+            log.error("Error in during paying for ticket -> " + e.getMessage());
         } finally {
             try {
                 if (con != null) {
@@ -133,7 +135,7 @@ public class TicketServiceImpl implements TicketService {
                     con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error while closing the database connection");
+                log.error("Error while closing the database connection in pay for ticket transaction");
             }
         }
     }

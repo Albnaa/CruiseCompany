@@ -2,14 +2,17 @@ package com.java.cruisecompany.controller;
 
 import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.action.ActionFactory;
+import com.java.cruisecompany.exceptions.ServiceException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 
+@Log4j2
 @MultipartConfig
 public class Controller extends HttpServlet {
     @Override
@@ -24,11 +27,12 @@ public class Controller extends HttpServlet {
 
     private String processRequest(HttpServletRequest req, HttpServletResponse resp) {
         Action action = ActionFactory.getAction(req);
+
         String view = "error.jsp";
         try {
             view = action.execute(req, resp);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ServiceException e) {
+            log.error("Error in controller " + e.getMessage());
         }
         return view;
     }

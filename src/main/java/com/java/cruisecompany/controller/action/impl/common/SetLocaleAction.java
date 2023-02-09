@@ -1,7 +1,6 @@
 package com.java.cruisecompany.controller.action.impl.common;
 
 import com.java.cruisecompany.controller.action.Action;
-import com.java.cruisecompany.exceptions.ServiceException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
