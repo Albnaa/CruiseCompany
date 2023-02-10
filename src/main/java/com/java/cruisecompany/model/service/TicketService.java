@@ -8,4 +8,5 @@ public interface TicketService extends Service<TicketDTO> {
     void payForTicket(long userId, long ticketId) throws ServiceException;
     void updateTicketStatus(long ticketId, Status status) throws ServiceException;
 
+    void completeTicket();
 }

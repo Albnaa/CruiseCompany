@@ -62,6 +62,7 @@
 
     <listener>
         <listener-class>com.java.cruisecompany.controller.listener.LocaleListener</listener-class>
+        <listener-class>com.java.cruisecompany.controller.listener.ContextListener</listener-class>
     </listener>
 
 </web-app>

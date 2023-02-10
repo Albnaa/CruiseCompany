@@ -17,7 +17,9 @@ import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -140,7 +142,6 @@ public class TicketServiceImpl implements TicketService {
         }
     }
 
-
     @Override
     public long getNumOfRows(String query) throws ServiceException {
         try {
@@ -148,5 +149,13 @@ public class TicketServiceImpl implements TicketService {
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public void completeTicket() {
+        ticketDAO.findAll().stream()
+                .filter(t -> t.getStatus() != Status.COMPLETED)
+                .filter(t -> (t.getShip().getRoute().getEndOfCruise().isBefore(LocalDate.now())))
+                .forEach(t -> ticketDAO.updateTicketStatus(t.getId(), Status.COMPLETED));
     }
 }
