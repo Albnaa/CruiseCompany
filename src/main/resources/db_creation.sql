@@ -221,6 +221,28 @@ BEGIN
 END$$
 
 
+USE `webAppDb`$$
+DROP TRIGGER IF EXISTS `webAppDb`.`ticket_BEFORE_INSERT` $$
+USE `webAppDb`$$
+CREATE DEFINER = CURRENT_USER TRIGGER `webAppDb`.`ticket_BEFORE_INSERT`
+    BEFORE INSERT
+    ON `ticket`
+    FOR EACH ROW
+BEGIN
+    DECLARE free_places INT;
+    SET free_places = (SELECT (capacity - staff) - sum(passengers_count)
+                       FROM ticket
+                                JOIN ship ON ticket.ship_id = ship.id
+                       WHERE ship.id = NEW.ship_id
+                       GROUP BY capacity, staff, passengers_count);
+
+    IF free_places < NEW.passengers_count THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Not enough free places on the ship';
+    END IF;
+END$$
+
+
 DELIMITER ;
 
 SET SQL_MODE = @OLD_SQL_MODE;
