@@ -5,18 +5,18 @@ import com.java.cruisecompany.exceptions.InvalidInputException;
 import com.java.cruisecompany.exceptions.NoSuchPortException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.PortDTO;
-import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.repository.PortDAO;
 import com.java.cruisecompany.model.service.PortService;
+import com.java.cruisecompany.model.utils.MapperDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoPort;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapPortToDTO;
 
-public class PortServiceImpl implements PortService { //add validation and dto object
+public class PortServiceImpl implements PortService {
 
     private final PortDAO portDAO;
 
@@ -25,10 +25,9 @@ public class PortServiceImpl implements PortService { //add validation and dto o
     }
 
     @Override
-    public void create(PortDTO entity) throws ServiceException {
-        Port port = mapDTOtoPort(entity);
+    public void create(PortDTO portDTO) throws ServiceException {
         try {
-            portDAO.create(port);
+            portDAO.create(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
             checkAlreadyExist(e);
             throw new ServiceException(e);
@@ -36,10 +35,9 @@ public class PortServiceImpl implements PortService { //add validation and dto o
     }
 
     @Override
-    public void update(PortDTO entity) throws ServiceException {
-        Port port = mapDTOtoPort(entity);
+    public void update(PortDTO portDTO) throws ServiceException {
         try {
-            portDAO.update(port);
+            portDAO.update(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
             checkAlreadyExist(e);
             throw new ServiceException(e);
@@ -57,22 +55,22 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public Optional<PortDTO> findById(long id) throws ServiceException {
-        Optional<PortDTO> portDTO;
+        PortDTO portDTO;
         try {
-            Optional<Port> port = portDAO.findById(id);
-            portDTO = Optional.of(mapPortToDTO(port.orElseThrow(NoSuchPortException::new)));
+            portDTO = mapPortToDTO(portDAO.findById(id).orElseThrow(NoSuchPortException::new));
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return portDTO;
+        return Optional.of(portDTO);
     }
 
     @Override
     public List<PortDTO> findAll() throws ServiceException {
-        List<PortDTO> portDTOs = new ArrayList<>();
+        List<PortDTO> portDTOs;
         try {
-            List<Port> ports = portDAO.findAll();
-            ports.forEach(port -> portDTOs.add(mapPortToDTO(port)));
+            portDTOs = portDAO.findAll().stream()
+                    .map(MapperDTO::mapPortToDTO)
+                    .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -81,10 +79,11 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     @Override
     public List<PortDTO> findSorted(String query) throws ServiceException {
-        List<PortDTO> portDTOs = new ArrayList<>();
+        List<PortDTO> portDTOs;
         try {
-            List<Port> ports = portDAO.findSorted(query);
-            ports.forEach(port -> portDTOs.add(mapPortToDTO(port)));
+            portDTOs = portDAO.findSorted(query).stream()
+                    .map(MapperDTO::mapPortToDTO)
+                    .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException();
         }
@@ -102,7 +101,7 @@ public class PortServiceImpl implements PortService { //add validation and dto o
 
     private static void checkAlreadyExist(DAOException e) throws InvalidInputException {
         String message = e.getMessage();
-        if (message.contains("Duplicate entry")) {
+        if (message != null && message.contains("Duplicate entry")) {
             throw new InvalidInputException("error.ports.nameExists", e);
         }
     }

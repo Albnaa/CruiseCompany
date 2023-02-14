@@ -95,20 +95,20 @@ VALUES (1, 'Mediterranean Cruise', '2022-05-01', '2022-05-10', 1000),
 
 --
 INSERT
-INTO ship (name, capacity, visited_ports, staff, route_id)
-VALUES ('Titanic', 3000, 10, 1000, 1),
-       ('Queen Mary', 2000, 15, 500, 2),
-       ('Carnival Breeze', 4000, 20, 1500, 3),
-       ('Norwegian Dawn', 3500, 25, 1000, 4),
-       ('Disney Magic', 2500, 10, 500, 5),
-       ('Celebrity Eclipse', 3000, 20, 750, 6),
-       ('Royal Caribbean Oasis of the Seas', 6000, 30, 2000, 7),
-       ('MSC Fantasia', 4500, 25, 1500, 8),
-       ('Princess Cruises Sapphire Princess', 3500, 20, 1000, 9),
-       ('Holland America Line Maasdam', 2500, 15, 750, 10),
-       ('AIDA Cruises AIDAvita', 4000, 20, 1000, 1),
-       ('P&O Cruises Oriana', 3500, 15, 750, 2),
-       ('Cunard Queen Victoria', 2500, 10, 500, 3);
+INTO ship (name, capacity, visited_ports, staff, image_path, route_id)
+VALUES ('Titanic', 3000, 10, 1000, '/image/ship_1.jpg', 1),
+       ('Queen Mary', 2000, 15, 500, '/image/ship_2.jpg', 2),
+       ('Carnival Breeze', 4000, 20, 1500, '/image/ship_3.jpg', 3),
+       ('Norwegian Dawn', 3500, 25, 1000, '/image/ship_4.jpg', 4),
+       ('Disney Magic', 2500, 10, 500, '/image/ship_5.jpg', 5),
+       ('Celebrity Eclipse', 3000, 20, 750, '/image/ship_6.jpg', 6),
+       ('Royal Caribbean Oasis of the Seas', 6000, 30, 2000, '/image/ship_7.jpg', 7),
+       ('MSC Fantasia', 4500, 25, 1500, '/image/ship_8.jpg', 8),
+       ('Princess Cruises Sapphire Princess', 3500, 20, 1000, '/image/ship_9.jpg', 9),
+       ('Holland America Line Maasdam', 2500, 15, 750, '/image/ship_10.jpg', 10),
+       ('AIDA Cruises AIDAvita', 4000, 20, 1000, '/image/ship_11.jpg', 1),
+       ('P&O Cruises Oriana', 3500, 15, 750, '/image/ship_12.jpg', 2),
+       ('Cunard Queen Victoria', 2500, 10, 500, '/image/ship_13.jpg', 3);
 
 --
 INSERT INTO user (login, email, password, first_name, last_name, Role_id)

@@ -238,7 +238,7 @@ BEGIN
 
     IF free_places < NEW.passengers_count THEN
         SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Not enough free places on the ship';
+            SET MESSAGE_TEXT = 'error.create.ticket.passengersCount.notEnoughSeats';
     END IF;
 END$$
 

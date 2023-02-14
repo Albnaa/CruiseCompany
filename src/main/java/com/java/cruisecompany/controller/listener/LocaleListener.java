@@ -9,11 +9,6 @@ import java.util.Arrays;
 
 public class LocaleListener implements ServletRequestListener {
     @Override
-    public void requestDestroyed(ServletRequestEvent sre) {
-        // do nothing
-    }
-
-    @Override
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
         HttpSession session = request.getSession();
@@ -24,6 +19,5 @@ public class LocaleListener implements ServletRequestListener {
                     .findFirst().orElse("en");
             session.setAttribute("locale", locale);
         }
-
     }
 }

@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.dto.TicketDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.service.TicketService;
+import com.java.cruisecompany.model.utils.ExceptionUtil;
 import com.java.cruisecompany.model.utils.FileUploaderUtil;
 import com.java.cruisecompany.model.utils.validation.TicketValidation;
 import jakarta.servlet.ServletException;
@@ -65,7 +66,10 @@ public class CreateTicketAction implements Action {
         try {
             ticketService.create(ticket);
         } catch (ServiceException e){
-            log.error("Error in create ticket action -> " + e.getMessage());
+            errors.put("error.create.ticket.passengersCount", ExceptionUtil.getRootMessage(e));
+            log.error("Error in create ticket action -> " + ExceptionUtil.getRootMessage(e));
+            request.getSession().setAttribute("errors", errors);
+            return request.getHeader("referer");
         }
         return "controller?action=manage_user_tickets&userF=" + userId;
     }
