@@ -20,7 +20,7 @@ public class ViewSelfProfileAction implements Action {
         try {
             UserDTO user = userService.findById(userId).orElseThrow(NoSuchUserException::new);
             request.setAttribute("user", user);
-        } catch (ServiceException | NoSuchUserException e) {
+        } catch (ServiceException e) {
             log.error("Error in view self profile action -> " + e.getMessage());
         }
         return "/WEB-INF/jsp/user/viewSelfProfile.jsp";

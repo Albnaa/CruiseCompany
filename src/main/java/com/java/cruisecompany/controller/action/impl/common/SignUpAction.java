@@ -43,7 +43,7 @@ public class SignUpAction implements Action {
                 .build();
 
         try {
-            userService.register(user, password, confirmPassword);
+            userService.register(user, password);
         } catch (ServiceException e) {
             request.getSession().setAttribute("error", e.getMessage());
             request.getSession().setAttribute("user", user);

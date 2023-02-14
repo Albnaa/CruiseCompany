@@ -27,22 +27,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(UserDTO userDTO) throws ServiceException {
-        User user = mapDTOtoUser(userDTO);
         try {
-            userDAO.create(user);
+            userDAO.create(mapDTOtoUser(userDTO));
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }
-    //check for existing user with the same login/username
+
     @Override
-    public void register(UserDTO userDTO, String password, String confirmPassword) throws ServiceException {
+    public void register(UserDTO userDTO, String password) throws ServiceException {
         User user = mapDTOtoUser(userDTO);
         user.setPassword(password);
         try {
             userDAO.create(user);
         } catch (DAOException e) {
             checkAlreadyExist(e);
+            throw new ServiceException(e);
         }
     }
 
@@ -67,14 +67,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDTO> findById(long id) throws ServiceException {
-        Optional<UserDTO> userDTO;
+        UserDTO userDTO;
         try {
-            Optional<User> user = userDAO.findById(id);
-            userDTO = Optional.of(mapUserToDTO(user.orElseThrow(NoSuchUserException::new)));
-        } catch (Exception e) {
+            userDTO = mapUserToDTO(userDAO.findById(id).orElseThrow(NoSuchUserException::new));
+        } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return userDTO;
+        return Optional.of(userDTO);
     }
 
     @Override
@@ -91,14 +90,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDTO> findByLoginAndPass(String login, String password) throws ServiceException {
-        Optional<UserDTO> userDTO;
+        UserDTO userDTO;
         try {
-            Optional<User> user = userDAO.findByLoginAndPass(login, password);
-            userDTO = Optional.of(mapUserToDTO(user.orElseThrow(NoSuchUserException::new)));
-        } catch (DAOException | NoSuchUserException e) {
+            userDTO = mapUserToDTO(userDAO.findByLoginAndPass(login, password).orElseThrow(NoSuchUserException::new));
+        } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return userDTO;
+        return Optional.of(userDTO);
     }
 
     @Override
@@ -124,14 +122,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<UserDTO> findByLogin(String login) throws ServiceException {
-        Optional<UserDTO> userDTO;
+        UserDTO userDTO;
         try {
-            Optional<User> user = userDAO.findByLogin(login);
-            userDTO = Optional.of(mapUserToDTO(user.orElseThrow(NoSuchUserException::new)));
-        } catch (Exception e) {
+            userDTO = mapUserToDTO(userDAO.findByLogin(login).orElseThrow(NoSuchUserException::new));
+        } catch (DAOException e) {
             throw new ServiceException(e);
         }
-        return userDTO;
+        return Optional.of(userDTO);
     }
 
     @Override
@@ -157,7 +154,7 @@ public class UserServiceImpl implements UserService {
 
     private static void checkAlreadyExist(DAOException e) throws InvalidInputException {
         String message = e.getMessage();
-        if (message.contains("Duplicate entry")) {
+        if (message != null && message.contains("Duplicate entry")) {
             if (message.contains("login")) {
                 throw new InvalidInputException("error.user.loginExists", e);
             } else if (message.contains("email")) {
