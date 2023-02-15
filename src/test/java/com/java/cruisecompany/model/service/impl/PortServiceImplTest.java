@@ -158,10 +158,10 @@ class PortServiceImplTest {
 
     @Test
     public void testGetNumOfRowsServiceException() throws DAOException {
-        Mockito.doThrow(new DAOException()).when(portDAO).getNumOfRows(any());
+        Mockito.doThrow(new DAOException()).when(portDAO).getNumOfRows(any(String.class));
 
-        assertThrows(ServiceException.class, () -> portService.getNumOfRows(any()));
-        verify(portDAO).getNumOfRows(any());
+        assertThrows(ServiceException.class, () -> portService.getNumOfRows("String"));
+        verify(portDAO).getNumOfRows(any(String.class));
     }
 
 

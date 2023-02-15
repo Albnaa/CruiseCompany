@@ -71,8 +71,18 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public List<RouteDTO> findAll() {
-        return null;
+    public List<RouteDTO> findAll() throws ServiceException {
+        List<RouteDTO> routeDTOs;
+        try {
+            routeDTOs = routeDAO.findAll().stream()
+                    .peek(route -> route.setWaypoints(routeDAO.getRouteWaypoints(route.getId())))
+                    .map(MapperDTO::mapRouteToDTO)
+                    .peek(route -> route.setNumOfPorts(route.getWaypoints().size()))
+                    .collect(Collectors.toList());
+        } catch (DAOException e) {
+            throw new ServiceException(e);
+        }
+        return routeDTOs;
     }
 
     @Override
