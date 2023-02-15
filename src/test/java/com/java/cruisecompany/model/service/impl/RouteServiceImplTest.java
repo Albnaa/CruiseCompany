@@ -2,14 +2,10 @@ package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
 import com.java.cruisecompany.exceptions.NoSuchRouteException;
-import com.java.cruisecompany.exceptions.NoSuchUserException;
 import com.java.cruisecompany.exceptions.ServiceException;
-import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.dto.RouteDTO;
-import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.entity.Route;
-import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.entity.wrapper.Waypoint;
 import com.java.cruisecompany.model.repository.RouteDAO;
 import com.java.cruisecompany.model.service.RouteService;
@@ -22,7 +18,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -194,7 +189,7 @@ class RouteServiceImplTest {
     }
 
     @Test
-    void testAddWaypointServiceException() throws ServiceException {
+    void testAddWaypointServiceException() {
         Mockito.doThrow(new DAOException()).when(routeDAO)
                 .addWaypoint(eq(1L), eq(1L), any(LocalDate.class), any(LocalDate.class));
 
