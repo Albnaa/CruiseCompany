@@ -30,7 +30,7 @@ public class SessionAttributeHandlerUtil {
         setAttributesToSession(session, sortedAttributes);
     }
 
-    private static Map<String, String> buildAttrMapFromReq(HttpServletRequest request) {
+    static Map<String, String> buildAttrMapFromReq(HttpServletRequest request) {
         String query = request.getQueryString();
 
         String[] attributes = query.split("&");

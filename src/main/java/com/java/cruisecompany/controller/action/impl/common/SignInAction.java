@@ -7,6 +7,7 @@ import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
+import com.java.cruisecompany.model.utils.ExceptionUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +33,7 @@ public class SignInAction implements Action {
         try {
             user = userService.findByLoginAndPass(login, password);
         } catch (ServiceException e) {
-            errors.put("error.signIn.user", e.getCause().getMessage());
+            errors.put("error.signIn.user", ExceptionUtil.getRootMessage(e));
             session.setAttribute("errors", errors);
             return request.getHeader("referer");
         }
