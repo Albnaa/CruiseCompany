@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 @Log4j2
 public class TicketScheduler {
-    private final ScheduledExecutorService executor;
+    ScheduledExecutorService executor;
     private final TicketService ticketService;
 
     public TicketScheduler(TicketService ticketService) {
@@ -38,5 +38,4 @@ public class TicketScheduler {
         log.info("Ticket scheduler shutdown");
         executor.shutdown();
     }
-
 }

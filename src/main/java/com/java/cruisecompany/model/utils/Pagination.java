@@ -4,12 +4,12 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class Pagination {
     public static void calculatePages(HttpServletRequest request, long records) {
-        long offset = parseIntFromString(request.getParameter("offset"), 0);
-        long rows = parseIntFromString(request.getParameter("rows"), 5);
-        long numOfPages = (long) Math.ceil(records * 1.0 / rows);
-        long currPage = offset / rows + 1;
-        long lowerBound = calculateLowerBound(currPage, numOfPages);
-        long upperBound = Math.min(numOfPages, lowerBound + 6);
+        int offset = parseIntFromString(request.getParameter("offset"), 0);
+        int rows = parseIntFromString(request.getParameter("rows"), 5);
+        int numOfPages = (int) Math.ceil(records * 1.0 / rows);
+        int currPage = offset / rows + 1;
+        int lowerBound = calculateLowerBound(currPage, numOfPages);
+        int upperBound = Math.min(numOfPages, lowerBound + 6);
 
         request.setAttribute("offset", offset);
         request.setAttribute("rows", rows);
@@ -20,10 +20,10 @@ public class Pagination {
         request.setAttribute("upperBound", upperBound);
     }
 
-    private static long parseIntFromString(String value, long defaultValue) {
+    static int parseIntFromString(String value, int defaultValue) {
         try {
             if (Long.parseLong(value) > 0) {
-                return Long.parseLong(value);
+                return Integer.parseInt(value);
             } else {
                 return defaultValue;
             }
@@ -32,15 +32,14 @@ public class Pagination {
         }
     }
 
-    private static long calculateLowerBound(long currPage, long numOfPages) {
-        if (currPage > (long) 6 - ((long) 6 / 2)) {
+    static int calculateLowerBound(int currPage, int numOfPages) {
+        if (currPage > 6 - (6 / 2)) {
             if (numOfPages > 6) {
-                return Math.min(currPage - (long) 6 / 2, numOfPages - 6);
+                return Math.min(currPage - 6 / 2, numOfPages - 6);
             } else {
                 return 1;
             }
         }
         return 1;
     }
-
 }
