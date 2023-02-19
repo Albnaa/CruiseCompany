@@ -15,7 +15,7 @@ import java.nio.file.Files;
 public class TestAction implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String documentPath = "D:\\uploads\\document";
+        String documentPath = "E:\\uploads\\document";
         File document = new File(documentPath, URLDecoder.decode(request.getParameter("documentPath"), StandardCharsets.UTF_8));
         String contentType = request.getServletContext().getMimeType(document.getName());
 

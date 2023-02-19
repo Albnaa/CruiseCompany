@@ -12,13 +12,13 @@ public final class FileUploaderUtil {
 
     public static String addImage(HttpServletRequest request) throws ServletException, IOException {
         Part filePart = request.getPart("image");
-        String filePath = "D:\\uploads\\image\\";
+        String filePath = "E:\\uploads\\image\\";
         return addFile(filePart, filePath);
     }
 
     public static String addDocument(HttpServletRequest request) throws ServletException, IOException {
         Part filePart = request.getPart("document");
-        String filePath = "D:\\uploads\\document\\";
+        String filePath = "E:\\uploads\\document\\";
         return addFile(filePart, filePath);
     }
 

@@ -15,7 +15,7 @@ import java.nio.file.Files;
 public class FileAction implements Action {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String directory = "D:\\uploads";
+        String directory = "E:\\uploads";
         File file = new File(directory, URLDecoder.decode(request.getParameter("path"), StandardCharsets.UTF_8));
         String contentType = request.getServletContext().getMimeType(file.getName());
 
