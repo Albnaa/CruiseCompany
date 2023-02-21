@@ -11,7 +11,7 @@ public abstract class QueryBuilder {
     private int offset;
     private int rows;
 
-    private void setSort(String parameter) {
+    void setSort(String parameter) {
         if (parameterIsValid(parameter)) {
             sort = parameter;
         } else {
@@ -19,7 +19,7 @@ public abstract class QueryBuilder {
         }
     }
 
-    private void setOrder(String parameter) {
+    void setOrder(String parameter) {
         if (Objects.equals(parameter, "desc")) {
             order = parameter;
         }
@@ -50,7 +50,7 @@ public abstract class QueryBuilder {
         return buildFilterFragment();
     }
 
-    public void extractBuilderParameters(HttpServletRequest request) throws InvalidInputException {
+    public void extractBuilderParameters(HttpServletRequest request) {
         setSort(request.getParameter("sort"));
         setOrder(request.getParameter("order"));
         setOffset(request.getParameter("offset"));
@@ -69,7 +69,7 @@ public abstract class QueryBuilder {
     }
     abstract String buildGroupByFragment();
     abstract String buildFilterFragment();
-    abstract void extractFilterParameters(HttpServletRequest request) throws InvalidInputException;
+    abstract void extractFilterParameters(HttpServletRequest request);
     abstract boolean parameterIsValid(String parameter);
     abstract String getDefaultSort();
 }

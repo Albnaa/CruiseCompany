@@ -64,7 +64,7 @@ public class ShipQueryBuilder extends QueryBuilder {
     }
 
     @Override
-    void extractFilterParameters(HttpServletRequest request) throws InvalidInputException {
+    void extractFilterParameters(HttpServletRequest request) {
         setDurationFilter(request.getParameter("durationF"));
         setNameFilter(request.getParameter("nameF"));
         setStartDateFilter(request.getParameter("startDateF"));
