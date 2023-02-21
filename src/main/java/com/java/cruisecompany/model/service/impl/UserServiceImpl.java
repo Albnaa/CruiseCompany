@@ -8,6 +8,7 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
+import com.java.cruisecompany.model.utils.PasswordHashUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserDTO userDTO, String password) throws ServiceException {
         User user = mapDTOtoUser(userDTO);
-        user.setPassword(password);
+        user.setPassword(PasswordHashUtil.hash(password));
+
         try {
             userDAO.create(user);
         } catch (DAOException e) {
@@ -92,7 +94,13 @@ public class UserServiceImpl implements UserService {
     public Optional<UserDTO> findByLoginAndPass(String login, String password) throws ServiceException {
         UserDTO userDTO;
         try {
-            userDTO = mapUserToDTO(userDAO.findByLoginAndPass(login, password).orElseThrow(NoSuchUserException::new));
+            User user = userDAO.findByLogin(login).orElseThrow(NoSuchUserException::new);
+
+            if (!PasswordHashUtil.verify(user.getPassword(), password)) {
+                throw new NoSuchUserException();
+            }
+
+            userDTO = mapUserToDTO(user);
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
