@@ -9,10 +9,12 @@ import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import com.java.cruisecompany.model.utils.validation.UserValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Log4j2
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
 
@@ -45,6 +47,7 @@ public class SignUpAction implements Action {
         try {
             userService.register(user, password);
         } catch (ServiceException e) {
+            log.error("Error in sign Up Action" + e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
             request.getSession().setAttribute("user", user);
             return "signUp.jsp";
