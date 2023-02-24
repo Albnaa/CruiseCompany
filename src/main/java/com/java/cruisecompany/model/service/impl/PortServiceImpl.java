@@ -8,6 +8,7 @@ import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.repository.PortDAO;
 import com.java.cruisecompany.model.service.PortService;
 import com.java.cruisecompany.model.utils.MapperDTO;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoPort;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapPortToDTO;
 
+@Log4j2
 public class PortServiceImpl implements PortService {
 
     private final PortDAO portDAO;
@@ -29,6 +31,7 @@ public class PortServiceImpl implements PortService {
         try {
             portDAO.create(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
+            log.error("Port service create error " + e.getMessage());
             checkAlreadyExist(e);
             throw new ServiceException(e);
         }
@@ -39,6 +42,7 @@ public class PortServiceImpl implements PortService {
         try {
             portDAO.update(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
+            log.error("Port service update error " + e.getMessage());
             checkAlreadyExist(e);
             throw new ServiceException(e);
         }
@@ -49,6 +53,7 @@ public class PortServiceImpl implements PortService {
         try {
             portDAO.delete(id);
         } catch (DAOException e) {
+            log.error("Port service delete error " + e.getMessage());
             throw new ServiceException(e);
         }
     }
@@ -59,6 +64,7 @@ public class PortServiceImpl implements PortService {
         try {
             portDTO = mapPortToDTO(portDAO.findById(id).orElseThrow(NoSuchPortException::new));
         } catch (DAOException e) {
+            log.error("Port service findById error " + e.getMessage());
             throw new ServiceException(e);
         }
         return Optional.of(portDTO);
@@ -72,6 +78,7 @@ public class PortServiceImpl implements PortService {
                     .map(MapperDTO::mapPortToDTO)
                     .collect(Collectors.toList());
         } catch (DAOException e) {
+            log.error("Port service findAll error " + e.getMessage());
             throw new ServiceException(e);
         }
         return portDTOs;
@@ -85,6 +92,7 @@ public class PortServiceImpl implements PortService {
                     .map(MapperDTO::mapPortToDTO)
                     .collect(Collectors.toList());
         } catch (DAOException e) {
+            log.error("Port service findSorted error " + e.getMessage());
             throw new ServiceException();
         }
         return portDTOs;
@@ -95,6 +103,7 @@ public class PortServiceImpl implements PortService {
         try {
             return portDAO.getNumOfRows(query);
         } catch (DAOException e) {
+            log.error("Port service getNumOfRows error " + e.getMessage());
             throw new ServiceException(e);
         }
     }

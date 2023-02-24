@@ -8,6 +8,7 @@ import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
+import com.java.cruisecompany.model.utils.PasswordHashUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -158,28 +159,29 @@ public class UserServiceImplTest {
 
     @Test
     void testFindByLoginAndPassSuccess() throws ServiceException {
-        when(userDAO.findByLoginAndPass(any(String.class), any(String.class)))
-                .thenReturn(Optional.of(getUser()));
+        
+        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(getUser()));
+        when(PasswordHashUtil.verify(any(String.class), any(String.class))).thenReturn(true);
 
         Optional<UserDTO> actualUser = userService.findByLoginAndPass("Login", "Pass");
 
         assertTrue(actualUser.isPresent());
         assertEquals(getUserDTO(), actualUser.get());
-        verify(userDAO).findByLoginAndPass(any(String.class), any(String.class));
+        verify(userDAO).findByLogin(any(String.class));
     }
 
     @Test
     public void testFindByLoginAndPassNoSuchUserException() throws DAOException {
-        when(userDAO.findByLoginAndPass(any(String.class), any(String.class))).thenReturn(Optional.empty());
+        when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.empty());
         assertThrows(NoSuchUserException.class, () -> userService.findByLoginAndPass("Login", "Pass"));
     }
 
     @Test
     void testFindByLoginAndPassServiceException() throws DAOException  {
-        Mockito.doThrow(new DAOException()).when(userDAO).findByLoginAndPass(any(), any());
+        Mockito.doThrow(new DAOException()).when(userDAO).findByLogin(any(String.class));
 
-        assertThrows(ServiceException.class, () -> userService.findByLoginAndPass(any(), any()));
-        verify(userDAO).findByLoginAndPass(any(), any());
+        assertThrows(ServiceException.class, () -> userService.findByLoginAndPass("Login", "Pass"));
+        verify(userDAO).findByLogin(any(String.class));
     }
 
     @Test

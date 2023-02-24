@@ -12,11 +12,20 @@ public class LocaleListener implements ServletRequestListener {
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
         HttpSession session = request.getSession();
+
         if (session.getAttribute("locale") == null) {
             String preferredLanguage = request.getHeader("Accept-Language");
-            String locale = Arrays.stream(preferredLanguage.split(","))
-                    .filter(lan -> lan.contains("en") || lan.contains("uk"))
-                    .findFirst().orElse("en");
+            System.out.println(preferredLanguage);
+            String locale;
+
+            if (preferredLanguage != null) {
+                locale = Arrays.stream(preferredLanguage.split(","))
+                        .filter(lan -> lan.contains("en") || lan.contains("uk"))
+                        .findFirst().orElse("en");
+            } else {
+                locale = "en";
+            }
+
             session.setAttribute("locale", locale);
         }
     }

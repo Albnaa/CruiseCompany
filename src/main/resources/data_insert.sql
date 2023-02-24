@@ -112,18 +112,18 @@ VALUES ('Titanic', 3000, 10, 1000, '/image/ship_1.jpg', 1),
 
 --
 INSERT INTO user (login, email, password, first_name, last_name, Role_id)
-VALUES ('admin', 'admin@cruise.com', 'password', 'John', 'Doe', 1),
-       ('manager', 'manager@cruise.com', 'password', 'Jane', 'Doe', 2),
-       ('customer1', 'customer1@cruise.com', 'password', 'Bob', 'Bib', 2),
-       ('customer2', 'customer2@cruise.com', 'password', 'Alice', 'Smith', 2),
-       ('staff1', 'staff1@cruise.com', 'password', 'Tom', 'Johnson', 2),
-       ('staff2', 'staff2@cruise.com', 'password', 'Sara', 'Williams', 2),
-       ('captain', 'captain@cruise.com', 'password', 'Jason', 'Miller', 2),
-       ('chef', 'chef@cruise.com', 'password', 'Ashley', 'Davis', 2),
-       ('entertainment', 'entertainment@cruise.com', 'password', 'Michael', 'Brown', 2),
-       ('housekeeping', 'housekeeping@cruise.com', 'password', 'Emma', 'Jones', 2),
-       ('security', 'security@cruise.com', 'password', 'David', 'Garcia', 2),
-       ('medical', 'medical@cruise.com', 'password', 'Jessica', 'Martin', 2);
+VALUES ('admin', 'admin@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'John', 'Doe', 1),
+       ('manager', 'manager@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Jane', 'Doe', 2),
+       ('customer1', 'customer1@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Bob', 'Bib', 2),
+       ('customer2', 'customer2@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Alice', 'Smith', 2),
+       ('staff1', 'staff1@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Tom', 'Johnson', 2),
+       ('staff2', 'staff2@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Sara', 'Williams', 2),
+       ('captain', 'captain@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Jason', 'Miller', 2),
+       ('chef', 'chef@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Ashley', 'Davis', 2),
+       ('entertainment', 'entertainment@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Michael', 'Brown', 2),
+       ('housekeeping', 'housekeeping@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Emma', 'Jones', 2),
+       ('security', 'security@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'David', 'Garcia', 2),
+       ('medical', 'medical@cruise.com', '$argon2i$v=19$m=10240,t=10,p=1$MojprJwHt+HaeXLQurzdPA$QXBP2l7L14kdN/b5yyR4ZcqkuhUn01E53C3VvZvFx+c', 'Jessica', 'Martin', 2);
 
 INSERT INTO route_has_port (route_id, port_id, arrive_time, departure_time)
 VALUES (1, 1, '2022-08-01', '2022-03-04'),
