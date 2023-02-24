@@ -29,7 +29,7 @@
                             placeholder="ship.staff.placeholder"/>
           </div>
           <div class="input-group mb-2">
-            <input type="file" name="image" class="form-control" accept="image/*"/>
+            <input type="file" name="image" class="form-control" accept="image/*" required/>
             <span class="input-group-text w-25"><fmt:message key="common.image"/></span>
           </div>
           <div class="mb-2">

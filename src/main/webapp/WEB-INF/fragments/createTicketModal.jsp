@@ -22,7 +22,7 @@
           </div>
           <div class="input-group mb-2">
             <label class="input-group-text"><fmt:message key="common.documents"/></label>
-            <input type="file" class="form-control" name="document">
+            <input type="file" class="form-control" name="document" required>
           </div>
 
           <div class="row justify-content-center mt-3">
