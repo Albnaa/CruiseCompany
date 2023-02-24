@@ -126,7 +126,8 @@
             <form method="get" action="controller">
                 <input type="hidden" name="action" value="view_route">
                 <input type="hidden" name="id" value="${requestScope.route.id}">
-                <input type="text" class="form-control mb-2" placeholder="<fmt:message key="route.port.placeholder"/>">
+                <input type="text" name="nameF" class="form-control mb-2"
+                       placeholder="<fmt:message key="route.port.placeholder"/>"/>
                 <select class="form-select mb-2" name="sort">
                     <option value="" ${empty sessionScope.sort ? 'selected' : ''}>
                         <fmt:message key="common.sort.default"/>

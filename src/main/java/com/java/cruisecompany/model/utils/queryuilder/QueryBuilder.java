@@ -1,6 +1,5 @@
 package com.java.cruisecompany.model.utils.queryuilder;
 
-import com.java.cruisecompany.exceptions.InvalidInputException;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Objects;
@@ -12,7 +11,7 @@ public abstract class QueryBuilder {
     private int rows;
 
     void setSort(String parameter) {
-        if (parameterIsValid(parameter)) {
+        if (isValid(parameter)) {
             sort = parameter;
         } else {
             sort = getDefaultSort();
@@ -70,6 +69,6 @@ public abstract class QueryBuilder {
     abstract String buildGroupByFragment();
     abstract String buildFilterFragment();
     abstract void extractFilterParameters(HttpServletRequest request);
-    abstract boolean parameterIsValid(String parameter);
+    abstract boolean isValid(String parameter);
     abstract String getDefaultSort();
 }

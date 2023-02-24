@@ -71,7 +71,7 @@ public class ShipQueryBuilder extends QueryBuilder {
     }
 
     @Override
-    boolean parameterIsValid(String parameter) {
+    boolean isValid(String parameter) {
         if (parameter == null || parameter.isEmpty()) return false;
         return SHIP_FIELDS.contains(parameter);
     }
