@@ -28,6 +28,6 @@ public class FileAction implements Action {
             log.error("Error in file action -> " + e.getMessage());
             throw new RuntimeException(e);
         }
-        return request.getHeader("referer");
+        return "doNothing";
     }
 }

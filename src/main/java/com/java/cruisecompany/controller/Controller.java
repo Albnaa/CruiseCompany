@@ -17,7 +17,10 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(processRequest(req, resp)).forward(req, resp);
+        String view = processRequest(req, resp);
+        if (!view.equals("doNothing")) {
+            req.getRequestDispatcher(view).forward(req, resp);
+        }
     }
 
     @Override
