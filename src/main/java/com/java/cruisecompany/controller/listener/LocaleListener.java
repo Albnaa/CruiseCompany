@@ -15,7 +15,6 @@ public class LocaleListener implements ServletRequestListener {
 
         if (session.getAttribute("locale") == null) {
             String preferredLanguage = request.getHeader("Accept-Language");
-            System.out.println(preferredLanguage);
             String locale;
 
             if (preferredLanguage != null) {

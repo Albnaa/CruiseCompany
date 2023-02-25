@@ -41,7 +41,7 @@ public class SecurityFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession(false);
@@ -58,7 +58,7 @@ public class SecurityFilter implements Filter {
             if (!ALLOWED_ACTIONS.get(role).contains(action)) {
                 log.info("Access denied");
 
-                resp.sendRedirect("error.jsp");
+                resp.sendError(HttpServletResponse.SC_FORBIDDEN);
             } else {
                 chain.doFilter(request, response);
             }

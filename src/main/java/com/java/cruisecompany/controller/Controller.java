@@ -28,7 +28,7 @@ public class Controller extends HttpServlet {
     private String processRequest(HttpServletRequest req, HttpServletResponse resp) {
         Action action = ActionFactory.getAction(req);
 
-        String view = "error.jsp";
+        String view = "accessDenied.jsp";
         try {
             view = action.execute(req, resp);
         } catch (ServiceException e) {

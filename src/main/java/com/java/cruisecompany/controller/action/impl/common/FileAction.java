@@ -29,6 +29,5 @@ public class FileAction implements Action {
             throw new RuntimeException(e);
         }
         return request.getHeader("referer");
-
     }
 }

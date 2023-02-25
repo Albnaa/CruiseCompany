@@ -7,7 +7,12 @@
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
-    
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/jsp/error/accessDenied.jsp</location>
+    </error-page>
+
     <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>com.java.cruisecompany.controller.Controller</servlet-class>
