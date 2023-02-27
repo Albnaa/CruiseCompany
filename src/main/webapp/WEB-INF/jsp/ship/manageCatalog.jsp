@@ -139,8 +139,10 @@
                             <li class="list-group-item"><fmt:message key="common.shipName"/>: ${cruise.name}</li>
                             <li class="list-group-item"><fmt:message key="common.price"/>: ${cruise.route.price}</li>
                         </ul>
+                    </div>
+                    <div class="card-footer">
                         <div class="text-center">
-                            <button class="btn btn-outline-primary w-75 mt-2"
+                            <button class="btn btn-outline-primary w-75"
                                     onclick="location.href = 'controller?action=view_cruise&shipId=${cruise.id}';">
                                 <fmt:message key="common.button.view"/>
                             </button>
