@@ -58,14 +58,13 @@
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="visitedPorts" entity="update.ship" labelKey="common.visitedPorts"
-                                    width="25"
-                                    type="number" value="${requestScope.ship.visitedPorts}"
+                                    width="25" type="number" value="${requestScope.ship.visitedPorts}"
                                     placeholder="ship.visitedPorts.placeholder"/>
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="staff" entity="update.ship" labelKey="common.staff" width="25"
-                                    type="number"
-                                    value="${requestScope.ship.staff}" placeholder="ship.staff.placeholder"/>
+                                    type="number" value="${requestScope.ship.staff}"
+                                    placeholder="ship.staff.placeholder"/>
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="routeName" entity="update.ship" labelKey="common.routeName" width="25"

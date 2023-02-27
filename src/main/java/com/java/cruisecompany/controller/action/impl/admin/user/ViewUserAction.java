@@ -14,7 +14,6 @@ public class ViewUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-
         int userId = Integer.parseInt(request.getParameter("userId"));
         Optional<UserDTO> user = userService.findById(userId);
         if (user.isPresent()) {

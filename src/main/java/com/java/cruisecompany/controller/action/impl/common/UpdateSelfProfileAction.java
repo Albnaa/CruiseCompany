@@ -49,7 +49,7 @@ public class UpdateSelfProfileAction implements Action {
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
             errors.put(remapMessage(e.getMessage(), "update.user"), e.getMessage());
-            request.getSession().setAttribute("error", errors);
+            request.getSession().setAttribute("errors", errors);
         }
         return request.getHeader("referer");
     }

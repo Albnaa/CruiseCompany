@@ -8,12 +8,14 @@ import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
+import com.java.cruisecompany.model.utils.MapperDTO;
 import com.java.cruisecompany.model.utils.PasswordHashUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.java.cruisecompany.model.utils.MapperDTO.mapDTOtoUser;
 import static com.java.cruisecompany.model.utils.MapperDTO.mapUserToDTO;
@@ -81,10 +83,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findAll() throws ServiceException {
-        List<UserDTO> userDTOs = new ArrayList<>();
+        List<UserDTO> userDTOs;
         try {
-            List<User> users = userDAO.findAll();
-            users.forEach(user -> userDTOs.add(mapUserToDTO(user)));
+            userDTOs = userDAO.findAll().stream()
+                    .map(MapperDTO::mapUserToDTO)
+                    .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -119,10 +122,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findByInitials(String initials) throws ServiceException {
-        List<UserDTO> userDTOs = new ArrayList<>();
+        List<UserDTO> userDTOs;
         try {
-            List<User> users = userDAO.findByInitials(initials);
-            users.forEach(user -> userDTOs.add(mapUserToDTO(user)));
+            userDTOs = userDAO.findByInitials(initials).stream()
+                    .map(MapperDTO::mapUserToDTO)
+                    .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException(e);
         }
@@ -142,10 +146,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> findSorted(String query) throws ServiceException {
-        List<UserDTO> userDTOs = new ArrayList<>();
+        List<UserDTO> userDTOs;
         try {
-            List<User> users = userDAO.findSorted(query);
-            users.forEach(user -> userDTOs.add(mapUserToDTO(user)));
+            userDTOs = userDAO.findSorted(query).stream()
+                    .map(MapperDTO::mapUserToDTO)
+                    .collect(Collectors.toList());
         } catch (DAOException e) {
             throw new ServiceException(e);
         }

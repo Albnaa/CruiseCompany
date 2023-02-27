@@ -39,7 +39,7 @@ public class UpdatePortAction implements Action {
             portService.update(port);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
-            errors.put(remapMessage(e.getMessage(), "update.ship"), e.getMessage());
+            errors.put(remapMessage(e.getMessage(), "update.port"), e.getMessage());
             request.getSession().setAttribute("errors", errors);
         }
 

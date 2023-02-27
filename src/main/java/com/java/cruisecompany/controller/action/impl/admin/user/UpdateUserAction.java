@@ -53,7 +53,7 @@ public class UpdateUserAction implements Action {
             log.error("Error in update user action -> " + e.getMessage());
 
             errors.put(remapMessage(e.getMessage(), "update.user"), e.getMessage());
-            request.getSession().setAttribute("error", errors);
+            request.getSession().setAttribute("errors", errors);
         }
         return request.getHeader("referer");
     }

@@ -111,7 +111,7 @@ public class PortServiceImpl implements PortService {
     private static void validateSQLError(DAOException e) throws InvalidInputException {
         String message = e.getMessage();
         if (message != null && message.contains("Duplicate entry")) {
-            throw new InvalidInputException("error.ports.name.exist", e);
+            throw new InvalidInputException("error.port.name.exist", e);
         }
     }
 }

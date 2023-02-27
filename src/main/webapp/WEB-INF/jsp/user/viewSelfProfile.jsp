@@ -13,7 +13,12 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<jsp:include page="/WEB-INF/fragments/userNavbar.jsp"/>
+<c:if test="${sessionScope.role == 'ADMIN'}">
+    <jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
+</c:if>
+<c:if test="${sessionScope.role == 'USER'}">
+    <jsp:include page="/WEB-INF/fragments/userNavbar.jsp"/>
+</c:if>
 
 <div class="container">
     <h2 class="text-center p-3"><fmt:message key="profile.header"/></h2>

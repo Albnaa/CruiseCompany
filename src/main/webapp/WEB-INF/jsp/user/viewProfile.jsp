@@ -16,6 +16,7 @@
 <jsp:include page="/WEB-INF/fragments/adminNavbar.jsp"/>
 
 <div class="container">
+    ${sessionScope.error}
     <h2 class="text-center p-3"><fmt:message key="profile.header"/>#${requestScope.user.id}</h2>
     <div class="row justify-content-center">
         <div class="col-6">

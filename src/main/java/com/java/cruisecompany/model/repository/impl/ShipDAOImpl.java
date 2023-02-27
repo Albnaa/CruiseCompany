@@ -16,7 +16,7 @@ public class ShipDAOImpl extends GenericDAO<Ship> implements ShipDAO {
     private static final String INSERT_SHIP = "INSERT INTO ship (name, capacity, visited_ports, staff, image_path) " +
             "VALUES (?, ?, ?, ?, ?)";
     private static final String INSERT_ROUTE = "UPDATE ship SET route_id = ? WHERE id = ?";
-    private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?," +
+    private static final String UPDATE_SHIP = "UPDATE ship SET name = ?, capacity = ?, visited_ports = ?, staff = ?" +
             " WHERE id = ?";
     private static final String UPDATE_SHIP_IMAGE = "UPDATE ship SET image_path = ? WHERE id = ?";
     private static final String DELETE_SHIP = "DELETE FROM ship WHERE id = ?";
