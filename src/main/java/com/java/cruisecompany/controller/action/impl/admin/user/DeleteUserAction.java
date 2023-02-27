@@ -17,6 +17,6 @@ public class DeleteUserAction implements Action {
         } catch (ServiceException e) {
             request.getSession().setAttribute("error", e.getMessage());
         }
-        return "/WEB-INF/jsp/user/manageUsers.jsp";
+        return "controller?action=manage_users";
     }
 }

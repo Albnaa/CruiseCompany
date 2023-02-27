@@ -45,7 +45,7 @@ public final class ActionFactory {
         ACTION_MAP.put("update_user", new UpdateUserAction());
         ACTION_MAP.put("top_up_balance", new TopUpBalanceAction());
         ACTION_MAP.put("view_self_profile", new ViewSelfProfileAction());
-        ACTION_MAP.put("update_self_profile", new UpdateSelfProfile());
+        ACTION_MAP.put("update_self_profile", new UpdateSelfProfileAction());
         //ship
         ACTION_MAP.put("manage_ship", new ManageShipAction());
         ACTION_MAP.put("view_ship", new ViewShipAction());
