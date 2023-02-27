@@ -79,7 +79,7 @@
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
-                        onclick="location.href = 'controller?action=manage_port';">
+                        onclick="location.href = 'controller?action=manage_tickets';">
                     <fmt:message key="common.button.reset"/>
                 </button>
                 <button type="submit" class="btn btn-primary w-100">

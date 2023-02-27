@@ -48,7 +48,7 @@
             <div class="col">
                 <div class="input-group">
                     <span class="input-group-text"><fmt:message key="common.filter.startDate.short"/></span>
-                    <input type="date" placeholder="dd/MM/yyyy" class="form-control" name="startDate">
+                    <input type="date" class="form-control" name="startDateF">
                 </div>
             </div>
             <div class="col">
@@ -66,7 +66,7 @@
             </div>
             <div class="col btn-group" role="group">
                 <button type="button" class="btn btn-secondary w-100"
-                        onclick="location.href = 'controller?action=manage_port';">
+                        onclick="location.href = 'controller?action=manage_route';">
                     <fmt:message key="common.button.reset"/>
                 </button>
                 <button type="submit" class="btn btn-primary w-100"><fmt:message key="common.button.submit"/></button>

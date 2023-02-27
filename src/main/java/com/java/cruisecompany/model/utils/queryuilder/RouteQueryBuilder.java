@@ -33,7 +33,13 @@ public class RouteQueryBuilder extends QueryBuilder{
 
     @Override
     void extractFilterParameters(HttpServletRequest request) {
+        setStartDateFilter(request.getParameter("startDateF"));
+    }
 
+    private void setStartDateFilter(String parameter) {
+        if (parameter != null && !parameter.isEmpty()) {
+            filterList.add("route.start_of_cruise = '" + parameter + "'");
+        }
     }
 
     @Override

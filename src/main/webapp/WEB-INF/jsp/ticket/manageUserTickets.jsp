@@ -89,7 +89,8 @@
             </div>
         </div>
     </form>
-    <form method="post" action="controller">
+    <form method="get" action="controller">
+        <input type="hidden" name="action" value="view_ticket">
         <c:choose>
             <c:when test="${not empty requestScope.tickets}">
                 <table class="table table-striped">
@@ -120,10 +121,10 @@
                             <td>${ticket.price}</td>
                             <td>${ticket.status}</td>
                             <td>
-                                <a class="btn btn-primary p-0 " style="width: 60px"
-                                   href="controller?action=view_ticket&ticketId=${ticket.id}">
+                                <button class="btn btn-primary px-2 py-0" type="submit" name="ticketId" value="${ticket.id}"
+                                        style="width: auto">
                                     <fmt:message key="common.button.more"/>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     </c:forEach>
