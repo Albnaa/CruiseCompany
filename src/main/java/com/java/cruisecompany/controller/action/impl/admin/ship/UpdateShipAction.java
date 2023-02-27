@@ -8,10 +8,14 @@ import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
+
+@Log4j2
 public class UpdateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     @Override
@@ -41,7 +45,10 @@ public class UpdateShipAction implements Action {
         try {
             shipService.update(ship);
         } catch (ServiceException e) {
-            request.getSession().setAttribute("error", e.getMessage());
+            log.error("Error in create ship action -> " + e.getMessage());
+
+            errors.put(remapMessage(e.getMessage(), "update.ship"), e.getMessage());
+            request.getSession().setAttribute("errors", errors);
         }
         return request.getHeader("referer");
     }

@@ -5,6 +5,7 @@ import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
+import com.java.cruisecompany.model.utils.ExceptionUtil;
 import com.java.cruisecompany.model.utils.FileUploaderUtil;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.ServletException;
@@ -15,6 +16,8 @@ import lombok.extern.log4j.Log4j2;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
 
 @Log4j2
@@ -54,6 +57,9 @@ public class CreateShipAction implements Action {
             shipService.create(ship);
         } catch (ServiceException e) {
             log.error("Error in create ship action -> " + e.getMessage());
+
+            errors.put(remapMessage(e.getMessage(), "create.ship"), e.getMessage());
+            request.getSession().setAttribute("errors", errors);
         }
         return "controller?action=manage_ship";
     }

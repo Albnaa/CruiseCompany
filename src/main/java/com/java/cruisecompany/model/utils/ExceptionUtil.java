@@ -9,4 +9,9 @@ public final class ExceptionUtil {
         }
         return e.getMessage();
     }
+
+    public static String remapMessage(String message, String action) {
+        String[] parts = message.split("\\.");
+        return String.format("error.%s.%s", action, parts[parts.length - 2]);
+    }
 }

@@ -4,8 +4,6 @@ import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
-import com.java.cruisecompany.model.entity.User;
-import com.java.cruisecompany.model.entity.enums.Role;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.utils.validation.UserValidator;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +12,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
 public class UpdateSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
@@ -48,6 +48,7 @@ public class UpdateSelfProfileAction implements Action {
             userService.update(userDTO);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
+            errors.put(remapMessage(e.getMessage(), "update.user"), e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
         }
         return request.getHeader("referer");

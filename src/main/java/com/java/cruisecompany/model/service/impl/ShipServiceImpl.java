@@ -1,6 +1,7 @@
 package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
+import com.java.cruisecompany.exceptions.InvalidInputException;
 import com.java.cruisecompany.exceptions.NoSuchShipException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
@@ -30,6 +31,7 @@ public class ShipServiceImpl implements ShipService {
         try {
             shipDAO.create(mapDTOToShip(shipDTO));
         } catch (DAOException e) {
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
@@ -39,6 +41,7 @@ public class ShipServiceImpl implements ShipService {
         try {
             shipDAO.update(mapDTOToShip(shipDTO));
         } catch (DAOException e) {
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
@@ -153,6 +156,13 @@ public class ShipServiceImpl implements ShipService {
             shipDAO.deleteRoute(shipId);
         } catch (DAOException e) {
             throw new ServiceException(e);
+        }
+    }
+
+    private static void validateSQLError(DAOException e) throws InvalidInputException {
+        String message = e.getMessage();
+        if (message != null && message.contains("Duplicate entry")) {
+            throw new InvalidInputException("error.ship.name.exist", e);
         }
     }
 }

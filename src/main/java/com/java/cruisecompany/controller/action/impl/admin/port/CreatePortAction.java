@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
+
 public class CreatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
     @Override
@@ -34,7 +36,7 @@ public class CreatePortAction implements Action {
         try {
             portService.create(port);
         } catch (ServiceException e) {
-            errors.put("error.create.port.name", e.getMessage());
+            errors.put(remapMessage(e.getMessage(), "create.port"), e.getMessage());
             request.getSession().setAttribute("errors", errors);
         }
         return request.getHeader("referer");

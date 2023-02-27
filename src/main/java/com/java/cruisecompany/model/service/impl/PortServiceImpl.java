@@ -32,7 +32,7 @@ public class PortServiceImpl implements PortService {
             portDAO.create(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
             log.error("Port service create error " + e.getMessage());
-            checkAlreadyExist(e);
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
@@ -43,7 +43,7 @@ public class PortServiceImpl implements PortService {
             portDAO.update(mapDTOtoPort(portDTO));
         } catch (DAOException e) {
             log.error("Port service update error " + e.getMessage());
-            checkAlreadyExist(e);
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
@@ -108,10 +108,10 @@ public class PortServiceImpl implements PortService {
         }
     }
 
-    private static void checkAlreadyExist(DAOException e) throws InvalidInputException {
+    private static void validateSQLError(DAOException e) throws InvalidInputException {
         String message = e.getMessage();
         if (message != null && message.contains("Duplicate entry")) {
-            throw new InvalidInputException("error.ports.nameExists", e);
+            throw new InvalidInputException("error.ports.name.exist", e);
         }
     }
 }

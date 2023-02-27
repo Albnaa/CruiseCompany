@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`ship`
     `route_id`      INT          NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_ship_route1_idx` (`route_id` ASC) VISIBLE,
+    UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
     CONSTRAINT `fk_ship_route1`
         FOREIGN KEY (`route_id`)
             REFERENCES `webAppDb`.`route` (`id`)

@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
+
 public class UpdatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
     @Override
@@ -37,7 +39,7 @@ public class UpdatePortAction implements Action {
             portService.update(port);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
-            errors.put("error.update.port.name", e.getMessage());
+            errors.put(remapMessage(e.getMessage(), "update.ship"), e.getMessage());
             request.getSession().setAttribute("errors", errors);
         }
 

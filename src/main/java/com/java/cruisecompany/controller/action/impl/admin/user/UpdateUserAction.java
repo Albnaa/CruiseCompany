@@ -13,6 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
+
 public class UpdateUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
@@ -46,6 +48,7 @@ public class UpdateUserAction implements Action {
             userService.update(user);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
+            errors.put(remapMessage(e.getMessage(), "update.user"), e.getMessage());
             request.getSession().setAttribute("error", e.getMessage());
         }
         return request.getHeader("referer");

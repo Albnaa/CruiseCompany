@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         try {
             userDAO.create(user);
         } catch (DAOException e) {
-            checkAlreadyExist(e);
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
@@ -160,13 +160,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private static void checkAlreadyExist(DAOException e) throws InvalidInputException {
+    private static void validateSQLError(DAOException e) throws InvalidInputException {
         String message = e.getMessage();
         if (message != null && message.contains("Duplicate entry")) {
             if (message.contains("login")) {
-                throw new InvalidInputException("error.user.loginExists", e);
+                throw new InvalidInputException("error.user.login.exist", e);
             } else if (message.contains("email")) {
-                throw new InvalidInputException("error.user.emailExists", e);
+                throw new InvalidInputException("error.user.email.exist", e);
             }
         }
     }
