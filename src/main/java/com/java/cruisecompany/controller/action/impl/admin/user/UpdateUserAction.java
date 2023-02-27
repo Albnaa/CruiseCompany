@@ -9,12 +9,14 @@ import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.utils.validation.UserValidator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
+@Log4j2
 public class UpdateUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
@@ -48,8 +50,10 @@ public class UpdateUserAction implements Action {
             userService.update(user);
             request.getSession().removeAttribute("error");
         } catch (ServiceException e) {
+            log.error("Error in update user action -> " + e.getMessage());
+
             errors.put(remapMessage(e.getMessage(), "update.user"), e.getMessage());
-            request.getSession().setAttribute("error", e.getMessage());
+            request.getSession().setAttribute("error", errors);
         }
         return request.getHeader("referer");
     }

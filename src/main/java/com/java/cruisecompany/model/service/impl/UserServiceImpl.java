@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserService {
         try {
             userDAO.update(user);
         } catch (DAOException e) {
+            validateSQLError(e);
             throw new ServiceException(e);
         }
     }
