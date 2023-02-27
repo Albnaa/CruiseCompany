@@ -46,7 +46,7 @@
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="name" entity="update.route" labelKey="common.name" width="25" type="text"
-                                    value="${requestScope.route.name}" placeholder=""/>
+                                    value="${requestScope.route.name}" placeholder="route.update.name.placeholder"/>
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="startDate" entity="update.route" labelKey="common.startOfCruise" width="25"
@@ -58,7 +58,8 @@
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="price" entity="update.route" labelKey="common.price" width="25"
-                                    type="number" value="${requestScope.route.price}" placeholder=""/>
+                                    type="number" value="${requestScope.route.price}"
+                                    placeholder="route.update.price.placeholder"/>
                 </div>
                 <div class="mb-2">
                     <tag:inputField fieldName="duration" entity="update.route" labelKey="common.duration" width="25"

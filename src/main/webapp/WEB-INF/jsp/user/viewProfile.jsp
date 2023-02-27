@@ -76,13 +76,15 @@
                 <tag:inputField fieldName="id" entity="update.user" labelKey="common.id" width="25" type="text"
                                 value="${requestScope.user.id}" readonly="readonly"/>
                 <tag:inputField fieldName="login" entity="update.user" labelKey="common.login" width="25" type="text"
-                                value="${requestScope.user.login}"/>
+                                value="${requestScope.user.login}" placeholder="profile.update.login.placeholder"/>
                 <tag:inputField fieldName="email" entity="update.user" labelKey="common.email" width="25" type="email"
-                                value="${requestScope.user.email}"/>
+                                value="${requestScope.user.email}" placeholder="profile.update.email.placeholder"/>
                 <tag:inputField fieldName="firstName" entity="update.user" labelKey="common.firstName" width="25"
-                                type="text" value="${requestScope.user.firstName}"/>
+                                type="text" value="${requestScope.user.firstName}"
+                                placeholder="profile.update.firstName.placeholder"/>
                 <tag:inputField fieldName="lastName" entity="update.user" labelKey="common.lastName" width="25"
-                                type="text" value="${requestScope.user.lastName}" />
+                                type="text" value="${requestScope.user.lastName}"
+                                placeholder="profile.update.lastName.placeholder"/>
                 <div class="input-group">
                     <span class="input-group-text w-25"><fmt:message key="common.role"/></span>
                     <select class="form-select" name="role" style="height: 41.6px">

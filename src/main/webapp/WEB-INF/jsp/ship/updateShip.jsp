@@ -78,7 +78,7 @@
                 <button type="submit" class="btn btn-warning mb-2 w-100">Update image</button>
                 <div class="input-group mb-2">
                     <span class="input-group-text w-25"><fmt:message key="common.image"/></span>
-                    <input type="file" name="image" class="form-control">
+                    <input type="file" name="image" class="form-control" required>
                 </div>
             </form>
         </div>
