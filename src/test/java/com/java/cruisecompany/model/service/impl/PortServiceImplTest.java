@@ -5,7 +5,7 @@ import com.java.cruisecompany.exceptions.NoSuchPortException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.PortDTO;
 import com.java.cruisecompany.model.entity.Port;
-import com.java.cruisecompany.model.repository.PortDAO;
+import com.java.cruisecompany.model.dao.PortDAO;
 import com.java.cruisecompany.model.service.PortService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

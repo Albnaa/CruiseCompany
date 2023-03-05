@@ -7,7 +7,7 @@ import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.entity.Port;
 import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.wrapper.Waypoint;
-import com.java.cruisecompany.model.repository.RouteDAO;
+import com.java.cruisecompany.model.dao.RouteDAO;
 import com.java.cruisecompany.model.service.RouteService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

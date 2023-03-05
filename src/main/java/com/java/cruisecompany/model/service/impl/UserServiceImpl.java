@@ -6,7 +6,7 @@ import com.java.cruisecompany.exceptions.NoSuchUserException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.User;
-import com.java.cruisecompany.model.repository.UserDAO;
+import com.java.cruisecompany.model.dao.UserDAO;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.utils.MapperDTO;
 import com.java.cruisecompany.model.utils.PasswordHashUtil;

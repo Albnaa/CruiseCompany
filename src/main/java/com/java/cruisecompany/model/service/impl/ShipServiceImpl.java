@@ -5,7 +5,7 @@ import com.java.cruisecompany.exceptions.InvalidInputException;
 import com.java.cruisecompany.exceptions.NoSuchShipException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
-import com.java.cruisecompany.model.repository.ShipDAO;
+import com.java.cruisecompany.model.dao.ShipDAO;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.service.ShipService;
 import com.java.cruisecompany.model.utils.MapperDTO;

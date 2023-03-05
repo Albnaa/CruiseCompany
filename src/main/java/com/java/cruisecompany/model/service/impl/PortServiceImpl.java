@@ -5,7 +5,7 @@ import com.java.cruisecompany.exceptions.InvalidInputException;
 import com.java.cruisecompany.exceptions.NoSuchPortException;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.PortDTO;
-import com.java.cruisecompany.model.repository.PortDAO;
+import com.java.cruisecompany.model.dao.PortDAO;
 import com.java.cruisecompany.model.service.PortService;
 import com.java.cruisecompany.model.utils.MapperDTO;
 import lombok.extern.log4j.Log4j2;

@@ -7,7 +7,7 @@ import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.Ship;
-import com.java.cruisecompany.model.repository.ShipDAO;
+import com.java.cruisecompany.model.dao.ShipDAO;
 import com.java.cruisecompany.model.service.RouteService;
 import com.java.cruisecompany.model.service.ShipService;
 import org.junit.jupiter.api.BeforeEach;

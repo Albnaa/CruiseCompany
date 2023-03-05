@@ -1,6 +1,6 @@
 package com.java.cruisecompany.model.service.impl;
 
-import com.java.cruisecompany.model.repository.impl.DAOFactory;
+import com.java.cruisecompany.model.dao.impl.DAOFactory;
 import com.java.cruisecompany.model.service.*;
 import lombok.Getter;
 

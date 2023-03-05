@@ -4,7 +4,7 @@ import com.java.cruisecompany.controller.action.Action;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.UserDTO;
 import com.java.cruisecompany.model.entity.enums.Role;
-import com.java.cruisecompany.model.repository.impl.UserDAOImpl;
+import com.java.cruisecompany.model.dao.impl.UserDAOImpl;
 import com.java.cruisecompany.model.service.UserService;
 import com.java.cruisecompany.model.service.impl.UserServiceImpl;
 import com.java.cruisecompany.model.utils.ExceptionUtil;
