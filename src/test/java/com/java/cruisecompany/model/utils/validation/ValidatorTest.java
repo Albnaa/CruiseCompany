@@ -1,17 +1,15 @@
 package com.java.cruisecompany.model.utils.validation;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ValidatorTest {
 
@@ -139,7 +137,7 @@ class ValidatorTest {
                 Arguments.of("2022-02-28", false),
                 Arguments.of("2022-02-24", false),
                 Arguments.of("2023-02-19", false),
-                Arguments.of("2023-02-20", true),
+                Arguments.of("2023-03-20", true),
                 Arguments.of("2023-12-31", true),
                 Arguments.of("2024-01-01", true),
                 Arguments.of("", false),

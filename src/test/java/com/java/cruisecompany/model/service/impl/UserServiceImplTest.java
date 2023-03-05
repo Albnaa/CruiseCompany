@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -161,13 +162,15 @@ public class UserServiceImplTest {
     void testFindByLoginAndPassSuccess() throws ServiceException {
         
         when(userDAO.findByLogin(any(String.class))).thenReturn(Optional.of(getUser()));
-        when(PasswordHashUtil.verify(any(String.class), any(String.class))).thenReturn(true);
+        try (MockedStatic<PasswordHashUtil> mocked = Mockito.mockStatic(PasswordHashUtil.class)) {
+            mocked.when(() -> PasswordHashUtil.verify(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
 
-        Optional<UserDTO> actualUser = userService.findByLoginAndPass("Login", "Pass");
+            Optional<UserDTO> actualUser = userService.findByLoginAndPass("Login", "Pass");
 
-        assertTrue(actualUser.isPresent());
-        assertEquals(getUserDTO(), actualUser.get());
-        verify(userDAO).findByLogin(any(String.class));
+            assertTrue(actualUser.isPresent());
+            assertEquals(getUserDTO(), actualUser.get());
+            verify(userDAO).findByLogin(any(String.class));
+        }
     }
 
     @Test

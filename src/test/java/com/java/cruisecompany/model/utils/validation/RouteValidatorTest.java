@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RouteValidatorTest {
     Map<String, String> errors = new HashMap<>();
@@ -63,7 +63,7 @@ class RouteValidatorTest {
 
     static Stream<Arguments> validateRouteDateProvider() {
         return Stream.of(
-                Arguments.of("2023-02-28", "create", true),
+                Arguments.of("2023-02-28", "create", false),
                 Arguments.of("2023-12-31", "update", true),
                 Arguments.of("2023-01-28", "create", false),
                 Arguments.of("2022-02-28", "update", false),

@@ -6,8 +6,6 @@ import org.mockito.Mock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class GenericDAOTest {
 
     @Mock

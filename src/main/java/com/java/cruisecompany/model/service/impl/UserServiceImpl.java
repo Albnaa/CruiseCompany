@@ -12,7 +12,6 @@ import com.java.cruisecompany.model.utils.MapperDTO;
 import com.java.cruisecompany.model.utils.PasswordHashUtil;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

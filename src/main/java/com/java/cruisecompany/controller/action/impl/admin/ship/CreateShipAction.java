@@ -5,7 +5,6 @@ import com.java.cruisecompany.controller.appcontext.AppContext;
 import com.java.cruisecompany.exceptions.ServiceException;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.service.ShipService;
-import com.java.cruisecompany.model.utils.ExceptionUtil;
 import com.java.cruisecompany.model.utils.FileUploaderUtil;
 import com.java.cruisecompany.model.utils.validation.ShipValidator;
 import jakarta.servlet.ServletException;

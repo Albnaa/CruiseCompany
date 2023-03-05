@@ -5,9 +5,6 @@ import com.java.cruisecompany.model.utils.TicketScheduler;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
 public class ContextListener implements ServletContextListener {
     TicketScheduler ticketScheduler;
     @Override

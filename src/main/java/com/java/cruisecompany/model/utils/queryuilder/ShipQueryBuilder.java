@@ -1,6 +1,5 @@
 package com.java.cruisecompany.model.utils.queryuilder;
 
-import com.java.cruisecompany.exceptions.InvalidInputException;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.ArrayList;

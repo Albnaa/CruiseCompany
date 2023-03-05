@@ -1,15 +1,11 @@
 package com.java.cruisecompany.model.service.impl;
 
 import com.java.cruisecompany.exceptions.DAOException;
-import com.java.cruisecompany.exceptions.NoSuchRouteException;
 import com.java.cruisecompany.exceptions.NoSuchTicketException;
 import com.java.cruisecompany.exceptions.ServiceException;
-import com.java.cruisecompany.model.connectionpool.DBManager;
-import com.java.cruisecompany.model.dto.RouteDTO;
 import com.java.cruisecompany.model.dto.ShipDTO;
 import com.java.cruisecompany.model.dto.TicketDTO;
 import com.java.cruisecompany.model.dto.UserDTO;
-import com.java.cruisecompany.model.entity.Route;
 import com.java.cruisecompany.model.entity.Ship;
 import com.java.cruisecompany.model.entity.Ticket;
 import com.java.cruisecompany.model.entity.User;
@@ -18,7 +14,6 @@ import com.java.cruisecompany.model.entity.enums.Status;
 import com.java.cruisecompany.model.repository.TicketDAO;
 import com.java.cruisecompany.model.repository.UserDAO;
 import com.java.cruisecompany.model.service.TicketService;
-import com.java.cruisecompany.model.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,7 +22,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +30,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TicketServiceImplTest {
