@@ -39,7 +39,7 @@ public class UserQueryBuilder extends QueryBuilder{
 
     void setRoleFilter(String parameter) {
         if (Objects.equals(parameter, "ADMIN") || Objects.equals(parameter, "USER")) {
-            filterList.add("role_id = " + Role.getRoleFromString(parameter).getIndex());
+            filterList.add("role_id = " + Role.parse(parameter).getIndex());
         }
     }
 

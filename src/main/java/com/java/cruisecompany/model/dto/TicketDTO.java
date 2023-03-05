@@ -6,6 +6,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The TicketDTO class represents a Data Transfer Object for a Ticket.
+ * This class contains the following properties: id, passengersCount, price, documentPath, status, user, ship.
+ * It uses Lombok annotations to generate boilerplate code for getters, setters, equals, hashCode, and toString methods.
+ */
 @Builder
 @Data
 public class TicketDTO {

@@ -8,6 +8,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * The Route class represents a Route entity.
+ * This class contains the following properties: id, name, startOfCruise, endOfCruise, duration, price, waypoints.
+ * It uses Lombok annotations to generate boilerplate code for getters, setters, equals, hashCode, and toString methods,
+ * and to generate a builder for creating instances of the class.
+ */
 @Builder
 @Data
 public class Route {

@@ -6,6 +6,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
+/**
+ * The UserDTO class represents a Data Transfer Object for a User.
+ * This class contains the following properties: id, login, email, firstName, lastName, role, balance.
+ * It uses Lombok annotations to generate boilerplate code for getters, setters, equals, hashCode, and toString methods.
+ */
 @Builder
 @Data
 public class UserDTO {

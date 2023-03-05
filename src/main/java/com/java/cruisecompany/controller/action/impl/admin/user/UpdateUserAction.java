@@ -43,7 +43,7 @@ public class UpdateUserAction implements Action {
                 .email(email)
                 .firstName(firstName)
                 .lastName(lastName)
-                .role(Role.getRoleFromString(role))
+                .role(Role.parse(role))
                 .build();
 
         try {
