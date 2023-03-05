@@ -87,13 +87,13 @@ CREATE TABLE IF NOT EXISTS `webAppDb`.`user`
     `first_name` VARCHAR(45)    NOT NULL,
     `last_name`  VARCHAR(45)    NOT NULL,
     `balance`    DECIMAL(10, 2) NULL DEFAULT 0,
-    `Role_id`    INT            NULL,
+    `role_id`    INT            NULL,
     PRIMARY KEY (`id`),
-    INDEX `fk_User_Role_idx` (`Role_id` ASC) VISIBLE,
+    INDEX `fk_User_Role_idx` (`role_id` ASC) VISIBLE,
     UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
     UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
     CONSTRAINT `fk_User_Role`
-        FOREIGN KEY (`Role_id`)
+        FOREIGN KEY (`role_id`)
             REFERENCES `webAppDb`.`role` (`id`)
             ON DELETE CASCADE
             ON UPDATE CASCADE
