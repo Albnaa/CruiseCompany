@@ -176,7 +176,7 @@ public class TicketDAOImpl extends GenericDAO<Ticket> implements TicketDAO {
      */
     private Ship mapToShip(ResultSet rs) throws SQLException {
         return Ship.builder()
-                .id(rs.getInt(SHIP_ID))
+                .id(rs.getInt(TICKET_SHIP_ID))
                 .name(rs.getString(SHIP_NAME))
                 .route(mapToRoute(rs))
                 .build();

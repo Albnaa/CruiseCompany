@@ -26,6 +26,7 @@ public interface TableFields {
     String TICKET_PRICE = "ticket.price";
     String TICKET_DOCUMENT_PATH = "ticket.document_path";
     String TICKET_STATUS_ID = "ticket.status_id";
+    String TICKET_SHIP_ID = "ticket.ship_id";
 
     String USER_ID = "user.id";
     String USER_LOGIN = "user.login";
