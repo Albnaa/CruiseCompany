@@ -225,9 +225,16 @@ class RouteServiceImplTest {
 
     private Waypoint getWayPoint() {
         return Waypoint.builder()
-                .port(new Port(1, "Boston"))
+                .port(getPort())
                 .arriveTime(LocalDate.parse("2023-02-01"))
                 .departureTime(LocalDate.parse("2023-02-01"))
+                .build();
+    }
+
+    private Port getPort() {
+        return Port.builder()
+                .id(1)
+                .name("Boston")
                 .build();
     }
 }
