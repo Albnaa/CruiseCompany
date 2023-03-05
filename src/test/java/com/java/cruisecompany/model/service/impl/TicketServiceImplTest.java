@@ -216,7 +216,7 @@ class TicketServiceImplTest {
 
     @Test
     void testCompleteTicketSuccess() {
-        ticketService.completeTicket();
+        ticketService.completeTickets();
         verify(ticketDAO).findAll();
     }
 

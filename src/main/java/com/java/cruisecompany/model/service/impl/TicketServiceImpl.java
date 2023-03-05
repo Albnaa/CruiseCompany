@@ -151,7 +151,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void completeTicket() {
+    public void completeTickets() {
         ticketDAO.findAll().stream()
                 .filter(t -> t.getStatus() != Status.COMPLETED)
                 .filter(t -> (t.getShip().getRoute().getEndOfCruise().isBefore(LocalDate.now())))

@@ -30,7 +30,7 @@ public class TicketScheduler {
         @Override
         public void run() {
             log.info("Started ticket status checking");
-            ticketService.completeTicket();
+            ticketService.completeTickets();
         }
     };
 
