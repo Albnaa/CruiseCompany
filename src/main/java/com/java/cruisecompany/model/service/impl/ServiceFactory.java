@@ -4,6 +4,11 @@ import com.java.cruisecompany.model.dao.impl.DAOFactory;
 import com.java.cruisecompany.model.service.*;
 import lombok.Getter;
 
+/**
+ * A factory class responsible for creating and providing access to all service classes.
+ * <p>
+ * Uses a Singleton design pattern to ensure there is only one instance of this class.
+ */
 public class ServiceFactory {
     private static ServiceFactory instance;
     @Getter
@@ -17,6 +22,9 @@ public class ServiceFactory {
     @Getter
     private final UserService userService;
 
+    /**
+     * Constructs a new instance of the ServiceFactory, initializes all the services using the DAOFactory.
+     */
     private ServiceFactory() {
         DAOFactory daoFactory = DAOFactory.getInstance();
         portService = new PortServiceImpl(daoFactory.getPortDAO());
@@ -26,6 +34,11 @@ public class ServiceFactory {
         userService = new UserServiceImpl(daoFactory.getUserDAO());
     }
 
+    /**
+     * Returns the singleton instance of this class, creates it if it does not exist.
+     *
+     * @return the singleton instance of the ServiceFactory.
+     */
     public static ServiceFactory getInstance() {
         if (instance == null) {
             instance = new ServiceFactory();

@@ -1,5 +1,8 @@
 package com.java.cruisecompany.model.dao.constant;
 
+/**
+ * This interface provides constants for the table field names used in the application database.
+ */
 public interface TableFields {
     String PORT_ID = "port.id";
     String PORT_NAME = "port.name";
