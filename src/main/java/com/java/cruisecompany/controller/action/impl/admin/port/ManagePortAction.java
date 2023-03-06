@@ -11,8 +11,20 @@ import com.java.cruisecompany.model.utils.queryuilder.QueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Action class that handles displaying and managing ports.
+ */
 public class ManagePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
+
+    /**
+     * Executes the action of displaying and managing ports.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return a String representing the JSP page to display
+     * @throws ServiceException if an error occurs while executing the action
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new PortQueryBuilder();

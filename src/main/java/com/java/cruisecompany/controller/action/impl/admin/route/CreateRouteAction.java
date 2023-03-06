@@ -15,9 +15,20 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Action class that handles creating a new route.
+ */
 @Log4j2
 public class CreateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
+
+    /**
+     * Executes the action of creating a new route.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL to redirect to
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
@@ -48,6 +59,15 @@ public class CreateRouteAction implements Action {
         return request.getHeader("referer");
     }
 
+    /**
+     * Validates the parameters needed for creating a new route.
+     *
+     * @param name      the name of the route
+     * @param startDate the start date of the route
+     * @param endDate   the end date of the route
+     * @param price     the price of the route
+     * @return a map of errors for any invalid parameters
+     */
     private Map<String, String> validateRouteParameters(String name, String startDate, String endDate, String price) {
         Map<String, String> errors = new HashMap<>();
         RouteValidator.validateRouteName(name, "create.route", errors);

@@ -15,9 +15,20 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Action class that handles updating a route.
+ */
 @Log4j2
 public class UpdateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
+
+    /**
+     * Executes the update route action.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is completed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
@@ -50,6 +61,16 @@ public class UpdateRouteAction implements Action {
         return request.getHeader("referer");
     }
 
+    /**
+     * Validates the parameters for updating a route.
+     *
+     * @param id        the ID of the route to be updated
+     * @param name      the name of the route
+     * @param startDate the start date of the route
+     * @param endDate   the end date of the route
+     * @param price     the price of the route
+     * @return a Map containing any validation errors, where the key is the name of the parameter and the value is the error message
+     */
     private Map<String, String> validateRouteParameters(String id, String name, String startDate, String endDate, String price) {
         Map<String, String> errors = new HashMap<>();
         RouteValidator.validateRouteId(id, "update.route", errors);

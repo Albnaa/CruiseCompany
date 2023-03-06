@@ -15,11 +15,20 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.Optional;
 
+/**
+ * An action class that handles viewing a route and its details, including its waypoints and associated ports.
+ */
 public class ViewRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     PortService portService = AppContext.getInstance().getPortService();
 
-    @Override
+    /**
+     * Executes the manage route action.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is completed
+     */@Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int id = Integer.parseInt(request.getParameter("id"));
         Optional<RouteDTO> route = routeService.findById(id);

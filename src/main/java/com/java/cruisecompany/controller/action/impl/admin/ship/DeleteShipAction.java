@@ -8,9 +8,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * Action class that handles deleting a Ship by its ID.
+ */
 @Log4j2
 public class DeleteShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
+
+    /**
+     * Executes the action to delete a ship
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is completed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         try {

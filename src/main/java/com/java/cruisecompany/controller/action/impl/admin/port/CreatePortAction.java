@@ -14,14 +14,25 @@ import java.util.Map;
 
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
+/**
+ * Action class that handles the creation of a new port.
+ */
 public class CreatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
+
+    /**
+     * Executes the action of creating a new port.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is executed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
 
         Map<String, String> errors = new HashMap<>();
-        PortValidator.validatePortName(name, "create.port" , errors);
+        PortValidator.validatePortName(name, "create.port", errors);
 
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);

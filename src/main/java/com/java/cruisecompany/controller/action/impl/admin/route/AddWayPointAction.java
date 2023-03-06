@@ -13,9 +13,20 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Action class that handles adding a waypoint to a route.
+ */
 @Log4j2
 public class AddWayPointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
+
+    /**
+     * Executes the action of adding a waypoint to a route.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL to redirect the user back to
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
@@ -41,6 +52,14 @@ public class AddWayPointAction implements Action {
         return request.getHeader("referer");
     }
 
+    /**
+     * Validates the route parameters before adding a waypoint to a route.
+     *
+     * @param id        the ID of the port
+     * @param startDate the start date of the route
+     * @param endDate   the end date of the route
+     * @return a map of errors for any invalid parameters
+     */
     private Map<String, String> validateRouteParameters(String id, String startDate, String endDate) {
         Map<String, String> errors = new HashMap<>();
         PortValidator.validatePortId(id, "add.waypoint", errors);

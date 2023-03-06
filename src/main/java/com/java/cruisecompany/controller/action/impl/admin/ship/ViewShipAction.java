@@ -16,10 +16,21 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.Optional;
 
+/**
+ * Action class that handles the request to view a ship page.
+ */
 @Log4j2
 public class ViewShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
     RouteService routeService = AppContext.getInstance().getRouteService();
+
+    /**
+     * Executes the action to view the ship.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the JSP page to display the user's profile
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         long shipId = Long.parseLong(request.getParameter("id"));

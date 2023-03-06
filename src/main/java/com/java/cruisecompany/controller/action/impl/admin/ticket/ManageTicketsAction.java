@@ -11,8 +11,20 @@ import com.java.cruisecompany.model.utils.queryuilder.TicketQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Action class for managing tickets.
+ */
 public class ManageTicketsAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
+
+    /**
+     * Executes the action of managing tickets.
+     *
+     * @param request  the HTTP servlet request.
+     * @param response the HTTP servlet response.
+     * @return the path to the JSP view for managing tickets.
+     * @throws ServiceException if there is a problem with the service layer.
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new TicketQueryBuilder();

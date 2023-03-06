@@ -14,16 +14,27 @@ import java.util.Map;
 
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
+/**
+ * Action class that handles updating a port.
+ */
 public class UpdatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
+
+    /**
+     * Executes the update port action.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is completed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
         String name = request.getParameter("name");
 
         Map<String, String> errors = new HashMap<>();
-        PortValidator.validatePortId(id,"update.port", errors);
-        PortValidator.validatePortName(name,"update.port", errors);
+        PortValidator.validatePortId(id, "update.port", errors);
+        PortValidator.validatePortName(name, "update.port", errors);
 
         if (!errors.isEmpty()) {
             request.getSession().setAttribute("errors", errors);

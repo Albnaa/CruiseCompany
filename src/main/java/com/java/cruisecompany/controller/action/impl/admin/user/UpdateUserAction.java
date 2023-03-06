@@ -16,10 +16,22 @@ import java.util.Map;
 
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
+/**
+ * The UpdateUserAction class is an implementation of the Action interface.
+ * <p>
+ * This action is responsible for updating an existing user in the system.
+ */
 @Log4j2
 public class UpdateUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
+    /**
+     * Executes the action to update a user
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return a string representing the URL of the next page to display after the action is executed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");
@@ -58,6 +70,16 @@ public class UpdateUserAction implements Action {
         return request.getHeader("referer");
     }
 
+    /**
+     * Validates the parameters of the user to be updated.
+     *
+     * @param id        the id of the user to be updated
+     * @param login     the login of the user to be updated
+     * @param email     the email of the user to be updated
+     * @param firstName the first name of the user to be updated
+     * @param lastName  the last name of the user to be updated
+     * @return a map of error messages for any invalid parameters
+     */
     private Map<String, String> validateRouteParameters(String id, String login, String email, String firstName, String lastName) {
         Map<String, String> errors = new HashMap<>();
         UserValidator.validateUserId(id, "update.user", errors);

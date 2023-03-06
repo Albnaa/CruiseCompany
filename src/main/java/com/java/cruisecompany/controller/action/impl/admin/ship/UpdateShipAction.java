@@ -15,9 +15,20 @@ import java.util.Map;
 
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
+/**
+ * Action class that handles the updating of a ship.
+ */
 @Log4j2
 public class UpdateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
+
+    /**
+     * Executes the action to update ship.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the page to redirect to after the action is completed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         String id = request.getParameter("id");

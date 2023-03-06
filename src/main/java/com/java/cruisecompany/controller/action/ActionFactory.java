@@ -26,8 +26,16 @@ import lombok.extern.log4j.Log4j2;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The {@code ActionFactory} class represents a factory for creating actions based on the request parameter "action".
+ * It contains a static map of action names to action objects, and provides a static method for getting the appropriate
+ * action based on the request parameter.
+ */
 @Log4j2
 public final class ActionFactory {
+    /**
+     * A static map of action names to action objects.
+     */
     private static final Map<String, Action> ACTION_MAP = new HashMap<>();
 
     static {
@@ -78,8 +86,20 @@ public final class ActionFactory {
         ACTION_MAP.put("delete_port", new DeletePortAction());
         ACTION_MAP.put("update_port", new UpdatePortAction());
     }
-    private ActionFactory() {}
 
+    /**
+     * Private constructor to prevent instantiation of the class.
+     */
+    private ActionFactory() {
+    }
+
+    /**
+     * Returns the appropriate action based on the request parameter "action".
+     * If no matching action is found, returns a default action.
+     *
+     * @param request the HttpServletRequest object containing the request parameters
+     * @return the appropriate action based on the request parameter "action"
+     */
     public static Action getAction(HttpServletRequest request) {
         String action = request.getParameter("action");
         log.info("Received action = " + action);

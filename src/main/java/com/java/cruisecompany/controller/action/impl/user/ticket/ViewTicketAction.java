@@ -12,8 +12,31 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import static java.lang.Long.parseLong;
 
+/**
+ * An implementation of the Action interface that handles displaying a single ticket.
+ * <p>
+ * This class retrieves the requested ticket from the database, sets it as a request attribute, and
+ * returns the appropriate JSP page to display the ticket details. The returned JSP page is different
+ * depending on the user's role.
+ * <p>
+ * If the user is an admin, the JSP page returned is for updating the ticket information.
+ * <p>
+ * If the user is not an admin, the JSP page returned is for viewing the ticket information.
+ *
+ * @author Oleh Oliinyk
+ * @version 1.0
+ */
 public class ViewTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
+
+    /**
+     * Executes the action to display a single ticket.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the JSP page to display a single ticket
+     * @throws ServiceException if there is an error while retrieving the ticket information from the database
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
@@ -23,7 +46,7 @@ public class ViewTicketAction implements Action {
             throw new ServiceException(e);
         }
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
-        return userDTO.getRole() ==
-                Role.ADMIN ? "/WEB-INF/jsp/ticket/updateTicket.jsp" : "/WEB-INF/jsp/ticket/viewTicket.jsp";
+        return userDTO.getRole() == Role.ADMIN ? "/WEB-INF/jsp/ticket/updateTicket.jsp"
+                : "/WEB-INF/jsp/ticket/viewTicket.jsp";
     }
 }

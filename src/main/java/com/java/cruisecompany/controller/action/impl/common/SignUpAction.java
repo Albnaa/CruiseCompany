@@ -14,10 +14,26 @@ import lombok.extern.log4j.Log4j2;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class implements the Action interface to handle user sign-up requests.
+ * <p>
+ * It validates user parameters, creates a UserDTO object and passes it to UserServiceImpl to create a new user in
+ * the database.
+ * <p>
+ * It returns the appropriate JSP page based on the result of the operation.
+ */
 @Log4j2
 public class SignUpAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
 
+    /**
+     * Executes the sign-up action by getting user parameters from the request, validating them, creating a new user,
+     * and returning the appropriate JSP page.
+     *
+     * @param request  the HttpServletRequest object containing user parameters
+     * @param response the HttpServletResponse object for returning the response
+     * @return a String representing the JSP page to display after the sign-up action is executed
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("user");
@@ -57,12 +73,23 @@ public class SignUpAction implements Action {
         return "login.jsp";
     }
 
+    /**
+     * Validates user parameters and returns a map of error messages for any invalid parameters.
+     *
+     * @param login           the user login to validate
+     * @param email           the user email to validate
+     * @param firstName       the user first name to validate
+     * @param lastName        the user last name to validate
+     * @param password        the user password to validate
+     * @param confirmPassword the user confirm password to validate
+     * @return a map of error messages for any invalid parameters
+     */
     private Map<String, String> validateUserParameters(String login, String email, String firstName, String lastName, String password, String confirmPassword) {
         Map<String, String> errors = new HashMap<>();
         UserValidator.validateUserLogin(login, "signUp.user", errors);
         UserValidator.validateUserEmail(email, "signUp.user", errors);
-        UserValidator.validateUserFirstName(firstName,  "signUp.user", errors);
-        UserValidator.validateUserLastName(lastName,  "signUp.user", errors);
+        UserValidator.validateUserFirstName(firstName, "signUp.user", errors);
+        UserValidator.validateUserLastName(lastName, "signUp.user", errors);
         UserValidator.validateUserPassword(password, "signUp.user", errors);
         UserValidator.confirmUserPassword(password, confirmPassword, "signUp.user", errors);
         return errors;

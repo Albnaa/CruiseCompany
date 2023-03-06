@@ -11,8 +11,19 @@ import com.java.cruisecompany.model.utils.queryuilder.ShipQueryBuilder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Action class that handles displaying and managing ship records.
+ */
 public class ManageShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
+
+    /**
+     * Executes the action to manage ship records
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the JSP page to display the user's profile
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         QueryBuilder queryBuilder = new ShipQueryBuilder();

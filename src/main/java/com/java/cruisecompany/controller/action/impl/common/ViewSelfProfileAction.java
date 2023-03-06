@@ -10,12 +10,24 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * An implementation of the Action interface that handles displaying the
+ * profile of the currently logged-in user.
+ */
 @Log4j2
 public class ViewSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
+
+    /**
+     * Executes the action to display the profile of the currently logged-in user.
+     *
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the JSP page to display the user's profile
+     */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        long userId = ((UserDTO)request.getSession().getAttribute("user")).getId();
+        long userId = ((UserDTO) request.getSession().getAttribute("user")).getId();
 
         try {
             UserDTO user = userService.findById(userId).orElseThrow(NoSuchUserException::new);

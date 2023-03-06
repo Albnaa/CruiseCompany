@@ -14,9 +14,19 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * This filter is responsible for managing security-related actions and
+ * redirecting unauthorized users to the login page or denying access if necessary.
+ */
 @Log4j2
 public class SecurityFilter implements Filter {
+    /**
+     * A map of allowed actions for each role.
+     */
     private static final Map<Role, List<String>> ALLOWED_ACTIONS = new HashMap<>();
+    /**
+     * A list of common actions that do not require authorization.
+     */
     private static final List<String> COMMON_ACTIONS;
 
     static {
@@ -33,13 +43,28 @@ public class SecurityFilter implements Filter {
                 "pay_for_ticket", "view_ticket", "create_ticket", "file"));
 
         COMMON_ACTIONS = Arrays.asList("sign_in", "sign_up", "set_locale");
-        
+
     }
+
+    /**
+     * Initializes the filter.
+     *
+     * @param filterConfig a FilterConfig object containing the filter's configuration
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         Filter.super.init(filterConfig);
     }
 
+    /**
+     * Applies the filter to the request and response.
+     *
+     * @param request  a ServletRequest object representing the client's request
+     * @param response a ServletResponse object representing the server's response
+     * @param chain    a FilterChain object containing the chain of filters to apply
+     * @throws ServletException if the filter encounters a servlet exception
+     * @throws IOException      if the filter encounters an I/O exception
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
