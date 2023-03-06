@@ -1,7 +1,9 @@
 package com.java.cruisecompany.exceptions;
 
-public class NoSuchRouteException extends ServiceException{
-
+/**
+ * Exception to be thrown when a requested route does not exist in the database.
+ */
+public class NoSuchRouteException extends ServiceException {
     public NoSuchRouteException() {
         super("error.doNotExistRoute");
     }

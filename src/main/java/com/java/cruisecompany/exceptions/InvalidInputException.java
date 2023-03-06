@@ -1,15 +1,10 @@
 package com.java.cruisecompany.exceptions;
 
-public class InvalidInputException extends ServiceException{
-    public InvalidInputException(String message) {
-        super(message);
-    }
-
+/**
+ * An exception that is thrown when the input provided by the user is invalid.
+ */
+public class InvalidInputException extends ServiceException {
     public InvalidInputException(String message, Throwable cause) {
         super(message, cause);
-    }
-
-    public InvalidInputException(Throwable cause) {
-        super(cause);
     }
 }

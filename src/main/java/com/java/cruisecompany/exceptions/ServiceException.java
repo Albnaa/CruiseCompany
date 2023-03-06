@@ -1,6 +1,9 @@
 package com.java.cruisecompany.exceptions;
 
-public class ServiceException extends Exception{
+/**
+ * Base class for all exceptions that can be thrown by the service layer.
+ */
+public class ServiceException extends Exception {
     public ServiceException() {
         super();
     }
