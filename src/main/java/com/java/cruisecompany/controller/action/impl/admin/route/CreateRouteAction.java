@@ -23,11 +23,13 @@ public class CreateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the action of creating a new route.
+     * Executes the creation route action by getting the required route parameters from the request, validating them,
+     * creating a new RouteDTO object with the validated parameters, and calling the create() method of the routeService to
+     * create the new route in the database.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL to redirect to
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

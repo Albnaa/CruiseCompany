@@ -18,7 +18,10 @@ public class ManagePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
 
     /**
-     * Executes the action of displaying and managing ports.
+     * Executes the action of displaying ports by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of ports from the
+     * port service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved ports list.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

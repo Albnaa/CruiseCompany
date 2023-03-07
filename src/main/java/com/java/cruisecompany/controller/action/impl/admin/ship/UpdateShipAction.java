@@ -23,11 +23,13 @@ public class UpdateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to update ship.
+     * Executes the update ship action by updating the properties of the ship with the given id.
+     * Validates the input parameters and updates the ship using the ShipService. If there are errors in the input
+     * parameters, sets the errors in the session and redirects to the previous page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is completed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -64,6 +66,16 @@ public class UpdateShipAction implements Action {
         return request.getHeader("referer");
     }
 
+    /**
+     * Validates the parameters needed to update a ship.
+     *
+     * @param id           the id of the ship to validate
+     * @param name         the name of the ship to validate
+     * @param capacity     the capacity of the ship to validate
+     * @param visitedPorts the ports the ship has visited to validate
+     * @param staff        the staff count of the ship to validate
+     * @return a map of error messages for any invalid parameters
+     */
     private Map<String, String> validateRouteParameters(String id, String name, String capacity, String visitedPorts, String staff) {
         Map<String, String> errors = new HashMap<>();
         ShipValidator.validateShipId(id, "update.ship", errors);

@@ -11,19 +11,19 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
 /**
- * An implementation of the Action interface that handles displaying the
- * profile of the currently logged-in user.
+ * Action class that handles displaying the profile of the currently logged-in user.
  */
 @Log4j2
 public class ViewSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action to display the profile of the currently logged-in user.
+     * Executes the view self profile action by retrieving the user id from the session and using it to find the user in
+     * the database, then setting the user as an attribute of the request.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the JSP page to display the user's profile
+     * @return the viewSelfProfile JSP page to display the user's profile
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

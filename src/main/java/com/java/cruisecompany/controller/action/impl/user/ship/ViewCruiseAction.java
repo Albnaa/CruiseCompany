@@ -14,20 +14,17 @@ import java.util.Optional;
 import static java.lang.Long.parseLong;
 
 /**
- * An implementation of the Action interface that handles displaying a single cruise.
- * <p>
- * This class retrieves the requested ship from the database, sets it as a request attribute, and
- * returns the appropriate JSP page to display the ship details.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles displaying a single cruise.
  */
 @Log4j2
 public class ViewCruiseAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to display a single cruise.
+     * Executes the "view cruise" action by retrieving the ShipDTO with the specified ID from the database and adding it
+     * to the request attribute "ship".
+     * <p>
+     * If there is a ServiceException thrown while retrieving the ShipDTO, an error message is logged.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

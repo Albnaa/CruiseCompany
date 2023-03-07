@@ -12,19 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * An implementation of the Action interface that handles displaying a user's tickets.
- * <p>
- * This class builds a query using the request parameters and retrieves the appropriate tickets from
- * the database. It sets the tickets as a request attribute and returns the JSP page to display them.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles displaying a user's tickets.
  */
 public class ManageUserTickets implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
 
     /**
-     * Executes the action to display a list of tickets for a user.
+     * Executes the action of displaying user tickets by building a QueryBuilder instance, extracting builder parameters
+     * from the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of tickets
+     * from the ticket service based on the query built from the QueryBuilder instance, and calculating pagination for
+     * the retrieved tickets list
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

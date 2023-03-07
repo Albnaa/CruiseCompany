@@ -12,13 +12,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Action class for managing tickets.
+ * Action class that handles the managing tickets.
  */
 public class ManageTicketsAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
 
     /**
-     * Executes the action of managing tickets.
+     * Executes the action of displaying tickets by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of tickets from the
+     * ticket service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved tickets list.
      *
      * @param request  the HTTP servlet request.
      * @param response the HTTP servlet response.

@@ -21,11 +21,13 @@ public class UpdatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
 
     /**
-     * Executes the update port action.
+     * Executes the UpdatePortAction by updating a port with the given id and name from the request.
+     * If the request parameters fail validation, sets the errors in the session and redirects to the previous page.
+     * If the update operation throws a ServiceException, sets the error in the session and redirects to the previous page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is completed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

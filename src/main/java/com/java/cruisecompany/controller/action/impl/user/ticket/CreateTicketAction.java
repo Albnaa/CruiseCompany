@@ -24,21 +24,18 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 
 /**
- * An implementation of the Action interface that handles creating a new ticket.
- * <p>
- * This class retrieves information about the new ticket from the HTTP servlet request, validates the information,
- * creates a new TicketDTO object, and adds it to the database via TicketService. If any errors occur during the
- * process, the errors are added to the request session and the user is redirected to the previous page.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles creating a new ticket.
  */
 @Log4j2
 public class CreateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
 
     /**
-     * Executes the action to create a new ticket.
+     * Executes the creation ticket action by getting the necessary data from the request object,
+     * validates the ticket parameters, creates a new ticket object, saves the ticket object in the database,
+     * and returns the appropriate view page.
+     *
+     *
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

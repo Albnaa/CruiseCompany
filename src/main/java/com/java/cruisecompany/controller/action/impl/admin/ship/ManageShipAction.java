@@ -18,11 +18,14 @@ public class ManageShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to manage ship records
+     * Executes the action of displaying ships by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of ships from the
+     * ship service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved ships list.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the JSP page to display the user's profile
+     * @return the JSP for managing ships
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {

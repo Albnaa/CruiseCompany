@@ -13,20 +13,17 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
 
 /**
- * An implementation of the Action interface that handles managing the catalog of ships.
- * <p>
- * This class retrieves the list of ships with their routes from the database based on the user's query
- * parameters, sets the appropriate request attributes, and calculates the pagination information for the view.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles the displaying and managing catalog of ships.
  */
 @Log4j2
 public class ManageCatalogAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to manage the catalog of ships.
+     * Executes the action of displaying ships by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of ships from the
+     * ship service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved ships list.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

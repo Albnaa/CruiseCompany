@@ -6,17 +6,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * SignOutAction is an implementation of the Action interface.
- * <p>
- * This action is used to perform user sign out and invalidate user session.
+ * Action class that handles user sign out and user session invalidation.
  */
 public class SignOutAction implements Action {
     /**
-     * This method is used to handle user sign out and invalidate user session.
+     * Executes the logout action by invalidating the current session and redirecting to the login page.
      *
-     * @param request  the servlet request
-     * @param response the servlet response
-     * @return a String that represents the path to the login page
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL that represents the path to the login page
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

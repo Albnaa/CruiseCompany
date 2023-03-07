@@ -21,11 +21,16 @@ public class CreatePortAction implements Action {
     PortService portService = AppContext.getInstance().getPortService();
 
     /**
-     * Executes the action of creating a new port.
+     * Executes the creation port action by validating the name of the port received in the request. If the name is
+     * valid, it creates a new PortDTO object with the validated name and passes it to the portService to create a new
+     * port.
+     * <p>
+     * If the name is invalid, it stores the error messages in the session and returns the referer page to display
+     * the error messages.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is executed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

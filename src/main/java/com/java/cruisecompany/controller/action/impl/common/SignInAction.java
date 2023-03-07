@@ -18,25 +18,21 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * An implementation of the {@link Action} interface that handles user sign-in.
- * <p>
- * It retrieves user login credentials from the request, verifies the user's credentials,
- * and sets the session attributes to store the logged-in user's information.
+ * Action class that handles user sign-in.
  */
 public class SignInAction implements Action {
     UserService userService = new UserServiceImpl(new UserDAOImpl());
 
     /**
-     * This implementation retrieves the user's login credentials from the request,
-     * verifies the user's credentials using the {@link UserService} implementation,
-     * sets session attributes to store the logged-in user's information, and returns
-     * a String indicating the next action to take.</p>
-     * <p>If an error occurs, the method sets an error message in the session and returns
+     * Executes the sign-in action by checking the login and password provided by the user, and setting the
+     * session attributes accordingly
+     * <p>
+     * If an error occurs, the method sets an error message in the session and returns
      * the URL of the previous page to allow the user to correct the error.</p>
      *
-     * @param request  the servlet request
-     * @param response the servlet response
-     * @return a String representing the URL of the next action to take
+     *  @param request  the HTTP servlet request
+     *  @param response the HTTP servlet response
+     *  @return the action to forward the user to after successful sign-in
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

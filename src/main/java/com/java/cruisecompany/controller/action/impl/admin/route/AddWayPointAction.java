@@ -21,11 +21,14 @@ public class AddWayPointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the action of adding a waypoint to a route.
+     * Executes the add waypoint action by extracting request parameters and validating them. If the parameters are valid,
+     * the method removes any existing errors in the session, adds a new waypoint to the specified route, and redirects the
+     * user to the previous page. If any errors occur during the process, the method logs the error and returns the user to
+     * the previous page with the error message.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL to redirect the user back to
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

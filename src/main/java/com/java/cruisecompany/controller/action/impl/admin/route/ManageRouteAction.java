@@ -18,10 +18,10 @@ public class ManageRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the action for managing routes.
-     * Retrieves query builder parameters from the request and sets them as session attributes.
-     * Retrieves a sorted list of routes from the route service and sets them as a request attribute.
-     * Calculates pagination and sets it as a request attribute.
+     * Executes the action of displaying routes by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of routes from the
+     * route service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved routes list.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response

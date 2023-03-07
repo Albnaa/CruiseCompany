@@ -13,18 +13,18 @@ import lombok.extern.log4j.Log4j2;
 import static java.lang.Long.parseLong;
 
 /**
- * An action class for updating a ticket's status.
+ * Action class that handles updating the status of a ticket.
  */
 @Log4j2
 public class UpdateTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
 
     /**
-     * Updates a ticket's status based on the request parameters.
+     * Executes the update ticket action by updating the status of a ticket.
      *
      * @param request  the HTTP request
      * @param response the HTTP response
-     * @return the URL to redirect to after execution
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

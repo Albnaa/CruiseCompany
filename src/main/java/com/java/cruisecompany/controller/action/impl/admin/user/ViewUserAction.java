@@ -11,19 +11,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 /**
- * The ViewUserAction class is an implementation of the Action interface
- * <p>
- * that handles requests to view a user's profile.
+ * An action class that handles viewing a user's profile.
  */
 public class ViewUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action to view a user
+     * Executes the view profile action by retrieving the user ID from the request and finding the corresponding user in
+     * the database.
+     * If the user is found, it sets the "user" attribute in the request with the retrieved user DTO. Otherwise, it sets
+     * the "error" attribute in the request with the corresponding message.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return a string representing the URL of the next page to display after the action is executed
+     * @return a string representing the URL of user profile JSP page.
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {

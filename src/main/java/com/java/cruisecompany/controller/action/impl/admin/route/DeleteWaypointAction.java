@@ -15,11 +15,12 @@ public class DeleteWaypointAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the action of deletion a route waypoint.
+     * Executes the delete waypoint action by invoking the {@link RouteService#deleteWaypoint(long, long)} method to delete
+     * the specified waypoint from the route. If an exception is thrown, the error message is logged.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL to redirect to
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

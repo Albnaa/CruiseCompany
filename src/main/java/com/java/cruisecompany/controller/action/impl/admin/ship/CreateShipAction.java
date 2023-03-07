@@ -27,11 +27,12 @@ public class CreateShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to create a ship
+     * Executes the creation ship action by validating the input parameters, adding the image file and creating
+     * a new ship in the database.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is completed
+     * @return the action to forward to after the action is completed
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

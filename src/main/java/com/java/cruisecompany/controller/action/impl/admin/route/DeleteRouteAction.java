@@ -16,11 +16,12 @@ public class DeleteRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the action of deletion a route.
+     * Executes the delete route action by deleting the route with the specified ID and redirecting to the route
+     * management page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL to redirect to
+     * @return the URL that represents the route management page
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

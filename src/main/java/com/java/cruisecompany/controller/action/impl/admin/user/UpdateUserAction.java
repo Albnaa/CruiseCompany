@@ -17,20 +17,21 @@ import java.util.Map;
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
 /**
- * The UpdateUserAction class is an implementation of the Action interface.
- * <p>
- * This action is responsible for updating an existing user in the system.
+ * An action class that handles updating a user
  */
 @Log4j2
 public class UpdateUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action to update a user
+     * Executes the update user action by updating the user details with the given parameters from request.
+     * <p>
+     * If the request parameters fail validation, sets the errors in the session and redirects to the previous page.
+     * If the update operation throws a ServiceException, sets the error in the session and redirects to the previous page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return a string representing the URL of the next page to display after the action is executed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

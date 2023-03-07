@@ -9,26 +9,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * An implementation of the Action interface that handles payment for a ticket.
- * <p>
- * This class retrieves the user and ticket IDs from the request, calls the TicketService to process the payment,
- * and returns the user to the previous page.
- * <p>
- * If an error occurs during the payment process, an error message is stored in the session and the user is
- * redirected back to the previous page.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles payment for a ticket.
  */
 public class PayForTicketAction implements Action {
     TicketService ticketService = AppContext.getInstance().getTicketService();
 
     /**
-     * Executes the action to pay for ticket.
+     * Executes the payment action by removing any previous error from session, retrieving the id of the user from session
+     * and the id of the ticket to pay from request parameters, then calling the ticketService to pay for the ticket with the
+     * given ids.
+     * <p>
+     * If a ServiceException occurs, sets the error message in session. Finally, returns the header of the previous page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the JSP page to display a single ticket
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

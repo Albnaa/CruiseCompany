@@ -23,11 +23,13 @@ public class UpdateRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
 
     /**
-     * Executes the update route action.
+     * Executes the update route action by validating and updating the route based on the provided parameters.
+     * <p>
+     * If the validation fails, the errors are stored in the session and the user is redirected to the referring page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is completed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

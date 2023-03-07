@@ -15,12 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class implements the Action interface to handle user sign-up requests.
- * <p>
- * It validates user parameters, creates a UserDTO object and passes it to UserServiceImpl to create a new user in
- * the database.
- * <p>
- * It returns the appropriate JSP page based on the result of the operation.
+ * Action class that handles user sign-up.
  */
 @Log4j2
 public class SignUpAction implements Action {
@@ -29,10 +24,13 @@ public class SignUpAction implements Action {
     /**
      * Executes the sign-up action by getting user parameters from the request, validating them, creating a new user,
      * and returning the appropriate JSP page.
+     * <p>
+     * If input parameters are invalid or there is an error registering the user, the appropriate error messages are
+     * set in the session and the user is redirected back to the sign-up page.
      *
-     * @param request  the HttpServletRequest object containing user parameters
-     * @param response the HttpServletResponse object for returning the response
-     * @return a String representing the JSP page to display after the sign-up action is executed
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return a String representing the JSP page to display
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

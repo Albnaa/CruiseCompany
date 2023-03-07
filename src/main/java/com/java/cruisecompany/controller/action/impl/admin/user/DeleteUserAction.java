@@ -8,17 +8,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * An action class that handles deleting a user from the system.
+ * Action class that handles deleting a user.
  */
 public class DeleteUserAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action to delete a user from the system.
+     * Executes the delete user action by deleting the user with the given ID.
+     * If an error occurs during the process, the error message is stored in the session.
      *
      * @param request  the HTTP servlet request containing the user ID of the user to delete
      * @param response the HTTP servlet response
-     * @return a string representing the URL of the next page to display after the action is executed
+     * @return a string representing the URL of the JSP for managing users
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

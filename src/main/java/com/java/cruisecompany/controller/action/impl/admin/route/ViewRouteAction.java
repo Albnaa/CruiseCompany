@@ -16,19 +16,24 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 /**
- * An action class that handles viewing a route and its details, including its waypoints and associated ports.
+ * Action class that handles viewing a route and its details, including its waypoints and associated ports.
  */
 public class ViewRouteAction implements Action {
     RouteService routeService = AppContext.getInstance().getRouteService();
     PortService portService = AppContext.getInstance().getPortService();
 
     /**
-     * Executes the manage route action.
+     * Executes the view route action by extracting the route ID from the request parameter,
+     * finding the route with the corresponding ID using the routeService, and setting the found route
+     * as an attribute of the request. Additionally, this method extracts query parameters from the request
+     * and sets them as attributes of the request, allowing for the display of a paginated list of ports
+     * that can be selected as waypoints on the updated route.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
      * @return the URL of the page to redirect to after the action is completed
-     */@Override
+     */
+    @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int id = Integer.parseInt(request.getParameter("id"));
         Optional<RouteDTO> route = routeService.findById(id);

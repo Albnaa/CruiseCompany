@@ -15,23 +15,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * An action class that handles user balance top-up functionality.
- * Validates the user input and calls the UserService to update the user's balance.
- * Updates the user object in the session.
- *
- * @author Oleh Oliinyk
- * @version 1.0
+ * Action class that handles user balance top-up functionality.
  */
 @Log4j2
 public class TopUpBalanceAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action of topping up the user's balance.
+     * Executes the top-up balance action by getting the user ID from the session, validating the amount parameter,
+     * topping up the user's balance by the specified amount, updating the user's information in the session, and returning
+     * the user to the previous page.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return a String representing the URL to redirect the user to after the action is executed
+     * @return the URL of the previous page, obtained from the request header
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {

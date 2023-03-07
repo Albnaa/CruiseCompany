@@ -12,21 +12,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Action that handles the management of users. Retrieves a list of users from the UserService,
- * <p>
- * sorts them using the provided query parameters, and sets the resulting list as an attribute of the
- * <p>
- * request. Calculates the number of pages required for pagination and sets relevant attributes for the view.
+ * Action that handles the management of users.
  */
 public class ManageUsersAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
 
     /**
-     * Executes the action to delete a user from the system.
+     * Executes the action of displaying users by building a QueryBuilder instance, extracting builder parameters from
+     * the HttpServletRequest, setting session attributes from the request, retrieving a sorted list of users from the
+     * user service based on the query built from the QueryBuilder instance, and calculating pagination for the
+     * retrieved users list.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return a string representing the URL of the next page to display after the action is executed
+     * @return a string representing the URL of the JSP for managing users
      * @exception ServiceException  if an error occurs while executing the action
      */
     @Override

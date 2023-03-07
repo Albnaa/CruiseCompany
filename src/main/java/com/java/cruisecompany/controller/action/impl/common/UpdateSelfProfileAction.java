@@ -16,8 +16,7 @@ import java.util.Map;
 import static com.java.cruisecompany.model.utils.ExceptionUtil.remapMessage;
 
 /**
- * The UpdateSelfProfileAction class implements the Action interface
- * and represents the action that updates the user's profile with the provided parameters.
+ * Action class that handles updating the user's profile.
  */
 public class UpdateSelfProfileAction implements Action {
     UserService userService = AppContext.getInstance().getUserService();
@@ -25,13 +24,14 @@ public class UpdateSelfProfileAction implements Action {
     /**
      * Executes the action to update the user's profile.
      * <p>
-     * It retrieves the current user from the HttpSession, validates the provided parameters,
-     * and updates the user's information using the UserService instance. If an error occurs,
-     * it adds the error message to the HttpSession and returns the user to the previous page.
+     * It retrieves the current user from the session, validates the provided parameters, and updates the user's
+     * information using the UserService instance.
+     * <p>
+     * If an error occurs, it adds the error message to the HttpSession and returns the user to the previous page.
      *
-     * @param request  the HttpServletRequest object containing the request the client has made of the servlet
-     * @param response the HttpServletResponse object containing the response the servlet sends to the client
-     * @return the URL of the page to which the user should be redirected after the action is performed
+     * @param request  the HTTP servlet request
+     * @param response the HTTP servlet response
+     * @return the URL of the previous page, obtained from the request header
      * @throws ServiceException if an error occurs while executing the action
      */
     @Override

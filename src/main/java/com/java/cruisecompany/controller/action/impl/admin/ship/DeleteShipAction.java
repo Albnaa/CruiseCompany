@@ -16,11 +16,11 @@ public class DeleteShipAction implements Action {
     ShipService shipService = AppContext.getInstance().getShipService();
 
     /**
-     * Executes the action to delete a ship
+     * Executes the delete ship action by deleting a ship with the given ID.
      *
      * @param request  the HTTP servlet request
      * @param response the HTTP servlet response
-     * @return the URL of the page to redirect to after the action is completed
+     * @return the JSP for managing ships
      */
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
