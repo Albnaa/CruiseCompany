@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketQueryBuilder extends QueryBuilder{
+public class TicketQueryBuilder extends QueryBuilder {
     private static final List<String> TICKET_FIELDS = new ArrayList<>();
     private final List<String> filterList = new ArrayList<>();
 
@@ -21,6 +21,10 @@ public class TicketQueryBuilder extends QueryBuilder{
         TICKET_FIELDS.add("ship.name");
         TICKET_FIELDS.add("route.name");
     }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String buildGroupByFragment() {
         return " GROUP BY ticket.id, ticket.passengers_count, ticket.price, ticket.status_id, ticket.document_path, " +
@@ -28,6 +32,9 @@ public class TicketQueryBuilder extends QueryBuilder{
                 " route.start_of_cruise ";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String buildFilterFragment() {
         if (filterList.isEmpty()) {
@@ -38,6 +45,11 @@ public class TicketQueryBuilder extends QueryBuilder{
         return result;
     }
 
+    /**
+     * Adds a filter for the user ID associated with a tickets.
+     *
+     * @param parameter a string representing the user ID to be searched.
+     */
     private void setUserFilter(String parameter) {
         try {
             int value = Integer.parseInt(parameter);
@@ -49,11 +61,21 @@ public class TicketQueryBuilder extends QueryBuilder{
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param request HTTP servlet request
+     */
     @Override
     void extractFilterParameters(HttpServletRequest request) {
         setUserFilter(request.getParameter("userF"));
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param parameter parameter to validate
+     */
     @Override
     boolean isValid(String parameter) {
         if (parameter == null || parameter.isEmpty()) {
@@ -62,6 +84,9 @@ public class TicketQueryBuilder extends QueryBuilder{
         return TICKET_FIELDS.contains(parameter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String getDefaultSort() {
         return TICKET_FIELDS.get(0);

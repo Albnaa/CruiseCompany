@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class UserQueryBuilder extends QueryBuilder{
+public class UserQueryBuilder extends QueryBuilder {
     private static final List<String> USER_FIELDS = new ArrayList<>();
     private final List<String> filterList = new ArrayList<>();
 
@@ -22,11 +22,17 @@ public class UserQueryBuilder extends QueryBuilder{
     }
 
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String buildGroupByFragment() {
         return " GROUP BY " + USER_FIELDS.get(0);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String buildFilterFragment() {
         if (filterList.isEmpty()) {
@@ -37,23 +43,41 @@ public class UserQueryBuilder extends QueryBuilder{
         return result;
     }
 
+    /**
+     * Adds a filter for the role of a user.
+     *
+     * @param parameter a string representing the role to be searched.
+     */
     void setRoleFilter(String parameter) {
         if (Objects.equals(parameter, "ADMIN") || Objects.equals(parameter, "USER")) {
             filterList.add("role_id = " + Role.parse(parameter).getIndex());
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param request HTTP servlet request
+     */
     @Override
     void extractFilterParameters(HttpServletRequest request) {
         setRoleFilter(request.getParameter("roleF"));
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param parameter parameter to validate
+     */
     @Override
     boolean isValid(String parameter) {
         if (parameter == null || parameter.isEmpty()) return false;
         return USER_FIELDS.contains(parameter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String getDefaultSort() {
         return USER_FIELDS.get(0);

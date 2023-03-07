@@ -23,12 +23,18 @@ public class ShipQueryBuilder extends QueryBuilder {
         SHIP_FIELDS.add("route.price");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String buildGroupByFragment() {
         return " GROUP BY ship.id, ship.name, ship.capacity, ship.visited_ports, ship.staff, route.id, route.name, " +
                 "route.start_of_cruise, route.end_of_cruise, route.price ";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String buildFilterFragment() {
         if (filterList.isEmpty()) {
@@ -39,6 +45,11 @@ public class ShipQueryBuilder extends QueryBuilder {
         return result;
     }
 
+    /**
+     * Adds a filter for the duration of the route.
+     *
+     * @param parameter a string representing the duration to be searched.
+     */
     private void setDurationFilter(String parameter) {
         try {
             int value = Integer.parseInt(parameter);
@@ -50,18 +61,33 @@ public class ShipQueryBuilder extends QueryBuilder {
         }
     }
 
+    /**
+     * Adds a filter for the name of the ship.
+     *
+     * @param parameter a string representing the name to be searched.
+     */
     private void setNameFilter(String parameter) {
         if (parameter != null && !parameter.isEmpty()) {
             filterList.add("route.name LIKE '%" + parameter + "%'");
         }
     }
 
+    /**
+     * Adds a filter for the start date of the cruise.
+     *
+     * @param parameter a string representing the start date to be searched.
+     */
     private void setStartDateFilter(String parameter) {
         if (parameter != null && !parameter.isEmpty()) {
             filterList.add("route.start_of_cruise = '" + parameter + "'");
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param request HTTP servlet request
+     */
     @Override
     void extractFilterParameters(HttpServletRequest request) {
         setDurationFilter(request.getParameter("durationF"));
@@ -69,12 +95,20 @@ public class ShipQueryBuilder extends QueryBuilder {
         setStartDateFilter(request.getParameter("startDateF"));
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @param parameter parameter to validate
+     */
     @Override
     boolean isValid(String parameter) {
         if (parameter == null || parameter.isEmpty()) return false;
         return SHIP_FIELDS.contains(parameter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String getDefaultSort() {
         return SHIP_FIELDS.get(0);
